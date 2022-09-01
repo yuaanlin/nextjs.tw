@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 function TopNav() {
-  return <div className="fixed bg-white top-0 w-screen">
+  return <div className="fixed bg-white top-0 w-screen z-50">
     <div
       className="mx-auto container mt-4 flex justify-between items-center">
       <Link href="/" passHref>
