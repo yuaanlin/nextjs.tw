@@ -1,10 +1,23 @@
 import TopNav from '../components/TopNav';
 import Footer from '@components/Footer';
 import Link from 'next/link';
+import Head from 'next/head';
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return <div className="w-screen">
+    <Head>
+      <title>Next.js - React 開發框架</title>
+      <meta
+        content="生產級且能夠規模化開發的 React 應用程式開發框架。
+        世界的領先企業使用由 Vercel 開發的 Next.js 來開發靜態渲染與動態渲染的網站和網頁應用程式。"
+        name="description"
+      />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png"/>
+      <meta name="twitter:card" content="summary_large_image"/>
+      <meta property="og:image" content="/og.jpg"/>
+      <meta content="@vercel" name="twitter:site"/>
+    </Head>
     <TopNav/>
     <div className="mx-auto container py-32">
       <h1
