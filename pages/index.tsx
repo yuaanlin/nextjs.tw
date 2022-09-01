@@ -19,7 +19,7 @@ const Home: NextPage = () => {
       <meta content="@vercel" name="twitter:site"/>
     </Head>
     <TopNav/>
-    <div className="mx-auto container py-32">
+    <div className="mx-auto container py-32 mt-24">
       <h1
         className="text-center font-extrabold text-4xl md:text-7xl lg:text-8xl
        leading-tight">
