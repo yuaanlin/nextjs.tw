@@ -6,15 +6,15 @@
     @apply bg-[#1d1f21] text-white p-4 rounded my-4;
 }
 
-.docs :not(pre) code {
+.docs :not(pre) > code {
     @apply text-[#c400ec] p-1 rounded mx-2;
 }
 
-.docs :not(pre) code::before {
+.docs :not(pre) > code::before {
     content: '`';
 }
 
-.docs :not(pre) code::after {
+.docs :not(pre) > code::after {
     content: '`';
 }
 
