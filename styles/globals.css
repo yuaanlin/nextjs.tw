@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .docs pre {
-    @apply bg-[#1d1f21] text-white p-4 rounded my-4;
+    @apply bg-[#1d1f21] text-white p-4 rounded my-4 overflow-x-auto;
 }
 
 .docs :not(pre) > code {
