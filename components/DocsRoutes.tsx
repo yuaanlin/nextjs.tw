@@ -1,0 +1,279 @@
+export const routes = [
+  {
+    title: 'Documentation',
+    index: true,
+    children: [
+      {
+        title: 'Getting Started',
+        path: '/docs/getting-started',
+      },
+      {
+        title: 'Basic Features',
+        children: [
+          {
+            title: 'Pages',
+            path: '/docs/basic-features/pages',
+          },
+          {
+            title: 'Data Fetching',
+            children: [
+              {
+                title: 'Overview',
+                path: '/docs/basic-features/data-fetching/overview',
+              },
+              {
+                title: 'getServerSideProps',
+                // eslint-disable-next-line max-len
+                path: '/docs/basic-features/data-fetching/get-server-side-props',
+              },
+              {
+                title: 'getStaticPaths',
+                path: '/docs/basic-features/data-fetching/get-static-paths',
+              },
+              {
+                title: 'getStaticProps',
+                path: '/docs/basic-features/data-fetching/get-static-props',
+              },
+              {
+                title: 'Incremental Static Regeneration',
+                // eslint-disable-next-line max-len
+                path: '/docs/basic-features/data-fetching/incremental-static-regeneration',
+              },
+              {
+                title: 'Client side',
+                path: '/docs/basic-features/data-fetching/client-side',
+              },
+            ]
+          },
+          {
+            title: 'Built-in CSS Support',
+            path: '/docs/basic-features/built-in-css-support',
+          },
+          {
+            title: 'Layouts',
+            path: '/docs/basic-features/layouts',
+          },
+          {
+            title: 'Image Optimization',
+            path: '/docs/basic-features/image-optimization',
+          },
+          {
+            title: 'Font Optimization',
+            path: '/docs/basic-features/font-optimization',
+          },
+          {
+            title: 'Static File Serving',
+            path: '/docs/basic-features/static-file-serving',
+          },
+          {
+            title: 'Fast Refresh',
+            path: '/docs/basic-features/fast-refresh',
+          },
+          {
+            title: 'ESLint',
+            path: '/docs/basic-features/eslint',
+          },
+          {
+            title: 'TypeScript',
+            path: '/docs/basic-features/typescript',
+          },
+          {
+            title: 'Environment Variables',
+            path: '/docs/basic-features/environment-variables',
+          },
+          {
+            title: 'Supported Browsers and Features',
+            path: '/docs/basic-features/supported-browsers-features',
+          },
+          {
+            title: 'Handling Scripts',
+            path: '/docs/basic-features/script',
+          },
+        ]
+      },
+    ]
+  },
+  {
+    title: 'API Reference',
+    index: true,
+    children: [
+      {
+        title: 'CLI',
+        path: '/docs/api-reference/cli',
+      },
+      {
+        title: 'Create Next App',
+        path: '/docs/api-reference/create-next-app',
+      },
+      {
+        title: 'next/router',
+        path: '/docs/api-reference/next/router',
+      },
+      {
+        title: 'next/link',
+        path: '/docs/api-reference/next/link',
+      },
+      {
+        title: 'next/image',
+        path: '/docs/api-reference/next/image',
+      },
+      {
+        title: 'next/script',
+        path: '/docs/api-reference/next/script',
+      },
+      {
+        title: 'next/head',
+        path: '/docs/api-reference/next/head',
+      },
+      {
+        title: 'next/amp',
+        path: '/docs/api-reference/next/amp',
+      },
+      {
+        title: 'next/server',
+        path: '/docs/api-reference/next/server',
+      },
+      {
+        title: 'next/future/image',
+        path: '/docs/api-reference/next/future/image',
+      },
+      {
+        title: 'Edge Runtime',
+        path: '/docs/api-reference/edge-runtime',
+      },
+      {
+        title: 'Data Fetching',
+        children: [
+          {
+            title: 'getInitialProps',
+            path: '/docs/api-reference/data-fetching/get-initial-props',
+          },
+          {
+            title: 'getServerSideProps',
+            path: '/docs/api-reference/data-fetching/get-server-side-props',
+          },
+          {
+            title: 'getStaticPaths',
+            path: '/docs/api-reference/data-fetching/get-static-paths',
+          },
+          {
+            title: 'getStaticProps',
+            path: '/docs/api-reference/data-fetching/get-static-props',
+          }
+        ]
+      },
+      {
+        title: 'Static Optimization Indicator',
+        // eslint-disable-next-line max-len
+        path: '/docs/api-reference/next.config.js/static-optimization-indicator',
+      },
+      {
+        title: 'next.config.js',
+        children: [
+          {
+            title: 'Introduction',
+            path: '/docs/api-reference/next.config.js/introduction',
+          },
+          {
+            title: 'Environment Variables',
+            path: '/docs/api-reference/next.config.js/environment-variables',
+          },
+          {
+            title: 'Base Path',
+            path: '/docs/api-reference/next.config.js/basepath',
+          },
+          {
+            title: 'Rewrites',
+            path: '/docs/api-reference/next.config.js/rewrites',
+          },
+          {
+            title: 'Redirects',
+            path: '/docs/api-reference/next.config.js/redirects',
+          },
+          {
+            title: 'Custom Headers',
+            path: '/docs/api-reference/next.config.js/headers',
+          },
+          {
+            title: 'Custom Page Extensions',
+            path: '/docs/api-reference/next.config.js/custom-page-extensions',
+          },
+          {
+            title: 'CDN Support with Asset Prefix',
+            // eslint-disable-next-line max-len
+            path: '/docs/api-reference/next.config.js/cdn-support-with-asset-prefix',
+          },
+          {
+            title: 'Custom Webpack Config',
+            path: '/docs/api-reference/next.config.js/custom-webpack-config',
+          },
+          {
+            title: 'Compression',
+            path: '/docs/api-reference/next.config.js/compression',
+          },
+          {
+            title: 'Runtime Configuration',
+            path: '/docs/api-reference/next.config.js/runtime-configuration',
+          },
+          {
+            title: 'Disabling x-powered-by',
+            path: '/docs/api-reference/next.config.js/disabling-x-powered-by',
+          },
+          {
+            title: 'Disabling ETag Generation',
+            // eslint-disable-next-line max-len
+            path: '/docs/api-reference/next.config.js/disabling-etag-generation',
+          },
+          {
+            title: 'Disabling HTTP Keep-Alive',
+            // eslint-disable-next-line max-len
+            path: '/docs/api-reference/next.config.js/disabling-http-keep-alive',
+          },
+          {
+            title: 'Setting a custom build directory',
+            // eslint-disable-next-line max-len
+            path: '/docs/api-reference/next.config.js/setting-a-custom-build-directory',
+          },
+          {
+            title: 'Configuring the Build ID',
+            path: '/docs/api-reference/next.config.js/configuring-the-build-id',
+          },
+          {
+            title: 'Configuring onDemandEntries',
+            // eslint-disable-next-line max-len
+            path: '/docs/api-reference/next.config.js/configuring-onDemandEntries',
+          },
+          {
+            title: 'Ignoring ESLint',
+            path: '/docs/api-reference/next.config.js/ignoring-eslint',
+          },
+          {
+            title: 'Ignoring TypeScript Errors',
+            // eslint-disable-next-line max-len
+            path: '/docs/api-reference/next.config.js/ignoring-typescript-errors',
+          },
+          {
+            title: 'exportPathMap',
+            path: '/docs/api-reference/next.config.js/exportPathMap',
+          },
+          {
+            title: 'Trailing Slash',
+            path: '/docs/api-reference/next.config.js/trailing-slash',
+          },
+          {
+            title: 'React Strict Mode',
+            path: '/docs/api-reference/next.config.js/react-strict-mode',
+          },
+          {
+            title: 'URL Imports',
+            path: '/docs/api-reference/next.config.js/url-imports',
+          },
+          {
+            title: 'Build indicator',
+            path: '/docs/api-reference/next.config.js/build-indicator',
+          },
+        ]
+      }
+    ]
+  },
+];
