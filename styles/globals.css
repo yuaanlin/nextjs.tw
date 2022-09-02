@@ -29,3 +29,7 @@
 .docs p {
     @apply my-4;
 }
+
+aside {
+    top: calc(2rem + 80px);
+}

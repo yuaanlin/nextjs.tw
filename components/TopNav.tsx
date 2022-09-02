@@ -5,7 +5,9 @@ import { useRouter } from 'next/router';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 
 function TopNav() {
+  const { pathname } = useRouter();
   const [ isMenuToggle, setIsMenuToggle ] = useState(false);
+  const isHome = pathname.split('/')[1] === '';
 
   useEffect(() => {
     isMenuToggle ? disablePageScroll() : enablePageScroll();
@@ -13,7 +15,10 @@ function TopNav() {
   }, [ isMenuToggle ]);
 
   return (
-    <div className="fixed bg-white top-0 w-screen z-50">
+    <header
+      className={`sticky bg-white top-0 w-screen z-50
+       ${!isHome ? 'border-b border-[#eaeaea]' : ''}`}
+    >
       <div
         className="mx-auto container bg-white h-[80px]
          flex justify-between items-center">
@@ -75,7 +80,7 @@ function TopNav() {
           </div>
         </nav>
       </div>
-    </div>
+    </header>
   );
 }
 
