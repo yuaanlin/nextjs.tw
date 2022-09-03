@@ -11,7 +11,7 @@ To disable **compression**, open `next.config.js` and disable the `compress` con
 ```js
 module.exports = {
   compress: false,
-}
+};
 ```
 
 ## Related

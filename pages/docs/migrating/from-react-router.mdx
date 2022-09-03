@@ -43,7 +43,7 @@ export default function App() {
 Most React applications that use React Router have a top-level navigation file, containing a list of routes. For example:
 
 ```jsx
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default function App() {
   return (
@@ -60,7 +60,7 @@ export default function App() {
         </Route>
       </Switch>
     </Router>
-  )
+  );
 }
 ```
 
@@ -81,11 +81,11 @@ import {
   Route,
   useRouteMatch,
   useParams,
-} from 'react-router-dom'
+} from "react-router-dom";
 
 export default function Blog() {
   // Nested route under /blog
-  const match = useRouteMatch()
+  const match = useRouteMatch();
 
   return (
     <Router>
@@ -98,12 +98,12 @@ export default function Blog() {
         </Route>
       </Switch>
     </Router>
-  )
+  );
 }
 
 function Post() {
-  const { slug } = useParams()
-  return <h1>Post Slug: {slug}</h1>
+  const { slug } = useParams();
+  return <h1>Post Slug: {slug}</h1>;
 }
 ```
 

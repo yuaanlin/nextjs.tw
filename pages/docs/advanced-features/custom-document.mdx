@@ -9,7 +9,7 @@ A custom `Document` can update the `<html>` and `<body>` tags used to render a [
 To override the default `Document`, create the file `pages/_document.js` as shown below:
 
 ```jsx
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
@@ -20,7 +20,7 @@ export default function Document() {
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }
 ```
 
@@ -53,11 +53,11 @@ To prepare for [React 18](/docs/advanced-features/react-18.md), we recommend avo
 The `ctx` object shown below is equivalent to the one received in [`getInitialProps`](/docs/api-reference/data-fetching/get-initial-props.md#context-object), with the addition of `renderPage`.
 
 ```jsx
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const originalRenderPage = ctx.renderPage
+    const originalRenderPage = ctx.renderPage;
 
     // Run the React rendering logic synchronously
     ctx.renderPage = () =>
@@ -66,12 +66,12 @@ class MyDocument extends Document {
         enhanceApp: (App) => App,
         // Useful for wrapping in a per-page basis
         enhanceComponent: (Component) => Component,
-      })
+      });
 
     // Run the parent `getInitialProps`, it now includes the custom `renderPage`
-    const initialProps = await Document.getInitialProps(ctx)
+    const initialProps = await Document.getInitialProps(ctx);
 
-    return initialProps
+    return initialProps;
   }
 
   render() {
@@ -83,11 +83,11 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;
 ```
 
 > **Note**: `getInitialProps` in `_document` is not called during client-side transitions.
@@ -97,19 +97,19 @@ export default MyDocument
 You can use the built-in `DocumentContext` type and change the file name to `./pages/_document.tsx` like so:
 
 ```tsx
-import Document, { DocumentContext, DocumentInitialProps } from 'next/document'
+import Document, { DocumentContext, DocumentInitialProps } from "next/document";
 
 class MyDocument extends Document {
   static async getInitialProps(
     ctx: DocumentContext
   ): Promise<DocumentInitialProps> {
-    const initialProps = await Document.getInitialProps(ctx)
+    const initialProps = await Document.getInitialProps(ctx);
 
-    return initialProps
+    return initialProps;
   }
 }
 
-export default MyDocument
+export default MyDocument;
 ```
 
 import DocsLayout from "@components/DocsLayout";

@@ -9,11 +9,11 @@ Next.js automatically polyfills [node-fetch](/docs/basic-features/supported-brow
 For a single `fetch()` call, you can add the agent option:
 
 ```js
-import { Agent } from 'https'
+import { Agent } from "https";
 
-const url = 'https://example.com'
-const agent = new Agent({ keepAlive: false })
-fetch(url, { agent })
+const url = "https://example.com";
+const agent = new Agent({ keepAlive: false });
+fetch(url, { agent });
 ```
 
 To override all `fetch()` calls globally, you can use `next.config.js`:
@@ -23,7 +23,7 @@ module.exports = {
   httpAgentOptions: {
     keepAlive: false,
   },
-}
+};
 ```
 
 ## Related

@@ -18,14 +18,14 @@ First, you will need to create a [custom App](/docs/advanced-features/custom-app
 ```js
 // pages/_app.js
 export function reportWebVitals(metric) {
-  console.log(metric)
+  console.log(metric);
 }
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+export default MyApp;
 ```
 
 This function is fired when the final values for any of the metrics have finished calculating on
@@ -60,8 +60,8 @@ You can handle all the results of these metrics using the `web-vital` label:
 
 ```js
 export function reportWebVitals(metric) {
-  if (metric.label === 'web-vital') {
-    console.log(metric) // The metric object ({ id, name, startTime, value, label }) is logged to the console
+  if (metric.label === "web-vital") {
+    console.log(metric); // The metric object ({ id, name, startTime, value, label }) is logged to the console
   }
 }
 ```
@@ -71,26 +71,26 @@ There's also the option of handling each of the metrics separately:
 ```js
 export function reportWebVitals(metric) {
   switch (metric.name) {
-    case 'FCP':
+    case "FCP":
       // handle FCP results
-      break
-    case 'LCP':
+      break;
+    case "LCP":
       // handle LCP results
-      break
-    case 'CLS':
+      break;
+    case "CLS":
       // handle CLS results
-      break
-    case 'FID':
+      break;
+    case "FID":
       // handle FID results
-      break
-    case 'TTFB':
+      break;
+    case "TTFB":
       // handle TTFB results
-      break
-    case 'INP':
+      break;
+    case "INP":
       // handle INP results (note: INP is still an experimental metric)
-      break
+      break;
     default:
-      break
+      break;
   }
 }
 ```
@@ -114,8 +114,8 @@ You can handle all the results of these metrics using the `custom` label:
 
 ```js
 export function reportWebVitals(metric) {
-  if (metric.label === 'custom') {
-    console.log(metric) // The metric object ({ id, name, startTime, value, label }) is logged to the console
+  if (metric.label === "custom") {
+    console.log(metric); // The metric object ({ id, name, startTime, value, label }) is logged to the console
   }
 }
 ```
@@ -125,17 +125,17 @@ There's also the option of handling each of the metrics separately:
 ```js
 export function reportWebVitals(metric) {
   switch (metric.name) {
-    case 'Next.js-hydration':
+    case "Next.js-hydration":
       // handle hydration results
-      break
-    case 'Next.js-route-change-to-render':
+      break;
+    case "Next.js-route-change-to-render":
       // handle route-change to render results
-      break
-    case 'Next.js-render':
+      break;
+    case "Next.js-render":
       // handle render results
-      break
+      break;
     default:
-      break
+      break;
   }
 }
 ```
@@ -149,14 +149,14 @@ real user performance on your site. For example:
 
 ```js
 export function reportWebVitals(metric) {
-  const body = JSON.stringify(metric)
-  const url = 'https://example.com/analytics'
+  const body = JSON.stringify(metric);
+  const url = "https://example.com/analytics";
 
   // Use `navigator.sendBeacon()` if available, falling back to `fetch()`.
   if (navigator.sendBeacon) {
-    navigator.sendBeacon(url, body)
+    navigator.sendBeacon(url, body);
   } else {
-    fetch(url, { body, method: 'POST', keepalive: true })
+    fetch(url, { body, method: "POST", keepalive: true });
   }
 }
 ```
@@ -169,13 +169,13 @@ export function reportWebVitals(metric) {
 > export function reportWebVitals({ id, name, label, value }) {
 >   // Use `window.gtag` if you initialized Google Analytics as this example:
 >   // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics/pages/_app.js
->   window.gtag('event', name, {
+>   window.gtag("event", name, {
 >     event_category:
->       label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
->     value: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
+>       label === "web-vital" ? "Web Vitals" : "Next.js custom metric",
+>     value: Math.round(name === "CLS" ? value * 1000 : value), // values must be integers
 >     event_label: id, // id unique to current page load
 >     non_interaction: true, // avoids affecting bounce rate.
->   })
+>   });
 > }
 > ```
 >
@@ -188,17 +188,17 @@ If you are using TypeScript, you can use the built-in type `NextWebVitalsMetric`
 ```ts
 // pages/_app.tsx
 
-import type { AppProps, NextWebVitalsMetric } from 'next/app'
+import type { AppProps, NextWebVitalsMetric } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
-  console.log(metric)
+  console.log(metric);
 }
 
-export default MyApp
+export default MyApp;
 ```
 
 import DocsLayout from "@components/DocsLayout";

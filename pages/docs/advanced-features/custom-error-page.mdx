@@ -17,7 +17,7 @@ To create a custom 404 page you can create a `pages/404.js` file. This file is s
 ```jsx
 // pages/404.js
 export default function Custom404() {
-  return <h1>404 - Page Not Found</h1>
+  return <h1>404 - Page Not Found</h1>;
 }
 ```
 
@@ -34,7 +34,7 @@ To customize the 500 page you can create a `pages/500.js` file. This file is sta
 ```jsx
 // pages/500.js
 export default function Custom500() {
-  return <h1>500 - Server-side error occurred</h1>
+  return <h1>500 - Server-side error occurred</h1>;
 }
 ```
 
@@ -50,17 +50,17 @@ function Error({ statusCode }) {
     <p>
       {statusCode
         ? `An error ${statusCode} occurred on server`
-        : 'An error occurred on client'}
+        : "An error occurred on client"}
     </p>
-  )
+  );
 }
 
 Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
-  return { statusCode }
-}
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
+  return { statusCode };
+};
 
-export default Error
+export default Error;
 ```
 
 > `pages/_error.js` is only used in production. In development you’ll get an error with the call stack to know where the error originated from.
@@ -70,24 +70,24 @@ export default Error
 If you want to render the built-in error page you can by importing the `Error` component:
 
 ```jsx
-import Error from 'next/error'
+import Error from "next/error";
 
 export async function getServerSideProps() {
-  const res = await fetch('https://api.github.com/repos/vercel/next.js')
-  const errorCode = res.ok ? false : res.statusCode
-  const json = await res.json()
+  const res = await fetch("https://api.github.com/repos/vercel/next.js");
+  const errorCode = res.ok ? false : res.statusCode;
+  const json = await res.json();
 
   return {
     props: { errorCode, stars: json.stargazers_count },
-  }
+  };
 }
 
 export default function Page({ errorCode, stars }) {
   if (errorCode) {
-    return <Error statusCode={errorCode} />
+    return <Error statusCode={errorCode} />;
   }
 
-  return <div>Next stars: {stars}</div>
+  return <div>Next stars: {stars}</div>;
 }
 ```
 

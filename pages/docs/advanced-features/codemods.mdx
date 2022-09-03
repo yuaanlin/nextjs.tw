@@ -37,7 +37,7 @@ For example:
 // my-component.js
 export default class Home extends React.Component {
   render() {
-    return <div>Hello World</div>
+    return <div>Hello World</div>;
   }
 }
 ```
@@ -46,10 +46,10 @@ Transforms into:
 
 ```jsx
 // my-component.js
-import React from 'react'
+import React from "react";
 export default class Home extends React.Component {
   render() {
-    return <div>Hello World</div>
+    return <div>Hello World</div>;
   }
 }
 ```
@@ -65,7 +65,7 @@ For example:
 ```jsx
 // my-component.js
 export default function () {
-  return <div>Hello World</div>
+  return <div>Hello World</div>;
 }
 ```
 
@@ -74,7 +74,7 @@ Transforms into:
 ```jsx
 // my-component.js
 export default function MyComponent() {
-  return <div>Hello World</div>
+  return <div>Hello World</div>;
 }
 ```
 
@@ -102,24 +102,24 @@ For example:
 
 ```js
 // Before
-import { withAmp } from 'next/amp'
+import { withAmp } from "next/amp";
 
 function Home() {
-  return <h1>My AMP Page</h1>
+  return <h1>My AMP Page</h1>;
 }
 
-export default withAmp(Home)
+export default withAmp(Home);
 ```
 
 ```js
 // After
 export default function Home() {
-  return <h1>My AMP Page</h1>
+  return <h1>My AMP Page</h1>;
 }
 
 export const config = {
   amp: true,
-}
+};
 ```
 
 #### Usage
@@ -146,27 +146,27 @@ For example:
 
 ```js
 // From
-import React from 'react'
+import React from "react";
 export default class extends React.Component {
   render() {
-    const { pathname } = this.props.url
-    return <div>Current pathname: {pathname}</div>
+    const { pathname } = this.props.url;
+    return <div>Current pathname: {pathname}</div>;
   }
 }
 ```
 
 ```js
 // To
-import React from 'react'
-import { withRouter } from 'next/router'
+import React from "react";
+import { withRouter } from "next/router";
 export default withRouter(
   class extends React.Component {
     render() {
-      const { pathname } = this.props.router
-      return <div>Current pathname: {pathname}</div>
+      const { pathname } = this.props.router;
+      return <div>Current pathname: {pathname}</div>;
     }
   }
-)
+);
 ```
 
 This is one case. All the cases that are transformed (and tested) can be found in the [`__testfixtures__` directory](https://github.com/vercel/next.js/tree/canary/packages/next-codemod/transforms/__testfixtures__/url-to-withrouter).

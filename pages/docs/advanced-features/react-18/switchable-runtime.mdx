@@ -25,9 +25,9 @@ You can set the experimental option `runtime` to either `'nodejs'` or `'experime
 // next.config.js
 module.exports = {
   experimental: {
-    runtime: 'experimental-edge',
+    runtime: "experimental-edge",
   },
-}
+};
 ```
 
 This option determines which runtime should be used as the default rendering runtime for all pages.
@@ -57,10 +57,10 @@ When both the per-page runtime and global runtime are set, the per-page runtime 
 
 ```typescript
 export const config = {
-  runtime: 'experimental-edge',
-}
+  runtime: "experimental-edge",
+};
 
-export default (req) => new Response('Hello world!')
+export default (req) => new Response("Hello world!");
 ```
 
 ## Related

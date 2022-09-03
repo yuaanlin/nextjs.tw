@@ -19,8 +19,8 @@ To deploy a Next.js application under a sub-path of a domain you can use the `ba
 
 ```js
 module.exports = {
-  basePath: '/docs',
-}
+  basePath: "/docs",
+};
 ```
 
 Note: this value must be set at build time and can not be changed without re-building as the value is inlined in the client-side bundles.
@@ -39,7 +39,7 @@ export default function HomePage() {
         <a>About Page</a>
       </Link>
     </>
-  )
+  );
 }
 ```
 
@@ -58,7 +58,7 @@ When using the [`next/image`](/docs/api-reference/next/image.md) component, you 
 For example, using `/docs/me.png` will properly serve your image when `basePath` is set to `/docs`.
 
 ```jsx
-import Image from 'next/image'
+import Image from "next/image";
 
 function Home() {
   return (
@@ -72,10 +72,10 @@ function Home() {
       />
       <p>Welcome to my homepage!</p>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;
 ```
 
 import DocsLayout from "@components/DocsLayout";

@@ -9,7 +9,7 @@ By default Next.js will add the `x-powered-by` header. To opt-out of it, open `n
 ```js
 module.exports = {
   poweredByHeader: false,
-}
+};
 ```
 
 ## Related

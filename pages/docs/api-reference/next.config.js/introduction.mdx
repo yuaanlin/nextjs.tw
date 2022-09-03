@@ -16,9 +16,9 @@ Take a look at the following `next.config.js` example:
  */
 const nextConfig = {
   /* config options here */
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
 ```
 
 If you need [ECMAScript modules](https://nodejs.org/api/esm.html), you can use `next.config.mjs`:
@@ -29,9 +29,9 @@ If you need [ECMAScript modules](https://nodejs.org/api/esm.html), you can use `
  */
 const nextConfig = {
   /* config options here */
-}
+};
 
-export default nextConfig
+export default nextConfig;
 ```
 
 You can also use a function:
@@ -43,9 +43,9 @@ module.exports = (phase, { defaultConfig }) => {
    */
   const nextConfig = {
     /* config options here */
-  }
-  return nextConfig
-}
+  };
+  return nextConfig;
+};
 ```
 
 Since Next.js 12.1.0, you can use an async function:
@@ -57,27 +57,27 @@ module.exports = async (phase, { defaultConfig }) => {
    */
   const nextConfig = {
     /* config options here */
-  }
-  return nextConfig
-}
+  };
+  return nextConfig;
+};
 ```
 
 `phase` is the current context in which the configuration is loaded. You can see the [available phases](https://github.com/vercel/next.js/blob/canary/packages/next/shared/lib/constants.ts#L1-L5). Phases can be imported from `next/constants`:
 
 ```js
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
+const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 
 module.exports = (phase, { defaultConfig }) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       /* development only config options here */
-    }
+    };
   }
 
   return {
     /* config options for all phases except development here */
-  }
-}
+  };
+};
 ```
 
 The commented lines are the place where you can put the configs allowed by `next.config.js`, which are [defined in this file](https://github.com/vercel/next.js/blob/canary/packages/next/server/config-shared.ts#L158).

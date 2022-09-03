@@ -12,9 +12,9 @@ Open `next.config.js` and add the `generateBuildId` function:
 module.exports = {
   generateBuildId: async () => {
     // You can, for example, get the latest git commit hash here
-    return 'my-build-id'
+    return "my-build-id";
   },
-}
+};
 ```
 
 ## Related

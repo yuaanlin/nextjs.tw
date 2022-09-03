@@ -24,16 +24,16 @@ Let's look at an example for a profile page. This will initially render a loadin
 ```jsx
 // pages/profile.js
 
-import useUser from '../lib/useUser'
-import Layout from '../components/Layout'
+import useUser from "../lib/useUser";
+import Layout from "../components/Layout";
 
 const Profile = () => {
   // Fetch the user client-side
-  const { user } = useUser({ redirectTo: '/login' })
+  const { user } = useUser({ redirectTo: "/login" });
 
   // Server-render loading state
   if (!user || user.isLoggedIn === false) {
-    return <Layout>Loading...</Layout>
+    return <Layout>Loading...</Layout>;
   }
 
   // Once the user request finishes, show the user
@@ -42,10 +42,10 @@ const Profile = () => {
       <h1>Your Profile</h1>
       <pre>{JSON.stringify(user, null, 2)}</pre>
     </Layout>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
 ```
 
 You can view this [example in action](https://iron-session-example.vercel.app/). Check out the [`with-iron-session`](https://github.com/vercel/next.js/tree/canary/examples/with-iron-session) example to see how it works.
@@ -58,7 +58,7 @@ If you export an `async` function called [`getServerSideProps`](/docs/basic-feat
 export async function getServerSideProps(context) {
   return {
     props: {}, // Will be passed to the page component as props
-  }
+  };
 }
 ```
 
@@ -67,25 +67,25 @@ Let's transform the profile example to use [server-side rendering](/docs/basic-f
 ```jsx
 // pages/profile.js
 
-import withSession from '../lib/session'
-import Layout from '../components/Layout'
+import withSession from "../lib/session";
+import Layout from "../components/Layout";
 
 export const getServerSideProps = withSession(async function ({ req, res }) {
-  const { user } = req.session
+  const { user } = req.session;
 
   if (!user) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
-    }
+    };
   }
 
   return {
     props: { user },
-  }
-})
+  };
+});
 
 const Profile = ({ user }) => {
   // Show the user. No loading state is required
@@ -94,10 +94,10 @@ const Profile = ({ user }) => {
       <h1>Your Profile</h1>
       <pre>{JSON.stringify(user, null, 2)}</pre>
     </Layout>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
 ```
 
 An advantage of this pattern is preventing a flash of unauthenticated content before redirecting. It's important to note fetching user data in `getServerSideProps` will block rendering until the request to your authentication provider resolves. To prevent creating a bottleneck and increasing your TTFB ([Time to First Byte](https://web.dev/time-to-first-byte/)), you should ensure your authentication lookup is fast. Otherwise, consider [static generation](#authenticating-statically-generated-pages).
@@ -109,10 +109,20 @@ Now that we've discussed authentication patterns, let's look at specific provide
 ### Bring Your Own Database
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-iron-session">with-iron-session</a></li>
-    <li><a href="https://github.com/nextauthjs/next-auth-example">next-auth-example</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-iron-session">
+        with-iron-session
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/nextauthjs/next-auth-example">
+        next-auth-example
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -131,17 +141,55 @@ Both of these libraries support either authentication pattern. If you're interes
 To see examples with other authentication providers, check out the [examples folder](https://github.com/vercel/next.js/tree/canary/examples).
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/auth0">Auth0</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-clerk">Clerk</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-firebase-authentication">Firebase</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-magic">Magic</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-nhost-auth-realtime-graphql">Nhost</a></li>
-    <li><a href="https://github.com/vercel/examples/tree/main/solutions/auth-with-ory">Ory</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-supabase-auth-realtime-db">Supabase</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-supertokens">Supertokens</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-userbase">Userbase</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/auth0">
+        Auth0
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-clerk">
+        Clerk
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-firebase-authentication">
+        Firebase
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-magic">
+        Magic
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-nhost-auth-realtime-graphql">
+        Nhost
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/examples/tree/main/solutions/auth-with-ory">
+        Ory
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-supabase-auth-realtime-db">
+        Supabase
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-supertokens">
+        Supertokens
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-userbase">
+        Userbase
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -152,7 +200,9 @@ For more information on what to do next, we recommend the following sections:
 <div className="card">
   <a href="/docs/basic-features/pages.md">
     <b>Pages:</b>
-    <small>Learn more about pages and the different pre-rendering methods in Next.js.</small>
+    <small>
+      Learn more about pages and the different pre-rendering methods in Next.js.
+    </small>
   </a>
 </div>
 

@@ -20,7 +20,7 @@ Open `next.config.js` and add the `trailingSlash` config:
 ```js
 module.exports = {
   trailingSlash: true,
-}
+};
 ```
 
 With this option set, urls like `/about` will redirect to `/about/`.

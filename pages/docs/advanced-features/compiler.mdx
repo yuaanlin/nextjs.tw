@@ -88,18 +88,18 @@ First, update to the latest version of Next.js: `npm install next@latest`. Then,
 
 ```js
 // jest.config.js
-const nextJest = require('next/jest')
+const nextJest = require("next/jest");
 
 // Providing the path to your Next.js app which will enable loading next.config.js and .env files
-const createJestConfig = nextJest({ dir: './' })
+const createJestConfig = nextJest({ dir: "./" });
 
 // Any custom config you want to pass to Jest
 const customJestConfig = {
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-}
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+};
 
 // createJestConfig is exported in this way to ensure that next/jest can load the Next.js configuration, which is async
-module.exports = createJestConfig(customJestConfig)
+module.exports = createJestConfig(customJestConfig);
 ```
 
 ### Relay
@@ -112,12 +112,12 @@ module.exports = {
   compiler: {
     relay: {
       // This should match relay.config.js
-      src: './',
-      artifactDirectory: './__generated__',
-      language: 'typescript',
+      src: "./",
+      artifactDirectory: "./__generated__",
+      language: "typescript",
     },
   },
-}
+};
 ```
 
 NOTE: In Next.js all JavaScript files in `pages` directory are considered routes. So, for `relay-compiler` you'll need to specify `artifactDirectory` configuration settings outside of the `pages`, otherwise `relay-compiler` will generate files next to the source file in the `__generated__` directory, and this file will be considered a route, which will break production builds.
@@ -134,7 +134,7 @@ module.exports = {
   compiler: {
     reactRemoveProperties: true,
   },
-}
+};
 ```
 
 To remove custom properties:
@@ -145,9 +145,9 @@ module.exports = {
   compiler: {
     // The regexes defined here are processed in Rust so the syntax is different from
     // JavaScript `RegExp`s. See https://docs.rs/regex.
-    reactRemoveProperties: { properties: ['^data-custom$'] },
+    reactRemoveProperties: { properties: ["^data-custom$"] },
   },
-}
+};
 ```
 
 ### Remove Console
@@ -162,7 +162,7 @@ module.exports = {
   compiler: {
     removeConsole: true,
   },
-}
+};
 ```
 
 Remove `console.*` output except `console.error`:
@@ -172,10 +172,10 @@ Remove `console.*` output except `console.error`:
 module.exports = {
   compiler: {
     removeConsole: {
-      exclude: ['error'],
+      exclude: ["error"],
     },
   },
-}
+};
 ```
 
 ### Legacy Decorators
@@ -249,7 +249,7 @@ You can opt-in to using the Next.js compiler for minification. This is 7x faster
 
 module.exports = {
   swcMinify: true,
-}
+};
 ```
 
 If you have feedback about `swcMinify`, please share it on the [feedback discussion](https://github.com/vercel/next.js/discussions/30237).
@@ -271,7 +271,7 @@ module.exports = {
     },
   },
   swcMinify: true,
-}
+};
 ```
 
 If your app works with the options above, it means `side_effects` is the problematic option.
@@ -284,16 +284,16 @@ Allows to modularize imports, similar to [babel-plugin-transform-imports](https:
 Transforms member style imports:
 
 ```js
-import { Row, Grid as MyGrid } from 'react-bootstrap'
-import { merge } from 'lodash'
+import { Row, Grid as MyGrid } from "react-bootstrap";
+import { merge } from "lodash";
 ```
 
 ...into default style imports:
 
 ```js
-import Row from 'react-bootstrap/lib/Row'
-import MyGrid from 'react-bootstrap/lib/Grid'
-import merge from 'lodash/merge'
+import Row from "react-bootstrap/lib/Row";
+import MyGrid from "react-bootstrap/lib/Grid";
+import merge from "lodash/merge";
 ```
 
 Config for the above transform:
@@ -303,15 +303,15 @@ Config for the above transform:
 module.exports = {
   experimental: {
     modularizeImports: {
-      'react-bootstrap': {
-        transform: 'react-bootstrap/lib/{{member}}',
+      "react-bootstrap": {
+        transform: "react-bootstrap/lib/{{member}}",
       },
       lodash: {
-        transform: 'lodash/{{member}}',
+        transform: "lodash/{{member}}",
       },
     },
   },
-}
+};
 ```
 
 Advanced transformations:
@@ -327,29 +327,29 @@ The config:
 module.exports = {
   experimental: {
     modularizeImports: {
-      'my-library/?(((\\w*)?/?)*)': {
-        transform: 'my-library/{{ matches.[1] }}/{{member}}',
+      "my-library/?(((\\w*)?/?)*)": {
+        transform: "my-library/{{ matches.[1] }}/{{member}}",
       },
     },
   },
-}
+};
 ```
 
 Cause this code:
 
 ```js
-import { MyModule } from 'my-library'
-import { App } from 'my-library/components'
-import { Header, Footer } from 'my-library/components/App'
+import { MyModule } from "my-library";
+import { App } from "my-library/components";
+import { Header, Footer } from "my-library/components/App";
 ```
 
 To become:
 
 ```js
-import MyModule from 'my-library/MyModule'
-import App from 'my-library/components/App'
-import Header from 'my-library/components/App/Header'
-import Footer from 'my-library/components/App/Footer'
+import MyModule from "my-library/MyModule";
+import App from "my-library/components/App";
+import Header from "my-library/components/App/Header";
+import Footer from "my-library/components/App/Footer";
 ```
 
 - Handlebars templating
@@ -371,7 +371,7 @@ module.exports = {
   experimental: {
     swcTraceProfiling: true,
   },
-}
+};
 ```
 
 Once enabled, swc will generate trace named as `swc-trace-profile-${timestamp}.json` under `.next/`. Chromium's trace viewer (chrome://tracing/, https://ui.perfetto.dev/), or compatible flamegraph viewer (https://www.speedscope.app/) can load & visualize generated traces.
@@ -387,14 +387,14 @@ module.exports = {
   experimental: {
     swcPlugins: [
       [
-        'plugin',
+        "plugin",
         {
           ...pluginOptions,
         },
       ],
     ],
   },
-}
+};
 ```
 
 `swcPlugins` accepts an array of tuples for configuring plugins. A tuple for the plugin contains the path to the plugin and an object for plugin configuration. The path to the plugin can be an npm module package name or an absolute path to the `.wasm` binary itself.

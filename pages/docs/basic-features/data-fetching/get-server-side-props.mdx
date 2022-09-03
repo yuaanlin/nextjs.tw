@@ -10,7 +10,7 @@ If you export a function called `getServerSideProps` (Server-Side Rendering) fro
 export async function getServerSideProps(context) {
   return {
     props: {}, // will be passed to the page component as props
-  }
+  };
 }
 ```
 
@@ -66,14 +66,14 @@ function Page({ data }) {
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://.../data`)
-  const data = await res.json()
+  const res = await fetch(`https://.../data`);
+  const data = await res.json();
 
   // Pass data to the page via props
-  return { props: { data } }
+  return { props: { data } };
 }
 
-export default Page
+export default Page;
 ```
 
 ## Caching with Server-Side Rendering (SSR)
@@ -90,13 +90,13 @@ You can use caching headers (`Cache-Control`) inside `getServerSideProps` to cac
 // with a fresh value. If you refresh the page, you will see the new value.
 export async function getServerSideProps({ req, res }) {
   res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
 
   return {
     props: {},
-  }
+  };
 }
 ```
 

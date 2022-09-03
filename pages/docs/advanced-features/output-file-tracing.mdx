@@ -26,8 +26,8 @@ To leverage this automatic copying you can enable it in your `next.config.js`:
 
 ```js
 module.exports = {
-  output: 'standalone',
-}
+  output: "standalone",
+};
 ```
 
 This will create a folder at `.next/standalone` which can then be deployed on it's own without installing `node_modules`.
@@ -45,9 +45,9 @@ Note: `next.config.js` is read during `next build` and serialized into the `serv
 module.exports = {
   experimental: {
     // this includes files from the monorepo base two directories up
-    outputFileTracingRoot: path.join(__dirname, '../../'),
+    outputFileTracingRoot: path.join(__dirname, "../../"),
   },
-}
+};
 ```
 
 - There are some cases that Next.js might fail to include required files, or might incorrectly include unused files. In those cases, you can export page configs props `unstable_includeFiles` and `unstable_excludeFiles` respectively. Each prop accepts an array of [minimatch globs](https://www.npmjs.com/package/minimatch) relative to the project's root to either include or exclude in the trace.

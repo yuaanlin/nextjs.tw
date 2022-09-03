@@ -21,7 +21,7 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-}
+};
 ```
 
 ## Related

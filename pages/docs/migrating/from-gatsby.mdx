@@ -65,24 +65,24 @@ The Gatsby `Link` and Next.js [`Link`](/docs/api-reference/next/link.md) compone
 ```jsx
 // Gatsby
 
-import { Link } from 'gatsby'
+import { Link } from "gatsby";
 
 export default function Home() {
-  return <Link to="/blog">blog</Link>
+  return <Link to="/blog">blog</Link>;
 }
 ```
 
 ```jsx
 // Next.js
 
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function Home() {
   return (
     <Link href="/blog">
       <a>blog</a>
     </Link>
-  )
+  );
 }
 ```
 
@@ -98,27 +98,27 @@ Gatsby uses the `graphql` tag to query data in the pages of your site. This may 
 // src/pages/[slug].js
 
 // Install remark and remark-html
-import { remark } from 'remark'
-import html from 'remark-html'
-import { getPostBySlug, getAllPosts } from '../lib/blog'
+import { remark } from "remark";
+import html from "remark-html";
+import { getPostBySlug, getAllPosts } from "../lib/blog";
 
 export async function getStaticProps({ params }) {
-  const post = getPostBySlug(params.slug)
+  const post = getPostBySlug(params.slug);
   const markdown = await remark()
     .use(html)
-    .process(post.content || '')
-  const content = markdown.toString()
+    .process(post.content || "");
+  const content = markdown.toString();
 
   return {
     props: {
       ...post,
       content,
     },
-  }
+  };
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts()
+  const posts = getAllPosts();
 
   return {
     paths: posts.map((post) => {
@@ -126,10 +126,10 @@ export async function getStaticPaths() {
         params: {
           slug: post.slug,
         },
-      }
+      };
     }),
     fallback: false,
-  }
+  };
 }
 ```
 
@@ -139,29 +139,29 @@ You'll commonly see Gatsby plugins used for reading the file system (`gatsby-sou
 // src/lib/blog.js
 
 // Install gray-matter and date-fns
-import matter from 'gray-matter'
-import { parseISO, format } from 'date-fns'
-import fs from 'fs'
-import { join } from 'path'
+import matter from "gray-matter";
+import { parseISO, format } from "date-fns";
+import fs from "fs";
+import { join } from "path";
 
 // Add markdown files in `src/content/blog`
-const postsDirectory = join(process.cwd(), 'src', 'content', 'blog')
+const postsDirectory = join(process.cwd(), "src", "content", "blog");
 
 export function getPostBySlug(slug) {
-  const realSlug = slug.replace(/\.md$/, '')
-  const fullPath = join(postsDirectory, `${realSlug}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
-  const { data, content } = matter(fileContents)
-  const date = format(parseISO(data.date), 'MMMM dd, yyyy')
+  const realSlug = slug.replace(/\.md$/, "");
+  const fullPath = join(postsDirectory, `${realSlug}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
+  const date = format(parseISO(data.date), "MMMM dd, yyyy");
 
-  return { slug: realSlug, frontmatter: { ...data, date }, content }
+  return { slug: realSlug, frontmatter: { ...data, date }, content };
 }
 
 export function getAllPosts() {
-  const slugs = fs.readdirSync(postsDirectory)
-  const posts = slugs.map((slug) => getPostBySlug(slug))
+  const slugs = fs.readdirSync(postsDirectory);
+  const posts = slugs.map((slug) => getPostBySlug(slug));
 
-  return posts
+  return posts;
 }
 ```
 
@@ -188,8 +188,8 @@ Instead, use the built-in [`next/image`](/docs/api-reference/next/image.md) comp
 > The `next/image` component's default loader is not supported when using [`next export`](/docs/advanced-features/static-html-export.md). However, other loader options will work.
 
 ```jsx
-import Image from 'next/image'
-import profilePic from '../public/me.png'
+import Image from "next/image";
+import profilePic from "../public/me.png";
 
 export default function Home() {
   return (
@@ -211,7 +211,7 @@ export default function Home() {
       />
       <p>Welcome to my homepage!</p>
     </>
-  )
+  );
 }
 ```
 
@@ -225,16 +225,16 @@ With Next.js, we recommend creating a config file similar to below. You can then
 // src/config.js
 
 export default {
-  title: 'Starter Blog',
+  title: "Starter Blog",
   author: {
-    name: 'Lee Robinson',
-    summary: 'who loves Next.js.',
+    name: "Lee Robinson",
+    summary: "who loves Next.js.",
   },
-  description: 'A starter blog converting Gatsby -> Next.',
+  description: "A starter blog converting Gatsby -> Next.",
   social: {
-    twitter: 'leeerob',
+    twitter: "leeerob",
   },
-}
+};
 ```
 
 ## Search Engine Optimization
@@ -244,7 +244,7 @@ Most Gatsby examples use `react-helmet` to assist with adding `meta` tags for pr
 ```js
 // src/components/seo.js
 
-import { Helmet } from 'react-helmet'
+import { Helmet } from "react-helmet";
 
 export default function SEO({ description, title, siteTitle }) {
   return (
@@ -286,7 +286,7 @@ export default function SEO({ description, title, siteTitle }) {
         },
       ]}
     />
-  )
+  );
 }
 ```
 
@@ -295,11 +295,11 @@ And here's the same example using Next.js, including reading from a site config 
 ```js
 // src/components/seo.js
 
-import Head from 'next/head'
-import config from '../config'
+import Head from "next/head";
+import config from "../config";
 
 export default function SEO({ description, title }) {
-  const siteTitle = config.title
+  const siteTitle = config.title;
 
   return (
     <Head>
@@ -314,7 +314,7 @@ export default function SEO({ description, title }) {
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
     </Head>
-  )
+  );
 }
 ```
 

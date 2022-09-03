@@ -12,10 +12,10 @@ In Next.js, a **page** is a [React Component](https://reactjs.org/docs/component
 
 ```jsx
 function About() {
-  return <div>About</div>
+  return <div>About</div>;
 }
 
-export default About
+export default About;
 ```
 
 ### Pages with Dynamic Routes
@@ -46,26 +46,115 @@ You can also use **Client-side data fetching** along with Static Generation or S
 ## Static Generation (Recommended)
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-wordpress">WordPress Example</a> (<a href="https://next-blog-wordpress.vercel.app">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/blog-starter">Blog Starter using markdown files</a> (<a href="https://next-blog-starter.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-datocms">DatoCMS Example</a> (<a href="https://next-blog-datocms.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-takeshape">TakeShape Example</a> (<a href="https://next-blog-takeshape.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-sanity">Sanity Example</a> (<a href="https://next-blog-sanity.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-prismic">Prismic Example</a> (<a href="https://next-blog-prismic.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-contentful">Contentful Example</a> (<a href="https://next-blog-contentful.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-strapi">Strapi Example</a> (<a href="https://next-blog-strapi.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-prepr">Prepr Example</a> (<a href="https://next-blog-prepr.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-agilitycms">Agility CMS Example</a> (<a href="https://next-blog-agilitycms.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-cosmic">Cosmic Example</a> (<a href="https://next-blog-cosmic.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-buttercms">ButterCMS Example</a> (<a href="https://next-blog-buttercms.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-storyblok">Storyblok Example</a> (<a href="https://next-blog-storyblok.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-graphcms">GraphCMS Example</a> (<a href="https://next-blog-graphcms.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-kontent">Kontent Example</a> (<a href="https://next-blog-kontent.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-builder-io">Builder.io Example</a> (<a href="https://cms-builder-io.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-tina">TinaCMS Example</a> (<a href="https://cms-tina-example.vercel.app/">Demo</a>)</li>
-    <li><a href="https://static-tweet.vercel.app/">Static Tweet (Demo)</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-wordpress">
+        WordPress Example
+      </a>{" "}
+      (<a href="https://next-blog-wordpress.vercel.app">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/blog-starter">
+        Blog Starter using markdown files
+      </a>{" "}
+      (<a href="https://next-blog-starter.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-datocms">
+        DatoCMS Example
+      </a>{" "}
+      (<a href="https://next-blog-datocms.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-takeshape">
+        TakeShape Example
+      </a>{" "}
+      (<a href="https://next-blog-takeshape.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-sanity">
+        Sanity Example
+      </a>{" "}
+      (<a href="https://next-blog-sanity.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-prismic">
+        Prismic Example
+      </a>{" "}
+      (<a href="https://next-blog-prismic.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-contentful">
+        Contentful Example
+      </a>{" "}
+      (<a href="https://next-blog-contentful.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-strapi">
+        Strapi Example
+      </a>{" "}
+      (<a href="https://next-blog-strapi.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-prepr">
+        Prepr Example
+      </a>{" "}
+      (<a href="https://next-blog-prepr.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-agilitycms">
+        Agility CMS Example
+      </a>{" "}
+      (<a href="https://next-blog-agilitycms.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-cosmic">
+        Cosmic Example
+      </a>{" "}
+      (<a href="https://next-blog-cosmic.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-buttercms">
+        ButterCMS Example
+      </a>{" "}
+      (<a href="https://next-blog-buttercms.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-storyblok">
+        Storyblok Example
+      </a>{" "}
+      (<a href="https://next-blog-storyblok.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-graphcms">
+        GraphCMS Example
+      </a>{" "}
+      (<a href="https://next-blog-graphcms.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-kontent">
+        Kontent Example
+      </a>{" "}
+      (<a href="https://next-blog-kontent.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-builder-io">
+        Builder.io Example
+      </a>{" "}
+      (<a href="https://cms-builder-io.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/cms-tina">
+        TinaCMS Example
+      </a>{" "}
+      (<a href="https://cms-tina-example.vercel.app/">Demo</a>)
+    </li>
+    <li>
+      <a href="https://static-tweet.vercel.app/">Static Tweet (Demo)</a>
+    </li>
   </ul>
 </details>
 
@@ -79,10 +168,10 @@ By default, Next.js pre-renders pages using Static Generation without fetching d
 
 ```jsx
 function About() {
-  return <div>About</div>
+  return <div>About</div>;
 }
 
-export default About
+export default About;
 ```
 
 Note that this page does not need to fetch any external data to be pre-rendered. In cases like this, Next.js generates a single HTML file per page during build time.
@@ -108,10 +197,10 @@ function Blog({ posts }) {
         <li>{post.title}</li>
       ))}
     </ul>
-  )
+  );
 }
 
-export default Blog
+export default Blog;
 ```
 
 To fetch this data on pre-render, Next.js allows you to `export` an `async` function called `getStaticProps` from the same file. This function gets called at build time and lets you pass fetched data to the page's `props` on pre-render.
@@ -124,8 +213,8 @@ function Blog({ posts }) {
 // This function gets called at build time
 export async function getStaticProps() {
   // Call an external API endpoint to get posts
-  const res = await fetch('https://.../posts')
-  const posts = await res.json()
+  const res = await fetch("https://.../posts");
+  const posts = await res.json();
 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
@@ -133,10 +222,10 @@ export async function getStaticProps() {
     props: {
       posts,
     },
-  }
+  };
 }
 
-export default Blog
+export default Blog;
 ```
 
 To learn more about how `getStaticProps` works, check out the [Data Fetching documentation](/docs/basic-features/data-fetching/get-static-props.md).
@@ -159,17 +248,17 @@ So your page **paths** that are pre-rendered depend on external data**.** To han
 // This function gets called at build time
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetch('https://.../posts')
-  const posts = await res.json()
+  const res = await fetch("https://.../posts");
+  const posts = await res.json();
 
   // Get the paths we want to pre-render based on posts
   const paths = posts.map((post) => ({
     params: { id: post.id },
-  }))
+  }));
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  return { paths, fallback: false }
+  return { paths, fallback: false };
 }
 ```
 
@@ -188,14 +277,14 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
-  const res = await fetch(`https://.../posts/${params.id}`)
-  const post = await res.json()
+  const res = await fetch(`https://.../posts/${params.id}`);
+  const post = await res.json();
 
   // Pass post data to the page via props
-  return { props: { post } }
+  return { props: { post } };
 }
 
-export default Post
+export default Post;
 ```
 
 To learn more about how `getStaticPaths` works, check out the [Data Fetching documentation](/docs/basic-features/data-fetching/get-static-paths.md).
@@ -238,14 +327,14 @@ function Page({ data }) {
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://.../data`)
-  const data = await res.json()
+  const res = await fetch(`https://.../data`);
+  const data = await res.json();
 
   // Pass data to the page via props
-  return { props: { data } }
+  return { props: { data } };
 }
 
-export default Page
+export default Page;
 ```
 
 As you can see, `getServerSideProps` is similar to `getStaticProps`, but the difference is that `getServerSideProps` is run on every request instead of on build time.

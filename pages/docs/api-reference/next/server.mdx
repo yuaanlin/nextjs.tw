@@ -35,7 +35,7 @@ You can use the `NextRequest` object as a direct replacement for the native `Req
 `NextRequest` can be imported from `next/server`:
 
 ```typescript
-import type { NextRequest } from 'next/server'
+import type { NextRequest } from "next/server";
 ```
 
 ## NextFetchEvent
@@ -45,25 +45,25 @@ The `NextFetchEvent` object extends the native [`FetchEvent`](https://developer.
 The `waitUntil()` method can be used to prolong the execution of the function if you have other background work to make.
 
 ```typescript
-import { NextResponse } from 'next/server'
-import type { NextFetchEvent, NextRequest } from 'next/server'
+import { NextResponse } from "next/server";
+import type { NextFetchEvent, NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest, event: NextFetchEvent) {
   event.waitUntil(
-    fetch('https://my-analytics-platform.com', {
-      method: 'POST',
+    fetch("https://my-analytics-platform.com", {
+      method: "POST",
       body: JSON.stringify({ pathname: req.nextUrl.pathname }),
     })
-  )
+  );
 
-  return NextResponse.next()
+  return NextResponse.next();
 }
 ```
 
 The `NextFetchEvent` object can be imported from `next/server`:
 
 ```typescript
-import type { NextFetchEvent } from 'next/server'
+import type { NextFetchEvent } from "next/server";
 ```
 
 ## NextResponse
@@ -87,7 +87,7 @@ The following static methods are available on the `NextResponse` class directly:
 To use the methods above, **you must return the `NextResponse` object** returned. `NextResponse` can be imported from `next/server`:
 
 ```typescript
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server";
 ```
 
 ## userAgent
@@ -114,18 +114,18 @@ The `userAgent` helper allows you to interact with the user agent object from th
 `userAgent` can be imported from `next/server`:
 
 ```typescript
-import { userAgent } from 'next/server'
+import { userAgent } from "next/server";
 ```
 
 ```typescript
-import { NextRequest, NextResponse, userAgent } from 'next/server'
+import { NextRequest, NextResponse, userAgent } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const url = request.nextUrl
-  const { device } = userAgent(request)
-  const viewport = device.type === 'mobile' ? 'mobile' : 'desktop'
-  url.searchParams.set('viewport', viewport)
-  return NextResponse.rewrite(url)
+  const url = request.nextUrl;
+  const { device } = userAgent(request);
+  const viewport = device.type === "mobile" ? "mobile" : "desktop";
+  url.searchParams.set("viewport", viewport);
+  return NextResponse.rewrite(url);
 }
 ```
 

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const NextLogo = ({
-  height = '40px',
-  width = '82px',
-  color = 'black',
+  height = "40px",
+  width = "82px",
+  color = "black",
   ...props
 }: React.SVGProps<SVGSVGElement>) => {
   return (
@@ -13,7 +13,7 @@ const NextLogo = ({
       width={width}
       height={height}
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      style={{ transform: 'translateX(4%)', shapeRendering: 'auto' }}
+      style={{ transform: "translateX(4%)", shapeRendering: "auto" }}
       {...props}
     >
       <path

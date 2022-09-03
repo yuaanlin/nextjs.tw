@@ -14,36 +14,36 @@ description: Enable Server-Side Rendering in a page and do initial data populati
 
 ```jsx
 function Page({ stars }) {
-  return <div>Next stars: {stars}</div>
+  return <div>Next stars: {stars}</div>;
 }
 
 Page.getInitialProps = async (ctx) => {
-  const res = await fetch('https://api.github.com/repos/vercel/next.js')
-  const json = await res.json()
-  return { stars: json.stargazers_count }
-}
+  const res = await fetch("https://api.github.com/repos/vercel/next.js");
+  const json = await res.json();
+  return { stars: json.stargazers_count };
+};
 
-export default Page
+export default Page;
 ```
 
 Or using a class component:
 
 ```jsx
-import React from 'react'
+import React from "react";
 
 class Page extends React.Component {
   static async getInitialProps(ctx) {
-    const res = await fetch('https://api.github.com/repos/vercel/next.js')
-    const json = await res.json()
-    return { stars: json.stargazers_count }
+    const res = await fetch("https://api.github.com/repos/vercel/next.js");
+    const json = await res.json();
+    return { stars: json.stargazers_count };
   }
 
   render() {
-    return <div>Next stars: {this.props.stars}</div>
+    return <div>Next stars: {this.props.stars}</div>;
   }
 }
 
-export default Page
+export default Page;
 ```
 
 `getInitialProps` is used to asynchronously fetch some data, which then populates `props`.
@@ -59,8 +59,8 @@ For the initial page load, `getInitialProps` will run on the server only. `getIn
 - `pathname` - Current route. That is the path of the page in `/pages`
 - `query` - Query string section of URL parsed as an object
 - `asPath` - `String` of the actual path (including the query) shown in the browser
-- `req` - [HTTP request object](https://nodejs.org/api/http.html#http_class_http_incomingmessage 'Class: http.IncomingMessage HTTP | Node.js v14.8.0 Documentation') (server only)
-- `res` - [HTTP response object](https://nodejs.org/api/http.html#http_class_http_serverresponse 'Class: http.ServerResponse HTTP | Node.js v14.8.0 Documentation') (server only)
+- `req` - [HTTP request object](https://nodejs.org/api/http.html#http_class_http_incomingmessage "Class: http.IncomingMessage HTTP | Node.js v14.8.0 Documentation") (server only)
+- `res` - [HTTP response object](https://nodejs.org/api/http.html#http_class_http_serverresponse "Class: http.ServerResponse HTTP | Node.js v14.8.0 Documentation") (server only)
 - `err` - Error object if any error is encountered during the rendering
 
 ## Caveats
@@ -75,7 +75,7 @@ For the initial page load, `getInitialProps` will run on the server only. `getIn
 If you're using TypeScript, you can use the `NextPage` type for function components:
 
 ```jsx
-import { NextPage } from 'next'
+import { NextPage } from "next";
 
 interface Props {
   userAgent?: string;
@@ -83,21 +83,21 @@ interface Props {
 
 const Page: NextPage<Props> = ({ userAgent }) => (
   <main>Your user agent: {userAgent}</main>
-)
+);
 
 Page.getInitialProps = async ({ req }) => {
-  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-  return { userAgent }
-}
+  const userAgent = req ? req.headers["user-agent"] : navigator.userAgent;
+  return { userAgent };
+};
 
-export default Page
+export default Page;
 ```
 
 And for `React.Component`, you can use `NextPageContext`:
 
 ```jsx
-import React from 'react'
-import { NextPageContext } from 'next'
+import React from "react";
+import { NextPageContext } from "next";
 
 interface Props {
   userAgent?: string;
@@ -105,13 +105,13 @@ interface Props {
 
 export default class Page extends React.Component<Props> {
   static async getInitialProps({ req }: NextPageContext) {
-    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-    return { userAgent }
+    const userAgent = req ? req.headers["user-agent"] : navigator.userAgent;
+    return { userAgent };
   }
 
   render() {
-    const { userAgent } = this.props
-    return <main>Your user agent: {userAgent}</main>
+    const { userAgent } = this.props;
+    return <main>Your user agent: {userAgent}</main>;
   }
 }
 ```

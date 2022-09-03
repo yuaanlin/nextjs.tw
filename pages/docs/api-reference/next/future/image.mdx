@@ -50,90 +50,90 @@ Although `layout` is not available, you can migrate `next/image` to `next/future
 #### before: `next/image`
 
 ```jsx
-import Image from 'next/image'
-import img from '../img.png'
+import Image from "next/image";
+import img from "../img.png";
 
 function Page() {
-  return <Image src={img} />
+  return <Image src={img} />;
 }
 ```
 
 #### after: `next/future/image`
 
 ```jsx
-import Image from 'next/future/image'
-import img from '../img.png'
+import Image from "next/future/image";
+import img from "../img.png";
 
-const css = { maxWidth: '100%', height: 'auto' }
+const css = { maxWidth: "100%", height: "auto" };
 function Page() {
-  return <Image src={img} style={css} />
+  return <Image src={img} style={css} />;
 }
 ```
 
 #### before: `next/image`
 
 ```jsx
-import Image from 'next/image'
-import img from '../img.png'
+import Image from "next/image";
+import img from "../img.png";
 
 function Page() {
-  return <Image src={img} layout="responsive" />
+  return <Image src={img} layout="responsive" />;
 }
 ```
 
 #### after: `next/future/image`
 
 ```jsx
-import Image from 'next/future/image'
-import img from '../img.png'
+import Image from "next/future/image";
+import img from "../img.png";
 
-const css = { width: '100%', height: 'auto' }
+const css = { width: "100%", height: "auto" };
 function Page() {
-  return <Image src={img} sizes="100vw" style={css} />
+  return <Image src={img} sizes="100vw" style={css} />;
 }
 ```
 
 #### before: `next/image`
 
 ```jsx
-import Image from 'next/image'
-import img from '../img.png'
+import Image from "next/image";
+import img from "../img.png";
 
 function Page() {
-  return <Image src={img} layout="fill" />
+  return <Image src={img} layout="fill" />;
 }
 ```
 
 #### after: `next/future/image`
 
 ```jsx
-import Image from 'next/future/image'
-import img from '../img.png'
+import Image from "next/future/image";
+import img from "../img.png";
 
 function Page() {
-  return <Image src={img} sizes="100vw" fill />
+  return <Image src={img} sizes="100vw" fill />;
 }
 ```
 
 #### before: `next/image`
 
 ```jsx
-import Image from 'next/image'
-import img from '../img.png'
+import Image from "next/image";
+import img from "../img.png";
 
 function Page() {
-  return <Image src={img} layout="fixed" />
+  return <Image src={img} layout="fixed" />;
 }
 ```
 
 #### after: `next/future/image`
 
 ```jsx
-import Image from 'next/future/image'
-import img from '../img.png'
+import Image from "next/future/image";
+import img from "../img.png";
 
 function Page() {
-  return <Image src={img} />
+  return <Image src={img} />;
 }
 ```
 
@@ -192,11 +192,11 @@ A `loader` is a function returning a URL string for the image, given the followi
 Here is an example of using a custom loader:
 
 ```js
-import Image from 'next/future/image'
+import Image from "next/future/image";
 
 const myLoader = ({ src, width, quality }) => {
-  return `https://example.com/${src}?w=${width}&q=${quality || 75}`
-}
+  return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
+};
 
 const MyImage = (props) => {
   return (
@@ -207,8 +207,8 @@ const MyImage = (props) => {
       width={500}
       height={500}
     />
-  )
-}
+  );
+};
 ```
 
 ### fill
@@ -242,7 +242,7 @@ Second, the `sizes` property configures how `next/future/image` automatically ge
 For example, if you know your styling will cause an image to be full-width on mobile devices, in a 2-column layout on tablets, and a 3-column layout on desktop displays, you should include a sizes property such as the following:
 
 ```js
-import Image from 'next/image'
+import Image from "next/image";
 const Example = () => (
   <div className="grid-element">
     <Image
@@ -253,7 +253,7 @@ const Example = () => (
               100vw"
     />
   </div>
-)
+);
 ```
 
 This example `sizes` could have a dramatic effect on performance metrics. Without the `33vw` sizes, the image selected from the server would be 3 times as wide as it needs to be. Because file size is proportional to the square of the width, without `sizes` the user would download an image that's 9 times larger than necessary.
@@ -369,7 +369,7 @@ module.exports = {
   images: {
     unoptimized: true,
   },
-}
+};
 ```
 
 ## Other Props
@@ -392,14 +392,14 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'example.com',
-        port: '',
-        pathname: '/account123/**',
+        protocol: "https",
+        hostname: "example.com",
+        port: "",
+        pathname: "/account123/**",
       },
     ],
   },
-}
+};
 ```
 
 > Note: The example above will ensure the `src` property of `next/future/image` must start with `https://example.com/account123/`. Any other protocol, hostname, port, or unmatched path will respond with 400 Bad Request.
@@ -411,12 +411,12 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '**.example.com',
+        protocol: "https",
+        hostname: "**.example.com",
       },
     ],
   },
-}
+};
 ```
 
 > Note: The example above will ensure the `src` property of `next/future/image` must start with `https://img1.example.com` or `https://me.avatar.example.com` or any number of subdomains. Any other protocol or unmatched hostname will respond with 400 Bad Request.
@@ -439,9 +439,9 @@ Below is an example of the `domains` property in the `next.config.js` file:
 ```js
 module.exports = {
   images: {
-    domains: ['assets.acme.com'],
+    domains: ["assets.acme.com"],
   },
-}
+};
 ```
 
 ## Advanced
@@ -459,7 +459,7 @@ module.exports = {
   images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
-}
+};
 ```
 
 ### Image Sizes
@@ -475,7 +475,7 @@ module.exports = {
   images: {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-}
+};
 ```
 
 ### Acceptable Formats
@@ -489,9 +489,9 @@ If no configuration is provided, the default below is used.
 ```js
 module.exports = {
   images: {
-    formats: ['image/webp'],
+    formats: ["image/webp"],
   },
-}
+};
 ```
 
 You can enable AVIF support with the following configuration.
@@ -499,9 +499,9 @@ You can enable AVIF support with the following configuration.
 ```js
 module.exports = {
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
   },
-}
+};
 ```
 
 > Note: AVIF generally takes 20% longer to encode but it compresses 20% smaller compared to WebP. This means that the first time an image is requested, it will typically be slower and then subsequent requests that are cached will be faster.
@@ -535,7 +535,7 @@ module.exports = {
   images: {
     minimumCacheTTL: 60,
   },
-}
+};
 ```
 
 The expiration (or rather Max Age) of the optimized image is defined by either the `minimumCacheTTL` or the upstream image `Cache-Control` header, whichever is larger.
@@ -557,7 +557,7 @@ module.exports = {
   images: {
     disableStaticImages: true,
   },
-}
+};
 ```
 
 ### Dangerously Allow SVG
@@ -572,7 +572,7 @@ module.exports = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-}
+};
 ```
 
 ### Animated Images
@@ -588,7 +588,9 @@ For an overview of the Image component features and usage guidelines, see:
 <div className="card">
   <a href="/docs/basic-features/image-optimization.md">
     <b>Images</b>
-    <small>Learn how to display and optimize images with the Image component.</small>
+    <small>
+      Learn how to display and optimize images with the Image component.
+    </small>
   </a>
 </div>
 

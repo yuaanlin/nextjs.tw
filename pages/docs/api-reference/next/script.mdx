@@ -5,13 +5,35 @@ description: Optimize loading of third-party scripts with the built-in Script co
 # next/script
 
 <details>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-google-tag-manager">Google Tag Manager</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-google-analytics">Google Analytics</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-facebook-pixel">Facebook Pixel</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-clerk">Clerk</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-segment-analytics">Segment Analytics</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-google-tag-manager">
+        Google Tag Manager
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-google-analytics">
+        Google Analytics
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-facebook-pixel">
+        Facebook Pixel
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-clerk">
+        Clerk
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-segment-analytics">
+        Segment Analytics
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -55,11 +77,11 @@ A method that returns additional JavaScript that should be executed once after t
 The following is an example of how to use the `onLoad` property:
 
 ```jsx
-import { useState } from 'react'
-import Script from 'next/script'
+import { useState } from "react";
+import Script from "next/script";
 
 export default function Home() {
-  const [stripe, setStripe] = useState(null)
+  const [stripe, setStripe] = useState(null);
 
   return (
     <>
@@ -67,11 +89,11 @@ export default function Home() {
         id="stripe-js"
         src="https://js.stripe.com/v3/"
         onLoad={() => {
-          setStripe({ stripe: window.Stripe('pk_test_12345') })
+          setStripe({ stripe: window.Stripe("pk_test_12345") });
         }}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -82,8 +104,8 @@ A method that returns additional JavaScript that should be executed after the sc
 The following is an example of how to use the `onReady` property:
 
 ```jsx
-import { useState } from 'react'
-import Script from 'next/script'
+import { useState } from "react";
+import Script from "next/script";
 
 export default function Home() {
   return (
@@ -95,11 +117,11 @@ export default function Home() {
           new google.maps.Map(ref.current, {
             center: { lat: -34.397, lng: 150.644 },
             zoom: 8,
-          })
+          });
         }}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -112,7 +134,7 @@ A method that executes if the script fails to load.
 The following is an example of how to use the `onError` property:
 
 ```jsx
-import Script from 'next/script'
+import Script from "next/script";
 
 export default function Home() {
   return (
@@ -121,11 +143,11 @@ export default function Home() {
         id="will-fail"
         src="https://example.com/non-existant-script.js"
         onError={(e) => {
-          console.error('Script failed to load', e)
+          console.error("Script failed to load", e);
         }}
       />
     </>
-  )
+  );
 }
 ```
 

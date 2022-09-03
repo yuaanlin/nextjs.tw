@@ -15,9 +15,9 @@ You can set up custom AMP validator in `next.config.js` as shown below:
 ```jsx
 module.exports = {
   amp: {
-    validator: './custom_validator.js',
+    validator: "./custom_validator.js",
   },
-}
+};
 ```
 
 ### Skip AMP Validation
@@ -27,7 +27,7 @@ To turn off AMP validation add the following code to `next.config.js`
 ```jsx
 experimental: {
   amp: {
-    skipValidation: true
+    skipValidation: true;
   }
 }
 ```

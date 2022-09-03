@@ -5,9 +5,15 @@ description: Dynamically import JavaScript modules and React Components and spli
 # Dynamic Import
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-dynamic-import">Dynamic Import</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-dynamic-import">
+        Dynamic Import
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -20,19 +26,19 @@ Next.js supports lazy loading external libraries with `import()` and React compo
 By using `next/dynamic`, the header component will not be included in the page's initial JavaScript bundle. The page will render the Suspense `fallback` first, followed by the `Header` component when the `Suspense` boundary is resolved.
 
 ```jsx
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
-const DynamicHeader = dynamic(() => import('../components/header'), {
+const DynamicHeader = dynamic(() => import("../components/header"), {
   suspense: true,
-})
+});
 
 export default function Home() {
   return (
     <Suspense fallback={`Loading...`}>
       <DynamicHeader />
     </Suspense>
-  )
+  );
 }
 ```
 
@@ -41,9 +47,9 @@ export default function Home() {
 If you are not using React 18, you can use the `loading` attribute in place of the Suspense `fallback`.
 
 ```jsx
-const DynamicHeader = dynamic(() => import('../components/header'), {
+const DynamicHeader = dynamic(() => import("../components/header"), {
   loading: () => <header />,
-})
+});
 ```
 
 ## With named exports
@@ -53,15 +59,15 @@ To dynamically import a named export, you can return it from the [Promise](https
 ```jsx
 // components/hello.js
 export function Hello() {
-  return <p>Hello!</p>
+  return <p>Hello!</p>;
 }
 
 // pages/index.js
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 const DynamicComponent = dynamic(() =>
-  import('../components/hello').then((mod) => mod.Hello)
-)
+  import("../components/hello").then((mod) => mod.Hello)
+);
 ```
 
 ## With no SSR
@@ -69,11 +75,11 @@ const DynamicComponent = dynamic(() =>
 To dynamically load a component on the client side, you can use the `ssr` option to disable server-rendering. This is useful if an external dependency or component relies on browser APIs like `window`.
 
 ```jsx
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
-const DynamicHeader = dynamic(() => import('../components/header'), {
+const DynamicHeader = dynamic(() => import("../components/header"), {
   ssr: false,
-})
+});
 ```
 
 ## With external libraries
@@ -81,12 +87,12 @@ const DynamicHeader = dynamic(() => import('../components/header'), {
 This example uses the external library `fuse.js` for fuzzy search. The module is only loaded in the browser after the user types in the search input.
 
 ```jsx
-import { useState } from 'react'
+import { useState } from "react";
 
-const names = ['Tim', 'Joe', 'Bel', 'Lee']
+const names = ["Tim", "Joe", "Bel", "Lee"];
 
 export default function Page() {
-  const [results, setResults] = useState()
+  const [results, setResults] = useState();
 
   return (
     <div>
@@ -94,17 +100,17 @@ export default function Page() {
         type="text"
         placeholder="Search"
         onChange={async (e) => {
-          const { value } = e.currentTarget
+          const { value } = e.currentTarget;
           // Dynamically load fuse.js
-          const Fuse = (await import('fuse.js')).default
-          const fuse = new Fuse(names)
+          const Fuse = (await import("fuse.js")).default;
+          const fuse = new Fuse(names);
 
-          setResults(fuse.search(value))
+          setResults(fuse.search(value));
         }}
       />
       <pre>Results: {JSON.stringify(results, null, 2)}</pre>
     </div>
-  )
+  );
 }
 ```
 

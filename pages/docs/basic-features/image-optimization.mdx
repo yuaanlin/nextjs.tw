@@ -5,9 +5,15 @@ description: Next.js supports built-in image optimization, as well as third part
 # Image Component and Image Optimization
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/image-component">Image Component</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/image-component">
+        Image Component
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -25,13 +31,13 @@ Some of the optimizations built into the Image component include:
 To add an image to your application, import the [`next/image`](/docs/api-reference/next/image.md) component:
 
 ```jsx
-import Image from 'next/image'
+import Image from "next/image";
 ```
 
 Alternatively, you can import [`next/future/image`](/docs/api-reference/next/future/image.md) if you need a component much closer to the native `<img>` element:
 
 ```jsx
-import Image from 'next/future/image'
+import Image from "next/future/image";
 ```
 
 Now, you can define the `src` for your image (either local or remote).
@@ -41,7 +47,7 @@ Now, you can define the `src` for your image (either local or remote).
 To use a local image, `import` your `.jpg`, `.png`, or `.webp` files:
 
 ```jsx
-import profilePic from '../public/me.png'
+import profilePic from "../public/me.png";
 ```
 
 Dynamic `await import()` or `require()` are _not_ supported. The `import` must be static so it can be analyzed at build time.
@@ -49,8 +55,8 @@ Dynamic `await import()` or `require()` are _not_ supported. The `import` must b
 Next.js will automatically determine the `width` and `height` of your image based on the imported file. These values are used to prevent [Cumulative Layout Shift](https://nextjs.org/learn/seo/web-performance/cls) while your image is loading.
 
 ```js
-import Image from 'next/image'
-import profilePic from '../public/me.png'
+import Image from "next/image";
+import profilePic from "../public/me.png";
 
 function Home() {
   return (
@@ -66,7 +72,7 @@ function Home() {
       />
       <p>Welcome to my homepage!</p>
     </>
-  )
+  );
 }
 ```
 
@@ -75,7 +81,7 @@ function Home() {
 To use a remote image, the `src` property should be a URL string, which can be [relative](#loaders) or [absolute](/docs/api-reference/next/image.md#domains). Because Next.js does not have access to remote files during the build process, you'll need to provide the [`width`](/docs/api-reference/next/image.md#width), [`height`](/docs/api-reference/next/image.md#height) and optional [`blurDataURL`](/docs/api-reference/next/image.md#blurdataurl) props manually:
 
 ```jsx
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -89,7 +95,7 @@ export default function Home() {
       />
       <p>Welcome to my homepage!</p>
     </>
-  )
+  );
 }
 ```
 
@@ -122,7 +128,7 @@ The LCP element is typically the largest image or text block visible within the 
 Once you've identified the LCP image, you can add the property like this:
 
 ```jsx
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -137,7 +143,7 @@ export default function Home() {
       />
       <p>Welcome to my homepage!</p>
     </>
-  )
+  );
 }
 ```
 

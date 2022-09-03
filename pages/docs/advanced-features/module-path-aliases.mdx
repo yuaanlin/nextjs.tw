@@ -5,9 +5,15 @@ description: Configure module path aliases that allow you to remap certain impor
 # Absolute Imports and Module path aliases
 
 <details>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-absolute-imports">Absolute Imports</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-absolute-imports">
+        Absolute Imports
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -37,13 +43,13 @@ An example of this configuration:
 ```jsx
 // components/button.js
 export default function Button() {
-  return <button>Click me</button>
+  return <button>Click me</button>;
 }
 ```
 
 ```jsx
 // pages/index.js
-import Button from 'components/button'
+import Button from "components/button";
 
 export default function HomePage() {
   return (
@@ -51,7 +57,7 @@ export default function HomePage() {
       <h1>Hello World</h1>
       <Button />
     </>
-  )
+  );
 }
 ```
 
@@ -76,13 +82,13 @@ An example of this configuration:
 ```jsx
 // components/button.js
 export default function Button() {
-  return <button>Click me</button>
+  return <button>Click me</button>;
 }
 ```
 
 ```jsx
 // pages/index.js
-import Button from '@/components/button'
+import Button from "@/components/button";
 
 export default function HomePage() {
   return (
@@ -90,7 +96,7 @@ export default function HomePage() {
       <h1>Hello World</h1>
       <Button />
     </>
-  )
+  );
 }
 ```
 

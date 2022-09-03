@@ -5,9 +5,15 @@ description: Enable Image Optimization with the built-in Image component.
 # next/image
 
 <details>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/image-component">Image Component</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/image-component">
+        Image Component
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -109,11 +115,11 @@ A `loader` is a function returning a URL string for the image, given the followi
 Here is an example of using a custom loader with `next/image`:
 
 ```js
-import Image from 'next/image'
+import Image from "next/image";
 
 const myLoader = ({ src, width, quality }) => {
-  return `https://example.com/${src}?w=${width}&q=${quality || 75}`
-}
+  return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
+};
 
 const MyImage = (props) => {
   return (
@@ -124,8 +130,8 @@ const MyImage = (props) => {
       width={500}
       height={500}
     />
-  )
-}
+  );
+};
 ```
 
 ### sizes
@@ -141,7 +147,7 @@ Second, the `sizes` value is parsed and used to trim the values in the automatic
 For example, if you know your styling will cause an image to be full-width on mobile devices, in a 2-column layout on tablets, and a 3-column layout on desktop displays, you should include a sizes property such as the following:
 
 ```js
-import Image from 'next/image'
+import Image from "next/image";
 const Example = () => (
   <div className="grid-element">
     <Image
@@ -152,7 +158,7 @@ const Example = () => (
               100vw"
     />
   </div>
-)
+);
 ```
 
 This example `sizes` could have a dramatic effect on performance metrics. Without the `33vw` sizes, the image selected from the server would be 3 times as wide as it needs to be. Because file size is proportional to the square of the width, without `sizes` the user would download an image that's 9 times larger than necessary.
@@ -275,45 +281,45 @@ The Ref must point to a DOM element or a React component that [forwards the Ref]
 **Example pointing to a DOM element**
 
 ```jsx
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 
 const Example = () => {
-  const lazyRoot = React.useRef(null)
+  const lazyRoot = React.useRef(null);
 
   return (
-    <div ref={lazyRoot} style={{ overflowX: 'scroll', width: '500px' }}>
+    <div ref={lazyRoot} style={{ overflowX: "scroll", width: "500px" }}>
       <Image lazyRoot={lazyRoot} src="/one.jpg" width="500" height="500" />
       <Image lazyRoot={lazyRoot} src="/two.jpg" width="500" height="500" />
     </div>
-  )
-}
+  );
+};
 ```
 
 **Example pointing to a React component**
 
 ```jsx
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 
 const Container = React.forwardRef((props, ref) => {
   return (
-    <div ref={ref} style={{ overflowX: 'scroll', width: '500px' }}>
+    <div ref={ref} style={{ overflowX: "scroll", width: "500px" }}>
       {props.children}
     </div>
-  )
-})
+  );
+});
 
 const Example = () => {
-  const lazyRoot = React.useRef(null)
+  const lazyRoot = React.useRef(null);
 
   return (
     <Container ref={lazyRoot}>
       <Image lazyRoot={lazyRoot} src="/one.jpg" width="500" height="500" />
       <Image lazyRoot={lazyRoot} src="/two.jpg" width="500" height="500" />
     </Container>
-  )
-}
+  );
+};
 ```
 
 [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/root)
@@ -330,7 +336,7 @@ module.exports = {
   images: {
     unoptimized: true,
   },
-}
+};
 ```
 
 ## Other Props
@@ -355,14 +361,14 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'example.com',
-        port: '',
-        pathname: '/account123/**',
+        protocol: "https",
+        hostname: "example.com",
+        port: "",
+        pathname: "/account123/**",
       },
     ],
   },
-}
+};
 ```
 
 > Note: The example above will ensure the `src` property of `next/image` must start with `https://example.com/account123/`. Any other protocol, hostname, port, or unmatched path will respond with 400 Bad Request.
@@ -374,12 +380,12 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '**.example.com',
+        protocol: "https",
+        hostname: "**.example.com",
       },
     ],
   },
-}
+};
 ```
 
 > Note: The example above will ensure the `src` property of `next/image` must start with `https://img1.example.com` or `https://me.avatar.example.com` or any number of subdomains. Any other protocol or unmatched hostname will respond with 400 Bad Request.
@@ -402,9 +408,9 @@ Below is an example of the `domains` property in the `next.config.js` file:
 ```js
 module.exports = {
   images: {
-    domains: ['assets.acme.com'],
+    domains: ["assets.acme.com"],
   },
-}
+};
 ```
 
 ### Loader Configuration
@@ -414,10 +420,10 @@ If you want to use a cloud provider to optimize images instead of using the Next
 ```js
 module.exports = {
   images: {
-    loader: 'imgix',
-    path: 'https://example.com/myaccount/',
+    loader: "imgix",
+    path: "https://example.com/myaccount/",
   },
-}
+};
 ```
 
 ### Built-in Loaders
@@ -452,7 +458,7 @@ module.exports = {
   images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
-}
+};
 ```
 
 ### Image Sizes
@@ -468,7 +474,7 @@ module.exports = {
   images: {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-}
+};
 ```
 
 ### Acceptable Formats
@@ -482,9 +488,9 @@ If no configuration is provided, the default below is used.
 ```js
 module.exports = {
   images: {
-    formats: ['image/webp'],
+    formats: ["image/webp"],
   },
-}
+};
 ```
 
 You can enable AVIF support with the following configuration.
@@ -492,9 +498,9 @@ You can enable AVIF support with the following configuration.
 ```js
 module.exports = {
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
   },
-}
+};
 ```
 
 > Note: AVIF generally takes 20% longer to encode but it compresses 20% smaller compared to WebP. This means that the first time an image is requested, it will typically be slower and then subsequent requests that are cached will be faster.
@@ -526,7 +532,7 @@ module.exports = {
   images: {
     minimumCacheTTL: 60,
   },
-}
+};
 ```
 
 The expiration (or rather Max Age) of the optimized image is defined by either the `minimumCacheTTL` or the upstream image `Cache-Control` header, whichever is larger.
@@ -548,7 +554,7 @@ module.exports = {
   images: {
     disableStaticImages: true,
   },
-}
+};
 ```
 
 ### Dangerously Allow SVG
@@ -563,7 +569,7 @@ module.exports = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-}
+};
 ```
 
 ### Experimental "raw" layout mode
@@ -583,7 +589,9 @@ For an overview of the Image component features and usage guidelines, see:
 <div className="card">
   <a href="/docs/basic-features/image-optimization.md">
     <b>Images</b>
-    <small>Learn how to display and optimize images with the Image component.</small>
+    <small>
+      Learn how to display and optimize images with the Image component.
+    </small>
   </a>
 </div>
 

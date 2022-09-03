@@ -5,9 +5,15 @@ description: You can add the dynamic routes used for pages to API Routes too. Le
 # Dynamic API Routes
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/api-routes">Basic API Routes</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/api-routes">
+        Basic API Routes
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -17,8 +23,8 @@ For example, the API route `pages/api/post/[pid].js` has the following code:
 
 ```js
 export default function handler(req, res) {
-  const { pid } = req.query
-  res.end(`Post: ${pid}`)
+  const { pid } = req.query;
+  res.end(`Post: ${pid}`);
 }
 ```
 
@@ -66,8 +72,8 @@ An API route for `pages/api/post/[...slug].js` could look like this:
 
 ```js
 export default function handler(req, res) {
-  const { slug } = req.query
-  res.end(`Post: ${slug.join(', ')}`)
+  const { slug } = req.query;
+  res.end(`Post: ${slug.join(", ")}`);
 }
 ```
 

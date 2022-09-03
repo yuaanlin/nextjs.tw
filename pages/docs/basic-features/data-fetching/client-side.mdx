@@ -1,5 +1,5 @@
 ---
-description: 'Learn about client-side data fetching, and how to use SWR, a data fetching React hook library that handles caching, revalidation, focus tracking, refetching on interval and more.'
+description: "Learn about client-side data fetching, and how to use SWR, a data fetching React hook library that handles caching, revalidation, focus tracking, refetching on interval and more."
 ---
 
 # Client-side data fetching
@@ -16,28 +16,28 @@ The following example shows how you can fetch data on the client side using the 
 
 ```jsx
 function Profile() {
-  const [data, setData] = useState(null)
-  const [isLoading, setLoading] = useState(false)
+  const [data, setData] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true)
-    fetch('/api/profile-data')
+    setLoading(true);
+    fetch("/api/profile-data")
       .then((res) => res.json())
       .then((data) => {
-        setData(data)
-        setLoading(false)
-      })
-  }, [])
+        setData(data);
+        setLoading(false);
+      });
+  }, []);
 
-  if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>No profile data</p>
+  if (isLoading) return <p>Loading...</p>;
+  if (!data) return <p>No profile data</p>;
 
   return (
     <div>
       <h1>{data.name}</h1>
       <p>{data.bio}</p>
     </div>
-  )
+  );
 }
 ```
 
@@ -50,22 +50,22 @@ Using the same example as above, we can now use SWR to fetch the profile data. S
 For more information on using SWR, check out the [SWR docs](https://swr.vercel.app/docs/getting-started).
 
 ```jsx
-import useSWR from 'swr'
+import useSWR from "swr";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 function Profile() {
-  const { data, error } = useSWR('/api/profile-data', fetcher)
+  const { data, error } = useSWR("/api/profile-data", fetcher);
 
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
 
   return (
     <div>
       <h1>{data.name}</h1>
       <p>{data.bio}</p>
     </div>
-  )
+  );
 }
 ```
 

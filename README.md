@@ -36,9 +36,8 @@ To develop locally:
 
    _Note: You may need to repeat this step if your types get outdated._
 
-
 ## ESLint
 
 為了維護程式碼風格一致性，這個專案已經開啟了 [ESLint](https://eslint.org/) 規則來確保所有協助我們翻譯的開發者都可以使用相同的程式碼風格進行開發，例如縮進的寬度。如果你目前是使用 vscode，你可以閱讀 [這篇文章](https://www.robinwieruch.de/vscode-eslint/) 來學習如何在 vscode 裡面使用 eslint。
 
-To maintain the consistency of the coding style, this project have enabled the [ESLint](https://eslint.org/) rules which helps us to contribute this project with same coding style. For example, the indent width. If you are using vscode, consider reading [this article](https://www.robinwieruch.de/vscode-eslint/)  to learn how to use ESLint in vscode.
+To maintain the consistency of the coding style, this project have enabled the [ESLint](https://eslint.org/) rules which helps us to contribute this project with same coding style. For example, the indent width. If you are using vscode, consider reading [this article](https://www.robinwieruch.de/vscode-eslint/) to learn how to use ESLint in vscode.

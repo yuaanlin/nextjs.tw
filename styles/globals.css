@@ -3,33 +3,33 @@
 @tailwind utilities;
 
 .docs pre {
-    @apply bg-[#1d1f21] text-white p-4 rounded my-4 overflow-x-auto;
+  @apply bg-[#1d1f21] text-white p-4 rounded my-4 overflow-x-auto;
 }
 
 .docs :not(pre) > code {
-    @apply text-[#c400ec] p-1 rounded mx-2;
+  @apply text-[#c400ec] p-1 rounded mx-2;
 }
 
 .docs :not(pre) > code::before {
-    content: '`';
+  content: "`";
 }
 
 .docs :not(pre) > code::after {
-    content: '`';
+  content: "`";
 }
 
 .docs h1 {
-    @apply text-4xl font-bold mt-8 mb-8;
+  @apply text-4xl font-bold mt-8 mb-8;
 }
 
 .docs h2 {
-    @apply text-3xl font-bold mt-8 mb-6;
+  @apply text-3xl font-bold mt-8 mb-6;
 }
 
 .docs p {
-    @apply my-4;
+  @apply my-4;
 }
 
 aside {
-    top: calc(2rem + 80px);
+  top: calc(2rem + 80px);
 }

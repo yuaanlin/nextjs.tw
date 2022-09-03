@@ -41,7 +41,7 @@ The following steps outline how to setup `@next/mdx` in your Next.js project:
    ```js
    // next.config.js
 
-   const withMDX = require('@next/mdx')({
+   const withMDX = require("@next/mdx")({
      extension: /\.mdx?$/,
      options: {
        remarkPlugins: [],
@@ -49,11 +49,11 @@ The following steps outline how to setup `@next/mdx` in your Next.js project:
        // If you use `MDXProvider`, uncomment the following line.
        // providerImportSource: "@mdx-js/react",
      },
-   })
+   });
    module.exports = withMDX({
      // Append the default value with md extensions
-     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-   })
+     pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+   });
    ```
 
 3. Create a new MDX page within the `/pages` directory:
@@ -163,12 +163,12 @@ To enable you need to specify `providerImportSource: "@mdx-js/react"` in `next.c
 ```js
 // next.config.js
 
-const withMDX = require('@next/mdx')({
+const withMDX = require("@next/mdx")({
   // ...
   options: {
-    providerImportSource: '@mdx-js/react',
+    providerImportSource: "@mdx-js/react",
   },
-})
+});
 ```
 
 Then setup the provider in your page
@@ -176,13 +176,13 @@ Then setup the provider in your page
 ```jsx
 // pages/index.js
 
-import { MDXProvider } from '@mdx-js/react'
-import Image from 'next/image'
-import { Heading, InlineCode, Pre, Table, Text } from 'my-components'
+import { MDXProvider } from "@mdx-js/react";
+import Image from "next/image";
+import { Heading, InlineCode, Pre, Table, Text } from "my-components";
 
 const ResponsiveImage = (props) => (
   <Image alt={props.alt} layout="responsive" {...props} />
-)
+);
 
 const components = {
   img: ResponsiveImage,
@@ -191,14 +191,14 @@ const components = {
   p: Text,
   pre: Pre,
   code: InlineCode,
-}
+};
 
 export default function Post(props) {
   return (
     <MDXProvider components={components}>
       <main {...props} />
     </MDXProvider>
-  )
+  );
 }
 ```
 

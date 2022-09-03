@@ -36,18 +36,18 @@ npm install next@latest
 
 ```typescript
 // middleware.ts
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  return NextResponse.redirect(new URL('/about-2', request.url))
+  return NextResponse.redirect(new URL("/about-2", request.url));
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/about/:path*',
-}
+  matcher: "/about/:path*",
+};
 ```
 
 > **Note** the `pageExtensions` config affects middleware as well, [see related documentation here](/docs/api-reference/next.config.js/custom-page-extensions.md).
@@ -76,16 +76,16 @@ There are two ways to define which paths Middleware will run on:
 
 ```js
 export const config = {
-  matcher: '/about/:path*',
-}
+  matcher: "/about/:path*",
+};
 ```
 
 You can match a single path or multiple paths with an array syntax:
 
 ```js
 export const config = {
-  matcher: ['/about/:path*', '/dashboard/:path*'],
-}
+  matcher: ["/about/:path*", "/dashboard/:path*"],
+};
 ```
 
 > **Note:** The `matcher` values need to be constants so they can be statically analyzed at build-time. Dynamic values such as variables will be ignored.
@@ -95,16 +95,16 @@ export const config = {
 ```typescript
 // middleware.ts
 
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith('/about')) {
-    return NextResponse.rewrite(new URL('/about-2', request.url))
+  if (request.nextUrl.pathname.startsWith("/about")) {
+    return NextResponse.rewrite(new URL("/about-2", request.url));
   }
 
-  if (request.nextUrl.pathname.startsWith('/dashboard')) {
-    return NextResponse.rewrite(new URL('/dashboard/user', request.url))
+  if (request.nextUrl.pathname.startsWith("/dashboard")) {
+    return NextResponse.rewrite(new URL("/dashboard/user", request.url));
   }
 }
 ```
@@ -126,29 +126,29 @@ The `cookies` API extends [Map](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 ```typescript
 // middleware.ts
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   // Setting cookies on the response
-  const response = NextResponse.next()
-  response.cookies.set('vercel', 'fast')
-  response.cookies.set('vercel', 'fast', { path: '/test' })
+  const response = NextResponse.next();
+  response.cookies.set("vercel", "fast");
+  response.cookies.set("vercel", "fast", { path: "/test" });
 
   // Getting cookies from the request
-  const cookie = request.cookies.get('vercel')
-  console.log(cookie) // => 'fast'
-  const allCookies = request.cookies.entries()
-  console.log(allCookies) // => [{ key: 'vercel', value: 'fast' }]
-  const { value, options } = response.cookies.getWithOptions('vercel')
-  console.log(value) // => 'fast'
-  console.log(options) // => { Path: '/test' }
+  const cookie = request.cookies.get("vercel");
+  console.log(cookie); // => 'fast'
+  const allCookies = request.cookies.entries();
+  console.log(allCookies); // => [{ key: 'vercel', value: 'fast' }]
+  const { value, options } = response.cookies.getWithOptions("vercel");
+  console.log(value); // => 'fast'
+  console.log(options); // => { Path: '/test' }
 
   // Deleting cookies
-  response.cookies.delete('vercel')
-  response.cookies.clear()
+  response.cookies.delete("vercel");
+  response.cookies.clear();
 
-  return response
+  return response;
 }
 ```
 

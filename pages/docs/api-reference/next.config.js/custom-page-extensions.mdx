@@ -10,8 +10,8 @@ Open `next.config.js` and add the `pageExtensions` config:
 
 ```js
 module.exports = {
-  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
-}
+  pageExtensions: ["mdx", "md", "jsx", "js", "tsx", "ts"],
+};
 ```
 
 > **Note**: The default value of `pageExtensions` is [`['tsx', 'ts', 'jsx', 'js']`](https://github.com/vercel/next.js/blob/f1dbc9260d48c7995f6c52f8fbcc65f08e627992/packages/next/server/config-shared.ts#L161).
@@ -26,8 +26,8 @@ Open `next.config.js` and add the `pageExtensions` config:
 
 ```js
 module.exports = {
-  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
-}
+  pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js"],
+};
 ```
 
 Then rename your pages to have a file extension that includes `.page` (ex. rename `MyPage.tsx` to `MyPage.page.tsx`).

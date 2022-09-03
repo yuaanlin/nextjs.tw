@@ -70,7 +70,7 @@ With client-side rendered applications (like Create React App), you can access `
 Since Next.js uses [pre-rendering](/docs/basic-features/pages.md#pre-rendering), you'll need to safely access those Web APIs only when you're on the client-side. For example, the following code snippet will allow access to `window` only on the client-side.
 
 ```jsx
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   // You now have access to `window`
 }
 ```
@@ -78,11 +78,11 @@ if (typeof window !== 'undefined') {
 A recommended way of accessing Web APIs safely is by using the [`useEffect`](https://reactjs.org/docs/hooks-effect.html) hook, which only executes client-side:
 
 ```jsx
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
 useEffect(() => {
   // You now have access to `window`
-}, [])
+}, []);
 ```
 
 ## Image Component and Image Optimization
@@ -96,7 +96,7 @@ The Automatic Image Optimization allows for resizing, optimizing, and serving im
 Instead of optimizing images at build time, Next.js optimizes images on-demand, as users request them. Your build times aren't increased, whether shipping 10 images or 10 million images.
 
 ```jsx
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -110,7 +110,7 @@ export default function Home() {
       />
       <p>Welcome to my homepage!</p>
     </>
-  )
+  );
 }
 ```
 
@@ -128,7 +128,7 @@ Most Create React App examples use `react-helmet` to assist with adding `meta` t
 ```jsx
 // src/components/seo.js
 
-import { Helmet } from 'react-helmet'
+import { Helmet } from "react-helmet";
 
 export default function SEO({ description, title, siteTitle }) {
   return (
@@ -170,7 +170,7 @@ export default function SEO({ description, title, siteTitle }) {
         },
       ]}
     />
-  )
+  );
 }
 ```
 
@@ -179,7 +179,7 @@ And here's the same example using Next.js.
 ```jsx
 // src/components/seo.js
 
-import Head from 'next/head'
+import Head from "next/head";
 
 export default function SEO({ description, title, siteTitle }) {
   return (
@@ -195,7 +195,7 @@ export default function SEO({ description, title, siteTitle }) {
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
     </Head>
-  )
+  );
 }
 ```
 
@@ -206,24 +206,24 @@ If you want to move your existing Create React App to Next.js and keep a Single-
 ```jsx
 // pages/[[...app]].js
 
-import { useState, useEffect } from 'react'
-import CreateReactAppEntryPoint from '../components/app'
+import { useState, useEffect } from "react";
+import CreateReactAppEntryPoint from "../components/app";
 
 function App() {
-  const [isMounted, setIsMounted] = useState(false)
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    setIsMounted(true);
+  }, []);
 
   if (!isMounted) {
-    return null
+    return null;
   }
 
-  return <CreateReactAppEntryPoint />
+  return <CreateReactAppEntryPoint />;
 }
 
-export default App
+export default App;
 ```
 
 ## Ejected Create React App

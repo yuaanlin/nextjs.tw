@@ -11,7 +11,7 @@ Open `next.config.js` and disable the `generateEtags` option:
 ```js
 module.exports = {
   generateEtags: false,
-}
+};
 ```
 
 ## Related

@@ -5,10 +5,20 @@ description: Next.js supports including CSS files as Global CSS or CSS Modules, 
 # Built-In CSS Support
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/basic-css">Basic CSS Example</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss">With Tailwind CSS</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/basic-css">
+        Basic CSS Example
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss">
+        With Tailwind CSS
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -23,8 +33,8 @@ For example, consider the following stylesheet named `styles.css`:
 
 ```css
 body {
-  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
-    'Arial', sans-serif;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+    "Arial", sans-serif;
   padding: 20px 20px 60px;
   max-width: 680px;
   margin: 0 auto;
@@ -35,11 +45,11 @@ Create a [`pages/_app.js` file](/docs/advanced-features/custom-app.md) if not al
 Then, [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) the `styles.css` file.
 
 ```jsx
-import '../styles.css'
+import "../styles.css";
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 ```
 
@@ -59,10 +69,10 @@ For example:
 
 ```jsx
 // pages/_app.js
-import 'bootstrap/dist/css/bootstrap.css'
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 ```
 
@@ -70,15 +80,15 @@ For importing CSS required by a third party component, you can do so in your com
 
 ```tsx
 // components/ExampleDialog.js
-import { useState } from 'react'
-import { Dialog } from '@reach/dialog'
-import VisuallyHidden from '@reach/visually-hidden'
-import '@reach/dialog/styles.css'
+import { useState } from "react";
+import { Dialog } from "@reach/dialog";
+import VisuallyHidden from "@reach/visually-hidden";
+import "@reach/dialog/styles.css";
 
 function ExampleDialog(props) {
-  const [showDialog, setShowDialog] = useState(false)
-  const open = () => setShowDialog(true)
-  const close = () => setShowDialog(false)
+  const [showDialog, setShowDialog] = useState(false);
+  const open = () => setShowDialog(true);
+  const close = () => setShowDialog(false);
 
   return (
     <div>
@@ -91,7 +101,7 @@ function ExampleDialog(props) {
         <p>Hello there. I am a dialog</p>
       </Dialog>
     </div>
-  )
+  );
 }
 ```
 
@@ -123,7 +133,7 @@ You do not need to worry about .error {} colliding with any other `.css` or
 Then, create `components/Button.js`, importing and using the above CSS file:
 
 ```jsx
-import styles from './Button.module.css'
+import styles from "./Button.module.css";
 
 export function Button() {
   return (
@@ -135,7 +145,7 @@ export function Button() {
     >
       Destroy
     </button>
-  )
+  );
 }
 ```
 
@@ -172,13 +182,13 @@ If you want to configure the Sass compiler you can do so by using `sassOptions` 
 For example to add `includePaths`:
 
 ```js
-const path = require('path')
+const path = require("path");
 
 module.exports = {
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, "styles")],
   },
-}
+};
 ```
 
 ### Sass Variables
@@ -198,32 +208,74 @@ $primary-color: #64ff00;
 
 ```js
 // pages/_app.js
-import variables from '../styles/variables.module.scss'
+import variables from "../styles/variables.module.scss";
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <Layout color={variables.primaryColor}>
       <Component {...pageProps} />
     </Layout>
-  )
+  );
 }
 ```
 
 ## CSS-in-JS
 
 <details>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-styled-jsx">Styled JSX</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-styled-components">Styled Components</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-emotion">Emotion</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-linaria">Linaria</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss-emotion">Tailwind CSS + Emotion</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-styletron">Styletron</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-cxs">Cxs</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-aphrodite">Aphrodite</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-fela">Fela</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-stitches">Stitches</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-styled-jsx">
+        Styled JSX
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-styled-components">
+        Styled Components
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-emotion">
+        Emotion
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-linaria">
+        Linaria
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss-emotion">
+        Tailwind CSS + Emotion
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-styletron">
+        Styletron
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-cxs">
+        Cxs
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-aphrodite">
+        Aphrodite
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-fela">
+        Fela
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-stitches">
+        Stitches
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -232,10 +284,10 @@ The simplest one is inline styles:
 
 ```jsx
 function HiThere() {
-  return <p style={{ color: 'red' }}>hi there</p>
+  return <p style={{ color: "red" }}>hi there</p>;
 }
 
-export default HiThere
+export default HiThere;
 ```
 
 We bundle [styled-jsx](https://github.com/vercel/styled-jsx) to provide support for isolated scoped CSS.
@@ -270,10 +322,10 @@ function HelloWorld() {
         }
       `}</style>
     </div>
-  )
+  );
 }
 
-export default HelloWorld
+export default HelloWorld;
 ```
 
 Please see the [styled-jsx documentation](https://github.com/vercel/styled-jsx) for more examples.
@@ -291,7 +343,9 @@ For more information on what to do next, we recommend the following sections:
 <div className="card">
   <a href="/docs/advanced-features/customizing-postcss-config.md">
     <b>Customizing PostCSS Config:</b>
-    <small>Extend the PostCSS config and plugins added by Next.js with your own.</small>
+    <small>
+      Extend the PostCSS config and plugins added by Next.js with your own.
+    </small>
   </a>
 </div>
 

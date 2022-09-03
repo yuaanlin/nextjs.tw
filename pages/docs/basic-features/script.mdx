@@ -5,14 +5,40 @@ description: Next.js helps you optimize loading third-party scripts with the bui
 # Script Component
 
 <details>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/script-component">Script Component</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-google-tag-manager">Google Tag Manager</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-google-analytics">Google Analytics</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-facebook-pixel">Facebook Pixel</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-clerk">Clerk</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-segment-analytics">Segment Analytics</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/script-component">
+        Script Component
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-google-tag-manager">
+        Google Tag Manager
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-google-analytics">
+        Google Analytics
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-facebook-pixel">
+        Facebook Pixel
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-clerk">
+        Clerk
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-segment-analytics">
+        Segment Analytics
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -29,14 +55,14 @@ description: Next.js helps you optimize loading third-party scripts with the bui
 The Next.js Script component, [`next/script`](/docs/api-reference/next/script.md), is an extension of the HTML `<script>` element. It enables developers to set the loading priority of third-party scripts anywhere in their application, outside `next/head`, saving developer time while improving loading performance.
 
 ```jsx
-import Script from 'next/script'
+import Script from "next/script";
 
 export default function Home() {
   return (
     <>
       <Script src="https://www.google-analytics.com/analytics.js" />
     </>
-  )
+  );
 }
 ```
 
@@ -54,7 +80,7 @@ The Script component makes it easier for developers to place a third-party scrip
 To add a third-party script to your application, import the `next/script` component:
 
 ```jsx
-import Script from 'next/script'
+import Script from "next/script";
 ```
 
 ### Strategy
@@ -80,8 +106,8 @@ The reason `beforeInteractive` was designed to work only inside `\_document.js` 
 
 ```jsx
 // In _document.js
-import { Html, Head, Main, NextScript } from 'next/document'
-import Script from 'next/script'
+import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
@@ -96,7 +122,7 @@ export default function Document() {
         ></Script>
       </body>
     </Html>
-  )
+  );
 }
 ```
 
@@ -158,7 +184,7 @@ module.exports = {
   experimental: {
     nextScriptWorkers: true,
   },
-}
+};
 ```
 
 Then, run `next` (normally `npm run dev` or `yarn dev`) and Next.js will guide you through the installation of the required packages to finish the setup:
@@ -190,7 +216,7 @@ Although the `worker` strategy does not require any additional configuration to 
 If you would like to add additional configuration options, you can include it within the `<Head />` component used in a [custom `_document.js`](/docs/advanced-features/custom-document.md):
 
 ```jsx
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
@@ -213,7 +239,7 @@ export default function Document() {
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }
 ```
 
@@ -257,11 +283,11 @@ The `id` property is required for **inline scripts** in order for Next.js to tra
 Some third-party scripts require users to run JavaScript code once after the script has finished loading in order to instantiate content or call a function. If you are loading a script with either `afterInteractive` or `lazyOnload` as a loading strategy, you can execute code after it has loaded using the `onLoad` property:
 
 ```jsx
-import { useState } from 'react'
-import Script from 'next/script'
+import { useState } from "react";
+import Script from "next/script";
 
 export default function Home() {
-  const [stripe, setStripe] = useState(null)
+  const [stripe, setStripe] = useState(null);
 
   return (
     <>
@@ -269,11 +295,11 @@ export default function Home() {
         id="stripe-js"
         src="https://js.stripe.com/v3/"
         onLoad={() => {
-          setStripe({ stripe: window.Stripe('pk_test_12345') })
+          setStripe({ stripe: window.Stripe("pk_test_12345") });
         }}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -282,11 +308,11 @@ export default function Home() {
 Some third-party scripts require users to run JavaScript code after the script has finished loading and every time the component is mounted (after a route navigation for example). You can execute code after the script's `load` event when it first loads and then after every subsequent component re-mount using the `onReady` property:
 
 ```jsx
-import { useRef } from 'react'
-import Script from 'next/script'
+import { useRef } from "react";
+import Script from "next/script";
 
 export default function Home() {
-  const mapRef = useRef()
+  const mapRef = useRef();
   return (
     <>
       <div ref={mapRef}></div>
@@ -297,11 +323,11 @@ export default function Home() {
           new google.maps.Map(mapRef.current, {
             center: { lat: -34.397, lng: 150.644 },
             zoom: 8,
-          })
+          });
         }}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -312,7 +338,7 @@ export default function Home() {
 Sometimes it is helpful to catch when a script fails to load. These errors can be handled with the `onError` property:
 
 ```jsx
-import Script from 'next/script'
+import Script from "next/script";
 
 export default function Home() {
   return (
@@ -321,11 +347,11 @@ export default function Home() {
         id="will-fail"
         src="https://example.com/non-existant-script.js"
         onError={(e) => {
-          console.error('Script failed to load', e)
+          console.error("Script failed to load", e);
         }}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -334,7 +360,7 @@ export default function Home() {
 There are many DOM attributes that can be assigned to a `<script>` element that are not used by the Script component, like [`nonce`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) or [custom data attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*). Including any additional attributes will automatically forward it to the final, optimized `<script>` element that is outputted to the page.
 
 ```jsx
-import Script from 'next/script'
+import Script from "next/script";
 
 export default function Home() {
   return (
@@ -346,7 +372,7 @@ export default function Home() {
         data-test="analytics"
       />
     </>
-  )
+  );
 }
 ```
 

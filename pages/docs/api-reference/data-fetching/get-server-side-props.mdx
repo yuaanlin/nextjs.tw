@@ -20,7 +20,7 @@ When exporting a function called `getServerSideProps` (Server-Side Rendering) fr
 export async function getServerSideProps(context) {
   return {
     props: {}, // will be passed to the page component as props
-  }
+  };
 }
 ```
 
@@ -53,7 +53,7 @@ The `props` object is a key-value pair, where each value is received by the page
 export async function getServerSideProps(context) {
   return {
     props: { message: `Next.js is awesome` }, // will be passed to the page component as props
-  }
+  };
 }
 ```
 
@@ -63,18 +63,18 @@ The `notFound` boolean allows the page to return a `404` status and [404 Page](/
 
 ```js
 export async function getServerSideProps(context) {
-  const res = await fetch(`https://.../data`)
-  const data = await res.json()
+  const res = await fetch(`https://.../data`);
+  const data = await res.json();
 
   if (!data) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {
     props: { data }, // will be passed to the page component as props
-  }
+  };
 }
 ```
 
@@ -84,21 +84,21 @@ The `redirect` object allows redirecting to internal and external resources. It 
 
 ```js
 export async function getServerSideProps(context) {
-  const res = await fetch(`https://.../data`)
-  const data = await res.json()
+  const res = await fetch(`https://.../data`);
+  const data = await res.json();
 
   if (!data) {
     return {
       redirect: {
-        destination: '/',
+        destination: "/",
         permanent: false,
       },
-    }
+    };
   }
 
   return {
     props: {}, // will be passed to the page component as props
-  }
+  };
 }
 ```
 
@@ -107,11 +107,11 @@ export async function getServerSideProps(context) {
 For TypeScript, you can use the `GetServerSideProps` type from `next`:
 
 ```ts
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // ...
-}
+};
 ```
 
 If you want to get inferred typings for your props, you can use `InferGetServerSidePropsType<typeof getServerSideProps>`:

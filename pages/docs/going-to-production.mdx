@@ -27,9 +27,15 @@ Before taking your Next.js application to production, here are some recommendati
 ## Caching
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/ssr-caching">ssr-caching</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/ssr-caching">
+        ssr-caching
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -59,13 +65,13 @@ You can also use caching headers inside `getServerSideProps` and API Routes for 
 // with a fresh value. If you refresh the page, you will see the new value.
 export async function getServerSideProps({ req, res }) {
   res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
 
   return {
     props: {},
-  }
+  };
 }
 ```
 
@@ -79,9 +85,15 @@ By default, `Cache-Control` headers will be set differently depending on how you
 ## Reducing JavaScript Size
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-dynamic-import">with-dynamic-import</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-dynamic-import">
+        with-dynamic-import
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -98,9 +110,15 @@ Each file inside your `pages/` directory will automatically be code split into i
 ## Logging
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/Logflare/next-pino-logflare-logging-example">with-logging</a></li>
+    <li>
+      <a href="https://github.com/Logflare/next-pino-logflare-logging-example">
+        with-logging
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -114,9 +132,15 @@ If you want a structured logging package, we recommend [Pino](https://www.npmjs.
 ## Error Handling
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-sentry">with-sentry</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/with-sentry">
+        with-sentry
+      </a>
+    </li>
   </ul>
 </details>
 

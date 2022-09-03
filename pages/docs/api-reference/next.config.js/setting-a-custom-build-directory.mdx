@@ -10,8 +10,8 @@ Open `next.config.js` and add the `distDir` config:
 
 ```js
 module.exports = {
-  distDir: 'build',
-}
+  distDir: "build",
+};
 ```
 
 Now if you run `next build` Next.js will use `build` instead of the default `.next` folder.

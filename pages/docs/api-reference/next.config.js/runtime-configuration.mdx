@@ -12,14 +12,14 @@ To add runtime configuration to your app open `next.config.js` and add the `publ
 module.exports = {
   serverRuntimeConfig: {
     // Will only be available on the server side
-    mySecret: 'secret',
+    mySecret: "secret",
     secondSecret: process.env.SECOND_SECRET, // Pass through env variables
   },
   publicRuntimeConfig: {
     // Will be available on both server and client
-    staticFolder: '/static',
+    staticFolder: "/static",
   },
-}
+};
 ```
 
 Place any server-only runtime config under `serverRuntimeConfig`.
@@ -31,15 +31,15 @@ Anything accessible to both client and server-side code should be under `publicR
 To get access to the runtime configs in your app use `next/config`, like so:
 
 ```jsx
-import getConfig from 'next/config'
-import Image from 'next/image'
+import getConfig from "next/config";
+import Image from "next/image";
 
 // Only holds serverRuntimeConfig and publicRuntimeConfig
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 // Will only be available on the server-side
-console.log(serverRuntimeConfig.mySecret)
+console.log(serverRuntimeConfig.mySecret);
 // Will be available on both server-side and client-side
-console.log(publicRuntimeConfig.staticFolder)
+console.log(publicRuntimeConfig.staticFolder);
 
 function MyImage() {
   return (
@@ -50,10 +50,10 @@ function MyImage() {
         layout="fill"
       />
     </div>
-  )
+  );
 }
 
-export default MyImage
+export default MyImage;
 ```
 
 ## Related
@@ -68,7 +68,9 @@ export default MyImage
 <div className="card">
   <a href="/docs/api-reference/next.config.js/environment-variables.md">
     <b>Environment Variables:</b>
-    <small>Access environment variables in your Next.js application at build time.</small>
+    <small>
+      Access environment variables in your Next.js application at build time.
+    </small>
   </a>
 </div>
 

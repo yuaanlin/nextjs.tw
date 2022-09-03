@@ -29,21 +29,21 @@ Components without a `server` or `client` extension will be treated as shared co
 ```jsx
 // pages/home.server.js
 
-import { Suspense } from 'react'
+import { Suspense } from "react";
 
-import Profile from '../components/profile.server'
-import Content from '../components/content.client'
+import Profile from "../components/profile.server";
+import Content from "../components/content.client";
 
 export default function Home() {
   return (
     <div>
       <h1>Welcome to React Server Components</h1>
-      <Suspense fallback={'Loading...'}>
+      <Suspense fallback={"Loading..."}>
         <Profile />
       </Suspense>
       <Content />
     </div>
-  )
+  );
 }
 ```
 
@@ -65,7 +65,7 @@ If you have a custom `_document`, you have to change your `_document` to a funct
 
 ```jsx
 // pages/_document.js
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
@@ -76,7 +76,7 @@ export default function Document() {
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }
 ```
 
@@ -93,7 +93,7 @@ Both basic routes with path and queries and dynamic routes are supported. If you
 
 export default function Index({ router }) {
   // You can access routing information by `router.pathname`, etc.
-  return 'hello'
+  return "hello";
 }
 ```
 

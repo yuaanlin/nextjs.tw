@@ -14,15 +14,15 @@ To opt-in, add the allowed URL prefixes inside `next.config.js`:
 ```js
 module.exports = {
   experimental: {
-    urlImports: ['https://example.com/modules/'],
+    urlImports: ["https://example.com/modules/"],
   },
-}
+};
 ```
 
 Then, you can import modules directly from URLs:
 
 ```js
-import { a, b, c } from 'https://example.com/modules/some/module.js'
+import { a, b, c } from "https://example.com/modules/some/module.js";
 ```
 
 URL Imports can be used everywhere normal package imports can be used.
@@ -48,49 +48,49 @@ These resources will have a `no-cache` entry in the lockfile and will always be 
 ### Skypack
 
 ```js
-import confetti from 'https://cdn.skypack.dev/canvas-confetti'
-import { useEffect } from 'react'
+import confetti from "https://cdn.skypack.dev/canvas-confetti";
+import { useEffect } from "react";
 
 export default () => {
   useEffect(() => {
-    confetti()
-  })
-  return <p>Hello</p>
-}
+    confetti();
+  });
+  return <p>Hello</p>;
+};
 ```
 
 ### Static Image Imports
 
 ```js
-import Image from 'next/image'
-import logo from 'https://github.com/vercel/next.js/raw/canary/test/integration/production/public/vercel.png'
+import Image from "next/image";
+import logo from "https://github.com/vercel/next.js/raw/canary/test/integration/production/public/vercel.png";
 
 export default () => (
   <div>
     <Image src={logo} placeholder="blur" />
   </div>
-)
+);
 ```
 
 ### URLs in CSS
 
 ```css
 .className {
-  background: url('https://github.com/vercel/next.js/raw/canary/test/integration/production/public/vercel.png');
+  background: url("https://github.com/vercel/next.js/raw/canary/test/integration/production/public/vercel.png");
 }
 ```
 
 ### Asset Imports
 
 ```js
-import Image from 'next/image'
+import Image from "next/image";
 
 const logo = new URL(
-  'https://github.com/vercel/next.js/raw/canary/test/integration/production/public/vercel.png',
+  "https://github.com/vercel/next.js/raw/canary/test/integration/production/public/vercel.png",
   import.meta.url
-)
+);
 
-export default () => <div>{logo.pathname}</div>
+export default () => <div>{logo.pathname}</div>;
 ```
 
 import DocsLayout from "@components/DocsLayout";

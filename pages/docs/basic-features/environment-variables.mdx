@@ -7,9 +7,15 @@ description: Learn to add and access environment variables in your Next.js appli
 > This document is for Next.js versions 9.4 and up. If you’re using an older version of Next.js, upgrade or refer to [Environment Variables in next.config.js](/docs/api-reference/next.config.js/environment-variables.md).
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>Examples</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/environment-variables">Environment Variables</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/environment-variables">
+        Environment Variables
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -41,7 +47,7 @@ export async function getStaticProps() {
     host: process.env.DB_HOST,
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
-  })
+  });
   // ...
 }
 ```
@@ -91,29 +97,29 @@ This loads `process.env.NEXT_PUBLIC_ANALYTICS_ID` into the Node.js environment a
 
 ```js
 // pages/index.js
-import setupAnalyticsService from '../lib/my-analytics-service'
+import setupAnalyticsService from "../lib/my-analytics-service";
 
 // 'NEXT_PUBLIC_ANALYTICS_ID' can be used here as it's prefixed by 'NEXT_PUBLIC_'.
 // It will be transformed at build time to `setupAnalyticsService('abcdefghijk')`.
-setupAnalyticsService(process.env.NEXT_PUBLIC_ANALYTICS_ID)
+setupAnalyticsService(process.env.NEXT_PUBLIC_ANALYTICS_ID);
 
 function HomePage() {
-  return <h1>Hello World</h1>
+  return <h1>Hello World</h1>;
 }
 
-export default HomePage
+export default HomePage;
 ```
 
 Note that dynamic lookups will _not_ be inlined, such as:
 
 ```js
 // This will NOT be inlined, because it uses a variable
-const varName = 'NEXT_PUBLIC_ANALYTICS_ID'
-setupAnalyticsService(process.env[varName])
+const varName = "NEXT_PUBLIC_ANALYTICS_ID";
+setupAnalyticsService(process.env[varName]);
 
 // This will NOT be inlined, because it uses a variable
-const env = process.env
-setupAnalyticsService(env.NEXT_PUBLIC_ANALYTICS_ID)
+const env = process.env;
+setupAnalyticsService(env.NEXT_PUBLIC_ANALYTICS_ID);
 ```
 
 ## Default Environment Variables
@@ -152,12 +158,12 @@ While running unit tests you can make sure to load your environment variables th
 
 ```js
 // The below can be used in a Jest global setup file or similar for your testing set-up
-import { loadEnvConfig } from '@next/env'
+import { loadEnvConfig } from "@next/env";
 
 export default async () => {
-  const projectDir = process.cwd()
-  loadEnvConfig(projectDir)
-}
+  const projectDir = process.cwd();
+  loadEnvConfig(projectDir);
+};
 ```
 
 ## Environment Variable Load Order
