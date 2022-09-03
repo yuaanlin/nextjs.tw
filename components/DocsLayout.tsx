@@ -1,6 +1,6 @@
 import TopNav from './TopNav';
 import SearchInput from './Input/SearchInput';
-import { routes } from './DocsRoutes';
+import routes from './DocsRoutes.json';
 import { Key, PropsWithChildren } from 'react';
 import Link from 'next/link';
 
@@ -14,9 +14,6 @@ function DocsLayout(props: PropsWithChildren<{}>) {
       >
         <SearchInput className="my-6"/>
         <DocsMenu />
-        {/* <p className="opacity-50">
-          這裡會放文章目錄<br/>但現在還沒有 👷
-        </p> */}
       </aside>
       <div className="w-full overflow-hidden">
         {props.children}
@@ -26,7 +23,6 @@ function DocsLayout(props: PropsWithChildren<{}>) {
 }
 
 const DocsMenu = () => {
-
   type NestedsetProps = {
     item?: any | undefined;
     level: any;
