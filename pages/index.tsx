@@ -1,8 +1,8 @@
-import TopNav from "../components/TopNav";
-import Footer from "@components/Footer";
-import Link from "next/link";
-import Head from "next/head";
-import type { NextPage } from "next";
+import TopNav from '../components/TopNav';
+import Footer from '@components/Footer';
+import Link from 'next/link';
+import Head from 'next/head';
+import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return (
