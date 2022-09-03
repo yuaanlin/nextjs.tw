@@ -88,6 +88,10 @@
             "path": "/docs/basic-features/script"
           }
         ]
+      },
+      {
+        "title": "邁向成品",
+        "path": "/docs/going-to-production"
       }
     ]
   },
