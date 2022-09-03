@@ -39,7 +39,7 @@ export default function Layout({ children }) {
 
 ### 使用自定義 App 的單一共享佈局
 
-如果你的應用程式只有一個佈局，你可以建立一個[自定義 App](/docs/advanced-features/custom-app.md)然後將你的應用程式包覆在這個佈局中。既然 `<Layout />` 組件在更換頁面時被重覆使用，其組件狀態將會被保存 (例如：input 值)。
+如果你的應用程式只有一個佈局，你可以建立一個[自定義 App](/docs/advanced-features/custom-app.md)然後將你的應用程式包覆在這個佈局中。由於 `<Layout />` 組件在更換頁面時被重覆使用，其組件狀態將會被保存 (例如：input 值)。
 
 ```jsx
 // pages/_app.js
@@ -57,7 +57,7 @@ export default function MyApp({ Component, pageProps }) {
 
 ### 每頁佈局
 
-如果你有多項佈局，你可以為了佈局在頁面中增加一個屬性 `getLayout` 來返回一個 React 組件。這讓你可以在 _每頁的基礎_ 上定義佈局。既然我們是要返回一個函式，如果必要的話，我們可以有複雜的巢狀佈局。
+如果你有多項佈局，你可以為佈局在頁面中增加一個屬性 `getLayout` 來返回一個 React 組件。這讓你可以在 _每頁的基礎_ 上定義佈局。由於我們是要返回一個函式，必要的話，我們可以使用複雜的巢狀佈局。
 
 ```jsx
 // pages/index.js
@@ -99,7 +99,7 @@ export default function MyApp({ Component, pageProps }) {
 > **注意**: 這種 React 理解哪個元素已經被改變的流程我們稱為[協調](https://reactjs.org/docs/reconciliation.html)。
 
 ### 使用 TypeScript
-當使用 TypeScript 時，你必須要為你的頁面建立新的 type ，包含一個 `getLayout` 函式。接著，你必須要為 `AppProps` 也建立一個新的 type，這個 type 將會覆蓋 `Component` 屬性從而使用先前建立的 type.
+當使用 TypeScript 時，你必須要為你的頁面建立新的 type ，包含一個 `getLayout` 函式。接著，你必須要為 `AppProps` 也建立一個新的 type，這個 type 將會覆蓋 `Component` 屬性進而使用先前建立的 type.
 
 ```tsx
 // pages/index.tsx
