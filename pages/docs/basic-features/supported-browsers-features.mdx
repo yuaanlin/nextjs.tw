@@ -1,52 +1,46 @@
----
-description: Browser support and which JavaScript features are supported by Next.js.
----
+# 支援瀏覽器和特色
 
-# Supported Browsers and Features
-
-Next.js supports **IE11 and all modern browsers** (Edge, Firefox, Chrome, Safari, Opera, et al) with no required configuration.
+Next.js 支援 **IE11 以及其他現代的瀏覽器** (Edge, Firefox, Chrome, Safari, Opera 等) 且無需額外的配置。
 
 ## Polyfills
 
-We inject [widely used polyfills](https://github.com/vercel/next.js/blob/canary/packages/next-polyfill-nomodule/src/index.js), including:
+我們廣泛地注入 [polyfills](https://github.com/vercel/next.js/blob/canary/packages/next-polyfill-nomodule/src/index.js)，包含 :
 
-- [**fetch()**](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) — Replacing: `whatwg-fetch` and `unfetch`.
-- [**URL**](https://developer.mozilla.org/en-US/docs/Web/API/URL) — Replacing: the [`url` package (Node.js API)](https://nodejs.org/api/url.html).
-- [**Object.assign()**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) — Replacing: `object-assign`, `object.assign`, and `core-js/object/assign`.
+- [**fetch()**](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) — 替換 : `whatwg-fetch` 和 `unfetch`.
+- [**URL**](https://developer.mozilla.org/en-US/docs/Web/API/URL) — 替換 : [`url` package (Node.js API)](https://nodejs.org/api/url.html).
+- [**Object.assign()**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) — 替換: `object-assign`, `object.assign` 和 `core-js/object/assign`.
 
-If any of your dependencies includes these polyfills, they’ll be eliminated automatically from the production build to avoid duplication.
+如果你的相依性包含這些 polyfills，他們將會從生產版本中自動地被移除來避免相關地重覆。除此之外，為了減少 bundle 大小， Next.js 將只會為需要 polyfills 的瀏覽器載入相關資源。
 
-In addition, to reduce bundle size, Next.js will only load these polyfills for browsers that require them. The majority of the web traffic globally will not download these polyfills.
+### 客製 Polyfills
 
-### Custom Polyfills
+如果你的程式碼或是所需的任何外部 npm 相依性功能並不被目標瀏覽器支援 (例如： IE 11)，你需要自行加入 polyfills。
 
-If your own code or any external npm dependencies require features not supported by your target browsers (such as IE 11), you need to add polyfills yourself.
+這個情況下，你需要加入一個最高層 import 以及所需的 **特殊 polyfill** 在你[客製 `<App>`](/docs/advanced-features/custom-app.md)或者是某個組件裡。
 
-In this case, you should add a top-level import for the **specific polyfill** you need in your [Custom `<App>`](/docs/advanced-features/custom-app.md) or the individual component.
+## JavaScript 語言
 
-## JavaScript Language Features
-
-Next.js allows you to use the latest JavaScript features out of the box. In addition to [ES6 features](https://github.com/lukehoban/es6features), Next.js also supports:
+Next.js 允許你使用最新的 JavaScript，除了 [ES6 功能](https://github.com/lukehoban/es6features)， Next.js 也支援：
 
 - [Async/await](https://github.com/tc39/ecmascript-asyncawait) (ES2017)
 - [Object Rest/Spread Properties](https://github.com/tc39/proposal-object-rest-spread) (ES2018)
 - [Dynamic `import()`](https://github.com/tc39/proposal-dynamic-import) (ES2020)
 - [Optional Chaining](https://github.com/tc39/proposal-optional-chaining) (ES2020)
 - [Nullish Coalescing](https://github.com/tc39/proposal-nullish-coalescing) (ES2020)
-- [Class Fields](https://github.com/tc39/proposal-class-fields) and [Static Properties](https://github.com/tc39/proposal-static-class-features) (part of stage 3 proposal)
-- and more!
+- [Class Fields](https://github.com/tc39/proposal-class-fields) 和 [Static Properties](https://github.com/tc39/proposal-static-class-features) (階段 3 的提案一部分)
+- 持續增加
 
-### Server-Side Polyfills
+### 伺服器端 Polyfills
 
-In addition to `fetch()` on the client-side, Next.js polyfills `fetch()` in the Node.js environment. You can use `fetch()` in your server code (such as `getStaticProps`/`getServerSideProps`) without using polyfills such as `isomorphic-unfetch` or `node-fetch`.
+除了在客服端的 `fetch()`，Next.js 的 polyfills `fetch()` 是在 Node.js 環境內。 你可以在伺服器端程式使用 `fetch()` (例如 `getStaticProps`/`getServerSideProps`) 而無需使用 polyfills，例如 `isomorphic-unfetch` 或 `node-fetch`。
 
-### TypeScript Features
+### TypeScript 特色
 
-Next.js has built-in TypeScript support. [Learn more here](/docs/basic-features/typescript.md).
+Next.js 內建 TypeScript 支援，點擊[瞭解更多](/docs/basic-features/typescript.md)來看看怎麼使用。
 
-### Customizing Babel Config (Advanced)
+### 客製化 Babel 配置 (進階)
 
-You can customize babel configuration. [Learn more here](/docs/advanced-features/customizing-babel-config.md).
+你可以客製化 babel 配置，點擊[瞭解更多](/docs/advanced-features/customizing-babel-config.md)來看看怎麼使用。
 
 import DocsLayout from "@components/DocsLayout";
 export default ({ children }) => <DocsLayout>{children}</DocsLayout>;
