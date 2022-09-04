@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev && mdx-deck deck.mdx",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,12 +11,15 @@
   "dependencies": {
     "@mdx-js/loader": "^2.1.3",
     "@next/mdx": "^12.2.5",
+    "@types/mdx": "^2.0.2",
+    "mdx": "link:type/@next/mdx",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "scroll-lock": "^2.1.5"
   },
   "devDependencies": {
+    "@mdx-js/react": "^2.1.3",
     "@types/node": "18.7.14",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",

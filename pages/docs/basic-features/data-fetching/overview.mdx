@@ -1,43 +1,42 @@
----
-description: 'Next.js allows you to fetch data in multiple ways, with pre-rendering, server-side rendering or static-site generation, and incremental static regeneration. Learn how to manage your application data in Next.js.'
----
+import LearnLayout from '@components/LearnLayout';
 
-# Data Fetching Overview
+# Data Fetching 概述
 
-<details>
+
+<details className="bg-gray-100/50 border p-2">
   <summary><b>Examples</b></summary>
-  <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-wordpress">WordPress Example</a> (<a href="https://next-blog-wordpress.vercel.app">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/blog-starter">Blog Starter using markdown files</a> (<a href="https://next-blog-starter.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-datocms">DatoCMS Example</a> (<a href="https://next-blog-datocms.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-takeshape">TakeShape Example</a> (<a href="https://next-blog-takeshape.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-sanity">Sanity Example</a> (<a href="https://next-blog-sanity.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-prismic">Prismic Example</a> (<a href="https://next-blog-prismic.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-contentful">Contentful Example</a> (<a href="https://next-blog-contentful.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-strapi">Strapi Example</a> (<a href="https://next-blog-strapi.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-prepr">Prepr Example</a> (<a href="https://next-blog-prepr.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-agilitycms">Agility CMS Example</a> (<a href="https://next-blog-agilitycms.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-cosmic">Cosmic Example</a> (<a href="https://next-blog-cosmic.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-buttercms">ButterCMS Example</a> (<a href="https://next-blog-buttercms.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-storyblok">Storyblok Example</a> (<a href="https://next-blog-storyblok.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-graphcms">GraphCMS Example</a> (<a href="https://next-blog-graphcms.vercel.app/">Demo</a>)</li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-kontent">Kontent Example</a> (<a href="https://next-blog-kontent.vercel.app/">Demo</a>)</li>
-    <li><a href="https://static-tweet.vercel.app/">Static Tweet Demo</a></li>
+  <ul className="p-2 flex flex-col gap-3 text-blue-500">
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-wordpress">WordPress Example</a> (<a href="https://next-blog-wordpress.vercel.app">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/blog-starter">Blog Starter using markdown files</a> (<a href="https://next-blog-starter.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-datocms">DatoCMS Example</a> (<a href="https://next-blog-datocms.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-takeshape">TakeShape Example</a> (<a href="https://next-blog-takeshape.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-sanity">Sanity Example</a> (<a href="https://next-blog-sanity.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-prismic">Prismic Example</a> (<a href="https://next-blog-prismic.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-contentful">Contentful Example</a> (<a href="https://next-blog-contentful.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-strapi">Strapi Example</a> (<a href="https://next-blog-strapi.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-prepr">Prepr Example</a> (<a href="https://next-blog-prepr.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-agilitycms">Agility CMS Example</a> (<a href="https://next-blog-agilitycms.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-cosmic">Cosmic Example</a> (<a href="https://next-blog-cosmic.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-buttercms">ButterCMS Example</a> (<a href="https://next-blog-buttercms.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-storyblok">Storyblok Example</a> (<a href="https://next-blog-storyblok.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-graphcms">GraphCMS Example</a> (<a href="https://next-blog-graphcms.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-kontent">Kontent Example</a> (<a href="https://next-blog-kontent.vercel.app/">Demo</a>)</li>
+    <li className="before:content-['-'] before:text-gray-300 before:mr-2"><a href="https://static-tweet.vercel.app/">Static Tweet Demo</a></li>
   </ul>
 </details>
 
-Data fetching in Next.js allows you to render your content in different ways, depending on your application's use case. These include pre-rendering with **Server-side Rendering** or **Static Generation**, and updating or creating content at runtime with **Incremental Static Regeneration**.
+<div className="leading-8 mt-5">Data fetching 在 Next.js 中提供你多種選染文黨的方式, 取決於您的應用程序的實例. 這裡包括欲渲染使用 **Server-side Rendering** 或 **Static Generation**, 並在運行時更新或創建內容**Incremental Static Regeneration**.</div>
 
 <div className="card">
   <a href="/docs/basic-features/data-fetching/get-server-side-props.md">
-    <b>SSR: Server-side rendering</b>
+    <b>SSR: 伺服器選染</b>
     <small>Learn more about server-side rendering in Next.js with getServerSideProps.</small>
   </a>
 </div>
 
 <div className="card">
   <a href="/docs/basic-features/data-fetching/get-static-props.md">
-    <b>SSG: Static-site generation</b>
+    <b>SSG: 靜態生成</b>
     <small>Learn more about static site generation in Next.js with getStaticProps.</small>
   </a>
 </div>
@@ -63,7 +62,7 @@ Data fetching in Next.js allows you to render your content in different ways, de
   </a>
 </div>
 
-## Learn more
+## 查看更多
 
 <div className="card">
   <a href="/docs/advanced-features/preview-mode.md">
@@ -85,6 +84,7 @@ Data fetching in Next.js allows you to render your content in different ways, de
     <small>Add TypeScript to your pages.</small>
   </a>
 </div>
+
 
 import DocsLayout from "@components/DocsLayout";
 export default ({ children }) => <DocsLayout>{children}</DocsLayout>;
