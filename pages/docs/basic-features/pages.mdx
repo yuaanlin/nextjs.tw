@@ -6,11 +6,11 @@ description: Next.js pages are React Components exported in a file in the pages 
 
 # 頁面
 
-> **注意：** 我們正在將改進過後的新版路由引入 Next.js。閱讀 [Layouts RFC](https://nextjs.org/blog/layouts-rfc) 以獲得更多詳細資訊並提供回饋。
+> **注意：**我們正在改進 Next.js 的路由。 [Layouts RFC](https://nextjs.org/blog/layouts-rfc) 提供更多詳細的資訊及回饋管道。
 
-在 Next.js 中，一個 **頁面 (Pages)** 是一個從 `pages` 資料夾底下的 `.js`、`.jsx`、`.ts` 或 `.tsx` 檔案匯出的 [React 元件](https://reactjs.org/docs/components-and-props.html)。每個頁面都會根據其檔案名稱與路由相關聯。
+在 Next.js 中，一個**頁面（ Pages ）**就是從 `pages` 目錄底下匯出的一個 React 元件，它可以是 `.js` 、 `.jsx` 、 `.ts` 、 `.tsx` 任意一種檔案格式。每個檔案的檔名會進而關聯到一個頁面的路由。
 
-**範例**：如果你建立了 `pages/about.js` 檔案，並匯出了如下的 React 元件，你將會在網站的 `/about` 頁面下看到他。
+**範例**：如果你建立了 `pages/about.js` 檔案，並匯出了如下的 React 元件，你將會在網站的 `/about` 頁面下看到它。
 
 ```jsx
 function About() {
@@ -28,27 +28,27 @@ Next.js 支援具有動態路由的頁面。例如，如果你建立了一個名
 
 ## 提前渲染
 
-在預設的情況下，Next.js 會 **提前渲染 (pre-render)** 每個頁面。這意味著 Next.js 會提前為每個頁面產生 HTML，而不是讓所有事情都由客戶端 JavaScript 完成，這可以為我們帶來更好的效能與 SEO。
+在預設的情況下，Next.js 會**提前渲染 (pre-render)**每個頁面。這意味著 Next.js 會提前為每個頁面產生 HTML，而不是讓所有事情都由客戶端 JavaScript 完成，這可以為我們帶來更好的效能與搜尋引擎最佳化（ SEO ）。
 
-每個產生的 HTML 都會與該頁面所需要的最少 JavaScript 代碼相關聯。當瀏覽器載入一個頁面時，它的 JavaScript 程式碼會執行並使頁面可以讓使用者進行互動。 (這個過程被稱為 _hydration_。)
+每個產生的 HTML 都會與該頁面所需要的最少 JavaScript 程式碼相關聯。當瀏覽器載入一個頁面時，它的 JavaScript 程式碼會執行並使頁面可以讓使用者進行互動（這個過程被稱為 _hydration_ ）。
 
 ### 兩種形式的提前渲染
 
-Next.js 有兩種形式的提前渲染：**靜態生成 (Static Generation)** 和 **伺服器端渲染 (Server-side Rendering)**。兩者的差別在於它們產生頁面 HTML 的**時機**。
+Next.js 有兩種形式的提前渲染：**靜態生成（ Static Generation ）**和**伺服器端渲染（ Server-side Rendering ）**。兩者的差別在於它們產生頁面 HTML 的**時機**。
 
-- [**靜態生成 (推薦)**](#靜態生成-推薦)：HTML 會在 **建置時期 (build time)** 產生，並且會在每個請求中重複使用。
+- [**靜態生成 (推薦)**](#靜態生成-建議)：HTML 會在**建置時期 (build time)**產生，並且會在每個請求中重複使用。
 - [**伺服器端渲染**](#伺服器端渲染)：HTML 會在 **每個請求** 中產生。
 
-更重要的是，Next.js 讓你可以 **選擇** 在每個頁面中使用哪種形式的提前渲染。你可以建立一個「混合」的 Next.js 應用程式，並使用靜態生成來處理大部分的頁面，並使用伺服器端渲染來處理其他頁面。
+更重要的是，Next.js 讓你可以**選擇**在每個頁面中使用哪種形式的提前渲染。你可以建立一個「混合」的 Next.js 應用程式，並使用靜態生成來處理大部分的頁面，並使用伺服器端渲染來處理其他頁面。
 
-我們 **推薦** 在效能方面使用 **靜態生成** 而不是伺服器端渲染。靜態生成的頁面可以透過 CDN 進行快取，而不需要額外的設定來提升效能。然而，在某些情況下，伺服器端渲染可能是唯一的選擇。
+我們**推薦**在效能方面使用**靜態生成**而不是伺服器端渲染。靜態生成的頁面可以透過 CDN 進行快取，而不需要額外的設定來提升效能。然而，在某些情況下，伺服器端渲染可能是唯一的選擇。
 
-你也可以在靜態生成或伺服器端渲染的頁面中使用 **客戶端資料取得**。這意味著頁面的某些部分可以完全由客戶端 JavaScript 進行渲染。要學習更多相關內容，請參閱 [資料獲取](/docs/basic-features/data-fetching/client-side.md) 文件。
+你也可以在靜態生成或伺服器端渲染的頁面中使用**客戶端資料取得**。這意味著頁面的某些部分可以完全由客戶端 JavaScript 進行渲染。要學習更多相關內容，請參閱[資料獲取](/docs/basic-features/data-fetching/client-side.md)文件。
 
 ## 靜態生成 (推薦)
 
 <details open>
-  <summary><b>參考範例</b></summary>
+  <summary><b>範例</b></summary>
   <ul>
     <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-wordpress">WordPress Example</a> (<a href="https://next-blog-wordpress.vercel.app">Demo</a>)</li>
     <li><a href="https://github.com/vercel/next.js/tree/canary/examples/blog-starter">Blog Starter using markdown files</a> (<a href="https://next-blog-starter.vercel.app/">Demo</a>)</li>
@@ -71,9 +71,9 @@ Next.js 有兩種形式的提前渲染：**靜態生成 (Static Generation)** �
   </ul>
 </details>
 
-如果一個頁面使用 **靜態生成**，頁面 HTML 將在 **建置時** 產生。這意味著在生產環境中，當你執行 `next build` 時，頁面 HTML 將會被產生。然後，這個 HTML 將會在每個請求中被重複使用，也因此它可以被 CDN 快取。
+如果一個頁面使用**靜態生成**，頁面 HTML 將在**建置時**產生。這意味著在生產環境中，當你執行 `next build` 時，頁面 HTML 將會被產生。然後，這個 HTML 將會在每個請求中被重複使用，也因此它可以被 CDN 快取。
 
-在 Next.js 中，你可以 **使用或不使用資料** 來靜態生成頁面。讓我們來看看每個情況。
+在 Next.js 中，你可以**使用或不使用資料**來靜態生成頁面。讓我們來看看每個情況。
 
 ### 不使用資料的靜態生成
 
@@ -87,14 +87,14 @@ function About() {
 export default About
 ```
 
-注意到這個頁面不需要抓取任何外部資料來預先渲染。在這種情況下，Next.js 在建置 (build time) 時為每個頁面產生一個 HTML 檔案。
+注意到這個頁面不需要抓取任何外部資料來預先渲染。在這種情況下，Next.js 在建置時為每個頁面產生一個 HTML 檔案。
 
 ### 使用資料的靜態生成
 
 有些頁面需要抓取外部資料來預先渲染。這個時候會分成兩種情況，也可能同時屬於兩個情況。在每種情況下，你可以使用 Next.js 提供的這些函數：
 
-1. 你的頁面 **內容** 依賴外部資料：使用 `getStaticProps`。
-2. 你的頁面 **路徑** 依賴外部資料：使用 `getStaticPaths` (通常會和 `getStaticProps` 一起使用)。
+1. 你的頁面**內容**依賴外部資料：使用 `getStaticProps`。
+2. 你的頁面**路徑**依賴外部資料：使用 `getStaticPaths` (通常會和 `getStaticProps` 一起使用)。
 
 #### 情況 1：你的頁面內容依賴外部資料
 
@@ -116,7 +116,7 @@ function Blog({ posts }) {
 export default Blog
 ```
 
-為了在預先渲染時抓取這些資料，Next.js 允許你從同一個檔案 `export` 一個 `async` 函數，這個函數叫做 `getStaticProps`。這個函數會在建置 (build time) 時被呼叫，並讓你在預先渲染時傳遞抓取到的資料給頁面的 `props`。
+為了在預先渲染時抓取這些資料，Next.js 允許你從同一個檔案 `export` 一個 `async` 函數，這個函數叫做 `getStaticProps`。這個函數會在建置時被呼叫，並讓你在預先渲染時傳遞抓取到的資料給頁面的 `props`。
 
 ```jsx
 function Blog({ posts }) {
@@ -149,13 +149,13 @@ Next.js 允許你建立具有**動態路徑**的頁面。例如，你可以建�
 
 > 要學習更多關於動態路由的資訊，請參考 [動態路由文件](/docs/routing/dynamic-routes.md)。
 
-然而，你在建置 (build time) 時想要預先渲染哪個 `id` 可能會取決於外部資料。
+然而，你在建置時想要預先渲染哪個 `id` 可能會取決於外部資料。
 
-**範例**：假設你只在資料庫中新增了一篇部落格文章 (並且他的 `id: 1`)。在這種情況下，你只想在建置 (build time) 時預先渲染 `posts/1`。
+**範例**：假設你只在資料庫中新增了一篇部落格文章 (並且他的 `id: 1`)。在這種情況下，你只想在建置時預先渲染 `posts/1`。
 
-後來，你可能會新增第二篇部落格文章 (並且他的 `id: 2`)。然後你也想要預先渲染 `posts/2`。
+之後，你可能會新增第二篇部落格文章 (並且他的 `id: 2`)。然後你也想要預先渲染 `posts/2`。
 
-所以你的頁面 **路徑** 會依賴外部資料。為了處理這個情況，Next.js 允許你從一個動態頁面 (在這個範例中，指的是 `pages/posts/[id].js`) `export` 一個 `async` 函數，叫做 `getStaticPaths`。這個函數會在建置 (build time) 時被呼叫，並讓你指定哪些路徑你想要預先渲染。
+所以你的頁面**路徑**會依賴外部資料。為了處理這個情況，Next.js 允許你從一個動態頁面 (在這個範例中，指的是 `pages/posts/[id].js`) `export` 一個 `async` 函數，叫做 `getStaticPaths`。這個函數會在建置時被呼叫，並讓你指定哪些路徑你想要預先渲染。
 
 ```jsx
 // This function gets called at build time
@@ -204,7 +204,7 @@ export default Post
 
 ### 我應該什麼時候使用靜態生成？
 
-我們建議你盡可能使用 **靜態生成** (無論頁面是否需要外部資料)，因為你的頁面可以被建置一次，並且由 CDN 提供服務，這使得它比在每個請求中由伺服器渲染頁面來的快。
+我們建議你盡可能使用**靜態生成**（無論頁面是否需要外部資料），因為你的頁面可以被建置一次，並且由 CDN 提供服務，這使得它比在每個請求中由伺服器渲染頁面來的快。
 
 你可以使用靜態生成來建立許多種類的頁面，包括：
 
@@ -219,16 +219,16 @@ export default Post
 
 在這種情況下，你可以做以下其中一件事：
 
-- 使用靜態生成但 **從客戶端抓取資料**：你可以跳過部分頁面的預先渲染，然後使用客戶端 JavaScript 來補充它們。要了解更多關於這種方法的資訊，請參考 [資料抓取文件](/docs/basic-features/data-fetching/client-side.md)。
-- 使用 **伺服器端渲染**：Next.js 會在每個請求中預先渲染頁面。這會比較慢，因為頁面不能被 CDN 快取，但是預先渲染的頁面會一直是最新的。我們會在下面討論這種方法。
+- 使用靜態生成但**從客戶端抓取資料**：你可以跳過部分頁面的預先渲染，然後使用客戶端 JavaScript 來補充它們。要了解更多關於這種方法的資訊，請參考 [資料抓取文件](/docs/basic-features/data-fetching/client-side.md)。
+- 使用**伺服器端渲染**：Next.js 會在每個請求中預先渲染頁面。這會比較慢，因為頁面不能被 CDN 快取，但是預先渲染的頁面會一直是最新的。我們會在下面討論這種方法。
 
 ## 伺服器端渲染
 
 > 也被稱為「SSR」或「動態渲染」。
 
-如果一個頁面使用 **伺服器端渲染**，那麼頁面的 HTML 會在 **每個請求** 中被生成。
+如果一個頁面使用**伺服器端渲染**，那麼頁面的 HTML 會在**每個請求**中被生成。
 
-為了使用伺服器端渲染，你需要 `export` 一個 `async` 函式，並且命名為 `getServerSideProps`。這個函式會在每個請求中被伺服器呼叫。
+為了使用伺服器端渲染，你需要 `export` 一個 `async` 函數，並且命名為 `getServerSideProps`。這個函數會在每個請求中被伺服器呼叫。
 
 舉例來說，假設你的頁面需要預先渲染頻繁更新的資料（從外部 API 抓取的資料）。你可以寫一個 `getServerSideProps` 函數，它會抓取這些資料，然後像下面這樣把它們傳遞給 `Page`：
 
@@ -250,16 +250,16 @@ export async function getServerSideProps() {
 export default Page
 ```
 
-如同上面你所看到的，`getServerSideProps` 與 `getStaticProps` 很相似，但是它們的差別在於 `getServerSideProps` 會在每個請求中被呼叫，而不是在建構時。
+如同上面你所看到的，`getServerSideProps` 與 `getStaticProps` 很相似，但是它們的差別在於 `getServerSideProps` 會在每個請求中被呼叫，而不是在建置時。
 
-要了解更多關於 `getServerSideProps` 如何運作的資訊，請參考我們的 [資料抓取文件](/docs/basic-features/data-fetching/get-server-side-props.md)。
+要了解更多關於 `getServerSideProps` 如何運作的資訊，請參考我們的[資料抓取文件](/docs/basic-features/data-fetching/get-server-side-props.md)。
 
 ## 總結
 
 我們在這篇文章討論了 Next.js 的兩種預先渲染方式。
 
-- **靜態生成（推薦）：** HTML 會在 **建構時** 被生成，並且會在每個請求中被重複使用。要讓頁面使用靜態生成，你可以 `export` 頁面元件，或者 `export` `getStaticProps`（如果需要的話也可以 `export` `getStaticPaths`）。這對於可以在使用者請求之前預先渲染的頁面來說是很棒的。你也可以和客戶端渲染一起使用，以便帶入額外的資料。
-- **伺服器端渲染：** HTML 會在 **每個請求** 中被生成。要讓頁面使用伺服器端渲染，你可以 `export` `getServerSideProps`。 因為伺服器端渲染比靜態生成的效能較差，所以只有在絕對必要的情況下才使用。
+- **靜態生成（推薦）：** HTML 會在**建置時**被生成，並且會在每個請求中被重複使用。要讓頁面使用靜態生成，你可以 `export` 頁面元件，或者 `export` `getStaticProps`（如果需要的話也可以 `export` `getStaticPaths`）。這對於可以在使用者請求之前預先渲染的頁面來說是很棒的。你也可以和客戶端渲染一起使用，以便帶入額外的資料。
+- **伺服器端渲染：** HTML 會在**每個請求**中被生成。要讓頁面使用伺服器端渲染，你可以 `export` `getServerSideProps`。 因為伺服器端渲染比靜態生成的效能較差，所以只有在絕對必要的情況下才使用。
 
 ## 了解更多
 
