@@ -21,7 +21,7 @@ interface QuizOptionProps {
   answer: QuizOption,
   isSubmit: boolean,
   isCorrect: boolean,
-  onClick: Function
+  onClick: (newAnswer: QuizOption) => void
 }
 
 interface QuizOption {
@@ -30,7 +30,7 @@ interface QuizOption {
 }
 
 interface QuizSubmitButtonProps {
-  onClick: React.MouseEventHandler<HTMLAnchorElement>
+  onClick: () => void
 }
 
 interface QuizAnswerReult {
