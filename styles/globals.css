@@ -33,3 +33,13 @@
 aside {
     top: calc(2rem + 80px);
 }
+
+.answer-list {
+    counter-reset: answer-list;
+}
+.answer-list .answer-list__item::before{
+    counter-increment: answer-list;
+    content: counter(answer-list,upper-alpha)". ";
+    display: inline-block;
+    width: 1.5rem;
+}
