@@ -37,6 +37,7 @@ aside {
 .answer-list {
     counter-reset: answer-list;
 }
+
 .answer-list .answer-list__item::before{
     counter-increment: answer-list;
     content: counter(answer-list,upper-alpha)". ";

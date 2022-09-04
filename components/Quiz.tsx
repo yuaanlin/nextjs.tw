@@ -1,25 +1,21 @@
-/* eslint-disable max-len */
-
 import CorrectIcon from './icons/Correct';
 import IncorrectIcon from './icons/Incorrect';
 import { useState } from 'react';
 
-interface IconWrapperProps {
-  children: React.ReactNode
-}
 export enum QuizType {
   trueOrFalse = '是非題',
   quickReview = '快速回顧'
 }
-interface QuizProps {
+
+interface QuizProps extends React.PropsWithChildren {
   type: QuizType,
-  options: QuizOption[],
-  children: React.ReactNode
+  options: QuizOption[]
 }
-interface QuizHeadingProps {
+
+interface QuizHeadingProps extends React.PropsWithChildren {
   type: QuizType,
-  children: React.ReactNode
 }
+
 interface QuizOptionProps {
   option: QuizOption,
   answer: QuizOption,
@@ -27,20 +23,23 @@ interface QuizOptionProps {
   isCorrect: boolean,
   onClick: Function
 }
+
 interface QuizOption {
   text: string,
   isCorrect: boolean
 }
+
 interface QuizSubmitButtonProps {
-  onClick: Function
+  onClick: React.MouseEventHandler<HTMLAnchorElement>
 }
+
 interface QuizAnswerReult {
   isCorrect: boolean,
   answer: QuizOption,
   options: QuizOption[]
 }
 
-const IconWrapper = ({ children }: IconWrapperProps) => {
+const IconWrapper = ({ children }: React.PropsWithChildren) => {
   return (
     <span className="leading-none	mx-2 align-text-bottom">
       {children}
@@ -57,7 +56,8 @@ const QuizHeading = ({ type, children }: QuizHeadingProps) => {
   );
 };
 
-const QuizOption = ({ option, answer, isSubmit, isCorrect, onClick }: QuizOptionProps) => {
+const QuizOption = (props: QuizOptionProps) => {
+  const { option, answer, isSubmit, isCorrect, onClick } = props;
   const isSelected = answer.text === option.text;
   const handleLabelClick = () => {
     if (isSubmit) return;
@@ -78,7 +78,9 @@ const QuizOption = ({ option, answer, isSubmit, isCorrect, onClick }: QuizOption
         disabled={isSubmit}
       />
       <span
+        // eslint-disable-next-line max-len
         className={`answer-list__item block py-2 px-4 rounded-lg border bg-white transition-shadow text-sm ${isSelected ?
+          // eslint-disable-next-line max-len
           'text-[#111111] border-[#111111] font-semibold shadow-[0_0_0_3px_#c1c1c1]' :
           isSubmit ?
             'text-[#666666] border-[#eaeaea]' :
@@ -86,13 +88,13 @@ const QuizOption = ({ option, answer, isSubmit, isCorrect, onClick }: QuizOption
       >
         {option.text}
         {
-          isSubmit && option.isCorrect &&
+          (isSubmit && option.isCorrect) &&
           <IconWrapper >
             <CorrectIcon className="inline" />
           </IconWrapper>
         }
         {
-          isSubmit && !isCorrect && isSelected &&
+          (isSubmit && !isCorrect && isSelected) &&
           <IconWrapper >
             <IncorrectIcon className="inline" />
           </IconWrapper>
@@ -105,20 +107,21 @@ const QuizOption = ({ option, answer, isSubmit, isCorrect, onClick }: QuizOption
 const QuizSubmitButton = ({ onClick }: QuizSubmitButtonProps) => {
   return (
     <a
-      className="inline-block rounded-lg text-white bg-[#252525] shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-8 h-10 leading-10"
+      className="inline-block rounded-lg text-white bg-[#252525]
+      shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-8 h-10 leading-10"
       role="button"
       tabIndex={0}
-      onClick={() => {
-        onClick();
-      }}
+      onClick={onClick}
     >
       提交
     </a>
   );
 };
+
 const QuizAnswerReult = ({ isCorrect, answer, options }: QuizAnswerReult) => {
   const isUnAnswered = answer.text === '';
-  const correctAnswer = options.find((option) => option.isCorrect) as QuizOption;
+  const correctAnswer =
+    options.find((option) => option.isCorrect) as QuizOption;
 
   const correctBlock = (
     <div className="flex items-center">
@@ -148,9 +151,14 @@ const QuizAnswerReult = ({ isCorrect, answer, options }: QuizAnswerReult) => {
     </>
   );
 
-  return isUnAnswered ? unAnsweredBlock : isCorrect ? correctBlock : incorrectBlock;
+  return isUnAnswered
+    ? unAnsweredBlock
+    : isCorrect
+      ? correctBlock
+      : incorrectBlock;
 
 };
+
 const Quiz = ({ type, options, children }: QuizProps) => {
   const [answer, setAnswer] = useState(
     {
@@ -168,7 +176,9 @@ const Quiz = ({ type, options, children }: QuizProps) => {
     setIsSubmit(true);
   };
   return (
-    <div className="answer-list bg-[#fafafa] border border-[#eaeaea] rounded-lg p-4 pt-0 mt-8 mb-16">
+    <div
+      className="answer-list bg-[#fafafa] border
+    border-[#eaeaea] rounded-lg p-4 pt-0 mt-8 mb-16">
       <QuizHeading type={type}>{children}</QuizHeading>
       {options.map((option, index) => (
         <QuizOption
@@ -182,11 +192,13 @@ const Quiz = ({ type, options, children }: QuizProps) => {
       ))}
       <div className="mt-8">
         {isSubmit
+          // eslint-disable-next-line max-len
           ? <QuizAnswerReult isCorrect={isCorrect} answer={answer} options={options} />
           : <QuizSubmitButton onClick={handleSubmitButtonClick} />}
       </div>
     </div>
   );
 };
+
 export default Quiz;
 
