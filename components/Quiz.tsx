@@ -1,18 +1,18 @@
 import CorrectIcon from './icons/Correct';
 import IncorrectIcon from './icons/Incorrect';
-import { useState } from 'react';
+import { useState, PropsWithChildren } from 'react';
 
 export enum QuizType {
   trueOrFalse = '是非題',
   quickReview = '快速回顧'
 }
 
-interface QuizProps extends React.PropsWithChildren {
+interface QuizProps {
   type: QuizType,
   options: QuizOption[]
 }
 
-interface QuizHeadingProps extends React.PropsWithChildren {
+interface QuizHeadingProps {
   type: QuizType,
 }
 
@@ -39,7 +39,7 @@ interface QuizAnswerReult {
   options: QuizOption[]
 }
 
-const IconWrapper = ({ children }: React.PropsWithChildren) => {
+const IconWrapper = ({ children }: PropsWithChildren) => {
   return (
     <span className="leading-none	mx-2 align-text-bottom">
       {children}
@@ -47,7 +47,9 @@ const IconWrapper = ({ children }: React.PropsWithChildren) => {
   );
 };
 
-const QuizHeading = ({ type, children }: QuizHeadingProps) => {
+const QuizHeading = (
+  { type, children }: PropsWithChildren<QuizHeadingProps>
+) => {
   return (
     <div className="flex items-center">
       <strong>{`${type}：`}</strong>
@@ -159,7 +161,7 @@ const QuizAnswerReult = ({ isCorrect, answer, options }: QuizAnswerReult) => {
 
 };
 
-const Quiz = ({ type, options, children }: QuizProps) => {
+const Quiz = ({ type, options, children }: PropsWithChildren<QuizProps>) => {
   const [answer, setAnswer] = useState(
     {
       text: '',
