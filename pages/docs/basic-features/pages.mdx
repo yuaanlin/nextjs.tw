@@ -6,9 +6,9 @@ description: Next.js pages are React Components exported in a file in the pages 
 
 # 頁面
 
-> **注意：**我們正在改進 Next.js 的路由。 [Layouts RFC](https://nextjs.org/blog/layouts-rfc) 提供更多詳細的資訊及回饋管道。
+> **注意：** 我們正在改進 Next.js 的路由。 [Layouts RFC](https://nextjs.org/blog/layouts-rfc) 提供更多詳細的資訊及回饋管道。
 
-在 Next.js 中，一個**頁面（ Pages ）**就是從 `pages` 目錄底下匯出的一個 React 元件，它可以是 `.js` 、 `.jsx` 、 `.ts` 、 `.tsx` 任意一種檔案格式。每個檔案的檔名會進而關聯到一個頁面的路由。
+在 Next.js 中，一個**頁面（ Pages ）** 就是從 `pages` 目錄底下匯出的一個 React 元件，它可以是 `.js` 、 `.jsx` 、 `.ts` 、 `.tsx` 任意一種檔案格式。每個檔案的檔名會進而關聯到一個頁面的路由。
 
 **範例**：如果你建立了 `pages/about.js` 檔案，並匯出了如下的 React 元件，你將會在網站的 `/about` 頁面下看到它。
 
@@ -28,7 +28,7 @@ Next.js 支援具有動態路由的頁面。例如，如果你建立了一個名
 
 ## 提前渲染
 
-在預設的情況下，Next.js 會**提前渲染 (pre-render)**每個頁面。這意味著 Next.js 會提前為每個頁面產生 HTML，而不是讓所有事情都由客戶端 JavaScript 完成，這可以為我們帶來更好的效能與搜尋引擎最佳化（ SEO ）。
+在預設的情況下，Next.js 會**提前渲染 (pre-render)** 每個頁面。這意味著 Next.js 會提前為每個頁面產生 HTML，而不是讓所有事情都由客戶端 JavaScript 完成，這可以為我們帶來更好的效能與搜尋引擎最佳化（ SEO ）。
 
 每個產生的 HTML 都會與該頁面所需要的最少 JavaScript 程式碼相關聯。當瀏覽器載入一個頁面時，它的 JavaScript 程式碼會執行並使頁面可以讓使用者進行互動（這個過程被稱為 _hydration_ ）。
 
@@ -36,7 +36,7 @@ Next.js 支援具有動態路由的頁面。例如，如果你建立了一個名
 
 Next.js 有兩種形式的提前渲染：**靜態生成（ Static Generation ）**和**伺服器端渲染（ Server-side Rendering ）**。兩者的差別在於它們產生頁面 HTML 的**時機**。
 
-- [**靜態生成 (推薦)**](#靜態生成-建議)：HTML 會在**建置時期 (build time)**產生，並且會在每個請求中重複使用。
+- [**靜態生成 (推薦)**](#靜態生成-建議)：HTML 會在 **建置時期 (build time)** 產生，並且會在每個請求中重複使用。
 - [**伺服器端渲染**](#伺服器端渲染)：HTML 會在 **每個請求** 中產生。
 
 更重要的是，Next.js 讓你可以**選擇**在每個頁面中使用哪種形式的提前渲染。你可以建立一個「混合」的 Next.js 應用程式，並使用靜態生成來處理大部分的頁面，並使用伺服器端渲染來處理其他頁面。
