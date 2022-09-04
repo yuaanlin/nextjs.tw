@@ -34,6 +34,11 @@ interface QuizOption {
 interface QuizSubmitButtonProps {
   onClick: Function
 }
+interface QuizAnswerReult {
+  isCorrect: boolean,
+  answer: QuizOption,
+  options: QuizOption[]
+}
 
 const IconWrapper = ({ children }: IconWrapperProps) => {
   return (
@@ -111,7 +116,9 @@ const QuizSubmitButton = ({ onClick }: QuizSubmitButtonProps) => {
     </a>
   );
 };
-const QuizAnswerReult = ({ isCorrect }: { isCorrect: boolean }) => {
+const QuizAnswerReult = ({ isCorrect, answer, options }: QuizAnswerReult) => {
+  const isUnAnswered = answer.text === '';
+  const correctAnswer = options.find((option) => option.isCorrect) as QuizOption;
 
   const correctBlock = (
     <div className="flex items-center">
@@ -135,8 +142,13 @@ const QuizAnswerReult = ({ isCorrect }: { isCorrect: boolean }) => {
       </span>
     </div>
   );
+  const unAnsweredBlock = (
+    <>
+      答案是：<strong>{correctAnswer.text}</strong>
+    </>
+  );
 
-  return isCorrect ? correctBlock : incorrectBlock;
+  return isUnAnswered ? unAnsweredBlock : isCorrect ? correctBlock : incorrectBlock;
 
 };
 const Quiz = ({ type, options, children }: QuizProps) => {
@@ -170,7 +182,7 @@ const Quiz = ({ type, options, children }: QuizProps) => {
       ))}
       <div className="mt-8">
         {isSubmit
-          ? <QuizAnswerReult isCorrect={isCorrect} />
+          ? <QuizAnswerReult isCorrect={isCorrect} answer={answer} options={options} />
           : <QuizSubmitButton onClick={handleSubmitButtonClick} />}
       </div>
     </div>
