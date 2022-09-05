@@ -46,7 +46,7 @@
     @apply bg-gray-100 rounded p-6 my-4 border;
 }
 
-.docs a {
+.docs > :not(.mdx-button-component) a {
     @apply text-[#0074de] hover:text-[#0080f6] transition-all;
 }
 
