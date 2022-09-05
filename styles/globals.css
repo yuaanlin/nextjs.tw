@@ -2,19 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-.docs pre {
-    @apply bg-[#1d1f21] text-white p-4 rounded my-4 overflow-x-auto text-sm leading-7;
+.docs code > span {
+    font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace !important;
+    text-rendering: optimizelegibility;
+    @apply font-light text-sm;
 }
 
-.docs :not(pre) > code {
+.docs :not(pre > div) > code {
     @apply text-[#c400ec] mx-1 text-sm;
 }
 
-.docs :not(pre) > code::before {
+.docs :not(pre > div) > code::before {
     content: '`';
 }
 
-.docs :not(pre) > code::after {
+.docs :not(pre > div) > code::after {
     content: '`';
 }
 
