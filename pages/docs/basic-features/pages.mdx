@@ -1,10 +1,14 @@
+---
+description: Next.js pages are React Components exported in a file in the pages directory. Learn how they work here.
+---
+
 # Pages
 
-> **Note:** We are introducing improved routing support in Next.js. Read the [Layouts RFC](https://nextjs.org/blog/layouts-rfc) for more details and to provide feedback.
+> **注意：** 我們正在改進 Next.js 的路由。 [Layouts RFC](https://nextjs.org/blog/layouts-rfc) 提供更多詳細的資訊及回饋管道。
 
-In Next.js, a **page** is a [React Component](https://reactjs.org/docs/components-and-props.html) exported from a `.js`, `.jsx`, `.ts`, or `.tsx` file in the `pages` directory. Each page is associated with a route based on its file name.
+在 Next.js 中，一個**頁面（ Pages ）** 就是從 `pages` 目錄底下匯出的一個 React 元件，它可以是 `.js` 、 `.jsx` 、 `.ts` 、 `.tsx` 任意一種檔案格式。每個檔案的檔名會進而關聯到一個頁面的路由。
 
-**Example**: If you create `pages/about.js` that exports a React component like below, it will be accessible at `/about`.
+**範例**：如果你建立了 `pages/about.js` 檔案，並匯出了如下的 React 元件，你將會在網站的 `/about` 頁面下看到它。
 
 ```jsx
 function About() {
@@ -14,35 +18,35 @@ function About() {
 export default About
 ```
 
-### Pages with Dynamic Routes
+### 在頁面中使用動態路由
 
-Next.js supports pages with dynamic routes. For example, if you create a file called `pages/posts/[id].js`, then it will be accessible at `posts/1`, `posts/2`, etc.
+Next.js 支援具有動態路由的頁面。例如，如果你建立了一個名為 `pages/posts/[id].js` 的檔案，那麼你將可以在網站的 `posts/1`、`posts/2` 等路徑下看到它。
 
-> To learn more about dynamic routing, check the [Dynamic Routing documentation](/docs/routing/dynamic-routes.md).
+> 想要學習更多有關動態路由的資訊，請參閱 [動態路由文件](/docs/routing/dynamic-routes.md)。
 
-## Pre-rendering
+## 提前渲染
 
-By default, Next.js **pre-renders** every page. This means that Next.js generates HTML for each page in advance, instead of having it all done by client-side JavaScript. Pre-rendering can result in better performance and SEO.
+在預設的情況下，Next.js 會**提前渲染（ pre-render ）** 每個頁面。這意味著 Next.js 會提前為每個頁面產生 HTML，而不是讓所有事情都由客戶端 JavaScript 完成，這可以為我們帶來更好的效能與搜尋引擎最佳化（ SEO ）。
 
-Each generated HTML is associated with minimal JavaScript code necessary for that page. When a page is loaded by the browser, its JavaScript code runs and makes the page fully interactive. (This process is called _hydration_.)
+每個產生的 HTML 都會與該頁面所需要的最少 JavaScript 程式碼相關聯。當瀏覽器載入一個頁面時，它的 JavaScript 程式碼會執行並使頁面可以讓使用者進行互動（這個過程被稱為 _hydration_ ）。
 
-### Two forms of Pre-rendering
+### 兩種形式的提前渲染
 
-Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.
+Next.js 有兩種形式的提前渲染：**靜態生成（ Static Generation ）**和**伺服器端渲染（ Server-side Rendering ）**。兩者的差別在於它們產生頁面 HTML 的**時機**。
 
-- [**Static Generation (Recommended)**](#static-generation-recommended): The HTML is generated at **build time** and will be reused on each request.
-- [**Server-side Rendering**](#server-side-rendering): The HTML is generated on **each request**.
+- [**靜態生成（建議）**](#靜態生成-建議)：HTML 會在 **建置時期（ build time ）** 產生，並且會在每個請求中重複使用。
+- [**伺服器端渲染**](#伺服器端渲染)：HTML 會在 **每個請求** 中產生。
 
-Importantly, Next.js lets you **choose** which pre-rendering form you'd like to use for each page. You can create a "hybrid" Next.js app by using Static Generation for most pages and using Server-side Rendering for others.
+更重要的是，Next.js 讓你可以**選擇**在每個頁面中使用哪種形式的提前渲染。你可以建立一個「混合」的 Next.js 應用程式，並使用靜態生成來處理大部分的頁面，並使用伺服器端渲染來處理其他頁面。
 
-We **recommend** using **Static Generation** over Server-side Rendering for performance reasons. Statically generated pages can be cached by CDN with no extra configuration to boost performance. However, in some cases, Server-side Rendering might be the only option.
+我們**建議**在效能方面使用**靜態生成**而不是伺服器端渲染。靜態生成的頁面可以透過 CDN 進行快取，而不需要額外的設定來提升效能。然而，在某些情況下，伺服器端渲染可能是唯一的選擇。
 
-You can also use **Client-side data fetching** along with Static Generation or Server-side Rendering. That means some parts of a page can be rendered entirely by client side JavaScript. To learn more, take a look at the [Data Fetching](/docs/basic-features/data-fetching/client-side.md) documentation.
+你也可以在靜態生成或伺服器端渲染的頁面中使用**客戶端資料取得**。這意味著頁面的某些部分可以完全由客戶端 JavaScript 進行渲染。要學習更多相關內容，請參閱[資料獲取](/docs/basic-features/data-fetching/client-side.md)文件。
 
-## Static Generation (Recommended)
+## 靜態生成（建議）
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary><b>範例</b></summary>
   <ul>
     <li><a href="https://github.com/vercel/next.js/tree/canary/examples/cms-wordpress">WordPress Example</a> (<a href="https://next-blog-wordpress.vercel.app">Demo</a>)</li>
     <li><a href="https://github.com/vercel/next.js/tree/canary/examples/blog-starter">Blog Starter using markdown files</a> (<a href="https://next-blog-starter.vercel.app/">Demo</a>)</li>
@@ -65,13 +69,13 @@ You can also use **Client-side data fetching** along with Static Generation or S
   </ul>
 </details>
 
-If a page uses **Static Generation**, the page HTML is generated at **build time**. That means in production, the page HTML is generated when you run `next build` . This HTML will then be reused on each request. It can be cached by a CDN.
+如果一個頁面使用**靜態生成**，頁面 HTML 將在**建置時**產生。這意味著在生產環境中，當你執行 `next build` 時，頁面 HTML 將會被產生。然後，這個 HTML 將會在每個請求中被重複使用，也因此它可以被 CDN 快取。
 
-In Next.js, you can statically generate pages **with or without data**. Let's take a look at each case.
+在 Next.js 中，你可以**使用或不使用資料**來靜態生成頁面。讓我們來看看每個情況。
 
-### Static Generation without data
+### 不使用資料的靜態生成
 
-By default, Next.js pre-renders pages using Static Generation without fetching data. Here's an example:
+在預設的情況下，Next.js 使用靜態生成預先渲染頁面，而不會抓取資料。這是一個範例：
 
 ```jsx
 function About() {
@@ -81,18 +85,18 @@ function About() {
 export default About
 ```
 
-Note that this page does not need to fetch any external data to be pre-rendered. In cases like this, Next.js generates a single HTML file per page during build time.
+注意到這個頁面不需要抓取任何外部資料來預先渲染。在這種情況下，Next.js 在建置時為每個頁面產生一個 HTML 檔案。
 
-### Static Generation with data
+### 使用資料的靜態生成
 
-Some pages require fetching external data for pre-rendering. There are two scenarios, and one or both might apply. In each case, you can use these functions that Next.js provides:
+有些頁面需要抓取外部資料來預先渲染。這個時候會分成兩種情況，也可能同時屬於兩個情況。在每種情況下，你可以使用 Next.js 提供的這些函數：
 
-1. Your page **content** depends on external data: Use `getStaticProps`.
-2. Your page **paths** depend on external data: Use `getStaticPaths` (usually in addition to `getStaticProps`).
+1. 你的頁面**內容**依賴外部資料：使用 `getStaticProps`。
+2. 你的頁面**路徑**依賴外部資料：使用 `getStaticPaths` （通常會和 `getStaticProps` 一起使用）。
 
-#### Scenario 1: Your page **content** depends on external data
+#### 情況 1：你的頁面內容依賴外部資料
 
-**Example**: Your blog page might need to fetch the list of blog posts from a CMS (content management system).
+**範例**：你的部落格頁面可能需要從 CMS （內容管理系統）抓取部落格文章列表。
 
 ```jsx
 // TODO: Need to fetch `posts` (by calling some API endpoint)
@@ -110,7 +114,7 @@ function Blog({ posts }) {
 export default Blog
 ```
 
-To fetch this data on pre-render, Next.js allows you to `export` an `async` function called `getStaticProps` from the same file. This function gets called at build time and lets you pass fetched data to the page's `props` on pre-render.
+為了在預先渲染時抓取這些資料，Next.js 允許你從同一個檔案 `export` 一個 `async` 函數，這個函數叫做 `getStaticProps`。這個函數會在建置時被呼叫，並讓你在預先渲染時傳遞抓取到的資料給頁面的 `props`。
 
 ```jsx
 function Blog({ posts }) {
@@ -135,21 +139,21 @@ export async function getStaticProps() {
 export default Blog
 ```
 
-To learn more about how `getStaticProps` works, check out the [Data Fetching documentation](/docs/basic-features/data-fetching/get-static-props.md).
+要學習更多關於 `getStaticProps` 如何運作的資訊，請參考 [資料抓取文件](/docs/basic-features/data-fetching/get-static-props.md)。
 
-#### Scenario 2: Your page paths depend on external data
+#### 情況 2：你的頁面路徑依賴外部資料
 
-Next.js allows you to create pages with **dynamic routes**. For example, you can create a file called `pages/posts/[id].js` to show a single blog post based on `id`. This will allow you to show a blog post with `id: 1` when you access `posts/1`.
+Next.js 允許你建立具有**動態路徑**的頁面。例如，你可以建立一個名為 `pages/posts/[id].js` 的檔案，來顯示一篇部落格文章，這篇文章的 `id` 是動態的。這樣就可以讓你在存取 `posts/1` 時，顯示 `id: 1` 的部落格文章。
 
-> To learn more about dynamic routing, check the [Dynamic Routing documentation](/docs/routing/dynamic-routes.md).
+> 要學習更多關於動態路由的資訊，請參考 [動態路由文件](/docs/routing/dynamic-routes.md)。
 
-However, which `id` you want to pre-render at build time might depend on external data.
+然而，你在建置時想要預先渲染哪個 `id` 可能會取決於外部資料。
 
-**Example**: suppose that you've only added one blog post (with `id: 1`) to the database. In this case, you'd only want to pre-render `posts/1` at build time.
+**範例**：假設你只在資料庫中新增了一篇部落格文章（並且他的 `id: 1`）。在這種情況下，你只想在建置時預先渲染 `posts/1`。
 
-Later, you might add the second post with `id: 2`. Then you'd want to pre-render `posts/2` as well.
+之後，你可能會新增第二篇部落格文章（並且他的 `id: 2`）。然後你也想要預先渲染 `posts/2`。
 
-So your page **paths** that are pre-rendered depend on external data**.** To handle this, Next.js lets you `export` an `async` function called `getStaticPaths` from a dynamic page (`pages/posts/[id].js` in this case). This function gets called at build time and lets you specify which paths you want to pre-render.
+所以你的頁面**路徑**會依賴外部資料。為了處理這個情況，Next.js 允許你從一個動態頁面（在這個範例中，指的是 `pages/posts/[id].js`） `export` 一個 `async` 函數，叫做 `getStaticPaths`。這個函數會在建置時被呼叫，並讓你指定哪些路徑你想要預先渲染。
 
 ```jsx
 // This function gets called at build time
@@ -169,7 +173,7 @@ export async function getStaticPaths() {
 }
 ```
 
-Also in `pages/posts/[id].js`, you need to export `getStaticProps` so that you can fetch the data about the post with this `id` and use it to pre-render the page:
+同時，在 `pages/posts/[id].js` 中，你也需要 `export` 一個 `getStaticProps` 函數，這樣你就可以抓取這個 `id` 的部落格文章資料，並用它來預先渲染頁面：
 
 ```jsx
 function Post({ post }) {
@@ -194,37 +198,37 @@ export async function getStaticProps({ params }) {
 export default Post
 ```
 
-To learn more about how `getStaticPaths` works, check out the [Data Fetching documentation](/docs/basic-features/data-fetching/get-static-paths.md).
+想要學習更多關於 `getStaticPaths` 如何運作的資訊，請參考 [資料抓取文件](/docs/basic-features/data-fetching/get-static-paths.md)。
 
-### When should I use Static Generation?
+### 我應該什麼時候使用靜態生成？
 
-We recommend using **Static Generation** (with and without data) whenever possible because your page can be built once and served by CDN, which makes it much faster than having a server render the page on every request.
+我們建議你盡可能使用**靜態生成**（無論頁面是否需要外部資料），因為你的頁面可以被建置一次，並且由 CDN 提供服務，這使得它比在每個請求中由伺服器渲染頁面來的快。
 
-You can use Static Generation for many types of pages, including:
+你可以使用靜態生成來建立許多種類的頁面，包括：
 
-- Marketing pages
-- Blog posts and portfolios
-- E-commerce product listings
-- Help and documentation
+- 行銷頁面
+- 部落格文章和作品集
+- 電商網站的產品列表
+- 幫助和文件
 
-You should ask yourself: "Can I pre-render this page **ahead** of a user's request?" If the answer is yes, then you should choose Static Generation.
+你要問自己一個問題：「我可以在使用者請求之前預先渲染這個頁面嗎？」如果答案是肯定的，那麼你應該選擇靜態生成。
 
-On the other hand, Static Generation is **not** a good idea if you cannot pre-render a page ahead of a user's request. Maybe your page shows frequently updated data, and the page content changes on every request.
+在另一個方面，如果你不能在使用者請求之前預先渲染頁面，那麼靜態生成就不是一個好主意。也許你的頁面會顯示頻繁更新的資料，並且每個請求都會改變頁面內容。
 
-In cases like this, you can do one of the following:
+在這種情況下，你可以做以下其中一件事：
 
-- Use Static Generation with **Client-side data fetching:** You can skip pre-rendering some parts of a page and then use client-side JavaScript to populate them. To learn more about this approach, check out the [Data Fetching documentation](/docs/basic-features/data-fetching/client-side.md).
-- Use **Server-Side Rendering:** Next.js pre-renders a page on each request. It will be slower because the page cannot be cached by a CDN, but the pre-rendered page will always be up-to-date. We'll talk about this approach below.
+- 使用靜態生成但**從客戶端抓取資料**：你可以跳過部分頁面的預先渲染，然後使用客戶端 JavaScript 來補充它們。要了解更多關於這種方法的資訊，請參考 [資料抓取文件](/docs/basic-features/data-fetching/client-side.md)。
+- 使用**伺服器端渲染**：Next.js 會在每個請求中預先渲染頁面。這會比較慢，因為頁面不能被 CDN 快取，但是預先渲染的頁面會一直是最新的。我們會在下面討論這種方法。
 
-## Server-side Rendering
+## 伺服器端渲染
 
-> Also referred to as "SSR" or "Dynamic Rendering".
+> 也被稱為「SSR」或「動態渲染」。
 
-If a page uses **Server-side Rendering**, the page HTML is generated on **each request**.
+如果一個頁面使用**伺服器端渲染**，那麼頁面的 HTML 會在**每個請求**中被生成。
 
-To use Server-side Rendering for a page, you need to `export` an `async` function called `getServerSideProps`. This function will be called by the server on every request.
+為了使用伺服器端渲染，你需要 `export` 一個 `async` 函數，並且命名為 `getServerSideProps`。這個函數會在每個請求中被伺服器呼叫。
 
-For example, suppose that your page needs to pre-render frequently updated data (fetched from an external API). You can write `getServerSideProps` which fetches this data and passes it to `Page` like below:
+舉例來說，假設你的頁面需要預先渲染頻繁更新的資料（從外部 API 抓取的資料）。你可以寫一個 `getServerSideProps` 函數，它會抓取這些資料，然後像下面這樣把它們傳遞給 `Page`：
 
 ```jsx
 function Page({ data }) {
@@ -244,46 +248,46 @@ export async function getServerSideProps() {
 export default Page
 ```
 
-As you can see, `getServerSideProps` is similar to `getStaticProps`, but the difference is that `getServerSideProps` is run on every request instead of on build time.
+如同上面你所看到的，`getServerSideProps` 與 `getStaticProps` 很相似，但是它們的差別在於 `getServerSideProps` 會在每個請求中被呼叫，而不是在建置時。
 
-To learn more about how `getServerSideProps` works, check out our [Data Fetching documentation](/docs/basic-features/data-fetching/get-server-side-props.md)
+要了解更多關於 `getServerSideProps` 如何運作的資訊，請參考我們的[資料抓取文件](/docs/basic-features/data-fetching/get-server-side-props.md)。
 
-## Summary
+## 總結
 
-We've discussed two forms of pre-rendering for Next.js.
+我們在這篇文章討論了 Next.js 的兩種預先渲染方式。
 
-- **Static Generation (Recommended):** The HTML is generated at **build time** and will be reused on each request. To make a page use Static Generation, either export the page component, or export `getStaticProps` (and `getStaticPaths` if necessary). It's great for pages that can be pre-rendered ahead of a user's request. You can also use it with Client-side Rendering to bring in additional data.
-- **Server-side Rendering:** The HTML is generated on **each request**. To make a page use Server-side Rendering, export `getServerSideProps`. Because Server-side Rendering results in slower performance than Static Generation, use this only if absolutely necessary.
+- **靜態生成（建議）：** HTML 會在**建置時**被生成，並且會在每個請求中被重複使用。要讓頁面使用靜態生成，你可以 `export` 頁面元件，或者 `export` `getStaticProps`（如果需要的話也可以 `export` `getStaticPaths`）。這對於可以在使用者請求之前預先渲染的頁面來說是很棒的。你也可以和客戶端渲染一起使用，以便帶入額外的資料。
+- **伺服器端渲染：** HTML 會在**每個請求**中被生成。要讓頁面使用伺服器端渲染，你可以 `export` `getServerSideProps`。 因為伺服器端渲染比靜態生成的效能較差，所以只有在絕對必要的情況下才使用。
 
-## Learn more
+## 了解更多
 
-We recommend you to read the following sections next:
+我們建議你接著閱讀下面的章節：
 
 <div className="card">
-  <a href="/docs/basic-features/data-fetching/overview.md">
-    <b>Data Fetching:</b>
-    <small>Learn more about data fetching in Next.js.</small>
+  <a href="/docs/basic-features/data-fetching/overview">
+    <b>資料獲取:</b>
+    <small>瞭解更多關於如何在 Next.js 中獲取外部資料的方法。</small>
   </a>
 </div>
 
 <div className="card">
-  <a href="/docs/advanced-features/preview-mode.md">
-    <b>Preview Mode:</b>
-    <small>Learn more about the preview mode in Next.js.</small>
+  <a href="/docs/advanced-features/preview-mode">
+    <b>預覽模式：</b>
+    <small>瞭解更多關於 Next.js 的預覽模式。</small>
   </a>
 </div>
 
 <div className="card">
-  <a href="/docs/routing/introduction.md">
-    <b>Routing:</b>
-    <small>Learn more about routing in Next.js.</small>
+  <a href="/docs/routing/introduction">
+    <b>路由：</b>
+    <small>瞭解更多關於 Next.js 的路由功能。</small>
   </a>
 </div>
 
 <div className="card">
-  <a href="/docs/basic-features/typescript.md#pages">
-    <b>TypeScript:</b>
-    <small>Add TypeScript to your pages.</small>
+  <a href="/docs/basic-features/typescript">
+    <b>TypeScript：</b>
+    <small>在你的頁面中使用 TypeScript 進行開發。</small>
   </a>
 </div>
 
