@@ -1,4 +1,56 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+## 從 JavaScript 到 React
 
-<NotTranslateYet/>
+{/*
+    TODO: 加入分頁元件
+    pageInfo: {
+        currentPage: 1,
+        totalPage: 9
+    }
+*/}
 
+### 渲染使用者介面
+
+為了理解 React 如何運作，首先我們需要對於瀏覽器如何解析程式碼來建構互動式的使用者介面（ UI ），有一定程度的理解。
+
+當使用者訪問網頁時，伺服器會將一個 HTML 檔案傳到瀏覽器，看起來就如下圖所示：
+
+![](https://nextjs.org/static/images/learn/foundations/html-to-dom.png)
+
+然後瀏覽器會讀取 HTML 並且建構「文件物件模型」（ DOM ）。
+
+### DOM 是什麼？
+
+DOM 是將 HTML 元素以物件的方式呈現。就如同程式碼與使用者介面之間的橋樑，不僅如此，它還有著父子層關係的類樹狀結構。
+
+![](https://nextjs.org/static/images/learn/foundations/dom-to-ui.png)
+
+你可以使用 DOM 的方法和程式語言（譬如 JavaScript ）來監聽使用者事件，以及通過選擇、新增、更新、刪除使用者介面中的特定元素來<a href="https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents" target="_blank">操作 DOM</a>。 DOM 的操作不只可以將特定元素當目標，還可以改變樣式和內容。
+
+在下一章節中，我們一起看看你能怎麼使用 JavaScript 和 DOM 的方法。
+
+{/* 
+    TODO: 加入問答元件 
+    quiz:{
+        heading:{
+            type: TrueOrFalse,
+            text: 你能夠通過操作 DOM 更新頁面的內容。
+        },
+        options:[
+            {
+                text: 對,
+                isCorrect: true
+            },
+            {
+                text: 錯,
+                isCorrect: false
+            }
+        ]
+    }
+
+*/}
+
+**其他資源：**
+
+- <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank">DOM 簡介</a>
+- <a href="https://developer.chrome.com/docs/devtools/dom" target="_blank">如何用 Google Chrome 檢視 DOM</a>
+- <a href="https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Highlight_and_inspect_DOM_nodes" target="_blank">如何用 Firefox 檢視 DOM</a>
