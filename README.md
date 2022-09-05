@@ -48,7 +48,9 @@ To maintain the consistency of the coding style, this project have enabled the [
 
 ## Fork
 1. 請在本專案點選右上角 [Fork](https://github.com/yuaanlin/nextjs.tw/fork)，然後點選 Create fork！
-   （建立完成後代表已經複製一份到你的帳號底）
+
+   _建立完成後代表已經複製一份到你的帳號底_
+
 2. 到自己的repo把剛Fork下來的專案clone到你的本機端
    ```
    git clone git@github.com:YourName/nextjs.tw.git
@@ -61,7 +63,6 @@ To maintain the consistency of the coding style, this project have enabled the [
    ```
    git remote -v
    ```
-
    ```
    nextjstw        https://github.com/yuaanlin/nextjs.tw.git (fetch)
    nextjstw        https://github.com/yuaanlin/nextjs.tw.git (push)
@@ -72,7 +73,6 @@ To maintain the consistency of the coding style, this project have enabled the [
    ```
    git pull nextjstw
    ```
-
    如果pull完發現有更新，請先進行merge
    ```
    git merge nextjstw/main
@@ -84,9 +84,14 @@ To maintain the consistency of the coding style, this project have enabled the [
    git commit -m "<填寫版本資訊>"
    git push
    ```
-8. 回到自己repo看到更新了你剛才push的修改檔案，這時候我們可以發送 PR 了
+8. 回到自己repo看到更新了你剛才push的修改檔案，這時候我們可以發送 PR了
+
    點選上方 Pull requests
+
    接下來點擊 New pull request
+
    _注意: 請務必確認所有修改的內容_
+
    然後確定一下上方要發 Pull Request 的 目標 repo 分支以及自己的 repo 分支
+
    如果確認沒問題就可以按下 Create pull request
