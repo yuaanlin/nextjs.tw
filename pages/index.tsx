@@ -1,11 +1,10 @@
-import TopNav from '../components/TopNav';
 import Footer from '@components/Footer';
 import Link from 'next/link';
 import Head from 'next/head';
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
-  return <div className="w-screen">
+  return (<>
     <Head>
       <title>Next.js - React 開發框架</title>
       <meta
@@ -18,7 +17,6 @@ const Home: NextPage = () => {
       <meta property="og:image" content="/og.jpg"/>
       <meta content="@vercel" name="twitter:site"/>
     </Head>
-    <TopNav/>
     <div className="mx-auto container py-32 mt-24">
       <h1
         className="text-center font-extrabold text-4xl md:text-7xl lg:text-8xl
@@ -54,7 +52,7 @@ const Home: NextPage = () => {
       </div>
     </div>
     <Footer/>
-  </div>;
+  </>);
 };
 
 export default Home;

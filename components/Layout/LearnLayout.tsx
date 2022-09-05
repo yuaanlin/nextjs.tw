@@ -1,9 +1,7 @@
-import TopNav from './TopNav';
 import { PropsWithChildren } from 'react';
 
 function LearnLayout(props: PropsWithChildren<{}>) {
-  return <div className="w-screen">
-    <TopNav/>
+  return (
     <div className="mx-auto container docs pb-32 pt-16 z-20 flex">
       <aside className="z-10 w-72 h-screen pt-12 fixed hidden md:block">
         <p className="opacity-50">
@@ -14,7 +12,7 @@ function LearnLayout(props: PropsWithChildren<{}>) {
         {props.children}
       </div>
     </div>
-  </div>;
+  );
 }
 
 export default LearnLayout;
