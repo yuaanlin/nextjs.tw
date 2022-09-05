@@ -15,7 +15,7 @@ export default (
     hoverStyle
   }: PropsWithChildren<Button>
 ) => (
-  <button className="mdx-button-component mt-8">
+  <button className="mdx-component mt-8">
     <a
       href={url}
       className={`inline-block px-8 py-2 text-center
