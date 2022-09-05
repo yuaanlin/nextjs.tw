@@ -81,19 +81,12 @@ To maintain the consistency of the coding style, this project have enabled the [
 7. 修改完檔案後再推回自己專案
    ```
    git add .
-
    git commit -m "<填寫版本資訊>"
-
    git push
    ```
-8. 回到自己repo看到更新了你剛才push的修改檔案，這時候我們可以發送 PR了
-
+8. 回到自己repo看到更新了你剛才push的修改檔案，這時候我們可以發送 PR 了
    點選上方 Pull requests
-
    接下來點擊 New pull request
-
    _注意: 請務必確認所有修改的內容_
-
    然後確定一下上方要發 Pull Request 的 目標 repo 分支以及自己的 repo 分支
-
    如果確認沒問題就可以按下 Create pull request
