@@ -1,7 +1,7 @@
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [],
+    remarkPlugins: [require('./compiled/remark-frontmatter').remarkFrontmatter],
     rehypePlugins: []
   }
 })

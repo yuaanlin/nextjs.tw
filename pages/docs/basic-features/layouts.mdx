@@ -1,19 +1,26 @@
 ---
-description: Learn how to share components and state between Next.js pages with Layouts.
+描述: 學習如何在 Next.js 頁面間分享組件和狀態
 ---
 
-# Layouts
+# 佈局
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>例子</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/layout-component">layout-component</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/layout-component">
+        layout-component
+      </a>
+    </li>
   </ul>
 </details>
 
-> **Note:** We are introducing improved layouts support in Next.js. Read the [Layouts RFC](https://nextjs.org/blog/layouts-rfc) for more details and to provide feedback.
+> **注意：** 我們在 Next.js 引入了改進佈局的支援。 請閱讀[佈局意見徵求](https://nextjs.org/blog/layouts-rfc)來或許更多細節及提供意見回饋。
 
-The React model allows us to deconstruct a [page](/docs/basic-features/pages.md) into a series of components. Many of these components are often reused between pages. For example, you might have the same navigation bar and footer on every page.
+
+React 模組允許我們解構一個[頁面](/docs/basic-features/pages.md)而生成多個組件。許多組件經常在頁面之間重覆被使用。例如，在每一個頁面，你可能會有相同的導覽列和頁尾。
 
 ```jsx
 // components/layout.js
@@ -32,11 +39,11 @@ export default function Layout({ children }) {
 }
 ```
 
-## Examples
+## 例子
 
-### Single Shared Layout with Custom App
+### 使用自定義 App 的單一共享佈局
 
-If you only have one layout for your entire application, you can create a [Custom App](/docs/advanced-features/custom-app.md) and wrap your application with the layout. Since the `<Layout />` component is re-used when changing pages, its component state will be preserved (e.g. input values).
+如果你的應用程式只有一個佈局，你可以建立一個[自定義 App](/docs/advanced-features/custom-app.md)然後將你的應用程式包覆在這個佈局中。由於 `<Layout />` 組件在更換頁面時被重覆使用，其組件狀態將會被保存 (例如：input 值)。
 
 ```jsx
 // pages/_app.js
@@ -52,9 +59,9 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
-### Per-Page Layouts
+### 每頁佈局
 
-If you need multiple layouts, you can add a property `getLayout` to your page, allowing you to return a React component for the layout. This allows you to define the layout on a _per-page basis_. Since we're returning a function, we can have complex nested layouts if desired.
+如果你有多項佈局，你可以為佈局在頁面中增加一個屬性 `getLayout` 來返回一個 React 組件。這讓你可以在 _每頁的基礎_ 上定義佈局。由於我們是要返回一個函式，必要的話，我們可以使用複雜的巢狀佈局。
 
 ```jsx
 // pages/index.js
@@ -88,15 +95,15 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
-When navigating between pages, we want to *persist* page state (input values, scroll position, etc.) for a Single-Page Application (SPA) experience.
+當我們在不同頁面之間瀏覽時，我們會希望為單頁應用程式 (SPA) 使用體驗*保有*頁面的狀態( input 值，滑動位置等等)。
 
-This layout pattern enables state persistence because the React component tree is maintained between page transitions. With the component tree, React can understand which elements have changed to preserve state.
 
-> **Note**: This process is called [reconciliation](https://reactjs.org/docs/reconciliation.html), which is how React understands which elements have changed.
+這種佈局模式，由於 React 組件樹是在頁面之間被維護，這使得狀態可以持續。隨著組件樹，React 可以知道哪一個元素已經更改並保留狀態。
 
-### With TypeScript
+> **注意**: 這種 React 理解哪個元素已經被改變的流程我們稱為[協調](https://reactjs.org/docs/reconciliation.html)。
 
-When using TypeScript, you must first create a new type for your pages which includes a `getLayout` function. Then, you must create a new type for your `AppProps` which overrides the `Component` property to use the previously created type.
+### 使用 TypeScript
+當使用 TypeScript 時，你必須要為你的頁面建立新的 type ，包含一個 `getLayout` 函式。接著，你必須要為 `AppProps` 也建立一個新的 type，這個 type 將會覆蓋 `Component` 屬性進而使用先前建立的 type.
 
 ```tsx
 // pages/index.tsx
@@ -144,9 +151,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 }
 ```
 
-### Data Fetching
+### 獲取數據
 
-Inside your layout, you can fetch data on the client-side using `useEffect` or a library like [SWR](https://swr.vercel.app/). Because this file is not a [Page](/docs/basic-features/pages.md), you cannot use `getStaticProps` or `getServerSideProps` currently.
+在你的佈局中，你可以在客戶端使用 `useEffect` 或者如 [SWR](https://swr.vercel.app/) 的函式庫獲取數據。由於這個檔案不是一個[頁面](/docs/basic-features/pages.md)，因此目前不能使用 `getStaticProps` 或 `getServerSideProps`。
 
 ```jsx
 // components/layout.js
@@ -156,7 +163,7 @@ import Navbar from './navbar'
 import Footer from './footer'
 
 export default function Layout({ children }) {
-  const { data, error } = useSWR('/api/navigation', fetcher)
+  const { data, error } = useSWR("/api/navigation", fetcher)
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
@@ -171,21 +178,19 @@ export default function Layout({ children }) {
 }
 ```
 
-For more information on what to do next, we recommend the following sections:
+下一步該做什麼呢？為了學習更多，我們建議你可以跟著以下的部分走：
 
 <div className="card">
   <a href="/docs/basic-features/pages.md">
-    <b>Pages:</b>
-    <small>Learn more about what pages are in Next.js.</small>
+    <b>頁面：</b>
+    <small>學習更多關於 Next.js 的頁面知識</small>
   </a>
 </div>
 
 <div className="card">
   <a href="/docs/advanced-features/custom-app.md">
-    <b>Custom App:</b>
-    <small>Learn more about how Next.js initialize pages.</small>
+    <b>自定義 App：</b>
+    <small>學習更多關於 Netx.js 如何初始化頁面</small>
   </a>
 </div>
 
-import DocsLayout from "@components/DocsLayout";
-export default ({ children }) => <DocsLayout>{children}</DocsLayout>;
