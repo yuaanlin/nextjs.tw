@@ -1,44 +1,45 @@
+{/*
 ---
 description: Next.js has a built-in, opinionated, and file-system based Router. You can learn how it works here.
 ---
+*/}
+# 路由
 
-# Routing
+Next.js 擁有一個基於 [頁面](/docs/basic-features/pages.md) 建立出來的檔案系統。
 
-Next.js has a file-system based router built on the [concept of pages](/docs/basic-features/pages.md).
+當一個檔案被加進 `pages` 資料夾，它會自動地變成可用的路由。
 
-When a file is added to the `pages` directory, it's automatically available as a route.
+這些被加入 `pages` 資料夾的檔案被用來定義最常見的模式。
 
-The files inside the `pages` directory can be used to define most common patterns.
+#### 索引路由
 
-#### Index routes
-
-The router will automatically route files named `index` to the root of the directory.
+路由器會自動地將資料夾根目錄中命名為 `index` 的檔案配置路由。
 
 - `pages/index.js` → `/`
 - `pages/blog/index.js` → `/blog`
 
-#### Nested routes
+#### 巢狀路由
 
-The router supports nested files. If you create a nested folder structure, files will automatically be routed in the same way still.
+路由器支援槽狀檔案。如果你建立了一個槽狀的資料夾結構，檔案仍然會依照相同的方式自動地配置路由。
 
 - `pages/blog/first-post.js` → `/blog/first-post`
 - `pages/dashboard/settings/username.js` → `/dashboard/settings/username`
 
-#### Dynamic route segments
+#### 動態路由片段
 
-To match a dynamic segment, you can use the bracket syntax. This allows you to match named parameters.
+要匹配一個動態路由片段，你可以使用中括弧。這可以使你匹配到具名參數。
 
 - `pages/blog/[slug].js` → `/blog/:slug` (`/blog/hello-world`)
 - `pages/[username]/settings.js` → `/:username/settings` (`/foo/settings`)
 - `pages/post/[...all].js` → `/post/*` (`/post/2020/id/title`)
 
-> Check out the [Dynamic Routes documentation](/docs/routing/dynamic-routes.md) to learn more about how they work.
+> 查看 [Dynamic Routes documentation](/docs/routing/dynamic-routes.md) 頁面可以學習更多動態路由如何運作。
 
-## Linking between pages
+## 連結頁面
 
-The Next.js router allows you to do client-side route transitions between pages, similar to a single-page application.
+Next.js 的路由允許你使用用戶端路由跳轉頁面，相似於單頁式應用程式。
 
-A React component called `Link` is provided to do this client-side route transition.
+提供了一個稱作 `Link` 的 React 組件來做用戶端路由跳轉。
 
 ```jsx
 import Link from 'next/link'
@@ -68,17 +69,17 @@ function Home() {
 export default Home
 ```
 
-The example above uses multiple links. Each one maps a path (`href`) to a known page:
+上面的例子用了多個連結，每個連結對應著已知頁面的一個路徑（`href`）：
 
 - `/` → `pages/index.js`
 - `/about` → `pages/about.js`
 - `/blog/hello-world` → `pages/blog/[slug].js`
 
-Any `<Link />` in the viewport (initially or through scroll) will be prefetched by default (including the corresponding data) for pages using [Static Generation](/docs/basic-features/data-fetching/get-static-props.md). The corresponding data for [server-rendered](/docs/basic-features/data-fetching/get-server-side-props.md) routes is _not_ prefetched.
+任何 `<Link />` 在視圖中（初始化或捲動），頁面使用 [靜態生成](/docs/basic-features/data-fetching/get-static-props.md) ，將會默認預先取回連結（包含對應的資料）。使用 [伺服器端渲染](/docs/basic-features/data-fetching/get-server-side-props.md) 對應的資料 _不是_ 使用預先取回連結。
 
-### Linking to dynamic paths
+### 連結動態路徑
 
-You can also use interpolation to create the path, which comes in handy for [dynamic route segments](#dynamic-route-segments). For example, to show a list of posts which have been passed to the component as a prop:
+你也可以使用插值來建立一個路徑， [動態路由片段](#dynamic-route-segments) 可以派得上用場。舉例來說，顯示一個已經被當成屬性傳入組件的文章清單：
 
 ```jsx
 import Link from 'next/link'
@@ -100,9 +101,10 @@ function Posts({ posts }) {
 export default Posts
 ```
 
+> [`encodeURIComponent`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) 被用來保持範例的路徑兼容 utf-8 。
 > [`encodeURIComponent`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) is used in the example to keep the path utf-8 compatible.
 
-Alternatively, using a URL Object:
+或者，使用 URL 物件（ URL Object ）:
 
 ```jsx
 import Link from 'next/link'
@@ -129,39 +131,38 @@ function Posts({ posts }) {
 export default Posts
 ```
 
-Now, instead of using interpolation to create the path, we use a URL object in `href` where:
+現在，以下的情境我們使用 URL 物件建立路徑，而不是使用插值：
 
-- `pathname` is the name of the page in the `pages` directory. `/blog/[slug]` in this case.
-- `query` is an object with the dynamic segment. `slug` in this case.
+- `pathname` 是 `pages` 資料夾裡的頁面名稱。如同 `/blog/[slug]` 這個例子一樣。
+- `query` 是一個有著動態片段的物件。如同 `slug` 這個例子一樣。
 
-## Injecting the router
+## 注入路由
 
 <details>
-  <summary><b>Examples</b></summary>
+  <summary><b>範例</b></summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/dynamic-routing">Dynamic Routing</a></li>
+    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/dynamic-routing">動態路由</a></li>
   </ul>
 </details>
 
-To access the [`router` object](/docs/api-reference/next/router.md#router-object) in a React component you can use [`useRouter`](/docs/api-reference/next/router.md#useRouter) or [`withRouter`](/docs/api-reference/next/router.md#withRouter).
+在 React 中的組件，你可以使用 [`useRouter`](/docs/api-reference/next/router.md#useRouter) 或者 [`withRouter`](/docs/api-reference/next/router.md#withRouter) 來存取 [`router` 物件](/docs/api-reference/next/router.md#router-object)。
 
-In general we recommend using [`useRouter`](/docs/api-reference/next/router.md#useRouter).
+一般來說，我們推薦使用 [`useRouter`](/docs/api-reference/next/router.md#useRouter)。
 
-## Learn more
+## 學習更多
 
-The router is divided in multiple parts:
+路由器被分成許多的部分：
 
 <div className="card">
   <a href="/docs/api-reference/next/link.md">
-    <b>next/link:</b>
-    <small>Handle client-side navigations.</small>
+    <b>連結:</b>
+    <small>處理用戶端導覽。</small>
   </a>
 </div>
 
 <div className="card">
   <a href="/docs/api-reference/next/router.md">
-    <b>next/router:</b>
-    <small>Leverage the router API in your pages.</small>
+    <b>路由:</b>
+    <small>借助路由應用程式介面，在頁面中實現更好的目標。</small>
   </a>
 </div>
-
