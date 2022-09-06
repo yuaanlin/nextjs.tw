@@ -21,22 +21,14 @@ To develop locally:
    ```
    git checkout -b MY_BRANCH_NAME
    ```
-3. Enable pnpm:
-   ```
-   corepack enable pnpm
-   ```
-4. Install the dependencies with [pnpm](https://pnpm.io/):
+3. Install the dependencies with [pnpm](https://pnpm.io/):
    ```
    pnpm install
    ```
-5. Start developing and watch for code changes:
+4. Start developing and watch for code changes:
    ```
    pnpm dev
    ```
-6. In a new terminal, run `pnpm types` to compile declaration files from
-   TypeScript.
-
-   _Note: You may need to repeat this step if your types get outdated._
 
 
 ## ESLint
