@@ -1,5 +1,5 @@
 ---
-描述: Next.js 默認支援 TypeScript 以及為頁面和 API 內建的 types。這裡將會學習到如何在 Next.js 內使用 TypeScript。
+描述: Next.js 預設支援 TypeScript 以及為頁面和 API 內建的 types。這裡將會學習到如何在 Next.js 內使用 TypeScript。
 ---
 
 # TypeScript
@@ -9,12 +9,12 @@
 
 | 版本   | 更動                                                                                                                              |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `v12.0.0` | [SWC](https://nextjs.org/docs/advanced-features/compiler) is now used by default to compile TypeScript and TSX for faster builds. 是默認作為為了快速建立而用來編譯 TypeScript 和 TSX 的工具   |
+| `v12.0.0` | [SWC](https://nextjs.org/docs/advanced-features/compiler) is now used by default to compile TypeScript and TSX for faster builds. 是預設作為為了快速建立而用來編譯 TypeScript 和 TSX 的工具   |
 | `v10.2.1` | [增量 type 檢查](https://www.typescriptlang.org/tsconfig#incremental) 支援將會被加入當 `tsconfig.json` 被啟用 |
 
 </details>
 
-Next.js 提供包含零配置設定以及為了頁面、API 及更多的內建 types 的 [TypeScript](https://www.typescriptlang.org/) 整合體驗。
+Next.js 提供包含無額外設定以及為了頁面、API 及更多的內建 types 的 [TypeScript](https://www.typescriptlang.org/) 整合體驗。
 
 - [複製以及部署 TypeScript 啟動器](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-typescript&project-name=with-typescript&repository-name=with-typescript&utm_source=next-site&utm_medium=docs&utm_campaign=next-website)
 - [查看應用程式例子](https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
@@ -39,11 +39,11 @@ pnpm create next-app --ts
 touch tsconfig.json
 ```
 
-Next.js 除了會自動地以默認值來配置檔案；也可以支援帶有自定義的[編譯器選項](https://www.typescriptlang.org/docs/handbook/compiler-options.html)的 `tsconfig.json` 檔。
+Next.js 除了會自動地以預設值來設定檔案；也可以支援帶有自定義的[編譯器選項](https://www.typescriptlang.org/docs/handbook/compiler-options.html)的 `tsconfig.json` 檔。
 
 你可以在 `next.config.js` 檔案內透過設定 `typescript.tsconfigPath` 屬性，來提供 `tsconfig.json` 檔一個相對的路徑位置。 
 
-版本 `v12.0.0`，Next.js 為達到快速建置，默認使用 [SWC](https://nextjs.org/docs/advanced-features/compiler) 來編譯 TypeScript 和 TSX。
+版本 `v12.0.0`，Next.js 為達到快速建置，預設使用 [SWC](https://nextjs.org/docs/advanced-features/compiler) 來編譯 TypeScript 和 TSX。
 
 > 如果有 `.babelrc` 檔， Next.js 將會使用 Babel 來處理 TypeScript。但這將會有一些[限制](https://babeljs.io/docs/en/babel-plugin-transform-typescript#caveats)和一些[編譯器選項處理方式的不同](https://babeljs.io/docs/en/babel-plugin-transform-typescript#typescript-compiler-options)。
 
@@ -66,13 +66,13 @@ npm run dev
 
 > 在根目錄下將會有一個名為 `next-env.d.ts` 的檔案會被建立。這個檔案確保 Next.js types 有被 TypeScript 編譯器接管。它有可能在任何時候被改變，因此**千萬不要移除或編輯它**，這個檔案不應該被 commit 且需要被版本控制忽略(例如：在你的 `gitignore` 檔案)。
 
-> TypeScript `嚴格模式` 默認狀況下是關閉的。當你習慣 TypeScript，我們建議在 `tsconfig.json` 將它開啟。
+> TypeScript `嚴格模式` 預設狀況下是關閉的。當你習慣 TypeScript，我們建議在 `tsconfig.json` 將它開啟。
 
 
 > 與其編輯 `next-env.d.ts`， 你可以透過建立一個如 `additional.d.ts` 的檔案來新增額外的 types，並藉由 [`include`](https://www.typescriptlang.org/tsconfig#include) 陣列中引用。
 
 
-默認下，Next.js 會視 type 檢查為 `next build` 的一個部分。我們建議在開發階段中使用程式碼編輯器做 type 檢查。
+預設下，Next.js 會視 type 檢查為 `next build` 的一個部分。我們建議在開發階段中使用程式碼編輯器做 type 檢查。
 
 如果你不想顯示任何錯誤訊息，可以查看[忽略 TypeScript 錯誤訊息](/docs/api-reference/next.config.js/ignoring-typescript-errors.md) 文件。
 
@@ -172,7 +172,7 @@ module.exports = nextConfig
 
 如果你仍舊希望 Next.js 在即使有錯誤訊息的狀況下仍然要執行生產環境的建置，你可以取消內建的 type 檢查階段；如果取消，請確保 type 檢查是建置或部署流程的其中一部分。
 
-打開 `next.config.js` 和啟用在 `typescript` 配置內的 `ignoreBuildErrors` 選項：
+打開 `next.config.js` 和啟用在 `typescript` 設定內的 `ignoreBuildErrors` 選項：
 
 ```js
 module.exports = {
