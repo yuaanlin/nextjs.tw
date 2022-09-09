@@ -1,0 +1,510 @@
+[
+  {
+    "title": "FOUNDATIONS",
+    "index": true,
+    "children": [
+      {
+        "title": "About Next.js",
+        "path": "/learn/foundations/about-nextjs",
+        "children": [
+          {
+            "title": "What is Next.js",
+            "path": "/learn/foundations/about-nextjs/what-is-nextjs"
+          }
+        ]
+      },
+      {
+        "title": "From JavaScript to React",
+        "path": "/learn/foundations/from-javascript-to-react",
+        "children": [
+          {
+            "title": "Updating the UI with JavaScript",
+            "path": "/learn/foundations/from-javascript-to-react/updating-ui-with-javascript"
+          },
+          {
+            "title": "Getting Started with React",
+            "path": "/learn/foundations/from-javascript-to-react/getting-started-with-react"
+          },
+          {
+            "title": "Essential JavaScript for React",
+            "path": "/learn/foundations/from-javascript-to-react/essential-javascript-react"
+          },
+          {
+            "title": "React Core Concept",
+            "path": "/learn/foundations/from-javascript-to-react/react-core-concepts"
+          },
+          {
+            "title": "Building UI with Components",
+            "path": "/learn/foundations/from-javascript-to-react/building-ui-with-components"
+          },
+          {
+            "title": "Display Data with Props",
+            "path": "/learn/foundations/from-javascript-to-react/displaying-data-with-props"
+          },
+          {
+            "title": "Adding Interactivity with State",
+            "path": "/learn/foundations/from-javascript-to-react/adding-interactivity-with-state"
+          },
+          {
+            "title": "How to Continue Learning React",
+            "path": "/learn/foundations/from-javascript-to-react/continue-learning-react"
+          }
+        ]
+      },
+      {
+        "title": "From React to Next.js",
+        "path": "/learn/foundations/from-react-to-nextjs",
+        "children": [
+          {
+            "title": "Getting Started with Next",
+            "path": "/learn/foundations/from-react-to-nextjs/getting-started-with-nextjs"
+          },
+          {
+            "title": "Next Steps",
+            "path": "/learn/foundations/from-react-to-nextjs/next-steps"
+          }
+        ]
+      },
+      {
+        "title": "How Next.js Works",
+        "path": "/learn/foundations/how-nextjs-works",
+        "children": [
+          {
+            "title": "From Development to Production",
+            "path": "/learn/foundations/how-nextjs-works/development-and-production"
+          },
+          {
+            "title": "Compiling",
+            "path": "/learn/foundations/how-nextjs-works/compiling"
+          },
+          {
+            "title": "Minifying",
+            "path": "/learn/foundations/how-nextjs-works/minifying"
+          },
+          {
+            "title": "Bunding",
+            "path": "/learn/foundations/how-nextjs-works/bundling"
+          },
+          {
+            "title": "Code Splitting",
+            "path": "/learn/foundations/how-nextjs-works/code-splitting"
+          },
+          {
+            "title": "Build Time vs. Runtime",
+            "path": "/learn/foundations/how-nextjs-works/buildtime-and-runtime"
+          },
+          {
+            "title": "Client and Server",
+            "path": "/learn/foundations/how-nextjs-works/client-and-server"
+          },
+          {
+            "title": "Rendering",
+            "path": "/learn/foundations/how-nextjs-works/rendering"
+          },
+          {
+            "title": "CDNs and the Edge",
+            "path": "/learn/foundations/how-nextjs-works/cdns-and-edge"
+          },
+          {
+            "title": "Next Steps",
+            "path": "/learn/foundations/how-nextjs-works/next-steps"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CREATE YOUR FIRST APP",
+    "index": true,
+    "children": [
+      {
+        "title": "Create a Next.js App",
+        "path": "/learn/basics/create-nextjs-app",
+        "children": [
+          {
+            "title": "Setup",
+            "path": "/learn/basics/create-nextjs-app/setup"
+          },
+          {
+            "title": "Welcome to Next.js",
+            "path": "/learn/basics/create-nextjs-app/welcome-to-nextjs"
+          },
+          {
+            "title": "Editing the Page",
+            "path": "/learn/basics/create-nextjs-app/editing-the-page"
+          }
+        ]
+      },
+      {
+        "title": "Navigate Between Page",
+        "path": "/learn/basics/navigate-between-pages",
+        "children": [
+          {
+            "title": "Setup",
+            "path": "/learn/basics/navigate-between-pages/setup"
+          },
+          {
+            "title": "Pages in Next.js",
+            "path": "/learn/basics/navigate-between-pages/pages-in-nextjs"
+          },
+          {
+            "title": "Link Component",
+            "path": "/learn/basics/navigate-between-pages/link-component"
+          },
+          {
+            "title": "Client-Side Navigation",
+            "path": "/learn/basics/navigate-between-pages/client-side"
+          }
+        ]
+      },
+      {
+        "title": "Assets, Metadata, and CSS",
+        "path": "/learn/basics/assets-metadata-css",
+        "children": [
+          {
+            "title": "Setup",
+            "path": "/learn/basics/assets-metadata-css/setup"
+          },
+          {
+            "title": "Assets",
+            "path": "/learn/basics/assets-metadata-css/assets"
+          },
+          {
+            "title": "Metadata",
+            "path": "/learn/basics/assets-metadata-css/metadata"
+          },
+          {
+            "title": "Third-Party JavaScript",
+            "path": "/learn/basics/assets-metadata-css/third-party-javascript"
+          },
+          {
+            "title": "CSS Styling",
+            "path": "/learn/basics/assets-metadata-css/css-styling"
+          },
+          {
+            "title": "Layout Component",
+            "path": "/learn/basics/assets-metadata-css/layout-component"
+          },
+          {
+            "title": "Global Styles",
+            "path": "/learn/basics/assets-metadata-css/global-styles"
+          },
+          {
+            "title": "Polishing Layout",
+            "path": "/learn/basics/assets-metadata-css/polishing-layout"
+          },
+          {
+            "title": "Styling Tips",
+            "path": "/learn/basics/assets-metadata-css/styling-tips"
+          }
+        ]
+      },
+      {
+        "title": "Pre-rendering and Data Fetching",
+        "path": "/learn/basics/data-fetching",
+        "children": [
+          {
+            "title": "Setup",
+            "path": "/learn/basics/data-fetching/setup"
+          },
+          {
+            "title": "Pre-rendering",
+            "path": "/learn/basics/data-fetching/pre-rendering"
+          },
+          {
+            "title": "Two Forms of Pre-rendering",
+            "path": "/learn/basics/data-fetching/two-forms"
+          },
+          {
+            "title": "Static Generation with and without Data",
+            "path": "/learn/basics/data-fetching/with-data"
+          },
+          {
+            "title": "Blog Data",
+            "path": "/learn/basics/data-fetching/blog-data"
+          },
+          {
+            "title": "Implement getStaticProps",
+            "path": "/learn/basics/data-fetching/implement-getstaticprops"
+          },
+          {
+            "title": "getStaticProps Details",
+            "path": "/learn/basics/data-fetching/getstaticprops-details"
+          },
+          {
+            "title": "Fetching Data at Request Time",
+            "path": "/learn/basics/data-fetching/request-time"
+          }
+        ]
+      },
+      {
+        "title": "Dynamic Route",
+        "path": "/learn/basics/dynamic-routes",
+        "children": [
+          {
+            "title": "Setup",
+            "path": "/learn/basics/dynamic-routes/setup"
+          },
+          {
+            "title": "Page Path Depends on External Data",
+            "path": "/learn/basics/dynamic-routes/page-path-external-data"
+          },
+          {
+            "title": "Implement getStaticPaths",
+            "path": "/learn/basics/dynamic-routes/implement-getstaticpaths"
+          },
+          {
+            "title": "Implement getStaticProps",
+            "path": "/learn/basics/dynamic-routes/implement-getstaticprops"
+          },
+          {
+            "title": "Render Markdown",
+            "path": "/learn/basics/dynamic-routes/render-markdown"
+          },
+          {
+            "title": "Polishing the Post Page",
+            "path": "/learn/basics/dynamic-routes/polishing-post-page"
+          },
+          {
+            "title": "Polishing the Index Page",
+            "path": "/learn/basics/dynamic-routes/polishing-index-page"
+          },
+          {
+            "title": "Dynamic Routes Details",
+            "path": "/learn/basics/dynamic-routes/dynamic-routes-details"
+          }
+        ]
+      },
+      {
+        "title": "API Routes",
+        "path": "/learn/basics/api-routes",
+        "children": [
+          {
+            "title": "Setup",
+            "path": "/learn/basics/api-routes/setup"
+          },
+          {
+            "title": "Creating API Routes",
+            "path": "/learn/basics/api-routes/creating-api-routes"
+          },
+          {
+            "title": "API Routes Details",
+            "path": "/learn/basics/api-routes/api-routes-details"
+          }
+        ]
+      },
+      {
+        "title": "Deploying Your Next.js App",
+        "path": "/learn/basics/deploying-nextjs-app",
+        "children": [
+          {
+            "title": "Setup",
+            "path": "/learn/basics/deploying-nextjs-app/setup"
+          },
+          {
+            "title": "Push to GitHub",
+            "path": "/learn/basics/deploying-nextjs-app/github"
+          },
+          {
+            "title": "Deploy to Vercel",
+            "path": "/learn/basics/deploying-nextjs-app/deploy"
+          },
+          {
+            "title": "Next.js and Vercel",
+            "path": "/learn/basics/deploying-nextjs-app/platform-details"
+          },
+          {
+            "title": "Other Hosting Options",
+            "path": "/learn/basics/deploying-nextjs-app/other-hosting-options"
+          },
+          {
+            "title": "Finally",
+            "path": "/learn/basics/deploying-nextjs-app/finally"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "SEARCH ENGINE OPTIMIZATION",
+    "index": true,
+    "children": [
+      {
+        "title": "Introduction to SEO",
+        "path": "/learn/seo/introduction-to-seo",
+        "children": [
+          {
+            "title": "Importance of SEO",
+            "path": "/learn/seo/introduction-to-seo/importance-of-seo"
+          },
+          {
+            "title": "Search Systems",
+            "path": "/learn/seo/introduction-to-seo/search-systems"
+          },
+          {
+            "title": "What are Webcrawlers?",
+            "path": "/learn/seo/introduction-to-seo/webcrawlers"
+          }
+        ]
+      },
+      {
+        "title": "Crawling and Indexing",
+        "path": "/learn/seo/crawling-and-indexing",
+        "children": [
+          {
+            "title": "Status Codes",
+            "path": "/learn/seo/crawling-and-indexing/status-codes"
+          },
+          {
+            "title": "Robots.txt",
+            "path": "/learn/seo/crawling-and-indexing/robots-txt"
+          },
+          {
+            "title": "XML Sitemaps",
+            "path": "/learn/seo/crawling-and-indexing/xml-sitemaps"
+          },
+          {
+            "title": "Special Tags",
+            "path": "/learn/seo/crawling-and-indexing/metatags"
+          },
+          {
+            "title": "Canonical Tags",
+            "path": "/learn/seo/crawling-and-indexing/canonical"
+          }
+        ]
+      },
+      {
+        "title": "Rendering and Ranking",
+        "path": "/learn/seo/rendering-and-ranking",
+        "children": [
+          {
+            "title": "Rendering Strategies",
+            "path": "/learn/seo/rendering-and-ranking/rendering-strategies"
+          },
+          {
+            "title": "What About AMP?",
+            "path": "/learn/seo/rendering-and-ranking/amp"
+          },
+          {
+            "title": "URL Structure",
+            "path": "/learn/seo/rendering-and-ranking/url-structure"
+          },
+          {
+            "title": "Metadata",
+            "path": "/learn/seo/rendering-and-ranking/metadata"
+          },
+          {
+            "title": "On Page SEO",
+            "path": "/learn/seo/rendering-and-ranking/on-page-seo"
+          }
+        ]
+      },
+      {
+        "title": "Performance & Core Web Vitals",
+        "path": "/learn/seo/web-performance",
+        "children": [
+          {
+            "title": "Vitals Overview",
+            "path": "/learn/seo/web-performance/vitals-overview"
+          },
+          {
+            "title": "Largest Contentful Paint",
+            "path": "/learn/seo/web-performance/lcp"
+          },
+          {
+            "title": "First Input Delay",
+            "path": "/learn/seo/web-performance/fid"
+          },
+          {
+            "title": "Cumulative Layout Shift",
+            "path": "/learn/seo/web-performance/cls"
+          },
+          {
+            "title": "SEO Impact",
+            "path": "/learn/seo/web-performance/seo-impact"
+          }
+        ]
+      },
+      {
+        "title": "Improving your Core Web Vitals",
+        "path": "/learn/seo/improve",
+        "children": [
+          {
+            "title": "Lighthouse",
+            "path": "/learn/seo/improve/lighthouse"
+          },
+          {
+            "title": "Image Optimization",
+            "path": "/learn/seo/improve/images"
+          },
+          {
+            "title": "Dynamic Imports",
+            "path": "/learn/seo/improve/dynamic-imports"
+          },
+          {
+            "title": "Dynamic Imports for Components",
+            "path": "/learn/seo/improve/dynamic-import-components"
+          },
+          {
+            "title": "Optimizing Fonts",
+            "path": "/learn/seo/improve/fonts"
+          },
+          {
+            "title": "Optimizing Third-Party Scripts",
+            "path": "/learn/seo/improve/third-party-scripts"
+          }
+        ]
+      },
+      {
+        "title": "Monitoring your Core Web Vitals",
+        "path": "/learn/seo/monitor",
+        "children": [
+          {
+            "title": "Next.js Analystics",
+            "path": "/learn/seo/monitor/nextjs-analytics"
+          },
+          {
+            "title": "Custom Reporting",
+            "path": "/learn/seo/monitor/custom-reporting"
+          },
+          {
+            "title": "Data Studio",
+            "path": "/learn/seo/monitor/data-studio"
+          },
+          {
+            "title": "Other Tools",
+            "path": "/learn/seo/monitor/other-tools"
+          },
+          {
+            "title": "What To Learn Next",
+            "path": "/learn/seo/monitor/conclusion"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "EXCEL",
+    "index": true,
+    "children": [
+      {
+        "title": "TypeScript",
+        "path": "/learn/excel/typescript",
+        "children": [
+          {
+            "title": "Setup",
+            "path": "/learn/excel/typescript/setup"
+          },
+          {
+            "title": "Create tsconfig.json",
+            "path": "/learn/excel/typescript/create-tsconfig"
+          },
+          {
+            "title": "Next.js Specific Types",
+            "path": "/learn/excel/typescript/nextjs-types"
+          }
+        ]
+      }
+    ]
+  }
+]
