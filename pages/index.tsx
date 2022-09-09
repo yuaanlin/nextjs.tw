@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import type { NextPage } from 'next';
 
+
 const Home: NextPage = () => {
   return (<>
     <Head>
@@ -30,7 +31,7 @@ const Home: NextPage = () => {
         className="text-center text-stone-500 text-lg
         md:text-xl mt-12 leading-relaxed font-light">
         Next.js 提供你最佳的開發體驗，同時帶給你所有你在生產環境中需要的功能：靜態渲染、伺服器端渲染、
-        Typescript 語法支援、智能打包、路由預先載入 ... 及更多，而且不需要任何手動設定。
+        Typescript 語法支援、智能打包、路由預先載入 ... 及更多，而｀且不需要任何手動設定。
       </p>
       <div className="text-center mt-16">
         <Link href="/learn/foundations/about-nextjs" passHref>
