@@ -8,10 +8,10 @@
         "path": "/docs/getting-started"
       },
       {
-        "title": "Basic Features",
+        "title": "基礎功能",
         "children": [
           {
-            "title": "Pages",
+            "title": "頁面",
             "path": "/docs/basic-features/pages"
           },
           {
@@ -88,6 +88,10 @@
             "path": "/docs/basic-features/script"
           }
         ]
+      },
+      {
+        "title": "邁向成品",
+        "path": "/docs/going-to-production"
       }
     ]
   },

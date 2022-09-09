@@ -1,62 +1,64 @@
+{/*
 ---
 description: Before taking your Next.js application to production, here are some recommendations to ensure the best user experience.
 ---
+*/}
 
-# Going to Production
+# 邁向成品
 
-Before taking your Next.js application to production, here are some recommendations to ensure the best user experience.
+在推出你的 Next.js 應用程式做為成品前，可以參考這些用來確保最佳使用者體驗的建議。
 
-## In General
+## 通用的建議
 
-- Use [caching](#caching) wherever possible.
-- Ensure your database and backend are deployed in the same region.
-- Aim to ship the least amount of JavaScript possible.
-- Defer loading heavy JavaScript bundles until needed.
-- Ensure [logging](#logging) is set up.
-- Ensure [error handling](#error-handling) is set up.
-- Configure the [404](/docs/advanced-features/custom-error-page.md#404-page) (Not Found) and [500](/docs/advanced-features/custom-error-page.md#500-page) (Error) pages.
-- Ensure you are [measuring performance](/docs/advanced-features/measuring-performance.md).
-- Run [Lighthouse](https://developers.google.com/web/tools/lighthouse) to check for performance, best practices, accessibility, and SEO. For best results, use a production build of Next.js and use incognito in your browser so results aren't affected by extensions.
-- Review [Supported Browsers and Features](/docs/basic-features/supported-browsers-features.md).
-- Improve performance using:
-  - [`next/image` and Automatic Image Optimization](/docs/basic-features/image-optimization.md)
-  - [Automatic Font Optimization](/docs/basic-features/font-optimization.md)
-  - [Script Optimization](/docs/basic-features/script.md)
-- Improve [loading performance](#loading-performance)
+- 盡可能使用[快取](#caching)。
+- 確保你的資料庫跟後端應用部署在相同的地域。
+- 盡可能送出最少量的 JavaScript 。
+- 延後載入沉重的 JavaScript 封裝檔直到真的需要時才載入。
+- 確保設定好[紀錄](#logging)。
+- 確保設定好[錯誤處理](#error-handling)。
+- 組態好 [404](/docs/advanced-features/custom-error-page.md#404-page) （找不到此頁）及 [500](/docs/advanced-features/custom-error-page.md#500-page) （錯誤）頁面。
+- 確保你[測量過效能](/docs/advanced-features/measuring-performance.md).
+- 執行 [Lighthouse](https://developers.google.com/web/tools/lighthouse) 來測量效能、最佳實踐、親合力、搜尋最佳化（ SEO ）。為了取得最佳的測量結果，請用 Next.js 提供的成品組建（ production build ）及不受套件所影響的瀏覽器無痕模式進行測量。
+- 重新檢視[支援的瀏覽器及功能](/docs/basic-features/supported-browsers-features.md).
+- 使用這些方式來改善效能：
+  - [`next/image` 及自動圖像最佳化](/docs/basic-features/image-optimization.md)
+  - [自動字型最佳化](/docs/basic-features/font-optimization.md)
+  - [指令碼（ Script ）最佳化](/docs/basic-features/script.md)
+- 改善[載入效能](#loading-performance)
 
-## Caching
+## 快取
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary><b>範例</b></summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/ssr-caching">ssr-caching</a></li>
+    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/ssr-caching">SSR 快取</a></li>
   </ul>
 </details>
 
-Caching improves response times and reduces the number of requests to external services. Next.js automatically adds caching headers to immutable assets served from `/_next/static` including JavaScript, CSS, static images, and other media.
+快取可以改善回應的時間及減少外部服務的請求次數。 Next.js 會自動針對位於 `/_next/static` 中不會改變的材料（assets）—— JavaScript 、 CSS 、靜態圖片、其他媒體——加上快取標頭。
 
 ```
 Cache-Control: public, max-age=31536000, immutable
 ```
 
-`Cache-Control` headers set in `next.config.js` will be overwritten in production to ensure that static assets can be cached effectively. If you need to revalidate the cache of a page that has been [statically generated](/docs/basic-features/pages.md#static-generation-recommended), you can do so by setting `revalidate` in the page's [`getStaticProps`](/docs/basic-features/data-fetching/get-static-props.md) function. If you're using `next/image`, there are also [specific caching rules](/docs/basic-features/image-optimization.md#caching) for the default Image Optimization loader.
+在 `next.config.js` 中設定的 `Cache-Control` 標頭會在最終成品中被改寫，以確保最後的靜態材料可以被有效地快取。如果你有需要對某個透過[靜態產生](/docs/basic-features/pages.md#static-generation-recommended)後快取的頁面進行重新驗證，可以在該頁面的　[`getStaticProps`](/docs/basic-features/pages.md#static-generation-recommended) 函式中設定 `revalidate` 。如果用了 `next/image` ，也有針對預設圖片最佳化載入的[特殊快取規則](/docs/basic-features/image-optimization.md#caching) 可以參考。
 
-**Note:** When running your application locally with `next dev`, your headers are overwritten to prevent caching locally.
+**備註:** 在本機以 `next dev` 指令執行應用程式時，你所自訂的標頭會被改寫以避免在本機開發時被快取住。
 
 ```
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 ```
 
-You can also use caching headers inside `getServerSideProps` and API Routes for dynamic responses. For example, using [`stale-while-revalidate`](https://web.dev/stale-while-revalidate/).
+你也可以在 `getServerSideProps` 及 API 路由中使用快取來做到動態回應。譬如使用 [`stale-while-revalidate`](https://web.dev/stale-while-revalidate/) 。
 
 ```jsx
-// This value is considered fresh for ten seconds (s-maxage=10).
-// If a request is repeated within the next 10 seconds, the previously
-// cached value will still be fresh. If the request is repeated before 59 seconds,
-// the cached value will be stale but still render (stale-while-revalidate=59).
+// 這個設定值（ s-maxage=10 ）可讓內容在 10 秒內都視為是新的。
+// 就算再接下來的 10 秒內有重複的請求，目前快取的內容仍會被視為是新的。
+// 這個設定值（ stale-while-revalidate=59 ）則表示若在 59 秒內發生重複的請求，
+// 快取的內容會被視為舊的但仍會被成像出來。
 //
-// In the background, a revalidation request will be made to populate the cache
-// with a fresh value. If you refresh the page, you will see the new value.
+// 重新驗證的請求會在背景中發出來替換最新的內容到快取中，
+// 在重新整理頁面後就會看到新的內容出現了。
 export async function getServerSideProps({ req, res }) {
   res.setHeader(
     'Cache-Control',
@@ -69,91 +71,90 @@ export async function getServerSideProps({ req, res }) {
 }
 ```
 
-By default, `Cache-Control` headers will be set differently depending on how your page fetches data.
+預設的情況下， `Cache-Control` 標頭會因頁面拿取資料的方式而異。
 
-- If the page uses `getServerSideProps` or `getInitialProps`, it will use the default `Cache-Control` header set by `next start` in order to prevent accidental caching of responses that cannot be cached. If you want a different cache behavior while using `getServerSideProps`, use `res.setHeader('Cache-Control', 'value_you_prefer')` inside of the function as shown above.
-- If the page is using `getStaticProps`, it will have a `Cache-Control` header of `s-maxage=REVALIDATE_SECONDS, stale-while-revalidate`, or if `revalidate` is _not_ used , `s-maxage=31536000, stale-while-revalidate` to cache for the maximum age possible.
+- 如果該頁面使用了 `getServerSideProps` 或 `getInitialProps` ，在預設的情況下， `Cache-Control` 會由 `next start` 來設定，以避免不經意地對不該被快取的回應做快取。如果想在使用 `getServerSideProps` 時套用不同的快取行為，可以像上述展示的那樣，在函式內用 `res.setHeader('Cache-Control', 'value_you_prefer')` 。
+- 如果使用了 `getStaticProps` ， 該頁面就會具有 `Cache-Control` 標頭及 `s-maxage=REVALIDATE_SECONDS, stale-while-revalidate` 的設定值。若 `revalidate` _未被使用_ 則採用 `s-maxage=31536000, stale-while-revalidate` 的方式來最大化快取的壽命。
 
-> **Note:** Your deployment provider must support caching for dynamic responses. If you are self-hosting, you will need to add this logic yourself using a key/value store like Redis. If you are using Vercel, [Edge Caching works without configuration](https://vercel.com/docs/edge-network/caching?utm_source=next-site&utm_medium=docs&utm_campaign=next-website).
+> **備註:** 你的部署服務供應商必須支援動態回應的快取。若採用自架伺服器，則需要自行把相關的邏輯存檔在譬如 Redis 這樣的鍵值儲存庫中。如果採用 Vercel 進行部署，[邊緣快取不需要額外設定](https://vercel.com/docs/edge-network/caching).
 
-## Reducing JavaScript Size
+## 減少 JavaScript 的大小
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary><b>範例</b></summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-dynamic-import">with-dynamic-import</a></li>
+    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-dynamic-import">動態匯入</a></li>
   </ul>
 </details>
 
-To reduce the amount of JavaScript sent to the browser, you can use the following tools to understand what is included inside each JavaScript bundle:
+藉由下列的工具可以理解每一個 JavaScript 封裝檔案中涵蓋了哪些東西，進而減少傳送到瀏覽器的 JavaScript 總數：
 
-- [Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost) – Display the size of the imported package inside VSCode.
-- [Package Phobia](https://packagephobia.com/) – Find the cost of adding a new dev dependency to your project.
-- [Bundle Phobia](https://bundlephobia.com/) - Analyze how much a dependency can increase bundle sizes.
-- [Webpack Bundle Analyzer](https://github.com/vercel/next.js/tree/canary/packages/next-bundle-analyzer) – Visualize size of webpack output files with an interactive, zoomable treemap.
-- [bundlejs](https://bundlejs.com/) - An online tool to quickly bundle & minify your projects, while viewing the compressed gzip/brotli bundle size, all running locally on your browser.
+- [Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost) – 在 VSCode 中顯示匯入套件的大小。
+- [Package Phobia](https://packagephobia.com/) – 找出加入到專案的開發依賴所需的成本。
+- [Bundle Phobia](https://bundlephobia.com/) – 分析某個依賴對最終輸出的大小有多少影響。
+- [Webpack Bundle Analyzer](https://github.com/vercel/next.js/tree/canary/packages/next-bundle-analyzer) – 視覺化 webpack 輸出檔案的大小，同時提供可互動及可縮放的樹狀圖。
+- [bundlejs](https://bundlejs.com/) – 快速封裝及最小化專案的線上工具，還可以檢視壓縮後的 gzip 或 brotli 的大小，它直接透過瀏覽器在本機執行。
 
-Each file inside your `pages/` directory will automatically be code split into its own JavaScript bundle during `next build`. You can also use [Dynamic Imports](/docs/advanced-features/dynamic-import.md) to lazy-load components and libraries. For example, you might want to defer loading your modal code until a user clicks the open button.
+在 `next build` 的過程中會自動把位於 `pages/` 目錄中的每個檔案做程式碼拆分為屬於它自己的 JavaScript 封裝檔。當然也可以用[動態匯入](/docs/advanced-features/dynamic-import.md)的方式來惰性載入元件及函式庫。好比說，你希望延後載入模態彈窗（ modal ）的程式碼，直到使用者點選開啟按鈕再載入。
 
-## Logging
+## 紀錄
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary><b>範例</b></summary>
   <ul>
-    <li><a href="https://github.com/Logflare/next-pino-logflare-logging-example">with-logging</a></li>
+    <li><a href="https://github.com/Logflare/next-pino-logflare-logging-example">紀錄</a></li>
   </ul>
 </details>
 
-Since Next.js runs on both the client and server, there are multiple forms of logging supported:
+鑒於 Next.js 同時執行於客戶端及伺服端，因此支援多種型式的紀錄方式：
 
-- `console.log` in the browser
-- `stdout` on the server
+- 在瀏覽器的 `console.log`
+- 在伺服器的 `stdout`
 
-If you want a structured logging package, we recommend [Pino](https://www.npmjs.com/package/pino). If you're using Vercel, there are [pre-built logging integrations](https://vercel.com/integrations#logging?utm_source=next-site&utm_medium=docs&utm_campaign=next-website) compatible with Next.js.
+若目標是結構化的紀錄方式，推薦使用 [Pino](https://www.npmjs.com/package/pino) 。若使用 Vercel ，則[內建整合](https://vercel.com/integrations#logging)了相容於 Next.js 的紀錄方式。
 
-## Error Handling
+## 錯誤處理
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary><b>範例</b></summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-sentry">with-sentry</a></li>
+    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-sentry">Sentry</a></li>
   </ul>
 </details>
 
-When an unhandled exception occurs, you can control the experience for your users with the [500 page](/docs/advanced-features/custom-error-page.md#500-page). We recommend customizing this to your brand instead of the default Next.js theme.
+你可以控制使用者在遭遇程式發生錯誤時顯示 [500 頁面](/docs/advanced-features/custom-error-page.md#500-page) 的體驗。與其使用 Next.js 預設的主題，建議自訂這些錯誤頁面以符合品牌的形象。
 
-You can also log and track exceptions with a tool like Sentry. [This example](https://github.com/vercel/next.js/tree/canary/examples/with-sentry) shows how to catch & report errors on both the client and server-side, using the Sentry SDK for Next.js. There's also a [Sentry integration for Vercel](https://vercel.com/integrations/sentry?utm_source=next-site&utm_medium=docs&utm_campaign=next-website).
+同時可以透過諸如 Sentry 這類的工具來追蹤例外事件。[這個範例](https://github.com/vercel/next.js/tree/canary/examples/with-sentry) 展示如何使用 Sentry SDK 來對 Next.js 的客戶端及伺服端進行錯誤的捕捉及回報。另外，還有[針對 Vercel 的 Sentry 整合](https://vercel.com/integrations/sentry).
 
-## Loading Performance
+## 載入效能
 
-To improve loading performance, you first need to determine what to measure and how to measure it. [Core Web Vitals](https://vercel.com/blog/core-web-vitals?utm_source=next-site&utm_medium=docs&utm_campaign=next-website) is a good industry standard that is measured using your own web browser. If you are not familiar with the metrics of Core Web Vitals, review this [blog post](https://vercel.com/blog/core-web-vitals?utm_source=next-site&utm_medium=docs&utm_campaign=next-website) and determine which specific metric/s will be your drivers for loading performance. Ideally, you would want to measure the loading performance in the following environments:
+在開始改善載入效能前，必須先決定要衡量什麼及如何衡量。作為經由網路瀏覽器進行衡量的工具， [Core Web Vitals](https://vercel.com/blog/core-web-vitals) 是優良的產業標準。若你尚不清楚 Core Web Vitals 的衡量指標，請檢閱這篇[部落格文章]並找出那些能改善載入效能的特殊指標。下列這些事項是衡量載入效能的理想環境：
 
-- In the lab, using your own computer or a simulator.
-- In the field, using real-world data from actual visitors.
-- Local, using a test that runs on your device.
-- Remote, using a test that runs in the cloud.
+- 實驗環境，使用你的電腦或模擬器。
+- 實際環境，使用真實世界訪客的資料。
+- 本機環境，使用執行在你的裝置的測試。
+- 遠端環境，使用執行在雲端的測試。
 
-Once you are able to measure the loading performance, use the following strategies to improve it iteratively so that you apply one strategy, measure the new performance and continue tweaking until you do not see much improvement. Then, you can move on to the next strategy.
+當準備就緒後，採用一次只套用一個策略的方式進行測量，觀察改進的結果並持續調整直到不再有顯著的改進幅度為止。接著，再套用下一個策略。
 
-- Use caching regions that are close to the regions where your database or API is deployed.
-- As described in the [caching](#caching) section, use a `stale-while-revalidate` value that will not overload your backend.
-- Use [Incremental Static Regeneration](/docs/basic-features/data-fetching#incremental-static-regeneration) to reduce the number of requests to your backend.
-- Remove unused JavaScript. Review this [blog post](https://calibreapp.com/blog/bundle-size-optimization) to understand what Core Web Vitals metrics bundle size affects and what strategies you can use to reduce it, such as:
-  - Setting up your Code Editor to view import costs and sizes
-  - Finding alternative smaller packages
-  - Dynamically loading components and dependencies
-  - For more in depth information, review this [guide](https://papyrus.dev/@PapyrusBlog/how-we-reduced-next.js-page-size-by-3.5x-and-achieved-a-98-lighthouse-score) and this [performance checklist](https://dev.to/endymion1818/nextjs-performance-checklist-5gjb).
+- 使用離你的資料庫或 API 部署地點最接近的快取區域。
+- 如同[快取](#caching)區塊所提到的，使用 `stale-while-revalidate` 快取值以避免對後端造成超載。
+- 使用[增量靜態重新產出](/docs/basic-features/data-fetching#incremental-static-regeneration)來減少對後端的請求數。
+- 移除不使用的 JavaScript 。檢閱這個[部落格](https://calibreapp.com/blog/bundle-size-optimization)來搞懂 Core Web Vitals 衡量哪些影響封裝檔大小的事項以及哪些是可以被用來減少大小的策略，譬如：
+  - 設定那些可以在程式碼編輯器中檢視匯入成本及大小的工具
+  - 找尋更小的可替代項目
+  - 動態地載入元件及依賴
+  - 更詳盡的資訊，請參閱這個[指南](https://papyrus.dev/@PapyrusBlog/how-we-reduced-next.js-page-size-by-3.5x-and-achieved-a-98-lighthouse-score)及[效能檢查清單](https://dev.to/endymion1818/nextjs-performance-checklist-5gjb)。
 
-## Related
+## 相關資訊
 
-For more information on what to do next, we recommend the following sections:
+以下是可以更進一步採取的措施：
 
 <div className="card">
   <a href="/docs/deployment.md">
-    <b>Deployment:</b>
-    <small>Take your Next.js application to production.</small>
+    <b>部署：</b>
+    <small>讓你的 Next.js 應用程式邁向成品</small>
   </a>
 </div>
 
-import DocsLayout from "@components/DocsLayout";
-export default ({ children }) => <DocsLayout>{children}</DocsLayout>;
+<TranslatedBy githubUserNames={["t7yang"]} />

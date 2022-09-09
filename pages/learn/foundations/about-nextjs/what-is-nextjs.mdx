@@ -1,6 +1,56 @@
-import NotTranslateYet from '@components/NotTranslateYet';
-import LearnLayout from '@components/LearnLayout';
+# Next.js 是什麼？
 
-<NotTranslateYet/>
+<Pagination
+  hrefs={[
+    '/learn/foundations/about-nextjs',
+    '/learn/foundations/about-nextjs/what-is-nextjs'
+  ]}
+/>
 
-export default ({ children }) => <LearnLayout>{children}</LearnLayout>;
+Next.js 是一款彈性的 **React 框架**，它提供你建立快速的**網站**的所有基礎要素。
+
+這意謂著什麼？讓我們花點時間聊聊 React 和 Next.js 是什麼及它們能為我們提供哪些幫助。
+
+### 網站具備的要素
+
+當你在建立現今的網頁應用程式時，必須考量到以下幾件事。像是:
+- **使用者介面** - 如何讓使用者願意花時間與你的網站進行互動。
+- **路由** - 如何讓使用者在你的網站中的不同頁面區域進行導航換頁。
+- **資料獲取** - 資料存儲在何處及如何在需要時取得。
+- **服務集合** - 你所使用的第三方服務（後台管理系統，權限驗證，支付服務），及如何跟他們互動。
+- **基礎建設** - 網站部屬、存放、運行的位置（雲服務、CDN、邊緣基礎架構等等）。
+- **網站效能** - 如何提升使用者瀏覽網站時的體驗。
+- **擴充性** - 你的網站在你的開發團隊、資料、網頁訪問量提升等等多種的變數之中是否能靈活運作且適應。
+- **開發者體驗** - 在開發、維護網站過程中，開發者的體驗感受。
+
+以上任何一個階段，你都必須想辦法解決，不論是自己想一套解決方案或是依賴其他工具像是函式庫（Libraries）或框架（Frameworks）。
+
+### 何謂 React？
+
+React 是一種 JavaScript 函式庫，用來打造一個具互動性地使用者介面。
+
+使用者介面指的是在螢幕中，使用者所有看見的並能夠操作的元素。
+
+![使用者介面](https://nextjs.org/static/images/learn/foundations/user-interface.png "使用者介面")
+
+談到函式庫（Libary），React 提供開發者許多函式來打造使用者介面（UI）及網頁應用程式。
+
+React 一部分成功的原因是它不侷限我們用任何一種打造網頁應用的方式。這造就了一個有許多第三方工具及解決方案的生態環境。
+
+但這也意謂著從無到有使用 React 打造一個完整的網站更加的不容易。譬如說，開發者需要花額外的時間為了一個普通的應用程式需求設定開發工具及思考新的解決方案。
+
+### 何謂 Next.js？
+
+Next.js 是以 React 為基石的框架，它提供你建構網站的所有基本要素。
+
+透過框架，Next.js 新增了 React 需要的工具及設定，且為你的應用提供許多額外的架構、功能及優化。
+
+![Next.js 架構](https://nextjs.org/static/images/learn/foundations/next-app.png "Next.js 架構")
+
+你可以使用 React 來打造你的UI介面，再漸漸地採用 Next.js 的功能來解決一般網頁應用程式的需求像是路由、資料獲取、第三方服務的串接 - 這些始終改善開發者及終端使用者體驗的部分。
+
+不管你是否是獨自作業或是身處在一定規模的團隊的開發者，都能運用 React 及 Next.js 來打造完全有互動性、高度動態及效能佳的網頁應用程式。
+
+在下一章節，我們將會討論要如何開始 React 及 Next.js 進行開發。
+
+<TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />

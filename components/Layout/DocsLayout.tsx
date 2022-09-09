@@ -1,13 +1,12 @@
-import TopNav from './TopNav';
-import SearchInput from './Input/SearchInput';
-import routes from './DocsRoutes.json';
+import SearchInput from '../Input/SearchInput';
+import routes from '../DocsRoutes.json';
 import { Key, PropsWithChildren } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 function DocsLayout(props: PropsWithChildren<{}>) {
-  return <div className="w-screen">
-    <TopNav/>
-    <div className="mx-auto container docs mt-8 pb-32 z-20 flex">
+  return(<>
+    <div className="mx-auto container mt-8 pb-32 z-20 flex">
       <aside
         className="z-10 h-screen sticky hidden
          md:flex md:flex-col md:w-[300px] md:min-w-[300px] md:mr-4 md:pr-5"
@@ -15,20 +14,22 @@ function DocsLayout(props: PropsWithChildren<{}>) {
         <SearchInput className="my-6"/>
         <DocsMenu />
       </aside>
-      <div className="w-full overflow-hidden">
+      <div className="w-full overflow-hidden docs">
         {props.children}
       </div>
     </div>
-  </div>;
+  </>);
+}
+
+type NestedsetProps = {
+  item?: any | undefined;
+  level: number;
 }
 
 const DocsMenu = () => {
-  type NestedsetProps = {
-    item?: any | undefined;
-    level: any;
-  }
+  const { pathname } = useRouter();
 
-  const Nestedset = ({ item, level=0 }: NestedsetProps) => {
+  const Nestedset = ({ item, level }: NestedsetProps) => {
     if(item.children) {
       return (<>
         <h4
@@ -59,7 +60,9 @@ const DocsMenu = () => {
     return (
       <li
         className={`${level > 0 ? `level-${level}` : ''}
-          my-[18px] text-base text-[#444]`}
+          my-[18px] text-base text-[#444]
+          ${pathname === item.path ? 'font-semibold' : ''}
+        `}
       >
         <Link href={item.path} passHref>
           <a>{item.title}</a>

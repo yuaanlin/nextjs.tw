@@ -1,27 +1,27 @@
 ---
-description: Next.js supports TypeScript by default and has built-in types for pages and the API. You can get started with TypeScript in Next.js here.
+描述: Next.js 預設支援 TypeScript 以及為頁面和 API 內建的 types。這裡將會學習到如何在 Next.js 內使用 TypeScript。
 ---
 
 # TypeScript
 
 <details>
-  <summary><b>Version History</b></summary>
+  <summary><b>版本歷史</b></summary>
 
-| Version   | Changes                                                                                                                              |
+| 版本   | 更動                                                                                                                              |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `v12.0.0` | [SWC](https://nextjs.org/docs/advanced-features/compiler) is now used by default to compile TypeScript and TSX for faster builds.    |
-| `v10.2.1` | [Incremental type checking](https://www.typescriptlang.org/tsconfig#incremental) support added when enabled in your `tsconfig.json`. |
+| `v12.0.0` | [SWC](https://nextjs.org/docs/advanced-features/compiler) is now used by default to compile TypeScript and TSX for faster builds. 是預設作為為了快速建立而用來編譯 TypeScript 和 TSX 的工具   |
+| `v10.2.1` | [增量 type 檢查](https://www.typescriptlang.org/tsconfig#incremental) 支援將會被加入當 `tsconfig.json` 被啟用 |
 
 </details>
 
-Next.js provides an integrated [TypeScript](https://www.typescriptlang.org/) experience, including zero-configuration set up and built-in types for Pages, APIs, and more.
+Next.js 提供包含無額外設定以及為了頁面、API 及更多的內建 types 的 [TypeScript](https://www.typescriptlang.org/) 整合體驗。
 
-- [Clone and deploy the TypeScript starter](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-typescript&project-name=with-typescript&repository-name=with-typescript&utm_source=next-site&utm_medium=docs&utm_campaign=next-website)
-- [View an example application](https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
+- [複製以及部署 TypeScript 模板](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-typescript&project-name=with-typescript&repository-name=with-typescript&utm_source=next-site&utm_medium=docs&utm_campaign=next-website)
+- [查看應用程式例子](https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
 
-## `create-next-app` support
+## 支援 `create-next-app` 
 
-You can create a TypeScript project with [`create-next-app`](https://nextjs.org/docs/api-reference/create-next-app) using the `--ts, --typescript` flag like so:
+你可以使用 [`create-next-app`](https://nextjs.org/docs/api-reference/create-next-app) 以及指令 `--ts, --typescript` 建立一個 TypeScript 專案，如下面所示：
 
 ```
 npx create-next-app@latest --ts
@@ -31,29 +31,29 @@ yarn create next-app --typescript
 pnpm create next-app --ts
 ```
 
-## Existing projects
+## 既有的專案
 
-To get started in an existing project, create an empty `tsconfig.json` file in
-the root folder:
+既有的專案，請在根目錄資料夾內建立一個 `tsconfig.json` 檔案：
 
 ```bash
 touch tsconfig.json
 ```
 
-Next.js will automatically configure this file with default values. Providing your own `tsconfig.json` with custom [compiler options](https://www.typescriptlang.org/docs/handbook/compiler-options.html) is also supported.
+Next.js 除了會自動地以預設值來設定檔案；也可以支援帶有自定義的[編譯器選項](https://www.typescriptlang.org/docs/handbook/compiler-options.html)的 `tsconfig.json` 檔。
 
-You can also provide a relative path to a tsconfig.json file by setting `typescript.tsconfigPath` prop inside your `next.config.js` file.
+你可以在 `next.config.js` 檔案內透過設定 `typescript.tsconfigPath` 屬性，來提供 `tsconfig.json` 檔一個相對的路徑位置。 
 
-Starting in `v12.0.0`, Next.js uses [SWC](https://nextjs.org/docs/advanced-features/compiler) by default to compile TypeScript and TSX for faster builds.
+版本 `v12.0.0`，Next.js 為達到快速建置，預設使用 [SWC](https://nextjs.org/docs/advanced-features/compiler) 來編譯 TypeScript 和 TSX。
 
-> Next.js will use Babel to handle TypeScript if `.babelrc` is present. This has some [caveats](https://babeljs.io/docs/en/babel-plugin-transform-typescript#caveats) and some [compiler options are handled differently](https://babeljs.io/docs/en/babel-plugin-transform-typescript#typescript-compiler-options).
+> 如果有 `.babelrc` 檔， Next.js 將會使用 Babel 來處理 TypeScript。但這將會有一些[限制](https://babeljs.io/docs/en/babel-plugin-transform-typescript#caveats)和一些[編譯器選項處理方式的不同](https://babeljs.io/docs/en/babel-plugin-transform-typescript#typescript-compiler-options)。
 
-Then, run `next` (normally `npm run dev` or `yarn dev`) and Next.js will guide you through the installation of the required packages to finish the setup:
+
+接著，執行 `next` (一般來說是 `npm run dev` 或 `yarn dev`)， Next.js 會引導你安裝所需的相關模組直到設定完畢：
 
 ```bash
 npm run dev
 
-# You'll see instructions like these:
+# 你將會看到相關指引如下:
 #
 # Please install TypeScript, @types/react, and @types/node by running:
 #
@@ -62,21 +62,23 @@ npm run dev
 # ...
 ```
 
-You're now ready to start converting files from `.js` to `.tsx` and leveraging the benefits of TypeScript!
+現在你已經準備好將 `.js` 檔轉換為 `.tsx` 並且可以利用 TypeScript 提供的優勢了。
 
-> A file named `next-env.d.ts` will be created at the root of your project. This file ensures Next.js types are picked up by the TypeScript compiler. **You should not remove it or edit it** as it can change at any time. This file should not be committed and should be ignored by version control (e.g. inside your `.gitignore` file).
+> 在根目錄下將會有一個名為 `next-env.d.ts` 的檔案會被建立。這個檔案確保 Next.js types 有被 TypeScript 編譯器接管。它有可能在任何時候被改變，因此**千萬不要移除或編輯它**，這個檔案不應該被 commit 且需要被版本控制忽略(例如：在你的 `gitignore` 檔案)。
 
-> TypeScript `strict` mode is turned off by default. When you feel comfortable with TypeScript, it's recommended to turn it on in your `tsconfig.json`.
+> TypeScript `嚴格模式` 預設狀況下是關閉的。當你習慣 TypeScript，我們建議在 `tsconfig.json` 將它開啟。
 
-> Instead of editing `next-env.d.ts`, you can include additional types by adding a new file e.g. `additional.d.ts` and then referencing it in the [`include`](https://www.typescriptlang.org/tsconfig#include) array in your `tsconfig.json`.
 
-By default, Next.js will do type checking as part of `next build`. We recommend using code editor type checking during development.
+> 與其編輯 `next-env.d.ts`， 你可以透過建立一個如 `additional.d.ts` 的檔案來新增額外的 types，並藉由 [`include`](https://www.typescriptlang.org/tsconfig#include) 陣列中引用。
 
-If you want to silence the error reports, refer to the documentation for [Ignoring TypeScript errors](/docs/api-reference/next.config.js/ignoring-typescript-errors.md).
 
-## Static Generation and Server-side Rendering
+預設下，Next.js 會視 type 檢查為 `next build` 的一個部分。我們建議在開發階段中使用程式碼編輯器做 type 檢查。
 
-For `getStaticProps`, `getStaticPaths`, and `getServerSideProps`, you can use the `GetStaticProps`, `GetStaticPaths`, and `GetServerSideProps` types respectively:
+如果你不想顯示任何錯誤訊息，可以查看[忽略 TypeScript 錯誤訊息](/docs/api-reference/next.config.js/ignoring-typescript-errors.md) 文件。
+
+##  靜態生成和伺服器端渲染
+
+如果是 `getStaticProps` 、 `getStaticPaths` 和 `getServerSideProps`，你可以分別使用 `GetStaticProps` 、 `GetStaticPaths` 和 `GetServerSideProps` types :
 
 ```ts
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
@@ -94,11 +96,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 ```
 
-> If you're using `getInitialProps`, you can [follow the directions on this page](/docs/api-reference/data-fetching/get-initial-props.md#typescript).
+> 如果你是使用 `getInitialProps`，你可以 [跟著這篇指引](/docs/api-reference/data-fetching/get-initial-props.md#typescript)來看看怎麼做。
 
-## API Routes
+## API 路由
 
-The following is an example of how to use the built-in types for API routes:
+以下是如何使用 API 路由的內建 type 的例子：
 
 ```ts
 import type { NextApiRequest, NextApiResponse } from 'next'
@@ -108,7 +110,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 }
 ```
 
-You can also type the response data:
+
+你也可以輸入 response 的資料：
 
 ```ts
 import type { NextApiRequest, NextApiResponse } from 'next'
@@ -122,9 +125,9 @@ export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
 }
 ```
 
-## Custom `App`
+## 自定義 `App`
 
-If you have a [custom `App`](/docs/advanced-features/custom-app.md), you can use the built-in type `AppProps` and change file name to `./pages/_app.tsx` like so:
+如果你有一個 [自定義 `App`](/docs/advanced-features/custom-app.md)，你可以使用內建的 type `Appprops` 並且更換檔案名稱 `./pages/_app.tsx`，例如：
 
 ```ts
 import type { AppProps } from 'next/app'
@@ -134,15 +137,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 }
 ```
 
-## Path aliases and baseUrl
+## Path aliases 和 baseUrl
 
-Next.js automatically supports the `tsconfig.json` `"paths"` and `"baseUrl"` options.
+Next.js 自動支援 `tsconfig.json` `"paths"` 和 `"baseUrl"` 的多種選擇。
 
-You can learn more about this feature on the [Module Path aliases documentation](/docs/advanced-features/module-path-aliases.md).
+你可以點擊 [Module Path aliases 文件](/docs/advanced-features/module-path-aliases.md) 來學習更多。
 
-## Type checking next.config.js
+## Type 檢查 next.config.js
 
-The `next.config.js` file must be a JavaScript file as it does not get parsed by Babel or TypeScript, however you can add some type checking in your IDE using JSDoc as below:
+`Next.config.js` 若不是 Javascript 檔案的話，將無法被 Babel 或 TypeScript 解析，但你可以使用 JSDoc，加入一些 type 檢查你的 IDE，參考如下：
 
 ```js
 // @ts-check
@@ -157,33 +160,29 @@ const nextConfig = {
 module.exports = nextConfig
 ```
 
-## Incremental type checking
+## 增量 type 檢查
 
-Since `v10.2.1` Next.js supports [incremental type checking](https://www.typescriptlang.org/tsconfig#incremental) when enabled in your `tsconfig.json`, this can help speed up type checking in larger applications.
+自從 `v10.2.1` Next.js 支援 [增量 type 檢查](https://www.typescriptlang.org/tsconfig#incremental) 當你啟用 `tsconfig.json`，這可以幫助你針對大型應用程式加速作 type 檢查。
 
-It is highly recommended to be on at least `v4.3.2` of TypeScript to experience the [best performance](https://devblogs.microsoft.com/typescript/announcing-typescript-4-3/#lazier-incremental) when leveraging this feature.
+使用此功能的話，強烈建議至少要版本 `v4.3.2` 的 TypeScript 來體驗[最佳效能](https://devblogs.microsoft.com/typescript/announcing-typescript-4-3/#lazier-incremental)。
 
-## Ignoring TypeScript Errors
+## 忽略 TypeScript 錯誤
 
-Next.js fails your **production build** (`next build`) when TypeScript errors are present in your project.
+當 TypeScript 錯誤訊息存在於你的專案中時，Next.js 會在 **生產環境建置** (`next build`) 階段顯示失敗。
 
-If you'd like Next.js to dangerously produce production code even when your application has errors, you can disable the built-in type checking step.
+如果你仍舊希望 Next.js 在即使有錯誤訊息的狀況下仍然要執行生產環境的建置，你可以取消內建的 type 檢查階段；如果取消，請確保 type 檢查是建置或部署流程的其中一部分。
 
-If disabled, be sure you are running type checks as part of your build or deploy process, otherwise this can be very dangerous.
-
-Open `next.config.js` and enable the `ignoreBuildErrors` option in the `typescript` config:
+打開 `next.config.js` 和啟用在 `typescript` 設定內的 `ignoreBuildErrors` 選項：
 
 ```js
 module.exports = {
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
+    // !! 警告 !!
+    // 即使存在著 type 錯誤，仍舊執行生產環境的建置是非常危險的。
+    // !! 警告 !!
     ignoreBuildErrors: true,
   },
 }
 ```
 
-import DocsLayout from "@components/DocsLayout";
-export default ({ children }) => <DocsLayout>{children}</DocsLayout>;
+<TranslatedBy githubUserNames={["AndreaFan123"]} />

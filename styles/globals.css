@@ -2,34 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-.docs pre {
-    @apply bg-[#1d1f21] text-white p-4 rounded my-4 overflow-x-auto;
+.docs code > span {
+    font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace !important;
+    text-rendering: optimizelegibility;
+    @apply font-light text-sm;
 }
 
-.docs :not(pre) > code {
-    @apply text-[#c400ec] p-1 rounded mx-2;
+.docs :not(pre > div) > code {
+    @apply text-[#c400ec] mx-1 text-sm;
 }
 
-.docs :not(pre) > code::before {
+.docs :not(pre > div) > code::before {
     content: '`';
 }
 
-.docs :not(pre) > code::after {
+.docs :not(pre > div) > code::after {
     content: '`';
 }
 
 .docs h1 {
-    @apply text-4xl font-bold mt-8 mb-8;
+    @apply text-4xl font-bold mb-14;
 }
 
 .docs h2 {
-    @apply text-3xl font-bold mt-8 mb-6;
+    @apply text-3xl font-bold mt-16 mb-12;
 }
 
-.docs p {
-    @apply my-4;
+.docs h3 {
+    @apply text-2xl font-bold mt-16 mb-10;
+}
+
+.docs h4 {
+    @apply text-xl font-bold mt-14 mb-8;
+}
+
+.docs h5 {
+    @apply text-lg font-bold mt-12 mb-6;
+}
+
+.docs > p, .docs > :not(.mdx-component) p {
+    @apply my-5 leading-8 font-light;
+}
+
+.docs details {
+    @apply bg-gray-100 rounded p-6 my-4 border;
+}
+
+.docs > :not(.mdx-component) a {
+    @apply text-[#0074de] hover:text-[#0080f6] transition-all;
+}
+
+.docs ul {
+    @apply ml-4;
+}
+
+.docs ul li::before {
+    content: '-';
+    @apply mr-4 opacity-50;
+}
+
+.docs ol {
+    @apply list-decimal ml-8;
+}
+
+.docs li {
+    @apply my-6 font-light leading-8;
 }
 
 aside {
     top: calc(2rem + 80px);
+}
+
+.answer-list {
+    counter-reset: answer-list;
+}
+
+.answer-list .answer-list__item::before{
+    counter-increment: answer-list;
+    content: counter(answer-list,upper-alpha)". ";
+    display: inline-block;
+    width: 1.5rem;
 }
