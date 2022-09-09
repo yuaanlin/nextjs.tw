@@ -1,4 +1,130 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+
+# 從 React 到 Next.js
+
+##　開始您的 Next.js
+
+在安裝 Next.js 到您的專案前，您不再需要透過手動加入 react 與 react-dom 的 script 標籤的方式引入 React 
+
+取而代之的是，您可以在本地端使用套件管理工具 npm 來安裝這些套件
+
+
+> 小提醒：您需要在您的電腦中安裝 Node.js [最低版本需求](/docs/upgrading#minimum-nodejs-version)，[您可以在此進行下載](https://nodejs.org/en/)
+
+
+在準備進行開發前，請先新增一個內容為空物件的 package.json 文檔。
+
+```
+    //package.json
+    {
+
+    }
+```
+
+接著，請在您的終端機中運行 npm install react react-dom next。
+
+當安裝程序完成後，您可以在 package.json 文檔查看所有的專案相依套件與應用程式資訊：
+
+```
+// package.json
+{
+  "dependencies": {
+    "next": "^12.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
+```
+You will also notice a new folder called node_modules that contains the actual files of our dependencies.
+
+您也會注意到有個 node_modules 的資料夾，主要存放專案相依項中的套件內容。
+
+Jumping back to the index.html file, you can delete the following code:
+
+回到 index.html，您可以移除以下提及的程式碼：
+
+  1. 若您已使用 npm 安裝 react 與 react-dom 等套件，則可以移除手動引入的 React 與 React-dom script 標籤
+  2. <html> 與 <body>。Next.js 預設會提供這兩個標籤 
+  3. 會與 React 中的 app DOM 元素與 ReactDom.render() 連動的相關程式碼
+  4. Babel 語法。Next.js 的編譯器會自行將 JSX 語法轉換為可供瀏覽器讀取的 JavaScript 語法
+  5. <script type="text/jsx"> 標籤
+  6. React. 部分的 React.useState(0) 函式
+  7. 在您移除以上提及的內容後，請在 index.html 頂部添加一行 import { useState } from "react"。您的程式碼應該會如下所示：
+
+```
+// index.html
+import { useState } from 'react';
+function Header({ title }) {
+  return <h1>{title ? title : 'Default title'}</h1>;
+}
+
+function HomePage() {
+  const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+  const [likes, setLikes] = useState(0);
+
+  function handleClick() {
+    setLikes(likes + 1);
+  }
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship. 🚀" />
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+
+      <button onClick={handleClick}>Like ({likes})</button>
+    </div>
+  );
+}
+```
+The only code left in the HTML file is JSX, so you can change the file type from .html to .js or .jsx.
+此時在 index.html 中的程式碼均為 JSX，因此您可以將 index.html 的檔案類型由 .html 替換為 .js 或 .jsx。
+
+Now, there are three more things you need to do to fully transition to a Next.js app:
+現在，在完全過渡至 Next.js 前，您還需要執行下列三項程序：
+
+Move the index.js file to a new folder called pages (more on this later).
+Add default export to your main React component to help Next.js distinguish which component to render as the main component of this page.
+
+  1. 移動 index.js 至 pages 資料夾內(稍後會詳細介紹)
+  2. 針對主要的 React 元件加入 export default 指定，讓 Next.js 可辨別頁面需要渲染的主元件
+
+```
+   // ...
+   export default function HomePage() {
+   //  ...
+```
+
+  3. 在 package.json 中增加一組 script，以便在您進行開發同時運行 Next.js 環境伺服器  file to run the Next.js development server while you develop.
+
+```   
+   // package.json
+   {
+    "scripts": {
+        "dev": "next dev"
+    },
+     // "dependencies": {
+     //   "next": "^11.1.0",
+     //   "react": "^17.0.2",
+     //   "react-dom": "^17.0.2"
+     // }
+   }
+```
+
+## Running the development server
+To confirm everything works, you can view your app by running npm run dev inside your terminal and navigating to localhost:3000 in the browser. Then, make a small change to the code and save it.
+
+Once you save the file, you should notice the browser automatically updates to reflect the change.
+
+This feature is called Fast Refresh. It gives you instantaneous feedback on any edits you make and comes pre-configured with Next.js.
+
+To recap, your code went from this...
+
+<TranslatedBy githubUserNames={["st880517"]} />
+
 
 <Pagination
   hrefs={[
@@ -8,5 +134,4 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet/>
 
