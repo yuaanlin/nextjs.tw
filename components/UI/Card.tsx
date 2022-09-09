@@ -7,10 +7,10 @@ interface CardProps {
 
 function Card({ title, desc, path }: CardProps) {
   return (
-    <div className="card">
-      <a href="/docs/basic-features/data-fetching/get-server-side-props.md">
-        <b>{title}</b>
-        <small>{desc}</small>
+    <div className="cursor-pointer shadow-md hover:shadow-lg py-5 px-8 border border-gray-200 rounded-md">
+      <a href={path}>
+        <div className="font-bold text-md">{title}</div>
+        <div className="text-sm text-gray-500 mt-2 font-light">{desc}</div>
       </a>
     </div>
   )
