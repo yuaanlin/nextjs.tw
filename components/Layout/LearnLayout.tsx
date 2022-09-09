@@ -2,16 +2,17 @@ import routes from '../LearnRoutes.json';
 import { useRouter } from 'next/router';
 import { Key, PropsWithChildren } from 'react';
 import Link from 'next/link';
+
 function LearnLayout(props: PropsWithChildren<{}>) {
   return (
-    <div className="mx-auto container pb-32 pt-16 z-20 flex">
-      <aside className="z-10 w-72 pt-12 md:block">
-        <p className="opacity-50">
-          這裡會放分數<br/>但現在還沒有 👷
-        </p>
+    <div className="mx-auto container mt-8 pb-32 z-20 flex">
+      <aside
+        className="z-10 h-screen sticky hidden
+         md:flex md:flex-col md:w-[300px] md:min-w-[300px] md:mr-4 md:pr-5"
+      >
         <LearnMenu />
       </aside>
-      <div className="w-full md:pl-72 docs">
+      <div className="w-full overflow-hidden docs">
         {props.children}
       </div>
     </div>
@@ -40,7 +41,7 @@ const LearnMenu = () => {
               <a
                 className={`${level === 1 && pathname.includes(item.path)
                   ? 'font-bold' : ''
-                } inline-block my-1 text-[0.88em]`}
+                } inline-block my-2 text-sm`}
               >{item.title}</a>
             </Link>
           }
@@ -74,18 +75,21 @@ const LearnMenu = () => {
     return (
       <li
         className={`${level > 0 ? `level-${level}` : ''}
-          my-1 text-[0.88em] text-[#444]
+          my-4 text-sm text-[#444]
           ${pathname === item.path ? 'font-semibold' : ''}
         `}
       >
         <Link href={item.path} passHref>
-          <a>{item.title}</a>
+          <a className="flex items-center">
+            <div className="w-2 h-2 rounded-full bg-[#0070f3] mr-2" />
+            {item.title}
+          </a>
         </Link>
       </li>
     );
   };
   return (
-    <div className="overflow-y-auto pb-6">
+    <div className="pb-6">
       {
         routes.map((item, key) => (
           <div className="heading" key={key}>
