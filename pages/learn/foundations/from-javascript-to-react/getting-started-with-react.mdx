@@ -60,17 +60,17 @@
 
 JSX 是 JavaScript 的語法擴展，它允許你以類似 HTML 的語法來描述你的 UI。JSX 的好處在於除了需遵守<a href="https://beta.reactjs.org/learn/writing-markup-with-jsx#the-rules-of-jsx" target="_blank">三個 JSX 規則</a>之外，你無需學習 HTML 和 JavaScript 之外的任何新符號或語法。
 
-需注意的是，瀏覽器無法直接理解 JSX，因此你需要一個 JavaScript 編譯器，例如 <a href="https://babeljs.io/" target="_blank">Babel</a>，將您的 JSX 語法轉換為常規 JavaScript。
+需注意的是，瀏覽器無法直接理解 JSX，因此你需要一個 JavaScript 編譯器，例如 <a href="https://babeljs.io/" target="_blank">Babel</a>，將你的 JSX 語法轉換為常規 JavaScript。
 
 ### 在你的專案中加入 Babel
 
-要將 Babel 添加到您的項目中，請將以下腳本複製貼上到你的 `index.html` 文件中：
+要將 Babel 添加到你的項目中，請將以下腳本複製貼上到你的 `index.html` 文件中：
 
 ```html
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 ```
 
-此外，您需要將腳本類型更改為 `type=text/jsx` 來告知 Babel 要轉換的類型。
+此外，你需要將腳本類型更改為 `type=text/jsx` 來告知 Babel 要轉換的類型。
 
 ```html
 <html>
