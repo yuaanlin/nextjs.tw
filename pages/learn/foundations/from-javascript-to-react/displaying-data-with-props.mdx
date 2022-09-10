@@ -10,7 +10,7 @@
 
 ### 使用屬性顯示資料
 
-到目前為止，如果你要重複使用 `<Header />` 組件，它每次均會顯示相同的內容。
+到目前為止，如果你要重複使用 `<Header />` 元件，它每次均會顯示相同的內容。
 
 ```jsx
 function Header() {
@@ -31,17 +31,17 @@ function HomePage() {
 
 常規 HTML 元素具有可透過傳遞訊息來改變元素行為的屬性。例如：更改 `<img>` 元素的 `src` 屬性會更改顯示的圖像；更改 `<a>` 標籤的 `href` 屬性會更改導向的連結。
 
-同樣，你可以將訊息作為屬性傳遞給 React 組件。這些被稱為 `props（屬性）`。
+同樣，你可以將訊息作為屬性傳遞給 React 元件。這些被稱為 `props（屬性）`。
 
 ![](https://nextjs.org/static/images/learn/foundations/props.png)
 
-與 JavaScript 函數類似，你可以設計接受自定義參數（或屬性）的組件，這些參數（或屬性）會改變組件的行為或渲染到畫面時可見的內容。然後，你可以將這些屬性從父組件傳遞給子組件。
+與 JavaScript 函數類似，你可以設計接受自定義參數（或屬性）的元件，這些參數（或屬性）會改變元件的行為或渲染到畫面時可見的內容。然後，你可以將這些屬性從父元件傳遞給子元件。
 
-> **注意:** 在 React 中，資料沿著組件樹向下流動。這被稱為 *單向資料流*。 我們將在下一章節中討論 State（狀態），它可以作為屬性從父組件傳遞到子組件。
+> **注意:** 在 React 中，資料沿著元件樹向下流動。這被稱為 *單向資料流*。 我們將在下一章節中討論 State（狀態），它可以作為屬性從父元件傳遞到子元件。
 
 ### 使用屬性
 
-在 `HomePage` 組件中，你可以將自定義 `title` 屬性傳遞給 `Header` 組件，就像傳遞 HTML 屬性一樣：
+在 `HomePage` 元件中，你可以將自定義 `title` 屬性傳遞給 `Header` 元件，就像傳遞 HTML 屬性一樣：
 
 ```jsx
 // function Header() {
@@ -59,7 +59,7 @@ function HomePage() {
 // ReactDOM.render(<HomePage />, app)
 ```
 
-而子組件 `Header` 可以接受這些屬性作為其第一個 **函數參數**：
+而子元件 `Header` 可以接受這些屬性作為其第一個 **函數參數**：
 
 ```jsx
 function Header(props) {
@@ -197,7 +197,7 @@ function Page() {
 }
 ```
 
-你的組件現在接受一個通用的 title 屬性，你可以在應用程式的不同部分重複使用它，你需要做的就是更改 title：
+你的元件現在接受一個通用的 title 屬性，你可以在應用程式的不同部分重複使用它，你需要做的就是更改 title：
 
 ```jsx
 function Page() {
@@ -216,7 +216,7 @@ function Page() {
 
 > **注意：** React 在資料獲取方面是沒有限制方式的，代表你可以完全依照你的需求決定如何獲取。稍後，我們將討論 Next.js 中的資料獲取選項，但是現在，你可以先使用一個簡單的陣列來表示資料。
 
-將 names 陣列添加到 `HomePage` 組件中：
+將 names 陣列添加到 `HomePage` 元件中：
 
 ```jsx
 function HomePage() {
@@ -283,7 +283,7 @@ function HomePage() {
         },
         options:[
             {
-                text: 向組件傳遞訊息,
+                text: 向元件傳遞訊息,
                 isCorrect: true
             },
             {
@@ -301,7 +301,7 @@ function HomePage() {
 
 **其他資源：**
 
-- [將屬性傳遞給組件](https://beta.reactjs.org/learn/passing-props-to-a-component)
+- [將屬性傳遞給元件](https://beta.reactjs.org/learn/passing-props-to-a-component)
 - [渲染列表](https://beta.reactjs.org/learn/rendering-lists)
 - [條件渲染](https://beta.reactjs.org/learn/conditional-rendering)
 

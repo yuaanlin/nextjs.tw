@@ -12,7 +12,7 @@
 
 讓我們探索 React 如何幫助我們添加與 **狀態** 和 **事件處理者** 的交互性。
 
-例如，讓我們在 `HomePage` 組件中創建一個名為 Like 的按鈕。首先，在 `return()` 語句中添加一個按鈕元素：
+例如，讓我們在 `HomePage` 元件中創建一個名為 Like 的按鈕。首先，在 `return()` 語句中添加一個按鈕元素：
 
 ```jsx
 function HomePage() {
@@ -92,7 +92,7 @@ function HomePage() {
 
 ### 狀態和鉤子
 
-React 有一組稱為 [鉤子](https://reactjs.org/docs/hooks-intro.html) 的函數。鉤子讓你可以向組件添加額外的邏輯，例如 **狀態**。你可以將狀態視為 UI 中隨時間變化的任何訊息，通常由用戶交互觸發。
+React 有一組稱為 [鉤子](https://reactjs.org/docs/hooks-intro.html) 的函數。鉤子讓你可以向元件添加額外的邏輯，例如 **狀態**。你可以將狀態視為 UI 中隨時間變化的任何訊息，通常由用戶交互觸發。
 
 ![](https://nextjs.org/static/images/learn/foundations/state.png)
 
@@ -104,7 +104,7 @@ function HomePage() {
 }
 ```
 
-`useState()` 返回一個陣列，你可以使用 **陣列解構** 訪問和使用組件內的這些陣列數值：
+`useState()` 返回一個陣列，你可以使用 **陣列解構** 訪問和使用元件內的這些陣列數值：
 
 ```jsx
 function HomePage() {
@@ -142,7 +142,7 @@ function HomePage() {
 }
 ```
 
-接著你可以使用組件內的狀態變數，來檢查初始狀態是否有被設定好。
+接著你可以使用元件內的狀態變數，來檢查初始狀態是否有被設定好。
 
 ```jsx
 function HomePage() {
@@ -156,7 +156,7 @@ function HomePage() {
 }
 ```
 
-最後，你可以在 `HomePage` 組件中調用狀態更新函數 `setLikes`，讓我們將其添加到你之前定義的 `handleClick()` 函數中：
+最後，你可以在 `HomePage` 元件中調用狀態更新函數 `setLikes`，讓我們將其添加到你之前定義的 `handleClick()` 函數中：
 
 ```jsx
 function HomePage() {
@@ -178,7 +178,7 @@ function HomePage() {
 
 試試點擊按鈕，點擊時將調用 `handleClick` 函數，該函數會使用當前 likes 的數值 + 1 作為參數，傳給 `setLikes` 狀態更新函數，來更新 likes 的值為原本的值 + 1。
 
-> **注意：** 與作為第一個函數參數傳遞給組件的屬性不同，狀態被初始化並存儲在組件中。你可以將狀態訊息作為屬性傳遞給子組件，但更新狀態的邏輯應保留在最初創建狀態的組件中。
+> **注意：** 與作為第一個函數參數傳遞給元件的屬性不同，狀態被初始化並存儲在元件中。你可以將狀態訊息作為屬性傳遞給子元件，但更新狀態的邏輯應保留在最初創建狀態的元件中。
 
 ### 管理狀態
 
@@ -193,15 +193,15 @@ function HomePage() {
         },
         options:[
             {
-                text: 屬性是傳遞給組件的唯讀訊息；狀態是可以隨時間變化的訊息，通常由用戶交互觸發,
+                text: 屬性是傳遞給元件的唯讀訊息；狀態是可以隨時間變化的訊息，通常由用戶交互觸發,
                 isCorrect: true
             },
             {
-                text: 屬性用於定義組件的行為；狀態用於設置組件的樣式,
+                text: 屬性用於定義元件的行為；狀態用於設置元件的樣式,
                 isCorrect: false
             },
             {
-                text: 屬性包含有關組件的暫時訊息；狀態包含唯讀訊息,
+                text: 屬性包含有關元件的暫時訊息；狀態包含唯讀訊息,
                 isCorrect: false
             }
         ]
@@ -211,7 +211,7 @@ function HomePage() {
 
 **其他資源：**
 
-- [狀態：組件​​的記憶](https://beta.reactjs.org/learn/state-a-components-memory#)
+- [狀態：元件​​的記憶](https://beta.reactjs.org/learn/state-a-components-memory#)
 - [遇見你的第一個鉤子函數](https://beta.reactjs.org/learn/state-a-components-memory#meet-your-first-hook)
 - [響應事件](https://beta.reactjs.org/learn/responding-to-events)
 

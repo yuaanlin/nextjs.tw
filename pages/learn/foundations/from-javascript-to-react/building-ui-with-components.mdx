@@ -8,21 +8,21 @@
     }
 */}
 
-### 使用組件構建 UI
+### 使用元件構建 UI
 
-使用者介面可以分解成一塊一塊小的構建塊，稱為 **組件**。
+使用者介面可以分解成一塊一塊小的構建塊，稱為 **元件**。
 
-組件允許你構建獨立的、可重複使用的程式碼片段。如果你將組件視為 **樂高積木**，你可以將這些單獨的積木組合在一起以形成更大的結構。如果你需要更新某部分的 UI，你只需更新特定的組件或積木。
+元件允許你構建獨立的、可重複使用的程式碼片段。如果你將元件視為 **樂高積木**，你可以將這些單獨的積木組合在一起以形成更大的結構。如果你需要更新某部分的 UI，你只需更新特定的元件或積木。
 
 ![](https://nextjs.org/static/images/learn/foundations/components.png)
 
-這種模塊化使你的程式碼在增長時更容易維護，因為你可以輕鬆地新增、更新和刪除組件，而不會影響應用程式的其餘部分。
+這種模塊化使你的程式碼在增長時更容易維護，因為你可以輕鬆地新增、更新和刪除元件，而不會影響應用程式的其餘部分。
 
-React 組件的好處在於它們只是 JavaScript。讓我們看看如何從 JavaScript 的角度編寫 React 組件：
+React 元件的好處在於它們只是 JavaScript。讓我們看看如何從 JavaScript 的角度編寫 React 元件：
 
-### 創建組件
+### 創建元件
 
-在 React 中，組件是 **函數**。在你的 `script` 標籤中，寫一個名為 `header` 的函數：
+在 React 中，元件是 **函數**。在你的 `script` 標籤中，寫一個名為 `header` 的函數：
 
 ```html
 <script type="text/jsx">
@@ -36,7 +36,7 @@ React 組件的好處在於它們只是 JavaScript。讓我們看看如何從 Ja
 </script>
 ```
 
-組件是 **返回 UI 元素** 的函數，在函數的 return 語句中，你可以編寫 JSX：
+元件是 **返回 UI 元素** 的函數，在函數的 return 語句中，你可以編寫 JSX：
 
 ```html
 <script type="text/jsx">
@@ -50,7 +50,7 @@ React 組件的好處在於它們只是 JavaScript。讓我們看看如何從 Ja
 </script>
 ```
 
-要將此組件渲染到 DOM，你可以將其作為第一個參數傳遞給 `ReactDOM.render()` 方法：
+要將此元件渲染到 DOM，你可以將其作為第一個參數傳遞給 `ReactDOM.render()` 方法：
 
 ```html
 <script type="text/jsx">
@@ -68,7 +68,7 @@ React 組件的好處在於它們只是 JavaScript。讓我們看看如何從 Ja
 
 但是，請稍等。如果你嘗試在瀏覽器中運行上述程式，將會收到錯誤消息。要使其正常運行，你必須做兩件事： 
 
-首先，React 組件應該大寫以區別於一般的 HTML 和 JavaScript。
+首先，React 元件應該大寫以區別於一般的 HTML 和 JavaScript。
 
 ```jsx
 function Header() {
@@ -79,7 +79,7 @@ function Header() {
 ReactDOM.render(Header, app);
 ```
 
-其次，你使用 React 組件的方式與使用常規 HTML 標籤的方式相同，帶有尖角括號 `<>`。
+其次，你使用 React 元件的方式與使用常規 HTML 標籤的方式相同，帶有尖角括號 `<>`。
 
 ```jsx
 function Header() {
@@ -89,11 +89,11 @@ function Header() {
 ReactDOM.render(<Header />, app);
 ```
 
-### 巢狀組件
+### 巢狀元件
 
-應用程式通常包含比單個組件更多的內容。你可以像嵌套常規 HTML 元素一樣將 React 組件 **嵌套** 在彼此內部。
+應用程式通常包含比單個元件更多的內容。你可以像嵌套常規 HTML 元素一樣將 React 元件 **嵌套** 在彼此內部。
 
-在你的範例中，創建一個名為 `HomePage` 的新組件：
+在你的範例中，創建一個名為 `HomePage` 的新元件：
 
 ```jsx
 function Header() {
@@ -106,7 +106,7 @@ function HomePage() {
 ReactDOM.render(<Header />, app);
 ```
 
-然後將 `<Header>` 組件嵌套在新的 `<HomePage>` 組件中：
+然後將 `<Header>` 元件嵌套在新的 `<HomePage>` 元件中：
 
 ```jsx
 function Header() {
@@ -125,17 +125,17 @@ function HomePage() {
 ReactDOM.render(<Header />, app);
 ```
 
-### 組件樹
+### 元件樹
 
-你可以透過這種方式繼續嵌套 React 組件以形成組件樹。
+你可以透過這種方式繼續嵌套 React 元件以形成元件樹。
 
 ![](https://nextjs.org/static/images/learn/foundations/component-tree.png)
 
-例如，你最上層的 `HomePage` 組件可以包含 `Header`、`Article` 和 `Footer` 組件。這些組件中的每一個都可以擁有自己的子組件，依此類推。例如，`Header` 組件可以包含 `Logo`、`Title` 和 `Navigation` 組件。
+例如，你最上層的 `HomePage` 元件可以包含 `Header`、`Article` 和 `Footer` 元件。這些元件中的每一個都可以擁有自己的子元件，依此類推。例如，`Header` 元件可以包含 `Logo`、`Title` 和 `Navigation` 元件。
 
-這種模塊化格式讓你可以在應用程式的不同位置重複使用組件。
+這種模塊化格式讓你可以在應用程式的不同位置重複使用元件。
 
-在你的專案中，由於 `<HomePage>` 現在是你的最上層組件，你可以將其傳遞給 `ReactDOM.render()` 方法：
+在你的專案中，由於 `<HomePage>` 現在是你的最上層元件，你可以將其傳遞給 `ReactDOM.render()` 方法：
 
 ```jsx
 function Header() {
@@ -153,14 +153,14 @@ function HomePage() {
 ReactDOM.render(<HomePage />, app);
 ```
 
-下一章節中，我們將討論 **屬性** 以及如何使用它們在組件之間傳遞資料。
+下一章節中，我們將討論 **屬性** 以及如何使用它們在元件之間傳遞資料。
 
 {/*
     TODO: 加入問答元件
     quiz:{
         heading:{
             type: quickReview,
-            text: 在 React 中，如何將 Header 組件嵌套在 Layout 組件中？
+            text: 在 React 中，如何將 Header 元件嵌套在 Layout 元件中？
         },
         options:[
             {
@@ -182,7 +182,7 @@ ReactDOM.render(<HomePage />, app);
 
 **其他資源：**
 
-- [你的第一個組件](https://beta.reactjs.org/learn/your-first-component)
-- [導入和導出組件](https://beta.reactjs.org/learn/importing-and-exporting-components)
+- [你的第一個元件](https://beta.reactjs.org/learn/your-first-component)
+- [導入和導出元件](https://beta.reactjs.org/learn/importing-and-exporting-components)
 
 <TranslatedBy githubUserNames={["warren30815"]} />
