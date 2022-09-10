@@ -1,112 +1,112 @@
 [
   {
-    "title": "FOUNDATIONS",
+    "title": "基礎觀念",
     "index": true,
     "children": [
       {
-        "title": "About Next.js",
+        "title": "關於 Next.js",
         "path": "/learn/foundations/about-nextjs",
         "children": [
           {
-            "title": "What is Next.js",
+            "title": "Next.js 是什麼",
             "path": "/learn/foundations/about-nextjs/what-is-nextjs"
           }
         ]
       },
       {
-        "title": "From JavaScript to React",
+        "title": "從 JavaScript 到 React",
         "path": "/learn/foundations/from-javascript-to-react",
         "children": [
           {
-            "title": "Updating the UI with JavaScript",
+            "title": "使用 JavaScript 來更新 UI",
             "path": "/learn/foundations/from-javascript-to-react/updating-ui-with-javascript"
           },
           {
-            "title": "Getting Started with React",
+            "title": "開始使用 React",
             "path": "/learn/foundations/from-javascript-to-react/getting-started-with-react"
           },
           {
-            "title": "Essential JavaScript for React",
+            "title": "React 中的基礎 JavaScript",
             "path": "/learn/foundations/from-javascript-to-react/essential-javascript-react"
           },
           {
-            "title": "React Core Concept",
+            "title": "React 核心概念",
             "path": "/learn/foundations/from-javascript-to-react/react-core-concepts"
           },
           {
-            "title": "Building UI with Components",
+            "title": "使用元件構建 UI",
             "path": "/learn/foundations/from-javascript-to-react/building-ui-with-components"
           },
           {
-            "title": "Display Data with Props",
+            "title": "使用屬性顯示資料",
             "path": "/learn/foundations/from-javascript-to-react/displaying-data-with-props"
           },
           {
-            "title": "Adding Interactivity with State",
+            "title": "添加與狀態的交互性",
             "path": "/learn/foundations/from-javascript-to-react/adding-interactivity-with-state"
           },
           {
-            "title": "How to Continue Learning React",
+            "title": "如何繼續學習 React",
             "path": "/learn/foundations/from-javascript-to-react/continue-learning-react"
           }
         ]
       },
       {
-        "title": "From React to Next.js",
+        "title": "從 React 到 Next.js",
         "path": "/learn/foundations/from-react-to-nextjs",
         "children": [
           {
-            "title": "Getting Started with Next",
+            "title": "開始使用 Next",
             "path": "/learn/foundations/from-react-to-nextjs/getting-started-with-nextjs"
           },
           {
-            "title": "Next Steps",
+            "title": "下一步",
             "path": "/learn/foundations/from-react-to-nextjs/next-steps"
           }
         ]
       },
       {
-        "title": "How Next.js Works",
+        "title": "Next.js 是如何運作的",
         "path": "/learn/foundations/how-nextjs-works",
         "children": [
           {
-            "title": "From Development to Production",
+            "title": "從開發環境到生產環境",
             "path": "/learn/foundations/how-nextjs-works/development-and-production"
           },
           {
-            "title": "Compiling",
+            "title": "編譯",
             "path": "/learn/foundations/how-nextjs-works/compiling"
           },
           {
-            "title": "Minifying",
+            "title": "最小化 (Minifying)",
             "path": "/learn/foundations/how-nextjs-works/minifying"
           },
           {
-            "title": "Bunding",
+            "title": "模組打包 (Bundling)",
             "path": "/learn/foundations/how-nextjs-works/bundling"
           },
           {
-            "title": "Code Splitting",
+            "title": "程式碼拆分",
             "path": "/learn/foundations/how-nextjs-works/code-splitting"
           },
           {
-            "title": "Build Time vs. Runtime",
+            "title": "建置時期 vs. 運行時期",
             "path": "/learn/foundations/how-nextjs-works/buildtime-and-runtime"
           },
           {
-            "title": "Client and Server",
+            "title": "客戶端與伺服器端",
             "path": "/learn/foundations/how-nextjs-works/client-and-server"
           },
           {
-            "title": "Rendering",
+            "title": "畫面渲染",
             "path": "/learn/foundations/how-nextjs-works/rendering"
           },
           {
-            "title": "CDNs and the Edge",
+            "title": "內容傳遞網路及邊緣運算",
             "path": "/learn/foundations/how-nextjs-works/cdns-and-edge"
           },
           {
-            "title": "Next Steps",
+            "title": "下一步",
             "path": "/learn/foundations/how-nextjs-works/next-steps"
           }
         ]
