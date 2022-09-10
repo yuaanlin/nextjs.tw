@@ -31,6 +31,8 @@ dependencies:
   '@mdx-js/loader': 2.1.3
   '@mdx-js/react': 2.1.3_react@18.2.0
   '@next/mdx': 12.2.5_hbo3tj2k5fhsh63l2ltjrymaq4
+  '@types/mdx': 2.0.2
+  mdx: link:type/@next/mdx
   next: 12.2.5_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -38,7 +40,6 @@ dependencies:
   scroll-lock: 2.1.5
 
 devDependencies:
-  '@mdx-js/react': 2.1.3_react@18.2.0
   '@types/node': 18.7.14
   '@types/react': 18.0.18
   '@types/react-dom': 18.0.6
@@ -52,7 +53,7 @@ devDependencies:
   eslint-plugin-import: 2.26.0_pwovp45kjytedpuwpq6ialv6fq
   eslint-plugin-react: 7.31.1_eslint@8.22.0
   postcss: 8.4.16
-  tailwindcss: 3.1.8
+  tailwindcss: 3.1.8_postcss@8.4.16
   typescript: 4.8.2
 
 packages:
@@ -150,7 +151,6 @@ packages:
       '@types/mdx': 2.0.2
       '@types/react': 18.0.18
       react: 18.2.0
-
     dev: false
 
   /@next/env/12.2.5:
@@ -369,6 +369,7 @@ packages:
 
   /@types/mdx/2.0.2:
     resolution: {integrity: sha512-mJGfgj4aWpiKb8C0nnJJchs1sHBHn0HugkVfqqyQi7Wn6mBRksLeQsPOFvih/Pu8L1vlDzfe/LidhVHBeUk3aQ==}
+    dev: false
 
   /@types/ms/0.7.31:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
@@ -2777,6 +2778,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
 
   /read-cache/1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -3044,10 +3046,12 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /tailwindcss/3.1.8:
+  /tailwindcss/3.1.8_postcss@8.4.16:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
