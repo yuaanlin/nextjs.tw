@@ -1,4 +1,4 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+## 從 JavaScript 到 React
 
 <Pagination
   hrefs={[
@@ -14,5 +14,211 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet/>
+### 添加與狀態的互動性
 
+讓我們探索 React 如何幫助我們添加與 **狀態** 和 **事件處理者** 的互動性。
+
+例如，讓我們在 `HomePage` 元件中創建一個名為 Like 的按鈕。首先，在 `return()` 語句中添加一個按鈕元素：
+
+```jsx
+function HomePage() {
+  const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship. 🚀" />
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+
+      <button>Like</button>
+    </div>
+  );
+}
+```
+
+### 監聽事件
+
+要使按鈕在點擊時執行某些操作，你可以使用 `onClick` 事件。
+
+```jsx
+function HomePage() {
+  // ...
+  return (
+    <div>
+      {/* ... */}
+      <button onClick={}>Like</button>
+    </div>
+  );
+}
+```
+
+在 React 中，事件名稱是依駝峰式（camelCase）命名規則。 `onClick` 事件是其中一個可以用來響應用戶互動的事件。除此之外，你也可以對輸入框使用 `onChange` 或對表單使用 `onSubmit`。
+
+### 事件處理
+
+你可以定義一個函數來在觸發事件時 "處理" 事件。在 return 語句之前創建一個名為 `handleClick()` 的函數：
+
+```jsx
+function HomePage() {
+  // ...
+
+  function handleClick() {
+    console.log("increment like count")
+  }
+
+  return (
+    <div>
+      {/* ... */}
+      <button onClick={}>Like</button>
+    </div>
+     )
+   }
+```
+
+然後，你可以在觸發 `onClick` 事件時調用 `handleClick` 函數：
+
+```jsx
+function HomePage() {
+  //    ...
+  function handleClick() {
+    console.log('increment like count');
+  }
+
+  return (
+    <div>
+      {/* ... */}
+      <button onClick={handleClick}>Like</button>
+    </div>
+  );
+}
+```
+
+### 狀態和 Hooks
+
+React 有一組稱為 [Hooks](https://reactjs.org/docs/hooks-intro.html) 的函數。 Hooks 讓你可以向元件添加額外的邏輯，例如 **狀態**。你可以將狀態視為 UI 中隨時間變化的任何訊息，通常由用戶互動觸發。
+
+![](https://nextjs.org/static/images/learn/foundations/state.png)
+
+你可以使用 *狀態* 來存儲和增加用戶點擊 like 按鈕的次數。事實上，這就是 React 管理狀態的 Hooks ，稱為：`useState()`。
+
+```jsx
+function HomePage() {
+  React.useState();
+}
+```
+
+`useState()` 返回一個陣列，你可以使用 **陣列解構** 訪問和使用元件內的這些陣列數值：
+
+```jsx
+function HomePage() {
+  const [] = React.useState();
+
+  // ...
+}
+```
+
+陣列中的第一項是狀態 `值`，你可以為其命名。建議將其命名為具描述性的：
+
+```jsx
+function HomePage() {
+  const [likes] = React.useState();
+
+  // ...
+}
+```
+
+陣列中的第二項是 `更新` 值的函數。你可以任意命名更新函數，但通常使用 `set` 作為前綴詞，後接要更新的狀態變數的名稱：
+
+```jsx
+function HomePage() {
+  const [likes, setLikes] = React.useState();
+
+  // ...
+}
+```
+
+你還可以在此添加 `likes` 狀態的初始值：零。
+
+```jsx
+function HomePage() {
+  const [likes, setLikes] = React.useState(0);
+}
+```
+
+接著你可以使用元件內的狀態變數，來檢查初始狀態是否有被設定好。
+
+```jsx
+function HomePage() {
+  // ...
+  const [likes, setLikes] = React.useState(0);
+
+  return (
+    // ...
+    <button onClick={handleClick}>Like({likes})</button>
+  );
+}
+```
+
+最後，你可以在 `HomePage` 元件中調用狀態更新函數 `setLikes`，讓我們將其添加到你之前定義的 `handleClick()` 函數中：
+
+```jsx
+function HomePage() {
+  // ...
+  const [likes, setLikes] = React.useState(0);
+
+  function handleClick() {
+    setLikes(likes + 1);
+  }
+
+  return (
+    <div>
+      {/* ... */}
+      <button onClick={handleClick}>Likes ({likes})</button>
+    </div>
+  );
+}
+```
+
+試試點擊按鈕，點擊時將調用 `handleClick` 函數，該函數會使用當前 likes 的數值 + 1 作為參數，傳給 `setLikes` 狀態更新函數，來更新 likes 的值為原本的值 + 1。
+
+> **注意：** 與作為第一個函數參數傳遞給元件的屬性不同，狀態被初始化並存儲在元件中。你可以將狀態訊息作為屬性傳遞給子元件，但更新狀態的邏輯應保留在最初創建狀態的元件中。
+
+### 管理狀態
+
+本篇只是對狀態的入門介紹，你可以了解更多關於在 React 應用程式中管理狀態和數據流的內容。要了解更多訊息，我們建議你閱讀 React 文檔中的 [添加互動性](https://beta.reactjs.org/learn/adding-interactivity) 和 [管理狀態](https://beta.reactjs.org/learn/managing-state) 部分。
+
+{/*
+    TODO: 加入問答元件
+    quiz:{
+        heading:{
+            type: quickReview,
+            text: 屬性和狀態有什麼區別？？
+        },
+        options:[
+            {
+                text: 屬性是傳遞給元件的唯讀訊息；狀態是可以隨時間變化的訊息，通常由用戶互動觸發,
+                isCorrect: true
+            },
+            {
+                text: 屬性用於定義元件的行為；狀態用於設置元件的樣式,
+                isCorrect: false
+            },
+            {
+                text: 屬性包含有關元件的暫時訊息；狀態包含唯讀訊息,
+                isCorrect: false
+            }
+        ]
+    }
+
+*/}
+
+**其他資源：**
+
+- [狀態：元件的記憶](https://beta.reactjs.org/learn/state-a-components-memory#)
+- [遇見你的第一個 Hooks 函數](https://beta.reactjs.org/learn/state-a-components-memory#meet-your-first-hook)
+- [響應事件](https://beta.reactjs.org/learn/responding-to-events)
+
+<TranslatedBy githubUserNames={["warren30815"]} />
