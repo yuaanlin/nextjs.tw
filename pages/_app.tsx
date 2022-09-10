@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+
 import Layout from '../components/Layout';
 import { MDXProvider } from '@mdx-js/react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -34,6 +35,7 @@ function MyApp({
   pageProps
 }: AppProps) {
   return (
+
     <MDXProvider components={mdxComponents}>
       <Layout>
         <Component {...pageProps} />
