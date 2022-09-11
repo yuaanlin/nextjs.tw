@@ -1,11 +1,6 @@
-{/*
----
-description: Next.js has a built-in, opinionated, and file-system based Router. You can learn how it works here.
----
-*/}
 # 路由
 
-Next.js 擁有一個基於 [頁面](/docs/basic-features/pages.md) 建立出來的檔案系統。
+Next.js 以 [頁面的概念](/docs/basic-features/pages.md) 打造出基於檔案系統（ file-system ）的路由功能。
 
 當一個檔案被加進 `pages` 資料夾，它會自動地變成可用的路由。
 
@@ -13,21 +8,21 @@ Next.js 擁有一個基於 [頁面](/docs/basic-features/pages.md) 建立出來�
 
 #### 索引路由
 
-路由器會自動地將資料夾根目錄中命名為 `index` 的檔案配置路由。
+路由器會自動地將命名為 `index` 的檔案作為資料夾根目錄的頁面。
 
 - `pages/index.js` → `/`
 - `pages/blog/index.js` → `/blog`
 
 #### 巢狀路由
 
-路由器支援槽狀檔案。如果你建立了一個槽狀的資料夾結構，檔案仍然會依照相同的方式自動地配置路由。
+路由器支援巢狀檔案。如果你建立了一個巢狀的資料夾結構，檔案仍然會依照相同的方式自動地配置路由。
 
 - `pages/blog/first-post.js` → `/blog/first-post`
 - `pages/dashboard/settings/username.js` → `/dashboard/settings/username`
 
 #### 動態路由片段
 
-要匹配一個動態路由片段，你可以使用中括弧。這可以使你匹配到具名參數。
+如果要匹配一個動態路由片段，你可以使用中括號。這可以使其與參數名稱相匹配。
 
 - `pages/blog/[slug].js` → `/blog/:slug` (`/blog/hello-world`)
 - `pages/[username]/settings.js` → `/:username/settings` (`/foo/settings`)
@@ -37,9 +32,9 @@ Next.js 擁有一個基於 [頁面](/docs/basic-features/pages.md) 建立出來�
 
 ## 連結頁面
 
-Next.js 的路由允許你使用用戶端路由跳轉頁面，相似於單頁式應用程式。
+Next.js 的路由允許你使用客戶端路由來跳轉頁面，相似於單頁式應用程式（ single-page application ）。
 
-提供了一個稱作 `Link` 的 React 組件來做用戶端路由跳轉。
+一個稱作 `Link` 的 React 元件可以供你用來作為客戶端的路由跳轉。
 
 ```jsx
 import Link from 'next/link'
@@ -69,17 +64,17 @@ function Home() {
 export default Home
 ```
 
-上面的例子用了多個連結，每個連結對應著已知頁面的一個路徑（`href`）：
+上面的例子用了多個連結，每個連結都對應著一個已知頁面的路徑（`href`）：
 
 - `/` → `pages/index.js`
 - `/about` → `pages/about.js`
 - `/blog/hello-world` → `pages/blog/[slug].js`
 
-任何 `<Link />` 在視圖中（初始化或捲動），頁面使用 [靜態生成](/docs/basic-features/data-fetching/get-static-props.md) ，將會默認預先取回連結（包含對應的資料）。使用 [伺服器端渲染](/docs/basic-features/data-fetching/get-server-side-props.md) 對應的資料 _不是_ 使用預先取回連結。
+任何出現在畫面中的 `<Link />` 元件（包含頁面初始化或後續使用者向下捲動頁面）如果指向使用了 [靜態生成](/docs/basic-features/data-fetching/get-static-props.md) ，將會被提前載入（包含該頁面所需的資料）。使用 [伺服器端渲染](/docs/basic-features/data-fetching/get-server-side-props) 的頁面 _不會_ 提前載入。
 
 ### 連結動態路徑
 
-你也可以使用插值來建立一個路徑， [動態路由片段](#dynamic-route-segments) 可以派得上用場。舉例來說，顯示一個已經被當成屬性傳入組件的文章清單：
+你也可以使用插入變數的方式來建立一個路徑，這時 [動態路由片段](#dynamic-route-segments) 可以派得上用場。舉例來說，顯示一個已經被當成 props 傳入元件的文章清單。
 
 ```jsx
 import Link from 'next/link'
@@ -101,8 +96,7 @@ function Posts({ posts }) {
 export default Posts
 ```
 
-> [`encodeURIComponent`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) 被用來保持範例的路徑兼容 utf-8 。
-> [`encodeURIComponent`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) is used in the example to keep the path utf-8 compatible.
+> 在以下範例中使用了 [`encodeURIComponent`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) 來確保路徑可以兼容 utf-8 編碼格式。
 
 或者，使用 URL 物件（ URL Object ）:
 
@@ -131,7 +125,7 @@ function Posts({ posts }) {
 export default Posts
 ```
 
-現在，以下的情境我們使用 URL 物件建立路徑，而不是使用插值：
+現在我們使用 URL 物件來建立路徑，而不是使用插入變數的方式：
 
 - `pathname` 是 `pages` 資料夾裡的頁面名稱。如同 `/blog/[slug]` 這個例子一樣。
 - `query` 是一個有著動態片段的物件。如同 `slug` 這個例子一樣。
@@ -145,9 +139,9 @@ export default Posts
   </ul>
 </details>
 
-在 React 中的組件，你可以使用 [`useRouter`](/docs/api-reference/next/router.md#useRouter) 或者 [`withRouter`](/docs/api-reference/next/router.md#withRouter) 來存取 [`router` 物件](/docs/api-reference/next/router.md#router-object)。
+在 React 的元件中，你可以使用 [`useRouter`](/docs/api-reference/next/router.md#useRouter) 或者 [`withRouter`](/docs/api-reference/next/router.md#withRouter) 來存取 [`router` 物件](/docs/api-reference/next/router.md#router-object)。
 
-一般來說，我們推薦使用 [`useRouter`](/docs/api-reference/next/router.md#useRouter)。
+一般來說，我們建議使用 [`useRouter`](/docs/api-reference/next/router.md#useRouter)。
 
 ## 學習更多
 
@@ -155,14 +149,16 @@ export default Posts
 
 <div className="card">
   <a href="/docs/api-reference/next/link.md">
-    <b>連結:</b>
-    <small>處理用戶端導覽。</small>
+    <b>next/link:</b>
+    <small>處理客戶端的頁面切換。</small>
   </a>
 </div>
 
 <div className="card">
   <a href="/docs/api-reference/next/router.md">
-    <b>路由:</b>
-    <small>借助路由應用程式介面，在頁面中實現更好的目標。</small>
+    <b>next/router:</b>
+    <small>在你的頁面中直接使用更完整的 router API 。</small>
   </a>
 </div>
+
+<TranslatedBy githubUserNames={["DoubleLazyZ"]} />
