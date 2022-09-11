@@ -1,3 +1,314 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+## 從 JavaScript 到 React
 
-<NotTranslateYet/>
+<Pagination
+  hrefs={[
+    '/learn/foundations/from-javascript-to-react',
+    '/learn/foundations/from-javascript-to-react/updating-ui-with-javascript',
+    '/learn/foundations/from-javascript-to-react/getting-started-with-react',
+    '/learn/foundations/from-javascript-to-react/essential-javascript-react',
+    '/learn/foundations/from-javascript-to-react/react-core-concepts',
+    '/learn/foundations/from-javascript-to-react/building-ui-with-components',
+    '/learn/foundations/from-javascript-to-react/displaying-data-with-props',
+    '/learn/foundations/from-javascript-to-react/adding-interactivity-with-state',
+    '/learn/foundations/from-javascript-to-react/continue-learning-react'
+  ]}
+/>
+
+### 使用屬性顯示資料
+
+到目前為止，如果你要重複使用 `<Header />` 元件，它每次均會顯示相同的內容。
+
+```jsx
+function Header() {
+  return <h1>Develop. Preview. Ship. 🚀</h1>;
+}
+
+function HomePage() {
+  return (
+    <div>
+      <Header />
+      <Header />
+    </div>
+  );
+}
+```
+
+但是當你想顯示不同的內容，或者你想顯示的資料是從外部來源獲取，因此無法提前知道內容，該怎麼辦？
+
+常規 HTML 元素具有可透過傳遞訊息來改變元素行為的屬性。例如：更改 `<img>` 元素的 `src` 屬性會更改顯示的圖像；更改 `<a>` 標籤的 `href` 屬性會更改導向的連結。
+
+同樣，你可以將訊息作為屬性傳遞給 React 元件。這些被稱為 `props（屬性）`。
+
+![](https://nextjs.org/static/images/learn/foundations/props.png)
+
+與 JavaScript 函數類似，你可以設計接受自定義參數（或屬性）的元件，這些參數（或屬性）會改變元件的行為或渲染到畫面時可見的內容。然後，你可以將這些屬性從父元件傳遞給子元件。
+
+> **注意:** 在 React 中，資料沿著元件樹向下流動。這被稱為 *單向資料流*。 我們將在下一章節中討論 State（狀態），它可以作為屬性從父元件傳遞到子元件。
+
+### 使用屬性
+
+在 `HomePage` 元件中，你可以將自定義 `title` 屬性傳遞給 `Header` 元件，就像傳遞 HTML 屬性一樣：
+
+```jsx
+// function Header() {
+//   return <h1>Develop. Preview. Ship. 🚀</h1>
+// }
+
+function HomePage() {
+  return (
+    <div>
+      <Header title="React 💙" />
+    </div>
+  );
+}
+
+// ReactDOM.render(<HomePage />, app)
+```
+
+而子元件 `Header` 可以接受這些屬性作為其第一個 **函數參數**：
+
+```jsx
+function Header(props) {
+//   return <h1>Develop. Preview. Ship. 🚀</h1>
+// }
+
+// function HomePage() {
+//   return (
+//     <div>
+//       <Header title="React 💙" />
+//     </div>
+//   )
+// }
+
+// ReactDOM.render(<HomePage />, app)
+```
+
+如果你使用 `console.log()` 來印出屬性，你可以看到它是一個帶有 title 屬性的 **物件**。
+
+```jsx
+function Header(props) {
+    console.log(props) // { title: "React 💙" }
+//   return <h1>React 💙</h1>
+// }
+
+// function HomePage() {
+//   return (
+//     <div>
+//       <Header title="React 💙" />
+//     </div>
+//   )
+// }
+
+// ReactDOM.render(<HomePage />, app)
+```
+
+由於屬性是一個物件，你可以使用 **物件解構** 在函數屬性中顯式命名屬性的值：
+
+```jsx
+function Header({ title }) {
+    console.log(title) // "React 💙"
+//  return <h1>React 💙</h1>
+// }
+
+// function HomePage() {
+//   return (
+//     <div>
+//       <Header title="React 💙" />
+//     </div>
+//   )
+// }
+
+// ReactDOM.render(<HomePage />, app)
+```
+
+然後，你可以用你的 title 變數來替換 `<h1>` 標籤的內容。
+
+```jsx
+function Header({ title }) {
+  console.log(title);
+  return <h1>title</h1>;
+}
+```
+
+如果你在瀏覽器中打開你的專案，你會看到它正在顯示實際的單字 "title"。這是因為 React 認為你打算將純文字字串呈現給 DOM。
+
+你需要一種方法來告訴 React 這是一個 JavaScript 變數。
+
+### 在 JSX 中使用變數
+
+要使用你定義的變數，你可以使用 **花括號** `{}`，它是一種特殊的 JSX 語法，允許你直接在 JSX 標記中編寫常規 JavaScript。
+
+```jsx
+// function Header({title}) {
+//  console.log(title)
+return <h1>{title}</h1>
+// }
+```
+
+你可以將花括號視為在 "JSX" 中使用 "JavaScript" 的一種方式。你可以在花括號內添加任何 **JavaScript 表達式**（計算結果為單個數值的東西），例如：
+
+1. 帶有逗點符號的 **對象物件**：
+
+```jsx
+function Header(props) {
+  return <h1>{props.title}</h1>;
+}
+```
+
+2. **文字模板**：
+
+```jsx
+function Header({ title }) {
+  return <h1>{`Cool ${title}`}</h1>;
+}
+```
+
+3. **函數的回傳值**：
+
+```jsx
+function createTitle(title) {
+  if (title) {
+    return title;
+  } else {
+    return 'Default title';
+  }
+}
+
+function Header({ title }) {
+  return <h1>{createTitle(title)}</h1>;
+}
+```
+
+4. 或者**三元運算子**：
+
+```jsx
+function Header({ title }) {
+  return <h1>{title ? title : 'Default Title'}</h1>;
+}
+```
+
+你現在可以將任何字串傳遞給 title 屬性，並且由於使用了三元運算子，考慮了組​​件中的默認情況，所以甚至無需傳遞 title 屬性：
+
+```jsx
+function Header({ title }) {
+  return <h1>{title ? title : 'Default title'}</h1>;
+}
+
+function Page() {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
+}
+```
+
+你的元件現在接受一個通用的 title 屬性，你可以在應用程式的不同部分重複使用它，你需要做的就是更改 title：
+
+```jsx
+function Page() {
+  return (
+    <div>
+      <Header title="React 💙" />
+      <Header title="A new title" />
+    </div>
+  );
+}
+```
+
+### 遍歷列表
+
+需要將資料顯示為列表是很常見的，你可以使用陣列方法來操作資料，並生成相同樣式但不同訊息的 UI 元素。
+
+> **注意：** React 在資料獲取方面是沒有限制方式的，代表你可以完全依照你的需求決定如何獲取。稍後，我們將討論 Next.js 中的資料獲取選項，但是現在，你可以先使用一個簡單的陣列來表示資料。
+
+將 names 陣列添加到 `HomePage` 元件中：
+
+```jsx
+function HomePage() {
+  const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship. 🚀" />
+    </div>
+  );
+}
+```
+
+然後，你可以使用 `array.map()` 方法遍歷陣列，並使用 **箭頭函數** 將名稱映射到陣列的每一項：
+
+```jsx
+function HomePage() {
+  const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship. 🚀" />
+      <ul>
+        {names.map((name) => (
+          <li>{name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+請注意你是如何使用花括號來橫跨 "JavaScript" 和 "JSX" 的。
+
+如果你運行這段程式，React 會給我們一個關於缺少 `key` 屬性的警告。這是因為 React 需要這個屬性來唯一標記陣列中的每一項，以便知道要在 DOM 中更新哪些元素。
+
+你現在可以使用 names 陣列，因為它們目前每一項還是唯一的（沒有重複的字串），但建議使用保證唯一的名稱，例如每一項的 ID。
+
+```jsx
+function HomePage() {
+  const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship. 🚀" />
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+下一章節中，你將了解更多關於 **狀態** 以及如何在 React 中監聽用戶事件。
+
+{/*
+    TODO: 加入問答元件
+    quiz:{
+        heading:{
+            type: quickReview,
+            text: React 中的屬性用途為何？
+        },
+        options:[
+            {
+                text: 向元件傳遞訊息,
+                isCorrect: true
+            },
+            {
+                text: 編寫 CSS 規則,
+                isCorrect: false
+            },
+            {
+                text: 向 HTML 元素添加屬性,
+                isCorrect: false
+            }
+        ]
+    }
+
+*/}
+
+**其他資源：**
+
+- [將屬性傳遞給元件](https://beta.reactjs.org/learn/passing-props-to-a-component)
+- [渲染列表](https://beta.reactjs.org/learn/rendering-lists)
+- [條件渲染](https://beta.reactjs.org/learn/conditional-rendering)
+
+<TranslatedBy githubUserNames={["warren30815"]} />

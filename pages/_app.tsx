@@ -4,9 +4,11 @@ import { MDXProvider } from '@mdx-js/react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import CodeStyle from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
 import TranslatedBy from '@components/TranslatedBy';
+import Pagination from '@components/Pagination';
 import type { AppProps } from 'next/app';
 
 const mdxComponents = {
+  Pagination,
   TranslatedBy,
   code: ({ className, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '');

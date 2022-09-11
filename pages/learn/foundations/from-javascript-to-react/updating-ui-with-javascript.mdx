@@ -1,4 +1,167 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+## 從 JavaScript 到 React
 
-<NotTranslateYet/>
+<Pagination
+  hrefs={[
+    '/learn/foundations/from-javascript-to-react',
+    '/learn/foundations/from-javascript-to-react/updating-ui-with-javascript',
+    '/learn/foundations/from-javascript-to-react/getting-started-with-react',
+    '/learn/foundations/from-javascript-to-react/essential-javascript-react',
+    '/learn/foundations/from-javascript-to-react/react-core-concepts',
+    '/learn/foundations/from-javascript-to-react/building-ui-with-components',
+    '/learn/foundations/from-javascript-to-react/displaying-data-with-props',
+    '/learn/foundations/from-javascript-to-react/adding-interactivity-with-state',
+    '/learn/foundations/from-javascript-to-react/continue-learning-react'
+  ]}
+/>
 
+### 使用 JavaScript 和 DOM 方法來更新 UI
+
+讓我們一起看看怎麼使用 JavaScript 和 DOM 方法，首先我們加入一個 `h1` 標籤到你的專案。
+
+打開程式編輯器並創建一個叫 `index.html` 的新檔案，在檔案中加入如下程式碼：
+
+```html
+<!-- index.html -->
+<html>
+  <body>
+    <div></div>
+  </body>
+</html>
+```
+
+然後賦予其中的 `div` 一個獨特的 `id`，以便稍後可以定位到它。
+
+```html
+<!-- index.html -->
+<html>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+```
+
+為了在你的 HTML 檔案裡面可以撰寫 JavaScript，我們需要加入 `script` 標籤：
+
+```html
+<!-- index.html -->
+<html>
+  <body>
+    <div id="app"></div>
+    <script type="text/javascript"></script>
+  </body>
+</html>
+```
+
+現在在 `script` 標籤內，你可以使用 DOM 方法，我們使用 `getElementById()` 來藉由 `id` 選擇剛剛的 `div` 元素：
+
+```html
+<!-- index.html -->
+<html>
+  <body>
+    <div id="app"></div>
+
+    <script type="text/javascript">
+      const app = document.getElementById('app');
+    </script>
+  </body>
+</html>
+```
+
+除了獲取元素外，我們也可以透過 DOM 方法來創建新元素，這裡我們使用一些 DOM 方法來創建一個新的 `<h1>` 元素：
+
+```html
+<!-- index.html -->
+<html>
+  <body>
+    <div id="app"></div>
+
+    <script type="text/javascript">
+      // Select the div element with 'app' id
+      const app = document.getElementById('app');
+
+      // Create a new H1 element
+      const header = document.createElement('h1');
+
+      // Create a new text node for the H1 element
+      const headerContent = document.createTextNode(
+        'Develop. Preview. Ship. 🚀',
+      );
+
+      // Append the text to the H1 element
+      header.appendChild(headerContent);
+
+      // Place the H1 element inside the div
+      app.appendChild(header);
+    </script>
+  </body>
+</html>
+```
+
+為了確定我們現在做的都是正確的，在瀏覽器內打開 HTML 檔案，你將會看到一個 h1 標籤上寫著 'Develop. Preview. Ship. 🚀'。
+
+### HTML 與 DOM
+
+如果你透過<a href="https://developer.chrome.com/docs/devtools/overview/" target="_blank">瀏覽器內的開發人員工具</a>來查看 DOM 元素，你會發現 DOM 內包含了 `<h1>` 元素，與原始碼（你創建的 HTML 檔案）有些不同。
+
+![](https://nextjs.org/static/images/learn/foundations/source-code.png)
+
+這是因為 HTML 代表 **初始頁面內容**，然而 DOM 代表 **更新後的頁面內容**，即藉由剛剛寫的那些 JavaScript 程式所更新後的結果。
+
+藉由原生的 JavaScript 來更新 DOM 雖然功能強大，但程式碼上卻有點冗長，目前為止你只是為了要加入一個 `<h1>` 元素和一些文字，已經寫了這些程式碼了：
+
+```html
+<!-- index.html -->
+<script type="text/javascript">
+  const app = document.getElementById('app');
+  const header = document.createElement('h1');
+  const headerContent = document.createTextNode('Develop. Preview. Ship. 🚀');
+  header.appendChild(headerContent);
+  app.appendChild(header);
+</script>
+```
+
+當專案或團隊增長時，這會讓建構一個應用變得非常有挑戰性。
+
+透過這種方式，開發者會消耗大量時間去寫指令告訴電腦它該 **如何（how）** 去做事。那能不能只告訴電腦說你想要顯示 **什麼（what）**，然後電腦就可以去理解該 **如何（how）** 去更新 DOM 呢？
+
+### 命令式（Imperative） 與 宣告式（Declarative）編程
+
+上述的程式是一個 **命令式編程** 的好範例，你一步一步告訴電腦該 **如何（how）** 去更新使用者介面，但我們通常傾向透過宣告式方法來加速開發過程。宣告式方法中，我們不需要寫 DOM 方法，而是專注於宣告我們想要顯示 **什麼（what）** 內容（在本文的例子中，即 `h1` 標籤和一些文字）。
+
+換句話說， **命令式編程** 像是告訴廚師該如何一步一步去做一個披薩； **宣告式編程** 像是直接點一個披薩，我們不需要知道要做出披薩的每一步驟。🍕
+
+其中一個有名的宣告式函式庫為 <a href="https://beta.reactjs.org/" target="_blank">React</a>，他可以用來幫助開發者建立使用者介面。
+
+### React: 一個宣告式 UI 函式庫
+
+作為開發者，你可以單純告訴 React 你想在介面上顯示 **什麼（what）**，React 就會幫你處理好 **如何（how）** 更新 DOM （即所需的步驟）。
+
+在下一章節中，我們將帶你探索如何使用 React。
+
+{/*
+    TODO: 加入問答元件
+    quiz:{
+        heading:{
+            type: quickReview,
+            text: 下面何者更偏向宣告式？
+        },
+        options:[
+            {
+                text: 一個夏威夷披薩，謝謝,
+                isCorrect: true
+            },
+            {
+                text: 編織麵團，擀麵團，加入番茄醬，加入奶酪，加入火腿，加入菠蘿，在烤箱中以攝氏200度烘烤...,
+                isCorrect: false
+            }
+        ]
+    }
+
+*/}
+
+**其他資源：**
+
+- <a href="https://developer.chrome.com/docs/devtools/dom/#appendix" target="_blank">HTML 和 DOM</a>
+- <a href="https://beta.reactjs.org/learn/reacting-to-input-with-state#how-declarative-ui-compares-to-imperative" target="_blank">宣告式和命令式 UI 的比較</a>
+
+<TranslatedBy githubUserNames={["warren30815"]} />

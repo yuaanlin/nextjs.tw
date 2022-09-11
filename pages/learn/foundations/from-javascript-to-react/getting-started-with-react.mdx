@@ -1,4 +1,155 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+## 從 JavaScript 到 React
 
-<NotTranslateYet/>
+<Pagination
+  hrefs={[
+    '/learn/foundations/from-javascript-to-react',
+    '/learn/foundations/from-javascript-to-react/updating-ui-with-javascript',
+    '/learn/foundations/from-javascript-to-react/getting-started-with-react',
+    '/learn/foundations/from-javascript-to-react/essential-javascript-react',
+    '/learn/foundations/from-javascript-to-react/react-core-concepts',
+    '/learn/foundations/from-javascript-to-react/building-ui-with-components',
+    '/learn/foundations/from-javascript-to-react/displaying-data-with-props',
+    '/learn/foundations/from-javascript-to-react/adding-interactivity-with-state',
+    '/learn/foundations/from-javascript-to-react/continue-learning-react'
+  ]}
+/>
 
+### 開始使用 React
+
+要在專案內使用 React，你可以透過<a href="https://unpkg.com/" target="_blank">unpkg.com</a>網站來載入兩個 React 腳本：
+
+- **react** 是 React 的核心函式庫。
+- **react-dom** 提供了 DOM 相關的方法，讓你可以在 React 中操作 DOM。
+
+```html
+<!-- index.html -->
+<html>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <script type="text/javascript">
+      const app = document.getElementById('app');
+    </script>
+  </body>
+</html>
+```
+
+不像之前我們透過原生 JavaScript 去直接操作 DOM，這裡你可以用 `ReactDOM.render()` 方法（於 `react-dom` 中提供）來告訴 React 去 `#app` 中渲染 `<h1>` 標題。
+
+```html
+<!-- index.html -->
+<html>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <script type="text/javascript">
+      const app = document.getElementById('app');
+      ReactDOM.render(<h1>Develop. Preview. Ship. 🚀</h1>, app);
+    </script>
+  </body>
+</html>
+```
+
+但如果你試著在瀏覽器執行你的程式，你會得到一個語法錯誤：
+
+![](https://nextjs.org/static/images/learn/foundations/error.png)
+
+這是因為 `<h1>...</h1>` 不是有效的 Javascript 語法，上方的程式片段為 JSX 語法。
+
+### 什麼是 JSX？
+
+JSX 是 JavaScript 的語法擴展，它允許你以類似 HTML 的語法來描述你的 UI。JSX 的好處在於除了需遵守<a href="https://beta.reactjs.org/learn/writing-markup-with-jsx#the-rules-of-jsx" target="_blank">三個 JSX 規則</a>之外，你無需學習 HTML 和 JavaScript 之外的任何新符號或語法。
+
+需注意的是，瀏覽器無法直接理解 JSX，因此你需要一個 JavaScript 編譯器，例如 <a href="https://babeljs.io/" target="_blank">Babel</a>，將你的 JSX 語法轉換為常規 JavaScript。
+
+### 在你的專案中加入 Babel
+
+要將 Babel 添加到你的項目中，請將以下腳本複製貼上到你的 `index.html` 文件中：
+
+```html
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+```
+
+此外，你需要將腳本類型更改為 `type=text/jsx` 來告知 Babel 要轉換的類型。
+
+```html
+<html>
+  <body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Babel Script -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/jsx">
+      const app = document.getElementById('app');
+      ReactDOM.render(<h1>Develop. Preview. Ship. 🚀</h1>, app);
+    </script>
+  </body>
+</html>
+```
+
+接著在瀏覽器中運行程式，確認其運行無誤。
+
+比對剛剛寫的 **宣告式** React 程式碼：
+
+```html
+<script type="text/jsx">
+  const app = document.getElementById("app")
+  ReactDOM.render(<h1>Develop. Preview. Ship. 🚀</h1>, app)
+</script>
+```
+
+與在上一節中寫的 **命令式** JavaScript 程式碼：
+
+```html
+<script type="text/javascript">
+  const app = document.getElementById('app');
+  const header = document.createElement('h1');
+  const headerContent = document.createTextNode('Develop. Preview. Ship. 🚀');
+  header.appendChild(headerContent);
+  app.appendChild(header);
+</script>
+```
+
+你可以開始看到如何透過使用 React 來減少大量重複程式碼。
+
+而這正是 React 所做的，它是一個函式庫，包含許多可重複使用的程式碼片段來幫助你執行任務（如本章節的任務為更新 UI）。
+
+> **注意：** 開始使用 React 前，你不需要確切知道它如何更新 UI，但如果你想了解更多，請查看 React 文檔中的 [UI 樹](https://beta.reactjs.org/learn/preserving-and-resetting-state#the-ui-tree") 和 [渲染方法](https://beta.reactjs.org/apis/react-dom/render) 章節。
+
+{/*
+    TODO: 加入問答元件
+    quiz:{
+        heading:{
+            type: quickReview,
+            text: 為什麼需要編譯 React 程式碼？
+        },
+        options:[
+            {
+                text: React 使用了需要編譯成 JavaScript 的 JSX,
+                isCorrect: true
+            },
+            {
+                text: React 使用了一個對於當前的瀏覽器太新版本的 HTML,
+                isCorrect: false
+            },
+            {
+                text: React 不知道如何更新 DOM，所以它需要一個編譯器來完成,
+                isCorrect: false
+            }
+        ]
+    }
+
+*/}
+
+**其他資源：**
+
+- <a href="https://beta.reactjs.org/learn/writing-markup-with-jsx" target="_blank">使用 JSX 編寫標記</a>
+
+<TranslatedBy githubUserNames={["warren30815"]} />
