@@ -5,9 +5,11 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import CodeStyle from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
 import TranslatedBy from '@components/TranslatedBy';
 import Pagination from '@components/Pagination';
+import Card from '@components/Card'
 import type { AppProps } from 'next/app';
 
 const mdxComponents = {
+  Card,
   Pagination,
   TranslatedBy,
   code: ({ className, ...props }: any) => {

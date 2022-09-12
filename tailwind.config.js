@@ -19,12 +19,20 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(function({ addVariant, e }) {
+    plugin(function({ addVariant, addUtilities, e }) {
       addVariant('data-active', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
           return `.${e(`data-active${separator}${className}`)}[data-active="true"]`;
         })
       });
+      addUtilities({
+        '.next-tw-shadow': {
+          boxShadow: '0px 6px 12px 0px rgb(0 0 0 / 10%)'
+        },
+        '.next-tw-hover-shadow': {
+          boxShadow: '0px 6px 12px 0px rgb(0 0 0 / 15%)'
+        },
+      })
     })
   ],
 };
