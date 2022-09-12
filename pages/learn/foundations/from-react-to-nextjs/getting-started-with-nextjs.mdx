@@ -47,13 +47,13 @@ import Button from "@components/Button";
 你也會注意到有個 `node_modules` 的資料夾，主要存放專案相依項中的套件內容。
 回到 `index.html`，你可以移除以下提及的程式碼：
 
-  1. 若你已使用 `npm` 安裝 `react` 與 `react-dom` 等套件，則可以移除手動引入的 `React` 與 `react-dom script` 標籤
-  2. ```<html>``` 與 ```<body>```。Next.js 預設會提供這兩個標籤
-  3. 會與 React 中的 `app` 元素與 `ReactDom.render()` 連動的相關程式碼
-  4. `Babel` 語法。Next.js 的編譯器會自行將 JSX 語法轉換為可供瀏覽器讀取的 JavaScript 語法
-  5. `<script type="text/jsx">` 標籤
-  6. React 部分的 `React.useState(0)` 函式
-  7. 在你移除以上提及的內容後，請在 `index.html` 頂部添加一行 `import { useState } from "react"`。你的程式碼應該會如下所示：
+1. 若你已使用 `npm` 安裝 `react` 與 `react-dom` 等套件，則可以移除手動引入的 `React` 與 `react-dom script` 標籤
+2. `<html>` 與 `<body>`。Next.js 預設會提供這兩個標籤
+3. 會與 React 中的 `app` 元素與 `ReactDom.render()` 連動的相關程式碼
+4. `Babel` 語法。Next.js 的編譯器會自行將 JSX 語法轉換為可供瀏覽器讀取的 JavaScript 語法
+5. `<script type="text/jsx">` 標籤
+6. React 部分的 `React.useState(0)` 函式
+7. 在你移除以上提及的內容後，請在 `index.html` 頂部添加一行 `import { useState } from "react"`。你的程式碼應該會如下所示：
 
 ```
 // index.html
