@@ -2,9 +2,9 @@
 description: Fetch data on each request with `getServerSideProps`.
 ---
 
-# getServerSideProps（服務器端渲染）
+# getServerSideProps
 
-如果您從頁面導出名為 getServerSideProps（服務器端渲染）的函數，Next.js 將使用 getServerSideProps 返回的數據在每個請求上預渲染此頁面。
+如果您從頁面匯出名為 getServerSideProps 的函數，Next.js 將使用 getServerSideProps 回傳的資料在每個請求上提前渲染此頁面。
 
 ```js
 export async function getServerSideProps(context) {
@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
 `getServerSideProps` 只會在伺服器端運行並不會在瀏覽器執行. 如果這個頁面使用`getServerSideProps`, 這時:
 
 - 
-當你直接請求這個頁面時，`getServerSideProps` 在請求的時候運行，這個頁面會和返回的 props 一起預渲染
+當你直接請求這個頁面時，`getServerSideProps` 在請求的時候運行，這個頁面會和返回的 props 一起提前渲染。
 
 - 當你在客戶端發送請求是透過 [`next/link`](/docs/api-reference/next/link.md)切換或是 [`next/router`](/docs/api-reference/next/router.md), Next.js 就會發送API請求到伺服器並運行`getServerSideProps`
 
@@ -31,7 +31,7 @@ export async function getServerSideProps(context) {
 
 `getServerSideProps` 只能在**page**資料夾中匯出. 你不能在不是page的資料夾匯出這將會報錯.
 
-請注意，您必須將 `getServerSideProps` 作為獨立函數導出 - 如果將 `getServerSideProps` 添加為頁面組件的props，它將**不起作用**。
+請注意，您必須將 `getServerSideProps` 作為獨立函數匯出 - 如果將 `getServerSideProps` 添加為頁面元件的 props ，它將**不起作用**。
 
 The [`getServerSideProps` API reference](/docs/api-reference/data-fetching/get-server-side-props.md) covers all parameters and props that can be used with `getServerSideProps`.
 

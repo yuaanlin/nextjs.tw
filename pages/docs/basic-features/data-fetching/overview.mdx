@@ -1,48 +1,5 @@
 import Card from '@components/UI/Card';
-export const titleCards = [
-  {
-    title:'SSR: 伺服器選染',
-    desc:'使用 getServerSideProps 了解有關 Next.js 中服務器端渲染的更多信息。',
-    path:'/docs/basic-features/data-fetching/get-server-side-props'
-  },
-  {
-    title:'SSG: 靜態生成',
-    desc:'使用 getStaticProps 了解有關 Next.js 中靜態生成的更多信息。',
-    path:'/docs/basic-features/data-fetching/get-static-props'
-  },
-  {
-    title:'CSR: 客戶端渲染',
-    desc:'使用 SWR 了解有關 Next.js 中客戶端渲染的更多信息',
-    path:'/docs/basic-features/data-fetching/client-side'
-  },
-  {
-    title:'動態路由',
-    desc:'使用 getStaticPaths 了解有關 Next.js 中動態路由的更多信息',
-    path:'/docs/basic-features/data-fetching/get-static-paths'
-  },
-  {
-    title:'ISR: 增量靜態再生',
-    desc:'了解有關 Next.js 中增量靜態再生的更多信息',
-    path:'/docs/basic-features/data-fetching/incremental-static-regeneration'
-  },
-];
-export const learnMoreCards = [
-  {
-    title:'預覽模式',
-    desc:'了解有關 Next.js 中增預覽模式的更多信息',
-    path:'/docs/advanced-features/preview-mode'
-  },
-  {
-    title:'路由:',
-    desc:'了解有關 Next.js 中路由的更多信息',
-    path:'/docs/routing/introduction'
-  },
-  {
-    title:'TypeScript',
-    desc:'在你的頁面中添加TypeScript',
-    path:'/docs/basic-features/typescript#pages'
-  }
-];
+
 
 # Data Fetching 概述
 
@@ -71,18 +28,58 @@ export const learnMoreCards = [
 
 <div className="leading-8 my-5">Data fetching 在 Next.js 中提供你多種選染文黨的方式, 取決於您的應用程序的實例. 這裡包括欲渲染使用 **Server-side Rendering** 或 **Static Generation**, 並在運行時更新或創建內容**Incremental Static Regeneration**.</div>
 
-<div className="flex flex-col gap-5">
-  {titleCards.map((card,index)=>(
-    <Card key={index} title={card.title} desc={card.desc} path={card.path}/>
-  ))}
+
+
+<div className="card">
+  <a href="/docs/basic-features/data-fetching/get-server-side-props">
+    <b>SSR: 伺服器選染</b>
+    <small>使用 getServerSideProps 了解有關 Next.js 中服務器端渲染的更多信息。</small>
+  </a>
 </div>
+  <div className="card">
+  <a href="/docs/basic-features/data-fetching/get-static-props">
+    <b>SSG: 靜態生成</b>
+    <small>使用 getStaticProps 了解有關 Next.js 中靜態生成的更多信息。</small>
+  </a>
+</div>
+<div className="card">
+  <a href="/docs/basic-features/data-fetching/client-side">
+    <b>CSR: 客戶端渲染</b>
+    <small>使用 SWR 了解有關 Next.js 中客戶端渲染的更多信息</small>
+  </a>
+</div>
+<div className="card">
+  <a href="/docs/basic-features/data-fetching/get-static-paths">
+    <b>動態路由</b>
+    <small>使用 getStaticPaths 了解有關 Next.js 中動態路由的更多信息</small>
+  </a>
+</div>
+<div className="card">
+  <a href="/docs/basic-features/data-fetching/incremental-static-regeneration">
+    <b>ISR: 增量靜態再生</b>
+    <small>了解有關 Next.js 中增量靜態再生的更多信息</small>
+  </a>
+</div>
+
 
 ## 查看更多
-<div className="flex flex-col gap-5">
-  {learnMoreCards.map((card,index)=>(
-    <Card key={index} title={card.title} desc={card.desc} path={card.path}/>
-  ))}
+
+<div className="card">
+  <a href="/docs/advanced-features/preview-mode">
+    <b>預覽模式</b>
+    <small>了解有關 Next.js 中增預覽模式的更多信息</small>
+  </a>
 </div>
-
-
+  <div className="card">
+  <a href="/docs/routing/introduction">
+    <b>路由:</b>
+    <small>了解有關 Next.js 中路由的更多信息</small>
+  </a>
+</div>
+<div className="card">
+  <a href="/docs/basic-features/typescript.pages">
+    <b>TypeScript:</b>
+    <small>在你的頁面中添加TypeScript</small>
+  </a>
+</div>
 
