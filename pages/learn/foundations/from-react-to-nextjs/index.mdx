@@ -1,4 +1,6 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Button from "@components/Button";
+
+# 從 React 到 Next.js
 
 <Pagination
   hrefs={[
@@ -8,4 +10,61 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet/>
+在前一個課程中，我們討論如何開始使用 React。以下就是程式碼最後的樣子。
+如果你從此課程開始學習，請將以下程式碼覆蓋至你編輯器內的 `index.html` 中。
+
+```html
+<html>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/jsx">
+      const app = document.getElementById("app")
+
+      function Header({ title }) {
+        return <h1>{title ? title : "Default title"}</h1>
+      }
+
+      function HomePage() {
+        const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"]
+
+        const [likes, setLikes] = React.useState(0)
+
+        function handleClick() {
+          setLikes(likes + 1)
+        }
+
+        return (
+          <div>
+            <Header title="Develop. Preview. Ship. 🚀" />
+            <ul>
+              {names.map((name) => (
+                <li key={name}>{name}</li>
+              ))}
+            </ul>
+
+            <button onClick={handleClick}>Like ({likes})</button>
+          </div>
+        )
+      }
+
+      ReactDOM.render(<HomePage />, app)
+    </script>
+  </body>
+</html>
+```
+
+現在，讓我們瞧瞧如何將一個簡單的 React 應用程式轉移到 Next.js 中。
+
+<Button
+  content="前往課程 →"
+  url="/learn/foundations/from-react-to-nextjs/getting-started-with-nextjs"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["Nicolas19921107pages/learn/foundations/from-react-to-nextjs/next-steps.mdx"]} />
