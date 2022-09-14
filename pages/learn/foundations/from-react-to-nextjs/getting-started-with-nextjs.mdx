@@ -5,23 +5,23 @@ import Button from "@components/Button";
 
 <Pagination
   hrefs={[
-    "/learn/foundations/from-react-to-nextjs",
-    "/learn/foundations/from-react-to-nextjs/getting-started-with-nextjs",
-    "/learn/foundations/from-react-to-nextjs/next-steps",
+    '/learn/foundations/from-react-to-nextjs',
+    '/learn/foundations/from-react-to-nextjs/getting-started-with-nextjs',
+    '/learn/foundations/from-react-to-nextjs/next-steps',
   ]}
 />
 
 ## 開始你的 Next.js
 
-在安裝 Next.js 到你的專案前，你不再需要透過手動加入 `react` 與 `react-dom` 的 script 標籤的方式引入 React
-取而代之的是，你可以在本地端使用套件管理工具 `npm` 來安裝這些套件
+在安裝 Next.js 到你的專案前，你不再需要透過手動加入 `react` 與 `react-dom` 的 script 標籤的方式引入 React 。
+取而代之的是，你可以在本地端使用套件管理工具 `npm` 來安裝這些套件。
 
 <Blockquote>
   小提醒：你需要在電腦中安裝 Node.js
   [最低版本需求](/docs/upgrading#minimum-nodejs-version)，[可以在此進行下載](https://nodejs.org/en/)
 </Blockquote>
 
-在準備開發前，請先新增一個內容為空物件 `{}` 的 `package.json` 文檔。
+在準備開發前，請先新增一個內容為空物件 `{}` 的 `package.json` 檔案。
 
 ```html
 //package.json
@@ -31,7 +31,7 @@ import Button from "@components/Button";
 ```
 
 接著，請在你的終端機中運行 `npm install react react-dom next`。
-當安裝程序完成後，你可以在 `package.json` 文檔中，查看專案所有的相依套件與應用程式資訊：
+當安裝程序完成後，你可以在 `package.json` 檔案中，查看專案所有的相依套件資訊：
 
 ```html
 // package.json
@@ -116,7 +116,7 @@ function HomePage() {
 
 ## 運行開發環境
 
-你可透過終端機運行 `npm run dev` 並開啟瀏覽器前往 [localhost:3000](localhost:3000) 以查看應用程式是否正常運作。接下來，你可以針對程式碼試著做些調整並儲存
+你可透過終端機運行 `npm run dev` 並開啟瀏覽器前往 [localhost:3000](localhost:3000) 以查看應用程式是否正常運作。接下來，你可以針對程式碼試著做些調整並儲存。
 當你儲存調整後的程式碼，你應該會發現瀏覽器已自動重新渲染頁面，以反映你在程式碼上的更動，這樣的特色稱為 **[快速重新整理( Fast Fresh )](/docs/basic-features/fast-refresh)** 。它會對你在編輯程式碼後提供即時性的回饋，並讓 Next.js 預先針對這些回饋進行配置。
 簡單回顧一下，你的程式碼從先前的結構...
 
@@ -213,4 +213,4 @@ export default function HomePage() {
   hoverStyle="hover:opacity-90"
 />
 
-<TranslatedBy githubUserNames={["st880517"]} />
+<TranslatedBy githubUserNames={["Nicolas19921107"]} />
