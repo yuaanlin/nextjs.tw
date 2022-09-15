@@ -89,6 +89,15 @@
           }
         ]
       },
+      { 
+        "title": "路由",
+        "children": [
+          {
+            "title": "介紹",
+            "path": "/docs/routing/introduction"
+          }
+        ]
+      },
       {
         "title": "邁向成品",
         "path": "/docs/going-to-production"
