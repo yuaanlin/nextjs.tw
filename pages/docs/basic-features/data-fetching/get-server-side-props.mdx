@@ -14,7 +14,7 @@ export async function getServerSideProps(context) {
 }
 ```
 
->請注意，無論呈現類型如何，任何`props`都將傳遞給頁面組件，並且可以在初始 HTML 中在客戶端查看。這是為了讓頁面正確[hydrated](https://reactjs.org/docs/react-dom.html#hydrate)。確保您沒有在 `props` 中傳遞任何不應在客戶端上可用的敏感信息
+>請注意，無論呈現類型如何，任何`props`都將傳遞給頁面組件，並且可以在初始 HTML 中在客戶端查看。這是為了讓頁面正確[hydrated](https://reactjs.org/docs/react-dom.html#hydrate)。確保您沒有在 `props` 中傳遞任何不應在客戶端上可用的敏感資訊。
 
 ## getServerSideProps 何時執行
 
@@ -23,9 +23,9 @@ export async function getServerSideProps(context) {
 - 
 當你直接請求這個頁面時，`getServerSideProps` 在請求的時候運行，這個頁面會和返回的 props 一起提前渲染。
 
-- 當你在客戶端發送請求是透過 [`next/link`](/docs/api-reference/next/link.md)切換或是 [`next/router`](/docs/api-reference/next/router.md), Next.js 就會發送API請求到伺服器並運行`getServerSideProps`
+- 當你在客戶端發送請求是透過 [`next/link`](/docs/api-reference/next/link.md)切換或是 [`next/router`](/docs/api-reference/next/router.md), Next.js 就會發送 API 請求到伺服器並運行`getServerSideProps`。
 
-`getServerSideProps` 會回傳JSON資料讓請求頁面去渲染. 所有的執行緒全部都由 Next.js自動化掌握, 所以只要你定義了`getServerSideProps`，你就不需要做任何額外的事情。
+`getServerSideProps` 會回傳 JSON 資料讓請求頁面去渲染。 所有的執行緒全部都由 Next.js 自動化處理，所以只要你定義了 `getServerSideProps`，你就不需要做任何額外的事情。
 
 你可以使用 [next-code-elimination tool](https://next-code-elimination.vercel.app/) 去驗證 Next.js 從客戶端包中清除了什麼。
 
@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
 
 ### getServerSideProps 或 API 路由
 
-當您想從服務器獲取數據時，可能很容易使用 [API 路由](/docs/api-routes/introduction)，然後從 `getServerSideProps` 調用該 API 路由。 這是一種不必要且低效的方法，因為它會由於服務器上運行的 `getServerSideProps` 和 API Routes 而導致發出額外的請求。
+當您想從伺服器取得資料時，可能很容易使用 [API 路由](/docs/api-routes/introduction)，然後從 `getServerSideProps` 調用該 API 路由。 這是一種不必要且低效的方法，因為它會由於伺服器上運行的 `getServerSideProps` 和 API Routes 而導致發出額外的請求。
 
 舉個例子。 API 路由用於從 CMS 獲取一些數據。 然後直接從 `getServerSideProps` 調用該 API 路由。 這會產生額外的調用，從而降低性能。 相反，直接將 API Route 中使用的邏輯導入 `getServerSideProps`。 這可能意味著直接從 `getServerSideProps` 內部調用 CMS、數據庫或其他 API。
 
@@ -57,7 +57,7 @@ export async function getServerSideProps(context) {
 例如，這種方法適用於用戶儀表板頁面。 因為儀表板是一個私人的、用戶特定的頁面，所以這頁不需要做SEO ，並且該頁面不需要預渲染。 數據經常更新，這需要在請求時獲取數據。
 ## 使用 getServerSideProps 在請求時獲取數據
 
-以下範例顯示如何在請求時獲取數據並預渲染結果。
+以下範例顯示如何在請求時取得資料並提前渲染結果。
 
 ```jsx
 function Page({ data }) {
@@ -106,8 +106,7 @@ export async function getServerSideProps({ req, res }) {
 
 ##  getServerSideProps 會在錯誤頁面渲染嗎？
 
-如果在執行`getServerSideProps`發生錯誤，他將會顯示`pages/500.js`頁面。 查看此文件[500 page](/docs/advanced-features/custom-error-page#500-page) 了解有關如何創建它的更多信息.在開發過程中，不會使用此文件 
-並且將顯示dev overlay（不會翻）。
+如果在執行 `getServerSideProps` 發生錯誤，他將會顯示 `pages/500.js` 頁面。 查看此文件 [500 page](/docs/advanced-features/custom-error-page#500-page) 了解有關如何創建它的更多資訊。需要注意的是，在開發過程中不會使用此檔案，而是直接顯示錯誤訊息。
 
 ## 相關文件
 
