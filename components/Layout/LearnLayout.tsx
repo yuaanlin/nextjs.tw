@@ -1,11 +1,22 @@
 import routes from '../LearnRoutes.json';
+import findTitleInNestedManifest from '../../utils/findTitleInNestedManifest';
 import { useRouter } from 'next/router';
 import { Key, PropsWithChildren } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 
 function LearnLayout(props: PropsWithChildren<{}>) {
+  const router = useRouter();
+  const title = findTitleInNestedManifest(router.pathname, routes);
   return (
     <div className="mx-auto container mt-8 pb-32 z-20 flex">
+      <Head>
+        <title>{title} | 學習 Next.js</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta property="og:image" content="/og.jpg"/>
+        <meta content="@vercel" name="twitter:site"/>
+      </Head>
       <aside
         className="z-10 h-screen sticky hidden
          md:flex md:flex-col md:w-[300px] md:min-w-[300px] md:mr-4 md:pr-5"
