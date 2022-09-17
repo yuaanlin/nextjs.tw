@@ -4,7 +4,7 @@ description: Fetch data and generate static pages with `getStaticProps`. Learn m
 
 # getStaticPaths
 
-如果你的頁面需要做[動態路由](/docs/routing/dynamic-routes)時使用`getStaticProps`，同時你需要去列舉需要做靜態生成的路徑。
+如果你的頁面需要做[動態路由](/docs/routing/dynamic-routes)時使用 `getStaticProps` ，同時你需要去列舉需要做靜態生成的路徑。
 
 當你的函數在你的頁面導出 `getStaticPaths`（靜態生成）同時使用動態路由，Next.js將會靜態的提前渲染所有從`getStaticPaths`導出的所有路徑。
 
@@ -34,9 +34,9 @@ export default function Post({ post }) {
 
 [`getStaticPaths` API 文件](/docs/api-reference/data-fetching/get-static-paths) 涵蓋了可以與 `getStaticPaths` 一起使用的所有參數和props。
 
-## 何時可以使用 getStaticPaths?
+## 何時可以使用 getStaticPaths ？
 
-如果你是夠過動態路由去渲染靜態頁面你應該使用`getStaticPaths`而且：
+如果你是夠過動態路由去渲染靜態頁面你應該使用 `getStaticPaths` 而且：
 
 - 資料來自headless CMS
 - 資料來自資料庫
@@ -46,21 +46,21 @@ export default function Post({ post }) {
 
 ## getStaticPaths 什麼時候運行？
 
-`getStaticPaths` 只會在生產環境中運行，不會在運行時調用。您可以驗證在 `getStaticPaths` 中編寫的代碼已從客戶端包中刪除 [使用這個工具](https://next-code-elimination.vercel.app/).
+`getStaticPaths` 只會在生產環境中運行，不會在運行時調用。您可以驗證在 `getStaticPaths` 中編寫的代碼已從客戶端包中刪除 [使用這個工具](https://next-code-elimination.vercel.app/)。
 
 ### getStaticProps運行時是如何訪問getStaticPaths的？
 
-- `getStaticProps` 在`next build` 期間運行，用於構建期間返回的任何`paths`。
-- `getStaticProps` 當使用`fallback: true`將會在背景執行。
-- 使用`fallback：blocking`時，在初始渲染之前調用`getStaticProps`。
+- `getStaticProps` 在 `next build` 期間運行，用於構建期間返回的任何 `paths` 。
+- `getStaticProps` 當使用 `fallback: true` 將會在背景執行。
+- 使用 `fallback：blocking` 時，在初始渲染之前調用 `getStaticProps` 。
 
 ## 哪裡可以使用 getStaticPaths ？
 
-- `getStaticPaths` **必須** 和 `getStaticProps`一起使用
-- 你 **不能** 把 `getStaticPaths` 和 [`getServerSideProps`](/docs/basic-features/data-fetching/get-server-side-props.md)一起使用
-- 您可以從同樣使用`getStaticProps` [動態路由](/docs/routing/dynamic-routes.md) 導出`getStaticPaths`
-- 你**不能** 在非page file導出`getStaticPaths`(例如 你的 `components` 檔案夾)
-- You must export `getStaticPaths` as a standalone function, and not a property of the page component
+- `getStaticPaths` **必須** 和 `getStaticProps` 一起使用。
+- 你 **不能** 把 `getStaticPaths` 和 [`getServerSideProps`](/docs/basic-features/data-fetching/get-server-side-props.md) 一起使用。
+- 您可以從同樣使用 `getStaticProps` [動態路由](/docs/routing/dynamic-routes.md) 導出`getStaticPaths`。
+- 你 **不能** 在非page file導出`getStaticPaths`(例如 你的 `components` 檔案夾)。
+- You must export `getStaticPaths` as a standalone function, and not a property of the page component 。
 
 ## 在開發中的每個請求上運行
 
@@ -71,7 +71,7 @@ export default function Post({ post }) {
 `getStaticPaths` 許您控制在構建期間生成哪些頁面，而不是按需生成 [`fallback`](/docs/api-reference/data-fetching/get-static-paths.md#fallback-blocking)。 在構建期間生成更多頁面將導致構建速度變慢。
 
 
-您可以通過為`paths`返回一個空數組來延遲按需生成所有頁面。這在將 Next.js 應用程序部署到多個環境時特別有用。例如，您可以通過按需生成所有頁面以供預覽（但不是生產構建）來加快構建速度。這對於擁有成百上千個靜態頁面的網站很有幫助。
+您可以通過為 `paths` 返回一個空數組來延遲按需生成所有頁面。這在將 Next.js 應用程序部署到多個環境時特別有用。例如，您可以通過按需生成所有頁面以供預覽（但不是生產構建）來加快構建速度。這對於擁有成百上千個靜態頁面的網站很有幫助。
 
 ```jsx
 // pages/posts/[id].js
