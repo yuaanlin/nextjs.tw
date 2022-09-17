@@ -14,14 +14,14 @@ export async function getServerSideProps(context) {
 }
 ```
 
->請注意，無論呈現類型如何，任何`props`都將傳遞給頁面組件，並且可以在初始 HTML 中在客戶端查看。這是為了讓頁面正確[hydrated](https://reactjs.org/docs/react-dom.html#hydrate)。確保您沒有在 `props` 中傳遞任何不應在客戶端上可用的敏感資訊。
+>請注意，無論呈現類型如何，任何 `props` 都將傳遞給頁面組件，並且可以在初始 HTML 中在客戶端查看。這是為了讓頁面正確[hydrated](https://reactjs.org/docs/react-dom.html#hydrate)。確保您沒有在 `props` 中傳遞任何不應在客戶端上可用的敏感資訊。
 
 ## getServerSideProps 何時執行
 
 `getServerSideProps` 只會在伺服器端運行並不會在瀏覽器執行。如果這個頁面使用 `getServerSideProps` ，這時：
 當你直接請求這個頁面時， `getServerSideProps` 在請求的時候運行，這個頁面會和回傳的 props 一起提前渲染。
 
-- 當你在客戶端發送請求是透過 [`next/link`](/docs/api-reference/next/link.md)切換或是 [`next/router`](/docs/api-reference/next/router.md), Next.js 就會發送 API 請求到伺服器並運行`getServerSideProps`。
+- 當你在客戶端發送請求是透過 [`next/link`](/docs/api-reference/next/link.md)切換或是 [`next/router`](/docs/api-reference/next/router.md), Next.js 就會發送 API 請求到伺服器並運行 `getServerSideProps`。
 
 `getServerSideProps` 會回傳 JSON 資料讓請求頁面去渲染。 所有的執行緒全部都由 Next.js 自動化處理，所以只要你定義了 `getServerSideProps`，你就不需要做任何額外的事情。
 
@@ -29,13 +29,13 @@ export async function getServerSideProps(context) {
 
 `getServerSideProps` 只能在 **page** 資料夾中匯出。你不能在不是 page 的資料夾匯出這將會報錯。
 
-請注意，您必須將 `getServerSideProps` 作為獨立函數匯出 - 如果將 `getServerSideProps` 添加為頁面元件的 props ，它將**不起作用**。
+請注意，您必須將 `getServerSideProps` 作為獨立函數匯出 - 如果將 `getServerSideProps` 添加為頁面元件的 props ，它將 **不起作用**。
 
 [`getServerSideProps` API 文件](/docs/api-reference/data-fetching/get-server-side-props) 涵蓋所有可以使用的參數和 props。
 
 ## 何時該使用 getServerSideProps
 
-當你的頁面資料必須在請求時間時拿到你應該使用 `getServerSideProps` 。這可能是由於請求的數據或屬性的性質 (例如 `authorization` headers 或是 geo location)。 當頁面使用 `getServerSideProps` 將會在請求時伺服器提前渲染，並且僅在以下情況下被緩存 [cache-control headers 已配置](/docs/going-to-production#caching)。
+當你的頁面資料必須在請求時間時拿到你應該使用 `getServerSideProps` 。這可能是由於請求的資料或屬性的性質 (例如 `authorization` headers 或是 geo location)。 當頁面使用 `getServerSideProps` 將會在請求時伺服器提前渲染，並且僅在以下情況下被快取 [cache-control headers 已配置](/docs/going-to-production#caching)。
 
 如果你不需要在發送請求時渲染資料，那麼你應該考慮在以下方式請求 [客戶端] (#fetching-data-on-the-client-side) 或 [`getStaticProps`](/docs/basic-features/data-fetching/get-static-props)。
 
@@ -43,17 +43,17 @@ export async function getServerSideProps(context) {
 
 當您想從伺服器取得資料時，可能很容易使用 [API 路由](/docs/api-routes/introduction)，然後從 `getServerSideProps` 調用該 API 路由。 這是一種不必要且低效的方法，因為它會由於伺服器上運行的 `getServerSideProps` 和 API Routes 而導致發出額外的請求。
 
-舉個例子。 API 路由用於從 CMS 獲取一些數據。 然後直接從 `getServerSideProps` 調用該 API 路由。 這會產生額外的調用，從而降低性能。 相反，直接將 API Route 中使用的邏輯導入 `getServerSideProps` 。 這可能意味著直接從 `getServerSideProps` 內部調用 CMS 、數據庫或其他 API 。
+舉個例子。 API 路由用於從 CMS 獲取一些資料。 然後直接從 `getServerSideProps` 調用該 API 路由。 這會產生額外的調用，從而降低性能。 相反，直接將 API Route 中使用的邏輯導入 `getServerSideProps` 。 這可能意味著直接從 `getServerSideProps` 內部調用 CMS 、資料庫或其他 API 。
 
 ## 在客戶端獲取資料
 
-如果您的頁面包含頻繁更新的數據，並且您不需要預渲染數據，您可以在 [客戶端](/docs/basic-features/data-fetching/client-side)。以下的例子是用戶指定特定的數據：
+如果您的頁面包含頻繁更新的資料，並且您不需要預渲染資料，您可以在 [客戶端](/docs/basic-features/data-fetching/client-side)。以下的例子是用戶指定特定的資料：
 
-- 首先，立即顯示沒有數據的頁面。 頁面的某些部分可以使用靜態生成進行預渲染。 您可以顯示缺失數據的加載狀態。
-- 然後，在客戶端獲取數據並在準備好時顯示它。
+- 首先，立即顯示沒有資料的頁面。 頁面的某些部分可以使用靜態生成進行預渲染。 您可以顯示缺失資料的加載狀態。
+- 然後，在客戶端獲取資料並在準備好時顯示它。
 
-例如，這種方法適用於用戶儀表板頁面。 因為儀表板是一個私人的、用戶特定的頁面，所以這頁不需要做 SEO ，並且該頁面不需要預渲染。 數據經常更新，這需要在請求時獲取數據。
-## 使用 getServerSideProps 在請求時獲取數據
+例如，這種方法適用於用戶儀表板頁面。 因為儀表板是一個私人的、用戶特定的頁面，所以這頁不需要做 SEO ，並且該頁面不需要預渲染。 資料經常更新，這需要在請求時獲取資料。
+## 使用 getServerSideProps 在請求時獲取資料
 
 以下範例顯示如何在請求時取得資料並提前渲染結果。
 
@@ -77,16 +77,16 @@ export default Page
 
 ## 使用快取在 Server-Side Rendering (SSR)
 
-您可以使用緩存在表頭 (`Cache-Control`) 裡面讓 `getServerSideProps`快取動態迴響。 舉個例子， 使用 [`stale-while-revalidate`](https://web.dev/stale-while-revalidate/)。
+您可以使用快取在表頭 (`Cache-Control`) 裡面讓 `getServerSideProps`快取動態迴響。 舉個例子， 使用 [`stale-while-revalidate`](https://web.dev/stale-while-revalidate/)。
 
 ```jsx
 // This value is considered fresh for ten seconds (s-maxage=10).
 // 這個值考慮每10秒刷新一次(s-maxage=10).
 // 如果在接下來的 10 秒內重複請求，則之前的
-// 緩存的值仍然是新鮮的。 如果請求在 59 秒前重複，
-// 緩存的值將是陳舊的，但仍會呈現 (stale-while-revalidate=59).
+// 快取的值仍然是新鮮的。 如果請求在 59 秒前重複，
+// 快取的值將是陳舊的，但仍會呈現 (stale-while-revalidate=59).
 //
-// 在後台，將發出重新驗證請求以填充緩存
+// 在後台，將發出重新驗證請求以填充快取
 // 有一個新的值。 如果刷新頁面，您將看到新值。
 export async function getServerSideProps({ req, res }) {
   res.setHeader(

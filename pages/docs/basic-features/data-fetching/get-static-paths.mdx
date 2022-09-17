@@ -41,8 +41,8 @@ export default function Post({ post }) {
 - 資料來自headless CMS
 - 資料來自資料庫
 - 資料來自文件系統
-- 資料是可以公開緩存 (不是用戶特定)
-- 頁面必須做提前渲染 (給 SEO) 而且運行速度非常快 — `getStaticProps` 生成 `HTML` 和 `JSON` 檔案, 兩者都可以由 CDN 緩存以提高性能 。
+- 資料是可以公開快取 (不是用戶特定)
+- 頁面必須做提前渲染 (給 SEO) 而且運行速度非常快 — `getStaticProps` 生成 `HTML` 和 `JSON` 檔案, 兩者都可以由 CDN 快取以提高性能 。
 
 ## getStaticPaths 什麼時候運行？
 
