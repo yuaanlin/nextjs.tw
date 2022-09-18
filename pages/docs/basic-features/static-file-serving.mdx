@@ -1,12 +1,11 @@
 ---
-description: Next.js allows you to serve static files, like images, in the public directory. You can learn how it works here.
+描述: Netx.js 允許你提供靜態的檔案，如在 `public` 資料夾內的照片。你可以在這篇學到更多關於 Next.js 如何處理靜態檔案。
 ---
 
-# Static File Serving
+# 處理靜態檔案
+Next.js 可以處理位在根目錄下的 `public` 資料夾內，如圖片等的靜態檔案。你的程式碼可以從基本網址 (`/`) 開始參考 `public` 中的檔案。
 
-Next.js can serve static files, like images, under a folder called `public` in the root directory. Files inside `public` can then be referenced by your code starting from the base URL (`/`).
-
-For example, if you add an image to `public/me.png`, the following code will access the image:
+例如，如果你在 `public/me.png` 路徑內加入一張圖片，下列的程式碼就能存取該圖片：
 
 ```jsx
 import Image from 'next/image'
@@ -18,13 +17,15 @@ function Avatar() {
 export default Avatar
 ```
 
-> Note: `next/image` requires Next.js 10 or later.
+> 注意： `next/image` 需要 Next.js 版本 10 或以上。 
 
-This folder is also useful for `robots.txt`, `favicon.ico`, Google Site Verification, and any other static files (including `.html`)!
+該資料夾對於 `robot.txt`、`favicon.ico`、google 驗證網域和其他靜態檔案(包含 `.html`)！
 
-> **Note**: Don't name the `public` directory anything else. The name cannot be changed and is the only directory used to serve static assets.
+> **注意**: 不要將 `public` 目錄取其他的名稱。名稱是不能被更動的，且這是唯一一個用於處理靜態檔案的目錄。
 
-> **Note**: Be sure to not have a static file with the same name as a file in the `pages/` directory, as this will result in an error.
+> **注意**: 在 `pages/` 目錄內 ，請務必確認不要有相同名稱的靜態檔案，這將會產生錯誤。
 
-> **Note**: Only assets that are in the `public` directory at [build time](/docs/api-reference/cli.md#build) will be served by Next.js. Files added at runtime won't be available. We recommend using a third party service like [AWS S3](https://aws.amazon.com/s3/) for persistent file storage.
+> **注意**: 只有在 `public` 目錄下的靜態資源才能在[建立](/docs/api-reference/cli.md#build)時被 Next.js 處理，若在執行期間增加的將無法被處理。我們建議使用如[AWS S3](https://aws.amazon.com/s3/)等的第三方服務，來儲存檔案。
 
+
+<TranslatedBy githubUserNames={["AndreaFan123"]} />
