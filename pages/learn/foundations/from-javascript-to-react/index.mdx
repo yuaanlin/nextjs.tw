@@ -1,3 +1,5 @@
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
 ## 從 JavaScript 到 React
 
 <Pagination
@@ -34,26 +36,15 @@ DOM 是將 HTML 元素以物件的方式呈現。就如同程式碼與使用者�
 
 在下一章節中，我們一起看看你能怎麼使用 JavaScript 和 DOM 的方法。
 
-{/*
-    TODO: 加入問答元件
-    quiz:{
-        heading:{
-            type: TrueOrFalse,
-            text: 你能夠通過操作 DOM 更新頁面的內容。
-        },
-        options:[
-            {
-                text: 對,
-                isCorrect: true
-            },
-            {
-                text: 錯,
-                isCorrect: false
-            }
-        ]
-    }
-
-*/}
+<Quiz>
+    <QuizHeading type={QuizType.trueOrFalse}>
+        你能夠通過操作 DOM 更新頁面的內容。
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="是" isCorrect/>
+        <QuizOption text="否"/>
+    </QuizOptionGroup>
+</Quiz>
 
 **其他資源：**
 
