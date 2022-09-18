@@ -1,10 +1,10 @@
 [
   {
-    "title": "Documentation",
+    "title": "說明文件",
     "index": true,
     "children": [
       {
-        "title": "Getting Started",
+        "title": "快速開始",
         "path": "/docs/getting-started"
       },
       {
@@ -15,10 +15,10 @@
             "path": "/docs/basic-features/pages"
           },
           {
-            "title": "Data Fetching",
+            "title": "獲取資料",
             "children": [
               {
-                "title": "Overview",
+                "title": "概述",
                 "path": "/docs/basic-features/data-fetching/overview"
               },
               {
@@ -34,37 +34,37 @@
                 "path": "/docs/basic-features/data-fetching/get-static-props"
               },
               {
-                "title": "Incremental Static Regeneration",
+                "title": "增量靜態生成",
                 "path": "/docs/basic-features/data-fetching/incremental-static-regeneration"
               },
               {
-                "title": "Client side",
+                "title": "客戶端",
                 "path": "/docs/basic-features/data-fetching/client-side"
               }
             ]
           },
           {
-            "title": "Built-in CSS Support",
+            "title": "內建支援 CSS",
             "path": "/docs/basic-features/built-in-css-support"
           },
           {
-            "title": "Layouts",
+            "title": "版面佈局",
             "path": "/docs/basic-features/layouts"
           },
           {
-            "title": "Image Optimization",
+            "title": "圖片最佳化",
             "path": "/docs/basic-features/image-optimization"
           },
           {
-            "title": "Font Optimization",
+            "title": "字體最佳化",
             "path": "/docs/basic-features/font-optimization"
           },
           {
-            "title": "Static File Serving",
+            "title": "處理靜態檔案",
             "path": "/docs/basic-features/static-file-serving"
           },
           {
-            "title": "Fast Refresh",
+            "title": "快速重新整理",
             "path": "/docs/basic-features/fast-refresh"
           },
           {
@@ -76,20 +76,20 @@
             "path": "/docs/basic-features/typescript"
           },
           {
-            "title": "Environment Variables",
+            "title": "環境變數",
             "path": "/docs/basic-features/environment-variables"
           },
           {
-            "title": "Supported Browsers and Features",
+            "title": "支援瀏覽器和語言版本",
             "path": "/docs/basic-features/supported-browsers-features"
           },
           {
-            "title": "Handling Scripts",
+            "title": "使用外部 Script",
             "path": "/docs/basic-features/script"
           }
         ]
       },
-      { 
+      {
         "title": "路由",
         "children": [
           {
@@ -105,7 +105,7 @@
     ]
   },
   {
-    "title": "API Reference",
+    "title": "API 參考文件",
     "index": true,
     "children": [
       {
