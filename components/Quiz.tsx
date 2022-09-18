@@ -128,6 +128,7 @@ function QuizOption({ text, isCorrect }: QuizOptionProps) {
   const isSelected = text === userAnswer.text;
 
   const handleLabelClick = () => {
+    if(isSubmit) return;
     setUserAnswer({ text, isCorrect });
   };
 
