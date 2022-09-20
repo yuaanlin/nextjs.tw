@@ -95,6 +95,18 @@
           {
             "title": "介紹",
             "path": "/docs/routing/introduction"
+          },
+          {
+            "title": "動態路由",
+            "path": "/docs/routing/dynamic-routes"
+          },
+          {
+            "title": "透過程式切換頁面",
+            "path": "/docs/routing/imperatively"
+          },
+          {
+            "title": "切換頁面但不載入資料",
+            "path": "/docs/routing/shallow-routing"
           }
         ]
       },
