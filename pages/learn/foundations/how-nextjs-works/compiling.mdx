@@ -1,5 +1,7 @@
 import NotTranslateYet from '@components/NotTranslateYet';
 
+# Next.js 是如何運行的
+
 <Pagination
   hrefs={[
     '/learn/foundations/how-nextjs-works',
@@ -16,5 +18,40 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet/>
+什麼是轉譯?
+通常開發者們使用 JSX、TypeScript 與 JavaScript 等這些對他們較為親近的程式語言撰寫程式碼。
+雖然這些語言提高開發者們的信心與效率，不過它們依然需要先轉譯成 JavaScript 後，瀏覽器才能解析並理解這些程式碼。
+
+![](https://nextjs.org/static/images/learn/foundations/compiling.png)
+
+轉譯是指以一種程式語言撰寫程式碼後，使用另一種語言或以此語言的其他版本進行輸出的過程。
+在 Next.js 中，轉譯會發生您對程式碼進行編輯時，即開發階段；以及準備打包你的應用程式至正式環境前的部分程序。
+
+
+{/*
+    TODO: 加入問答元件
+    quiz:{
+        heading:{
+            type: quickReview,
+            text: 為什麼網頁應用程式的程式碼需要進行轉譯?
+        },
+        options:[
+            {
+                text: 因為程式碼需要轉換成瀏覽器可理解的版本,
+                isCorrect: true
+            },
+            {
+                text: 因為程式碼需要翻譯成英文,
+                isCorrect: false
+            },
+            {
+                text: 因為 CSS、HTML 與 JavaScript 的程式碼需要被合併為單一檔案,
+                isCorrect: false
+            }
+        ]
+    }
+
+*/}
+
+<TranslatedBy githubUserNames={["Nicolas19921107"]} />
 
