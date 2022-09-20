@@ -79,8 +79,8 @@ function Quiz({ children }: PropsWithChildren) {
       <UserAnswerContext.Provider value={{ userAnswer, setUserAnswer }}>
         <IsSubmitContext.Provider value={isSubmit}>
           <div
-            className="answer-list bg-[#fafafa] border border-[#eaeaea]
-            rounded-lg p-4 pt-0 mt-8 mb-16">
+            className="mdx-component answer-list bg-[#fafafa]
+            border border-[#eaeaea] rounded-lg p-4 pt-0 mt-8 mb-16">
             {children}
             <div className="mt-8">
               {isSubmit
@@ -98,7 +98,7 @@ function QuizHeading(
   { type, children }: PropsWithChildren<QuizHeadingProps>
 ) {
   return (
-    <div className="flex items-center">
+    <div className="[&_p]:inline my-4">
       <strong>{type}：</strong>
       {children}
     </div>
