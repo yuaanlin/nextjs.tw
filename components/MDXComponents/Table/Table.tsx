@@ -1,8 +1,15 @@
-import type { FC } from 'react';
+import type {
+  DetailedHTMLProps,
+  FC,
+  HTMLAttributes,
+  TableHTMLAttributes,
+  TdHTMLAttributes,
+  ThHTMLAttributes
+} from 'react';
 
 export const MDXTable: FC<
-  JSX.IntrinsicElements['table']
-  > = ({ children, ...rest }: JSX.IntrinsicElements['table']) => {
+    DetailedHTMLProps<TableHTMLAttributes<HTMLTableElement>, HTMLTableElement>
+  > = ({ children, ...rest }) => {
     return (
       <table
         {...rest}
@@ -13,8 +20,10 @@ export const MDXTable: FC<
   };
 
 export const MDXThead: FC<
-  JSX.IntrinsicElements['thead']
-  > = ({ children, ...rest }: JSX.IntrinsicElements['thead']) => {
+    DetailedHTMLProps<
+        HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement
+      >
+  > = ({ children, ...rest }) => {
     return (
       <thead {...rest} className="p-2 border">
         {children}
@@ -22,9 +31,11 @@ export const MDXThead: FC<
     );
   };
 
-export const MDXBody: FC<
-  JSX.IntrinsicElements['tbody']
-  > = ({ children, ...rest }: JSX.IntrinsicElements['tbody']) => {
+export const MDXTBody: FC<
+    DetailedHTMLProps<
+        TableHTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement
+      >
+  > = ({ children, ...rest }) => {
     return (
       <tbody {...rest} className="p-2">
         {children}
@@ -33,8 +44,8 @@ export const MDXBody: FC<
   };
 
 export const MDXTr: FC<
-  JSX.IntrinsicElements['tr']
-  > = ({ children, ...rest }: JSX.IntrinsicElements['tr']) => {
+    DetailedHTMLProps<HTMLAttributes<HTMLTableRowElement>, HTMLTableRowElement>
+  > = ({ children, ...rest }) => {
     return (
       <tr {...rest} className="p-2 border-y">
         {children}
@@ -43,8 +54,10 @@ export const MDXTr: FC<
   };
 
 export const MDXTh: FC<
-  JSX.IntrinsicElements['th']
-  > = ({ children, ...rest }: JSX.IntrinsicElements['th']) => {
+    DetailedHTMLProps<
+        ThHTMLAttributes<HTMLTableHeaderCellElement>, HTMLTableHeaderCellElement
+      >
+  > = ({ children, ...rest }) => {
     return (
       <th {...rest} className="p-2 text-start">
         {children}
@@ -53,7 +66,9 @@ export const MDXTh: FC<
   };
 
 export const MDXTd: FC<
-  JSX.IntrinsicElements['td']
+    DetailedHTMLProps<
+        TdHTMLAttributes<HTMLTableDataCellElement>, HTMLTableDataCellElement
+      >
   > = ({ children, ...rest }: JSX.IntrinsicElements['td']) => {
     return (
       <td {...rest} className="p-2">

@@ -3,6 +3,6 @@ export {
   MDXTh as th,
   MDXTd as td,
   MDXThead as thead,
-  MDXBody as tbody,
+  MDXTBody as tbody,
   MDXTr as tr,
 } from './Table';
