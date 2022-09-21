@@ -113,6 +113,10 @@
       {
         "title": "邁向成品",
         "path": "/docs/going-to-production"
+      },
+      {
+        "title": "測試",
+        "path": "/docs/testing"
       }
     ]
   },

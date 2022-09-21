@@ -2,41 +2,41 @@
 description: Learn how to set up Next.js with three commonly used testing tools — Cypress, Playwright, Jest, and React Testing Library.
 ---
 
-# Testing
+# 測試
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary><b>範例</b></summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-cypress">Next.js with Cypress</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-playwright">Next.js with Playwright</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-jest">Next.js with Jest and React Testing Library</a></li>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-vitest">Next.js with Vitest</a></li>
+    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-cypress">Next.js 與 Cypress</a></li>
+    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-playwright">Next.js 與 Playwright</a></li>
+    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-jest">Next.js 與 Jest with React Testing Library</a></li>
+    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-vitest">Next.js 與 Vitest</a></li>
   </ul>
 </details>
 
-Learn how to set up Next.js with commonly used testing tools: [Cypress](https://nextjs.org/docs/testing#cypress), [Playwright](https://nextjs.org/docs/testing#playwright), and [Jest with React Testing Library](https://nextjs.org/docs/testing#jest-and-react-testing-library).
+了解如何在 Next.js 中設定常用測試工具 [Cypress](https://nextjs.org/docs/testing#cypress)、[Playwright](https://nextjs.org/docs/testing#playwright) 和 [Jest with React Testing Library](https://nextjs.org/docs/testing#jest-and-react-testing-library)。
 
 ## Cypress
 
-Cypress is a test runner used for **End-to-End (E2E)** and **Integration Testing**.
+Cypress 是用於 **端到端（E2E）** 和 **整合測試** 的測試執行器。
 
-### Quickstart
+### 快速開始
 
-You can use `create-next-app` with the [with-cypress example](https://github.com/vercel/next.js/tree/canary/examples/with-cypress) to quickly get started.
+你可以將 `create-next-app` 與 [with-cypress 範例](https://github.com/vercel/next.js/tree/canary/examples/with-cypress) 一起使用以快速入門。
 
 ```bash
 npx create-next-app@latest --example with-cypress with-cypress-app
 ```
 
-### Manual setup
+### 手動設定
 
-To get started with Cypress, install the `cypress` package:
+為了開始使用 Cypress，請安裝 `cypress` 套件：
 
 ```bash
 npm install --save-dev cypress
 ```
 
-Add Cypress to the `package.json` scripts field:
+將 Cypress 加入到 `package.json` 中：
 
 ```json
 "scripts": {
@@ -47,17 +47,17 @@ Add Cypress to the `package.json` scripts field:
 }
 ```
 
-Run Cypress for the first time to generate examples that use their recommended folder structure:
+執行 Cypress 以生成與使用其建議的資料夾結構範例：
 
 ```bash
 npm run cypress
 ```
 
-You can look through the generated examples and the [Writing Your First Test](https://docs.cypress.io/guides/getting-started/writing-your-first-test) section of the Cypress Documentation to help you get familiar with Cypress.
+你可以查看生成的範例和 Cypress 文件中的 [撰寫你的第一個測試](https://docs.cypress.io/guides/getting-started/writing-your-first-test) 章節，來幫助你熟悉 Cypress。
 
-### Creating your first Cypress integration test
+### 建立你的第一個 Cypress 整合測試
 
-Assuming the following two Next.js pages:
+假設你有以下兩個 Next.js 頁面：
 
 ```jsx
 // pages/index.js
@@ -85,7 +85,7 @@ export default function About() {
 }
 ```
 
-Add a test to check your navigation is working correctly:
+加入一個測試來檢查你的導航是否正常執行：
 
 ```jsx
 // cypress/integration/app.spec.js
@@ -107,19 +107,19 @@ describe('Navigation', () => {
 })
 ```
 
-You can use `cy.visit("/")` instead of `cy.visit("http://localhost:3000/")` if you add `"baseUrl": "http://localhost:3000"` to the `cypress.json` configuration file.
+如果你加入了 `"baseUrl": "http://localhost:3000"` 到 `cypress.json` 組態檔案中，則可以直接使用較短的寫法 `cy.visit("/")`，而不用完整寫出 `cy.visit("http://localhost:3000/")`。
 
-### Running your Cypress tests
+### 執行 Cypress 測試
 
-Since Cypress is testing a real Next.js application, it requires the Next.js server to be running prior to starting Cypress. We recommend running your tests against your production code to more closely resemble how your application will behave.
+由於 Cypress 是用來測試真正的 Next.js 應用程式，所以執行測試前，我們需要先開啟一個 Next.js 伺服器。我們建議你針對生產環境來進行測試，以更貼近真實情境。
 
-Run `npm run build` and `npm run start`, then run `npm run cypress` in another terminal window to start Cypress.
+執行 `npm run build` 與 `npm run start`，然後開啟另一個終端機來執行 `npm run cypress` 指令以啟動 Cypress。
 
-> **Note:** Alternatively, you can install the `start-server-and-test` package and add it to the `package.json` scripts field: `"test": "start-server-and-test start http://localhost:3000 cypress"` to start the Next.js production server in conjunction with Cypress. Remember to rebuild your application after new changes.
+> **注意：** 或者，你可以安裝 `start-server-and-test` 套件和加入 `"test": "start-server-and-test start http://localhost:3000 cypress"` 到 `package.json` 中，以啟動 Next.js 的生產環境伺服器，並結合 Cypress 使用。請記得在有任何新修改後，重新打包你的應用程式。
 
-### Getting ready for Continuous Integration (CI)
+### 為持續整合（CI）做好準備
 
-You will have noticed that running Cypress so far has opened an interactive browser which is not ideal for CI environments. You can also run Cypress headlessly using the `cypress run` command:
+你會注意到，到目前為止執行 Cypress 會自動開啟一個瀏覽器，這對 CI 來說不好。如果不想讓他自動開啟，你可以用 `cypress run` 來以無頭（headless）模式執行 Cypress：
 
 ```json
 // package.json
@@ -133,35 +133,35 @@ You will have noticed that running Cypress so far has opened an interactive brow
 }
 ```
 
-You can learn more about Cypress and Continuous Integration from these resources:
+你可以從以下資源中了解更多 Cypress 和 持續整合：
 
-- [Cypress Continuous Integration Docs](https://docs.cypress.io/guides/continuous-integration/introduction)
-- [Cypress GitHub Actions Guide](https://on.cypress.io/github-actions)
-- [Official Cypress GitHub Action](https://github.com/cypress-io/github-action)
+- [Cypress 和 持續整合文件](https://docs.cypress.io/guides/continuous-integration/introduction)
+- [Cypress GitHub Actions 指南](https://on.cypress.io/github-actions)
+- [Cypress 的官方 GitHub Action](https://github.com/cypress-io/github-action)
 
 ## Playwright
 
-Playwright is a testing framework that lets you automate Chromium, Firefox, and WebKit with a single API. You can use it to write **End-to-End (E2E)** and **Integration** tests across all platforms.
+Playwright 是一個測試框架，可讓你使用單個 API 自動化 Chromium、Firefox 和 WebKit。你可以使用它在所有平台上撰寫 **端到端 (E2E)** 和 **整合** 測試。
 
-### Quickstart
+### 快速開始
 
-The fastest way to get started, is to use `create-next-app` with the [with-playwright example](https://github.com/vercel/next.js/tree/canary/examples/with-playwright). This will create a Next.js project complete with Playwright all set up.
+最快的入門方法是使用 `create-next-app` 和 [with-playwright 範例](https://github.com/vercel/next.js/tree/canary/examples/with-playwright)。這將建立一個 Next.js 項目，其中包含設定好的 Playwright。
 
 ```bash
 npx create-next-app@latest --example with-playwright with-playwright-app
 ```
 
-### Manual setup
+### 手動設定
 
-You can also use `npm init playwright` to add Playwright to an existing `NPM` project.
+你也可以使用 `npm init playwright` 來加入 Playwright 到你現有的 `NPM` 專案。
 
-To manually get started with Playwright, install the `@playwright/test` package:
+要手動開始使用 Playwright，請安裝 `@playwright/test` 套件：
 
 ```bash
 npm install --save-dev @playwright/test
 ```
 
-Add Playwright to the `package.json` scripts field:
+加入 Playwright 到 `package.json`：
 
 ```json
 "scripts": {
@@ -172,9 +172,9 @@ Add Playwright to the `package.json` scripts field:
 }
 ```
 
-### Creating your first Playwright end-to-end test
+### 建立你的第一個 Playwright 端到端測試
 
-Assuming the following two Next.js pages:
+假設你有以下兩個 Next.js 頁面：
 
 ```jsx
 // pages/index.js
@@ -202,7 +202,7 @@ export default function About() {
 }
 ```
 
-Add a test to verify that your navigation is working correctly:
+加入一個測試來檢查你的導航是否正常執行：
 
 ```jsx
 // e2e/example.spec.ts
@@ -221,55 +221,55 @@ test('should navigate to the about page', async ({ page }) => {
 })
 ```
 
-You can use `page.goto("/")` instead of `page.goto("http://localhost:3000/")`, if you add [`"baseURL": "http://localhost:3000"`](https://playwright.dev/docs/api/class-testoptions#test-options-base-url) to the `playwright.config.ts` configuration file.
+如果你加入了 [`"baseURL": "http://localhost:3000"`](https://playwright.dev/docs/api/class-testoptions#test-options-base-url) 到 `playwright.config.ts` 配置檔案中，則可以直接使用較短的寫法 `page.goto("/")`，而不用完整寫出 `page.goto("http://localhost:3000/")`。
 
-### Running your Playwright tests
+### 執行你的 Playwright 測試
 
-Since Playwright is testing a real Next.js application, it requires the Next.js server to be running prior to starting Playwright. It is recommended to run your tests against your production code to more closely resemble how your application will behave.
+由於 Playwright 是用來測試真正的 Next.js 應用程式，所以執行測試前，我們需要先開啟一個 Next.js 伺服器。我們建議你針對生產環境來進行測試，以更貼近真實情境。
 
-Run `npm run build` and `npm run start`, then run `npm run test:e2e` in another terminal window to run the Playwright tests.
+執行 `npm run build` 與 `npm run start`，然後開啟另一個終端機來執行 `npm run test:e2e` 指令以啟動 Playwright。
 
-> **Note:** Alternatively, you can use the [`webServer`](https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests) feature to let Playwright start the development server and wait until it's fully available.
+> **注意：** 或者你可以使用 [`webServer`](https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests) 功能來讓 Playwright 啟動開發伺服器並等待它啟動完成。
 
-### Running Playwright on Continuous Integration (CI)
+### 在持續整合（CI）中執行 Playwright
 
-Playwright will by default run your tests in the [headless mode](https://playwright.dev/docs/ci#running-headed). To install all the Playwright dependencies, run `npx playwright install-deps`.
+Playwright 會預設以 [無頭模式](https://playwright.dev/docs/ci#running-headed) 來執行測試。要安裝所有 Playwright 依賴套件，請執行 `npx playwright install-deps`。
 
-You can learn more about Playwright and Continuous Integration from these resources:
+你可以從以下資源中了解更多 Playwright 和持續整合：
 
-- [Getting started with Playwright](https://playwright.dev/docs/intro)
-- [Use a development server](https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests)
-- [Playwright on your CI provider](https://playwright.dev/docs/ci)
+- [Playwright 入門](https://playwright.dev/docs/intro)
+- [使用開發伺服器](https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests)
+- [在 CI 中使用 Playwright](https://playwright.dev/docs/ci)
 
-## Jest and React Testing Library
+## Jest 和 React 測試庫
 
-Jest and React Testing Library are frequently used together for **Unit Testing**. There are three ways you can start using Jest within your Next.js application:
+Jest 和 React 測試庫經常一起用於 **單元測試**。你可以透過三種方式在 Next.js 應用程式中開始使用 Jest：
 
-1. Using one of our [quickstart examples](https://nextjs.org/docs/testing#quickstart-2)
-2. With the [Next.js Rust Compiler](https://nextjs.org/docs/testing#setting-up-jest-with-the-rust-compiler)
-3. With [Babel](https://nextjs.org/docs/testing#setting-up-jest-with-babel)
+1. 使用我們的其中一個 [快速入門範例](https://nextjs.org/docs/testing#quickstart-2)
+2. 使用 [Next.js Rust 編譯器](https://nextjs.org/docs/testing#setting-up-jest-with-the-rust-compiler)
+3. 使用 [Babel](https://nextjs.org/docs/testing#setting-up-jest-with-babel)
 
-The following sections will go through how you can set up Jest with each of these options:
+以下將介紹如何設定 Jest：
 
-### Quickstart
+### 快速開始
 
-You can use `create-next-app` with the [with-jest](https://github.com/vercel/next.js/tree/canary/examples/with-jest) example to quickly get started with Jest and React Testing Library:
+你可以將 `create-next-app` 和 [with-jest](https://github.com/vercel/next.js/tree/canary/examples/with-jest) 範例一起使用，以快速開始使用 Jest 和 React 測試庫：
 
 ```bash
 npx create-next-app@latest --example with-jest with-jest-app
 ```
 
-### Setting up Jest (with the Rust Compiler)
+### 設定 Jest（使用 Rust 編譯器）
 
-Since the release of [Next.js 12](https://nextjs.org/blog/next-12), Next.js now has built-in configuration for Jest.
+自 [Next.js 12](https://nextjs.org/blog/next-12) 發布以來，Next.js 現在內建 Jest 的配置項。
 
-To set up Jest, install `jest`, `jest-environment-jsdom`, `@testing-library/react`, `@testing-library/jest-dom`:
+要設定 Jest，請安裝 `jest`、`jest-environment-jsdom`、`@testing-library/react` 和 `@testing-library/jest-dom`：
 
 ```bash
 npm install --save-dev jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom
 ```
 
-Create a `jest.config.js` file in your project's root directory and add the following:
+在專案的根目錄中建立一個 `jest.config.js` 檔案，並加入以下內容：
 
 ```jsx
 // jest.config.js
@@ -294,22 +294,22 @@ const customJestConfig = {
 module.exports = createJestConfig(customJestConfig)
 ```
 
-Under the hood, `next/jest` is automatically configuring Jest for you, including:
+深入研究 Next.js 後，會發現 `next/jest` 自動幫你配置了 Jest，包括：
 
-- Setting up `transform` using [SWC](https://nextjs.org/docs/advanced-features/compiler)
-- Auto mocking stylesheets (`.css`, `.module.css`, and their scss variants) and image imports
-- Loading `.env` (and all variants) into `process.env`
-- Ignoring `node_modules` from test resolving and transforms
-- Ignoring `.next` from test resolving
-- Loading `next.config.js` for flags that enable SWC transforms
+- 使用 [SWC](https://nextjs.org/docs/advanced-features/compiler) 設定 `transform`
+- 自動模擬樣式表（`.css`、`.module.css` 及其 scss 變體）和圖片引入
+- 將 `.env`（和所有變體）載入到 `process.env`
+- 從測試解析和轉​​換中忽略 `node_modules`
+- 從測試解析中忽略 `.next`
+- 加載 `next.config.js`，作為啟用 SWC 轉換的標記
 
-> **Note**: To test environment variables directly, load them manually in a separate setup script or in your `jest.config.js` file. For more information, please see [Test Environment Variables](https://nextjs.org/docs/basic-features/environment-variables#test-environment-variables).
+> **注意：** 為了直接測試環境變數，請在單獨的設定腳本或 `jest.config.js` 檔案中手動加載它們。請參閱 [測試環境變數](https://nextjs.org/docs/basic-features/environment-variables#test-environment-variables) 章節。
 
-### Setting up Jest (with Babel)
+### 設定 Jest（使用 Babel）
 
-If you opt-out of the [Rust Compiler](https://nextjs.org/docs/advanced-features/compiler), you will need to manually configure Jest and install `babel-jest` and `identity-obj-proxy` in addition to the packages above.
+如果你在安裝時選擇手動排除 [Rust 編譯器](https://nextjs.org/docs/advanced-features/compiler)，除了上述套件外，你還需要手動配置 Jest 並安裝 `babel-jest` 和 `identity-obj-proxy`。
 
-Here are the recommended options to configure Jest for Next.js:
+以下是在 Next.js 配置 Jest 的建議選項：
 
 ```jsx
 // jest.config.js
@@ -357,11 +357,11 @@ module.exports = {
 }
 ```
 
-You can learn more about each configuration option in the [Jest docs](https://jestjs.io/docs/configuration).
+你可以在 [Jest 文件](https://jestjs.io/docs/configuration) 中了解有關每個配置選項的更多資訊。
 
-**Handling stylesheets and image imports**
+**處理樣式表和圖片引入**
 
-Stylesheets and images aren't used in the tests but importing them may cause errors, so they will need to be mocked. Create the mock files referenced in the configuration above - `fileMock.js` and `styleMock.js` - inside a `__mocks__` directory:
+測試時並沒有包含樣式表和圖片，因此引入時可能會導致錯誤，因此我們需要模擬它們。在 `__mocks__` 資料夾中建立上面配置引用的模擬文件 - `fileMock.js` 和 `styleMock.js`：
 
 ```js
 // __mocks__/fileMock.js
@@ -378,29 +378,29 @@ module.exports = {
 module.exports = {}
 ```
 
-For more information on handling static assets, please refer to the [Jest Docs](https://jestjs.io/docs/webpack#handling-static-assets).
+有關處理靜態資源的更多資訊，請參閱 [Jest Docs](https://jestjs.io/docs/webpack#handling-static-assets)。
 
-**Optional: Extend Jest with custom matchers**
+**可選：使用自訂匹配器擴展 Jest**
 
-`@testing-library/jest-dom` includes a set of convenient [custom matchers](https://github.com/testing-library/jest-dom#custom-matchers) such as `.toBeInTheDocument()` making it easier to write tests. You can import the custom matchers for every test by adding the following option to the Jest configuration file:
+`@testing-library/jest-dom` 包括一組方便的 [自定義匹配器](https://github.com/testing-library/jest-dom#custom-matchers)，例如 `.toBeInTheDocument()` 可以幫你確認指定的 DOM 有沒有渲染出來，使寫測試更簡單。你可以加入以下選項到 Jest 配置文件，來為每個測試引入自定義匹配器：
 
 ```js
 // jest.config.js
 setupFilesAfterEnv: ['<rootDir>/jest.setup.js']
 ```
 
-Then, inside `jest.setup.js`, add the following import:
+然後，在 `jest.setup.js` 中，加入以下引入：
 
 ```jsx
 // jest.setup.js
 import '@testing-library/jest-dom/extend-expect'
 ```
 
-If you need to add more setup options before each test, it's common to add them to the `jest.setup.js` file above.
+如果你需要在每次測試之前加入更多設置選項，通常可以將它們加入到上面的 `jest.setup.js` 文件中。
 
-**Optional: Absolute Imports and Module Path Aliases**
+**可選：絕對匯入和模組路徑別名**
 
-If your project is using [Module Path Aliases](https://nextjs.org/docs/advanced-features/module-path-aliases), you will need to configure Jest to resolve the imports by matching the paths option in the `jsconfig.json` file with the `moduleNameMapper` option in the `jest.config.js` file. For example:
+如果你的專案中使用 [模組路徑別名](https://nextjs.org/docs/advanced-features/module-path-aliases)，你需要配置 Jest 來匹配 `jsconfig.json` 文件中的路徑選項與 `jest.config.js` 文件中的 `moduleNameMapper` 選項，以解析匯入。例如：
 
 ```json
 // tsconfig.json or jsconfig.json
@@ -421,11 +421,11 @@ moduleNameMapper: {
 }
 ```
 
-### Creating your tests:
+### 建立你的測試
 
-**Add a test script to package.json**
+**將測試腳本加入到 package.json**
 
-Add the Jest executable in watch mode to the `package.json` scripts:
+將監視模式下的 Jest 可執行文件加入到 `package.json` 腳本中：
 
 ```jsx
 "scripts": {
@@ -436,13 +436,13 @@ Add the Jest executable in watch mode to the `package.json` scripts:
 }
 ```
 
-`jest --watch` will re-run tests when a file is changed. For more Jest CLI options, please refer to the [Jest Docs](https://jestjs.io/docs/cli#reference).
+`jest --watch` 用途為文件有任何修改時，會自動重新執行測試。有關更多 Jest CLI 選項，請參閱 [Jest Docs](https://jestjs.io/docs/cli#reference)。
 
-**Create your first tests**
+**建立你的第一個測試**
 
-Your project is now ready to run tests. Follow Jests convention by adding tests to the `__tests__` folder in your project's root directory.
+你的專案現在已準備好執行測試。根據 Jests 的慣例，將測試加入到專案根目錄中的 `__tests__` 資料夾。
 
-For example, we can add a test to check if the `<Home />` component successfully renders a heading:
+例如，我們可以加入一個測試來檢查 `<Home />` 元件是否成功呈現標題：
 
 ```jsx
 // __tests__/index.test.jsx
@@ -464,7 +464,7 @@ describe('Home', () => {
 })
 ```
 
-Optionally, add a [snapshot test](https://jestjs.io/docs/snapshot-testing) to keep track of any unexpected changes to your `<Home />` component:
+或者，加入 [快照測試](https://jestjs.io/docs/snapshot-testing) 以追蹤 `<Home />` 元件有沒有任何的非預期變更：
 
 ```jsx
 // __tests__/snapshot.js
@@ -478,30 +478,32 @@ it('renders homepage unchanged', () => {
 })
 ```
 
-> **Note**: Test files should not be included inside the pages directory because any files inside the pages directory are considered routes.
+> **注意：** 測試文件不應包含在 pages 資料夾中，因為 pages 資料夾中的任何文件都被視為路由。
 
-**Running your test suite**
+**執行你的測試**
 
-Run `npm run test` to run your test suite. After your tests pass or fail, you will notice a list of interactive Jest commands that will be helpful as you add more tests.
+輸入 `npm run test` 來執行你的測試。在你的測試通過或失敗後，你會注意到一個互動式 Jest 指令列表，在你要加入更多測試時，這些指令會很有幫助。
 
-For further reading, you may find these resources helpful:
+延伸閱讀：
 
-- [Jest Docs](https://jestjs.io/docs/getting-started)
-- [React Testing Library Docs](https://testing-library.com/docs/react-testing-library/intro/)
-- [Testing Playground](https://testing-playground.com/) - use good testing practices to match elements.
+- [Jest 文件](https://jestjs.io/docs/getting-started)
+- [React 測試庫文件](https://testing-library.com/docs/react-testing-library/intro/)
+- [Testing Playground](https://testing-playground.com/) - 使用良好的測試範例來匹配元素。
 
-## Community Packages and Examples
+## 社群套件和範例
 
-The Next.js community has created packages and articles you may find helpful:
+Next.js 社群建立了一些實用的套件和文章：
 
-- [next-router-mock](https://github.com/scottrippey/next-router-mock) for Storybook.
-- [Test Preview Vercel Deploys with Cypress](https://glebbahmutov.com/blog/develop-preview-test/) by Gleb Bahmutov.
+- 使用 [next-router-mock](https://github.com/scottrippey/next-router-mock) 來建立獨立的 UI 元件。
+- [用 Cypress 來預覽測試 Vercel 的部署](https://glebbahmutov.com/blog/develop-preview-test/) by Gleb Bahmutov。
 
-For more information on what to read next, we recommend:
+延伸閱讀：
 
 <div className="card">
   <a href="/docs/basic-features/environment-variables#test-environment-variables.md">
-    <b>Test Environment Variables</b>
-    <small>Learn more about the test environment variables.</small>
+    <b>測試環境變數</b>
+    <small>學習更多有關測試環境變數的資訊。</small>
   </a>
 </div>
+
+<TranslatedBy githubUserNames={["warren30815"]} />
