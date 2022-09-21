@@ -50,19 +50,19 @@ Next.js 提供了三種渲染方法：**伺服器端渲染**、**靜態站點生
 
 在客戶端，HTML 用於顯示快速的非交互式頁面，而 React 使用 JSON 數據和 JavaScript 指令使組件具有交互性（例如，將事件處理程序附加到按鈕）。這個過程稱為**水合作用**。
 
-在 Next.js 中，您可以使用 [getServerSideProps](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props) 選擇伺服器端呈現頁面。
+在 Next.js 中，您可以使用 [getServerSideProps](/docs/basic-features/data-fetching/get-server-side-props) 選擇伺服器端呈現頁面。
 
 > **注意**：React 18 和 Next 12 引入了 **React 伺服器組件**的 alpha 版本。伺服器組件完全在伺服器上呈現，不需要客戶端 JavaScript 來呈現。此外，伺服器組件允許開發人員在伺服器上保留一些邏輯，並且只將該邏輯的結果發送給客戶端。這減少了發送到客戶端的包大小並提高了客戶端渲染性能。[在此處了解有關 React 伺服器組件的更多訊息](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html)。
 
 #### 靜態站點生成
 
-使用靜態站點生成，HTML 是在伺服器上生成的，但與伺服器端渲染不同的是，運行時沒有伺服器。取而代之的是，在構建時，部署應用程序時生成一次內容，並將 HTML 存儲在 [CDN](https://nextjs.org/learn/foundations/how-nextjs-works/cdns-and-edge) 中並重新用於每個請求。
+使用靜態站點生成，HTML 是在伺服器上生成的，但與伺服器端渲染不同的是，運行時沒有伺服器。取而代之的是，在構建時，部署應用程序時生成一次內容，並將 HTML 存儲在 [CDN](./cdns-and-edge) 中並重新用於每個請求。
 
-在 Next.js 中，您可以選擇使用 [getStaticProps](https://nextjs.org/docs/basic-features/data-fetching/get-static-props) 靜態生成頁面。
+在 Next.js 中，您可以選擇使用 [getStaticProps](/docs/basic-features/data-fetching/get-static-props) 靜態生成頁面。
 
-> **注意**：您可以在構建網站後使用[增量靜態重新生成](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)來創建或更新靜態頁面。這意味著如果您的數據發生變化，您不必重建整個網站。
+> **注意**：您可以在構建網站後使用[增量靜態重新生成](/docs/basic-features/data-fetching/incremental-static-regeneration)來創建或更新靜態頁面。這意味著如果您的數據發生變化，您不必重建整個網站。
 
-Next.js 的美妙之處在於，您可以逐頁選擇最適合您的用例的渲染方法，無論是靜態站點生成、伺服器端渲染還是客戶端渲染。要詳細了解哪種渲染方法適合您的特定用例，請參閱[數據獲取文檔](https://nextjs.org/docs/basic-features/data-fetching/overview)。
+Next.js 的美妙之處在於，您可以逐頁選擇最適合您的用例的渲染方法，無論是靜態站點生成、伺服器端渲染還是客戶端渲染。要詳細了解哪種渲染方法適合您的特定用例，請參閱[數據獲取文檔](/docs/basic-features/data-fetching/overview)。
 
 在下一節中，我們將討論您的代碼在部署後可以存儲或運行的位置。
 
