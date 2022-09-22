@@ -1,4 +1,10 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import {
+	Quiz,
+	QuizType,
+	QuizHeading,
+	QuizOptionGroup,
+	QuizOption,
+} from '@components/Quiz';
 
 <Pagination
 	hrefs={[
@@ -65,5 +71,15 @@ Next.js 提供了三種渲染方法：**伺服器端渲染**、**靜態站點生
 Next.js 的美妙之處在於，您可以逐頁選擇最適合您的用例的渲染方法，無論是靜態站點生成、伺服器端渲染還是客戶端渲染。要詳細了解哪種渲染方法適合您的特定用例，請參閱[數據獲取文檔](/docs/basic-features/data-fetching/overview)。
 
 在下一節中，我們將討論您的代碼在部署後可以存儲或運行的位置。
+
+<Quiz>
+	<QuizHeading type={QuizType.quickReview}>
+		您可以在單個 Next.js 應用程序中擁有多種渲染方法嗎？
+	</QuizHeading>
+	<QuizOptionGroup>
+		<QuizOption text="是 - 您可以在頁面級別選擇渲染方法" isCorrect />
+		<QuizOption text="否 - 您需要在開始時選擇應用程序的渲染方法" />
+	</QuizOptionGroup>
+</Quiz>
 
 <TranslatedBy githubUserNames={['rudy0628']} />
