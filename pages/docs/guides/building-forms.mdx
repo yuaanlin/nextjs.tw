@@ -168,9 +168,9 @@ npx create-next-app
 
 客戶端和伺服器都將使用 Next.js 建置。在伺服器部分，創建一個 API 端點，您將在其中發送表單資料。
 
-Next.js 提供了一個基於文件的路由系統，該系統以 [頁面概念](/docs/basic-features/pages) 為基礎建立而成。`pages/api` 文件夾中的所有文件都會映射到 `/api/*`，並將被視為 API 端點而不是頁面。這個 [API 端點](/docs/api-routes/introduction) 將僅在伺服器端。
+Next.js 提供了一個基於檔案的路由系統，該系統以 [頁面概念](/docs/basic-features/pages) 為基礎建立而成。`pages/api` 資料夾中的所有檔案都會映射到 `/api/*`，並將被視為 API 端點而不是頁面。這個 [API 端點](/docs/api-routes/introduction) 將僅在伺服器端。
 
-在 `pages/api` 路由下，創建一個名為 `form.js` 的文件，打開後貼上這段用 Node.js 編寫的代碼：
+在 `pages/api` 路由下，創建一個名為 `form.js` 的檔案，打開後貼上這段用 Node.js 編寫的代碼：
 
 ```js
 export default function handler(req, res) {
@@ -242,7 +242,7 @@ export default function Form() {
 
 這樣就完成了基於 Next.js 的表單基本結構。
 
-> 您可以查看我們在此處作為範例建立的 [next-forms](https://github.com/vercel/next.js/tree/canary/examples/next-forms) 範例儲存庫完整源代碼。歡迎複製它並即刻開始嘗試。本例子使用 create-next-app 建立，您可以在 `/styles/global.css` 文件中預覽基本的表單 CSS 樣式。
+> 您可以查看我們在此處作為範例建立的 [next-forms](https://github.com/vercel/next.js/tree/canary/examples/next-forms) 範例儲存庫完整源代碼。歡迎複製它並即刻開始嘗試。本例子使用 create-next-app 建立，您可以在 `/styles/global.css` 檔案中預覽基本的表單 CSS 樣式。
 
 ![forms with nextjs](https://assets.vercel.com/image/upload/dpr_auto,q_auto,f_auto/nextjs/guides/building-forms/forms-with-nextjs.png)
 
@@ -258,9 +258,9 @@ JavaScript 為我們的網頁應用程式帶來了交互性，但有時您需要
 
 無論出於何種原因，禁用 JavaScript 都會影響網站的部分或全部功能。
 
-接下來打開 `next-forms` 資料夾。在 `/pages` 資料夾中，建立一個文件 `no-js-form.js`。
+接下來打開 `next-forms` 資料夾。在 `/pages` 資料夾中，建立一個檔案 `no-js-form.js`。
 
-> **快速提示**：在 Next.js 中，頁面是從 pages 目錄中的 `.js`、`.jsx`、`.ts` 或 `.tsx` 文件導出的 React 元件。每個頁面都會根據其文件名配置一個路由。
+> **快速提示**：在 Next.js 中，頁面是從 pages 目錄中的 `.js`、`.jsx`、`.ts` 或 `.tsx` 檔案導出的 React 元件。每個頁面都會根據其檔案名稱配置一個路由。
 >
 > 範例：如果您建立 `pages/no-js-form.js`，它將可以在 `your-domain.tld/no-js-form` 被存取。
 
@@ -290,7 +290,7 @@ export default function PageWithoutJSbasedForm() {
 
 ## Part 6: 啟用 JavaScript 的表單提交
 
-在 `/pages` 中，您將建立另一個名為 `js-form.js` 的文件。這將在您的 Next.js 應用程式上創建一個 `/js-form` 頁面。
+在 `/pages` 中，您將建立另一個名為 `js-form.js` 的檔案。這將在您的 Next.js 應用程式上創建一個 `/js-form` 頁面。
 
 現在，一旦表單被提交，我們會阻止表單預設的重新加載頁面行為。當我們獲取表單資料，會將其轉換為 JSON 字符串，然後發送到我們的伺服器，即 API 端點。最後，我們的伺服器將響應用戶提交的姓名。所有這一切都透過一個基本的 JavaScript `handleSubmit()` 函式實現。
 
