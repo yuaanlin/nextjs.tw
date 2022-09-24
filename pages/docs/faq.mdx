@@ -1,75 +1,78 @@
 ---
-description: Get to know more about Next.js with the frequently asked questions.
+描述: 透過常見問題了解更多關於 Next.js 的資訊。
+
 ---
 
-# Frequently Asked Questions
+# 常見問題
 
 <details>
-  <summary>Is Next.js production ready?</summary>
-  <p>Yes! Next.js is used by many of the top websites in the world. See the
-  <a href="https://nextjs.org/showcase">Showcase</a> for more info.</p>
+  <summary>Next.js 已可被用於生產了嗎？</summary>
+  <p>是的！Next.js 被世界許多知名網站所使用。請參閱
+  <a href="https://nextjs.org/showcase">展示</a> 來了解更多資訊。</p>
 </details>
 
 <details>
-  <summary>How do I fetch data in Next.js?</summary>
-  Next.js provides a variety of methods depending on your use case. You can use:
+  <summary>我該如何在 Next.js 中取得資料？</summary>
+  Next.js 根據您的用例提供了多種方法。您可以使用：
   <ul>
-    <li> Client-side data fetching: Fetch data with <a href="/docs/basic-features/data-fetching/client-side.md#client-side-data-fetching-with-useeffect">useEffect</a> or <a href="/docs/basic-features/data-fetching/client-side.md#client-side-data-fetching-with-swr">SWR</a> inside your React components</li>
-    <li> Server-side rendering with <a href="/docs/basic-features/data-fetching/get-server-side-props.md">getServerSideProps</a></li>
-    <li> Static-site generation with <a href="/docs/basic-features/data-fetching/get-static-props.md">getStaticProps</a></li>
-    <li> Incremental Static Regeneration by <a href="/docs/basic-features/data-fetching/incremental-static-regeneration.md">adding the `revalidate` prop to getStaticProps</a></li>
+    <li> 客戶端的資料取得：在您的 React 元件中使用 <a href="/docs/basic-features/data-fetching/client-side.md#client-side-data-fetching-with-useeffect">useEffect</a> 或是 <a href="/docs/basic-features/data-fetching/client-side.md#client-side-data-fetching-with-swr">SWR</a> 來取得資料</li>
+    <li> 使用 <a href="/docs/basic-features/data-fetching/get-server-side-props.md">getServerSideProps</a> 進行伺服器端渲染</li>
+    <li> 使用 <a href="/docs/basic-features/data-fetching/get-static-props.md">getStaticProps</a> 生成靜態網站</li>
+    <li> 通過 <a href="/docs/basic-features/data-fetching/incremental-static-regeneration.md">將 `revalidate` prop 加入到 getStaticProps</a> 來增量靜態再生</li>
   </ul>
-  To learn more about data fetching, visit our <a href="/docs/basic-features/data-fetching/overview.md">data fetching documentation</a>.
+  欲了解更多有關資料取得的資訊，請參閱我們的 <a href="/docs/basic-features/data-fetching/overview.md">資料取得文件</a>。
 </details>
 
 <details>
-  <summary>Why does Next.js have its own Router?</summary>
-  Next.js includes a built-in router for a few reasons:
+  <summary>為什麼 Next.js 有自己的路由器？</summary>
+  Next.js 包含一個內建路由器，原因如下：
   <ul>
-    <li>It uses a file-system based router which reduces configuration</li>
-    <li>It supports shallow routing which allows you to change the URL without running data fetching methods</li>
-    <li>Routes are always lazy-loadable</li>
+    <li>它使用基於檔案系統的路由器來減化配置</li>
+    <li>它支援淺層路由，允許您在不執行資料取得方法的情況下更改 URL（改變搜尋參數）</li>
+    <li>路由總是可以延遲加載</li>
   </ul>
-    If you're migrating from React Router, see the <a href="/docs/migrating/from-react-router.md">migration documentation</a>.
+    如果您正在從 React 路由器遷移至 Next.js 路由器，請參閱 <a href="/docs/migrating/from-react-router.md">遷移文件</a>。
 </details>
 
 <details>
-  <summary>Can I use Next.js with my favorite JavaScript library?</summary>
-  <p>Yes! We have hundreds of examples in our <a href="https://github.com/vercel/next.js/tree/canary/examples">examples directory</a>.</p>
+  <summary>我可以將 Next.js 與我偏好的 JavaScript 函式庫一起使用嗎？</summary>
+  <p>可以！我們有數百個範例在 <a href="https://github.com/vercel/next.js/tree/canary/examples">範例資料夾</a>。</p>
 </details>
 
 <details>
-  <summary>Can I use Next.js with GraphQL?</summary>
-  <p>Yes! Here's an <a href="https://github.com/vercel/next.js/tree/canary/examples/with-apollo">example with Apollo</a> and an <a href="https://github.com/vercel/next.js/tree/canary/examples/api-routes-graphql">example API Route with GraphQL</a>.</p>
+  <summary>我可以將 Next.js 與 GraphQL 一起使用嗎？</summary>
+  <p>可以！這裡有一個使用 <a href="https://github.com/vercel/next.js/tree/canary/examples/with-apollo">Apollo 的例子</a> 以及一個使用 <a href="https://github.com/vercel/next.js/tree/canary/examples/api-routes-graphql">API 路由搭配 GraphQL 的範例</a>。</p>
 </details>
 
 <details>
-  <summary>Can I use Next.js with Redux?</summary>
-  <p>Yes! Here's an <a href="https://github.com/vercel/next.js/tree/canary/examples/with-redux">example with Redux</a> and an <a href="https://github.com/vercel/next.js/tree/canary/examples/with-redux-thunk">example with thunk</a>.</p>
+  <summary>我可以將 Next.js 與 Redux 一起使用嗎？</summary>
+  <p>可以！這裡有一個 <a href="https://github.com/vercel/next.js/tree/canary/examples/with-redux">Redux 的範例</a> 以及一個 <a href="https://github.com/vercel/next.js/tree/canary/examples/with-redux-thunk">搭配 thunk 的例子</a>。</p>
 </details>
 
 <details>
-  <summary>Can I make a Next.js Progressive Web App (PWA)?</summary>
-   <p>Yes! Here's our <a href="https://github.com/vercel/next.js/tree/canary/examples/progressive-web-app">Next.js PWA Example</a>.</p>
+  <summary>我可以製作 Next.js 漸進式網路應用程式（PWA）嗎？</summary>
+   <p>可以！這是我們的 <a href="https://github.com/vercel/next.js/tree/canary/examples/progressive-web-app">Next.js PWA 範例</a>。</p>
 </details>
 
 <details>
-  <summary>Can I use a CDN for static assets?</summary>
-  <p>Yes! When you deploy your Next.js application to <a href="https://vercel.com">Vercel</a>, your static assets are automatically detected and served by the Edge Network. If you self-host Next.js, you can learn how to manually configure the asset prefix <a href="/docs/api-reference/next.config.js/cdn-support-with-asset-prefix.md">here</a>.</p>
+  <summary>我可以將內容交付網路（CDN）用於靜態資產嗎？</summary>
+  <p>可以！當您將您的 Next.js 應用程式部屬到 <a href="https://vercel.com">Vercel</a>，邊緣網路會自動偵測和服務您的靜態資產。如果您自行託管 Next.js，您可以在 <a href="/docs/api-reference/next.config.js/cdn-support-with-asset-prefix.md">此處</a> 學習如何手動配置資產前綴。</p>
 </details>
 
 <details>
-  <summary>How can I change the internal webpack config?</summary>
-  <p>In most cases, no manual webpack configuration is necessary since Next.js automatically configures webpack. For advanced cases where more control is needed, refer to the <a href="/docs/api-reference/next.config.js/custom-webpack-config.md">custom webpack config documentation</a>.</p>
+  <summary>如何更改內部 webpack 配置？</summary>
+  <p>在大多數情況下，您不必手動配置 webpack，因為 Next.js 會自動配置它。對於進階的情況，如果您需要更進一步的控制，可以參考 <a href="/docs/api-reference/next.config.js/custom-webpack-config.md">自定 webpack 配置文件</a>。</p>
 </details>
 
 <details>
-  <summary>What is Next.js inspired by?</summary>
-  <p>Many of the goals we set out to accomplish were the ones listed in The <a href="https://rauchg.com/2014/7-principles-of-rich-web-applications">7 principles of Rich Web Applications</a> by Guillermo Rauch.</p>
+  <summary>是什麼造就了 Next.js 的誕生？</summary>
+  <p>我們著手完成的許多目標都列在 Guillermo Rauch的 <a href="https://rauchg.com/2014/7-principles-of-rich-web-applications">7 個多樣化網際網路應用程式的準則</a> 中。</p>
 
-  <p>The ease-of-use of PHP is a great inspiration. We feel Next.js is a suitable replacement for many scenarios where you would otherwise use PHP to output HTML.</p>
+  <p>PHP 的易用性是一個很大的啟發。我們認為 Next.js 更適合取代許多使用 PHP 輸出 HTML 的情況。</p>
 
-  <p>Unlike PHP, we benefit from the ES6 module system and every page exports a component or function that can be easily imported for lazy evaluation or testing.</p>
+  <p>與 PHP 不同，我們受益於 ES6 模組系統，每個頁面都會輸出一個元件或函式，可以輕鬆導入以進行惰性求值或測試。</p>
 
-  <p>As we were researching options for server-rendering React that didn’t involve a large number of steps, we came across <a href="https://github.com/facebookarchive/react-page">react-page</a> (now deprecated), a similar approach to Next.js by the creator of React Jordan Walke.</p>
+  <p>當我們正在研究非大量步驟的伺服器端渲染 React 選項時，我們發現了 <a href="https://github.com/facebookarchive/react-page">react-page</a>（現已被棄用），這是由 React 的創作者 Jordan Walke 提供的與 Next.js 類似的方法。</p>
 </details>
+
+<TranslatedBy githubUserNames={["0xmimiQ"]} />
