@@ -1,4 +1,4 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
 
 <Pagination
   hrefs={[
@@ -22,4 +22,15 @@ import NotTranslateYet from '@components/NotTranslateYet';
 ![客戶端和伺服器](https://nextjs.org/static/images/learn/foundations/client-server.png "客戶端和伺服器")
 
 **伺服器**是指資料中心中的電腦，它可以儲存您的程式碼、接收來自客戶端的請求、進行一些計算後傳送回適當的回應。
+
+<Quiz>
+    <QuizHeading type={QuizType.trueOrFalse}>
+        伺服器可以儲存應用程式的程式碼，並且回應使用者的請求。
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="是" isCorrect/>
+        <QuizOption text="否"/>
+    </QuizOptionGroup>
+</Quiz>
+
 <TranslatedBy githubUserNames={["yenbigbear"]} />
