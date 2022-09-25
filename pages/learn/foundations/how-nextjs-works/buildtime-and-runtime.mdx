@@ -1,3 +1,4 @@
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
 
 <Pagination
   hrefs={[
@@ -28,4 +29,15 @@
 **執行時期（ runtime ）** 是指在建置和部署應用程式之後，應用程式處理使用者請求並給予對應回應的時間段。
 
 接下來，我們來討論一下本節介紹的一些術語，例如客戶端、伺服器和渲染。
+
+<Quiz>
+    <QuizHeading type={QuizType.trueOrFalse}>
+        構建時間是指為了回應使用者請求，而構建應用程式的這段時間
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="是"/>
+        <QuizOption text="否" isCorrect/>
+    </QuizOptionGroup>
+</Quiz>
+
 <TranslatedBy githubUserNames={["yenbigbear"]} />
