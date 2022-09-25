@@ -16,6 +16,11 @@ const Home: NextPage = () => {
       <meta name="twitter:card" content="summary_large_image"/>
       <meta property="og:image" content="/og.jpg"/>
       <meta content="@vercel" name="twitter:site"/>
+      <meta name="robots" content="index, follow"/>
+      <meta
+        name="keyword"
+        content="Next.js, React, 開發框架, 靜態渲染, 動態渲染, 網站, 網頁應用程式, 中文, 教學"
+      />
     </Head>
     <div className="mx-auto container py-32 mt-24">
       <h1
