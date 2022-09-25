@@ -1,3 +1,5 @@
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
 ## 從 JavaScript 到 React
 
 <Pagination
@@ -161,30 +163,16 @@ ReactDOM.render(<HomePage />, app);
 
 下一章節中，我們將討論 **屬性** 以及如何使用它們在元件之間傳遞資料。
 
-{/*
-    TODO: 加入問答元件
-    quiz:{
-        heading:{
-            type: quickReview,
-            text: 在 React 中，如何將 Header 元件嵌套在 Layout 元件中？
-        },
-        options:[
-            {
-                text: `<Layout><Header /></Layout>`,
-                isCorrect: true
-            },
-            {
-                text: `<Layout /><Header />`,
-                isCorrect: false
-            },
-            {
-                text: `<layout><header><header/><layout/>`,
-                isCorrect: false
-            }
-        ]
-    }
-
-*/}
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        在 React 中，如何將 Header 元件嵌套在 Layout 元件中？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="<Layout /><Header />"/>
+        <QuizOption text="<Layout><Header /></Layout>" isCorrect/>
+        <QuizOption text="<layout><header><header/><layout/>"/>
+    </QuizOptionGroup>
+</Quiz>
 
 **其他資源：**
 

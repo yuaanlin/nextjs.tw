@@ -1,3 +1,5 @@
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
 ## 從 JavaScript 到 React
 
 <Pagination
@@ -138,26 +140,15 @@
 
 在下一章節中，我們將帶你探索如何使用 React。
 
-{/*
-    TODO: 加入問答元件
-    quiz:{
-        heading:{
-            type: quickReview,
-            text: 下面何者更偏向宣告式？
-        },
-        options:[
-            {
-                text: 一個夏威夷披薩，謝謝,
-                isCorrect: true
-            },
-            {
-                text: 編織麵團，擀麵團，加入番茄醬，加入奶酪，加入火腿，加入菠蘿，在烤箱中以攝氏200度烘烤...,
-                isCorrect: false
-            }
-        ]
-    }
-
-*/}
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        下面何者更偏向宣告式？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="編織麵團，擀麵團，加入番茄醬，加入奶酪，加入火腿，加入菠蘿，在烤箱中以攝氏200度烘烤..."/>
+        <QuizOption text="一個夏威夷披薩，謝謝" isCorrect/>
+    </QuizOptionGroup>
+</Quiz>
 
 **其他資源：**
 
