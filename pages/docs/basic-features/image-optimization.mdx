@@ -145,61 +145,61 @@ export default function Home() {
 
 在 [`next/image` 元件文件](/docs/api-reference/next/image.md#priority) 可瞭解更多關於 `priority` 屬性
 
-## Image Sizing
+## 設定圖片尺寸
 
-One of the ways that images most commonly hurt performance is through _layout shift_, where the image pushes other elements around on the page as it loads in. This performance problem is so annoying to users that it has its own Core Web Vital, called [Cumulative Layout Shift](https://web.dev/cls/). The way to avoid image-based layout shifts is to [always size your images](https://web.dev/optimize-cls/#images-without-dimensions). This allows the browser to reserve precisely enough space for the image before it loads.
+圖片載入之所以會影響效能常見的原因之一便是*版面配置*，因為圖片在載入的當下，可能會推擠到周遭其他元素的排列。這個效能問題也被列為網站體驗核心指標(Core Web Vitals)之一，稱作 [累計版面配置位移(Cumulative Layout Shift)](https://web.dev/cls/)。若想避免圖片載入造成的版面配置位移問題，便該記得每次都 [指定圖片尺寸](https://web.dev/optimize-cls/#images-without-dimensions)，這樣瀏覽器才可在圖片載入完成前，預先保留足夠的空間。
 
-Because `next/image` is designed to guarantee good performance results, it cannot be used in a way that will contribute to layout shift, and **must** be sized in one of three ways:
+由於 `next/image` 是基於提升效能的目的而設計，**應該**使用以下三種方法來設定圖片尺寸，以避免版面配置位移問題：
 
-1. Automatically, using a [static import](#local-images)
-2. Explicitly, by including a [`width`](/docs/api-reference/next/image.md#width) and [`height`](/docs/api-reference/next/image.md#height) property
-3. Implicitly, by using [`layout="fill"`](/docs/api-reference/next/image.md#layout) which causes the image to expand to fill its parent element.
+1. 使用 [靜態 import](#local-images)，Next.js 將自動為您設定圖片尺寸
+2. 明確指定該圖片的 [`寬度(width)`](/docs/api-reference/next/image.md#width) and [`高度(height)`](/docs/api-reference/next/image.md#height) 屬性
+3. 使用 [`layout="fill"`](/docs/api-reference/next/image.md#layout) 屬性，則該圖片將延展至填滿母元素
 
-> ### What if I don't know the size of my images?
+> ### 如果不知道圖片的尺寸該怎麼辦？
 >
-> If you are accessing images from a source without knowledge of the images' sizes, there are several things you can do:
+> 如果不清楚需要取得的圖片尺寸大小，則您可以參考下列處理方式：
 >
-> **Use `layout='fill'`**
+> ##### 使用 `layout='fill'`
 >
-> The `fill` layout mode allows your image to be sized by its parent element. Consider using CSS to give the image's parent element space on the page, then using the [`objectFit property`](/docs/api-reference/next/image.md#objectfit) with `fill`, `contain`, or `cover`, along with the [`objectPosition property`](/docs/api-reference/next/image.md#objectposition) to define how the image should occupy that space.
+> 在`fill` 版面配置模式下，您的圖片尺寸將由其母元素決定。您可考慮用 CSS 來指定該圖片的母元素於頁面的空間範圍， 接著運用 [`objectFit 屬性`](/docs/api-reference/next/image.md#objectfit) 中的 `fill`, `contain` 或 `cover`，並搭配 [`objectPosition 屬性`](/docs/api-reference/next/image.md#objectposition) 來決定該圖片於母元素中的位置。
 >
-> **Normalize your images**
+> ##### 規範您的圖片
 >
-> If you're serving images from a source that you control, consider modifying your image pipeline to normalize the images to a specific size.
+> 若您能控制您的圖片來源，可以考慮規範您的圖片尺寸為特定大小。
 >
-> **Modify your API calls**
+> ##### 調整您的 API 請求
 >
-> If your application is retrieving image URLs using an API call (such as to a CMS), you may be able to modify the API call to return the image dimensions along with the URL.
+> 若您的圖片 URL 是透過 API 請求而來 (例如 CMS)，您或許可以使 API 回傳您該圖片的尺寸。
 
-If none of the suggested methods works for sizing your images, the `next/image` component is designed to work well on a page alongside standard `<img>` elements.
+若上述處理方式都無法設定您的圖片尺寸，則 `next/image` 元件設計便可讓您使用標準的 `<img>` 元素達到此效果。
 
-## Styling
+## 調整圖片樣式
 
-> Note: Many of the styling issues listed below can be solved with [`next/future/image`](/docs/api-reference/next/future/image.md)
+> 注意: 以下列出多數的樣式問題，解決方式可參考 [`next/future/image`](/docs/api-reference/next/future/image.md)
 
-Styling the Image component is not that different from styling a normal `<img>` element, but there are a few guidelines to keep in mind:
+調整 Image 元件樣式與調整一般的 `<img>` 元素差異不大，您可以把握以下原則：
 
-**Pick the correct layout mode**
+**選擇正確的版面配置模式**
 
-The image component has several different [layout modes](/docs/api-reference/next/image.md#layout) that define how it is sized on the page. If the styling of your image isn't turning out the way you want, consider experimenting with other layout modes.
+圖片元件擁有不同的 [版面配置模式](/docs/api-reference/next/image.md#layout) 來決定他們在頁面上呈現的尺寸大小。如果您的圖片樣式不如您的預期，可以嘗試更改他的版面配置模式。
 
-**Target the image with className, not based on DOM structure**
+**使用 className 調整而不依賴 DOM 結構**
 
-For most layout modes, the Image component will have a DOM structure of one `<img>` tag wrapped by exactly one `<span>`. For some modes, it may also have a sibling `<span>` for spacing. These additional `<span>` elements are critical to allow the component to prevent layout shifts.
+在多數的版面配置中，通常 DOM 結構裡會有一個母元素 `<span>` 包住一個子元素 `<img>`，有時為了保留更多空間，甚至還會存在其他子元素 `<span>`，這些額外的子元素 `<span>` 是造成版面配置位移問題的關鍵因素之一。
 
-The recommended way to style the inner `<img>` is to set the `className` prop on the Image component to the value of an imported [CSS Module](/docs/basic-features/built-in-css-support.md#adding-component-level-css). The value of `className` will be automatically applied to the underlying `<img>` element.
+我們比較推薦的做法，是藉由設定 Image 元件所引用的 [CSS Module](/docs/basic-features/built-in-css-support.md#adding-component-level-css) 的 `className` 屬性來調整子元素 `<img>` 的樣式，而 `className` 的值將自動套用至其所屬的 `<img>` 元素。
 
-Alternatively, you can import a [global stylesheet](/docs/basic-features/built-in-css-support#adding-a-global-stylesheet) and manually set the `className` prop to the same name used in the global stylesheet.
+或者，您也可以匯入 [global stylesheet](/docs/basic-features/built-in-css-support#adding-a-global-stylesheet) 並於 `className` 屬性中手動設定需要的樣式。
 
-You cannot use [styled-jsx](/docs/basic-features/built-in-css-support.md#css-in-js) because it's scoped to the current component.
+您無法使用 [styled-jsx](/docs/basic-features/built-in-css-support.md#css-in-js) 因其效果僅限於當前元件。
 
-**When using `layout='fill'`, the parent element must have `position: relative`**
+**當使用 `layout='fill'` 配置模式時，母元素必須設定 `position: relative`**
 
-This is necessary for the proper rendering of the image element in that layout mode.
+為了於此配置模式下，更適當的渲染圖片元素，這是必要的設定。
 
-**When using `layout='responsive'`, the parent element must have `display: block`**
+**當使用 `layout='responsive'` 配置模式時，母元素必須設定 `display: block`**
 
-This is the default for `<div>` elements but should be specified otherwise.
+雖然這是 `<div>` 元素的預設值，但仍須強調此設定。
 
 ## Properties
 
