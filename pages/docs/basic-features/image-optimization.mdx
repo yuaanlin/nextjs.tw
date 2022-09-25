@@ -13,12 +13,12 @@
   </ul>
 </details>
 
-Next.js 中的 Image 元件 [`next/image`](/docs/api-reference/next/image.md)，是為了因應現代網頁發展，自 HTML `<img>`元素延伸而成。它含有許多已內建好的效能最佳化機制，可協助開發者更易達到較高的 [網站體驗核心指標(Core Web Vitals)](https://nextjs.org/learn/seo/web-performance)，此指標分數為衡量網頁使用者體驗很重要的標準，並且也是影響 [Google 搜尋結果排行的關鍵因素](https://nextjs.org/learn/seo/web-performance/seo-impact)。
+Next.js 中的 Image 元件 [`next/image`](/docs/api-reference/next/image.md)，是為了因應現代網頁發展，自 HTML `<img>`元素延伸而成。它含有許多已內建好的效能最佳化機制，可協助開發者更易達到較高的 [網站體驗核心指標(Core Web Vitals)](/learn/seo/web-performance)，此指標分數為衡量網頁使用者體驗很重要的標準，並且也是影響 [Google 搜尋結果排行的關鍵因素](/learn/seo/web-performance/seo-impact)。
 
 Image 元件內建的最佳化機制包含:
 
 - **最佳化載入效能:** 依據不同載具，正確載入對應的圖片尺寸和現代圖片格式
-- **增強視覺穩定:** 自動防止 [累計版面配置位移(Cumulative Layout Shift)](https://nextjs.org/learn/seo/web-performance/cls)
+- **增強視覺穩定:** 自動防止 [累計版面配置位移(Cumulative Layout Shift)](/learn/seo/web-performance/cls)
 - **加快載入速度:** 圖片僅在進入可視範圍時才會載入，未載入完成時，可選擇使圖片先模糊顯示
 - **提升取用彈性:** 即便是儲存於遠端伺服器的圖片，取用時也都會重新調整尺寸
 
@@ -27,32 +27,32 @@ Image 元件內建的最佳化機制包含:
 若要新增圖片至您的應用程式，請使用 [`next/image`](/docs/api-reference/next/image.md) 元件：
 
 ```jsx
-import Image from 'next/image';
+import Image from 'next/image'
 ```
 
 此外，當您需要使用較貼近原生 `<img>` 元素時，您也可使用 [`next/future/image`](/docs/api-reference/next/future/image.md)：
 
 ```jsx
-import Image from 'next/future/image';
+import Image from 'next/future/image'
 ```
 
 現在，您可以為您的圖片定義 `src` (無論本地或遠端)。
 
 ### 本機圖片
 
-若要使用本機的圖片檔, 請匯入您的 `.jpg`, `.png`, 或 `.webp` 檔案：
+若要使用本機的圖片檔，請匯入您的 `.jpg`、`.png` 或 `.webp` 檔案：
 
 ```jsx
-import profilePic from '../public/me.png';
+import profilePic from '../public/me.png'
 ```
 
 這裡不支援動態載入 `await import()` 或 `require()`，僅支持靜態載入 `import`，如此一來，才可於建置時間分析載入的圖片檔。
 
-Next.js 將自動依據載入檔案決定圖片的 `寬度(width)` 和 `高度(height)`，這樣才可在載入圖片時預防 [累計版面配置位移(Cumulative Layout Shift)](https://nextjs.org/learn/seo/web-performance/cls) 的問題。
+Next.js 將自動依據載入檔案決定圖片的 `寬度(width)` 和 `高度(height)`，這樣才可在載入圖片時預防 [累計版面配置位移(Cumulative Layout Shift)](/learn/seo/web-performance/cls) 的問題。
 
 ```js
-import Image from 'next/image';
-import profilePic from '../public/me.png';
+import Image from 'next/image'
+import profilePic from '../public/me.png'
 
 function Home() {
   return (
@@ -68,16 +68,16 @@ function Home() {
       />
       <p>Welcome to my homepage!</p>
     </>
-  );
+  )
 }
 ```
 
 ### 遠端圖片
 
-需載入遠端圖片檔時，`src` 屬性需輸入 URL 字串，其可為 [相對](#loaders) 或 [絕對](/docs/api-reference/next/image.md#domains) 路徑。 因 Next.js 於建置過程中無法分析遠端圖片檔, 故您需手動提供 [`寬度(width)`](/docs/api-reference/next/image.md#width) 、 [`高度(height)`](/docs/api-reference/next/image.md#height) 與可自選提供的 [`blurDataURL`](/docs/api-reference/next/image.md#blurdataurl) 等 prop 參數 :
+需載入遠端圖片檔時，`src` 屬性需輸入 URL 字串，其可為 [相對](#loaders) 或 [絕對](/docs/api-reference/next/image.md#domains) 路徑。 因 Next.js 於建置過程中無法分析遠端圖片檔，故您需手動提供 [`寬度(width)`](/docs/api-reference/next/image.md#width) 、 [`高度(height)`](/docs/api-reference/next/image.md#height) 與可自選提供的 [`blurDataURL`](/docs/api-reference/next/image.md#blurdataurl) 等 prop 參數 :
 
 ```jsx
-import Image from 'next/image';
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -91,7 +91,7 @@ export default function Home() {
       />
       <p>Welcome to my homepage!</p>
     </>
-  );
+  )
 }
 ```
 
@@ -124,7 +124,7 @@ Loaders 可於每張圖片個別設定，也可在應用程式中統一設定。
 若您已辨認出該頁面的 LCP 圖片，您可參考如下範例，新增 `priority` 屬性：
 
 ```jsx
-import Image from 'next/image';
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -139,7 +139,7 @@ export default function Home() {
       />
       <p>Welcome to my homepage!</p>
     </>
-  );
+  )
 }
 ```
 
@@ -161,7 +161,7 @@ export default function Home() {
 >
 > ##### 使用 `layout='fill'`
 >
-> 在`fill` 版面配置模式下，您的圖片尺寸將由其母元素決定。您可考慮用 CSS 來指定該圖片的母元素於頁面的空間範圍， 接著運用 [`objectFit 屬性`](/docs/api-reference/next/image.md#objectfit) 中的 `fill`, `contain` 或 `cover`，並搭配 [`objectPosition 屬性`](/docs/api-reference/next/image.md#objectposition) 來決定該圖片於母元素中的位置。
+> 在`fill` 版面配置模式下，您的圖片尺寸將由其母元素決定。您可考慮用 CSS 來指定該圖片的母元素於頁面的空間範圍， 接著運用 [`objectFit 屬性`](/docs/api-reference/next/image.md#objectfit) 中的 `fill`、`contain` 或 `cover`，並搭配 [`objectPosition 屬性`](/docs/api-reference/next/image.md#objectposition) 來決定該圖片於母元素中的位置。
 >
 > ##### 規範您的圖片
 >
@@ -217,7 +217,7 @@ export default function Home() {
 
 ## 相關參考
 
-我們推薦您下列文件，以獲取更多相關資訊：
+我們推薦您下列章節，以獲取更多相關資訊：
 
 <div className="card">
   <a href="/docs/api-reference/next/image.md">
