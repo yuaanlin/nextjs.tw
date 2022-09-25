@@ -40,7 +40,7 @@ HTML `<form>` 標籤充當不同 `<input>` 元素的容器，例如 `<form>` 裡
 
 ### 表單驗證
 
-檢查用戶提供的資訊是否正確的過程。 表單驗證還確保提供的資訊格式是正確的（例如，電子郵件欄位中有一個 @）。
+檢查使用者提供的資訊是否正確的過程。 表單驗證還確保提供的資訊格式是正確的（例如，電子郵件欄位中有一個 @）。
 表單驗證有兩種類型：
 
 - **客戶端**：驗證在瀏覽器完成
@@ -80,13 +80,13 @@ HTML `<form>` 標籤充當不同 `<input>` 元素的容器，例如 `<form>` 裡
 </form>
 ```
 
-有了這些驗證檢查，當用戶嘗試在 Name 欄位為空時提交表單，會在表單中的該欄位位置彈出錯誤。同樣地，只有 10-20 個字元長度的值才能輸入到正式編號（Roll Number）欄位。
+有了這些驗證檢查，當使用者嘗試在 Name 欄位為空時提交表單，會在表單中的該欄位位置彈出錯誤。同樣地，只有 10-20 個字元長度的值才能輸入到正式編號（Roll Number）欄位。
 
 ![form validation](https://assets.vercel.com/image/upload/dpr_auto,q_auto,f_auto/nextjs/guides/building-forms/form-validation.jpg)
 
 ### 基於 JavaScript 的表單驗證
 
-表單驗證對於確保用戶以正確的格式提交正確的資料很重要。JavaScript 在客戶端提供了額外級別的驗證以及 HTML 原生表單屬性。開發人員通常更喜歡通過 JavaScript 驗證表單資料，因為與伺服器端驗證相比，它的資料處理速度更快，但是在某些情境下單靠前端驗證可能不太安全，因為惡意用戶總是有辦法向您的伺服器發送格式錯誤的資料。
+表單驗證對於確保使用者以正確的格式提交正確的資料很重要。JavaScript 在客戶端提供了額外級別的驗證以及 HTML 原生表單屬性。開發人員通常更喜歡通過 JavaScript 驗證表單資料，因為與伺服器端驗證相比，它的資料處理速度更快，但是在某些情境下單靠前端驗證可能不太安全，因為惡意使用者總是有辦法向您的伺服器發送格式錯誤的資料。
 
 以下呈現使用 JavaScript 來驗證表單的例子：
 
@@ -103,24 +103,24 @@ HTML `<form>` 標籤充當不同 `<input>` 元素的容器，例如 `<form>` 裡
 
 <script>
   function validateFormWithJS() {
-    const name = document.querySelector("#name").value;
-    const rollNumber = document.querySelector("#rollNumber").value;
+    const name = document.querySelector('#name').value
+    const rollNumber = document.querySelector('#rollNumber').value
 
     if (!name) {
-      alert("Please enter your name.");
-      return false;
+      alert('Please enter your name.')
+      return false
     }
 
     if (rollNumber.length < 3) {
-      alert("Roll Number should be at least 3 digits long.");
-      return false;
+      alert('Roll Number should be at least 3 digits long.')
+      return false
     }
   }
 </script>
 ```
 
 HTML [script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) 標籤用於在 HTML 中嵌入任何客戶端的 JavaScript。它可以包含行內腳本陳述（如上例所示）或通過 `src` 屬性指向外部腳本檔案。
-本例子驗證用戶的姓名和正式編號。`validateFormWithJS()` 函數不允許為空，並且正式編號必須至少為三位數。當您點擊提交按鈕時即進行驗證。唯有欄位的值被正確填入後提交，您才會被重定向到下一頁。
+本例子驗證使用者的姓名和正式編號。`validateFormWithJS()` 函數不允許為空，並且正式編號必須至少為三位數。當您點擊提交按鈕時即進行驗證。唯有欄位的值被正確填入後提交，您才會被重定向到下一頁。
 
 ![js-validation](https://assets.vercel.com/image/upload/dpr_auto,q_auto,f_auto/nextjs/guides/building-forms/js-validation.jpg)
 
@@ -154,7 +154,7 @@ HTML [script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) 
 
 在接下来的部分中，您將使用 Next.js 在 React 中建立表單。
 
-欲建立一個新的 Next.js 應用程式，您可以使用 [create-next-app](https://nextjs.org/docs/getting-started#setup) 快速建立。在命令行終端機中，執行以下命令：
+欲建立一個新的 Next.js 應用程式，您可以使用 [create-next-app](../getting-started.mdx#快速開始) 快速建立。在命令行終端機中，執行以下命令：
 
 ```
 npx create-next-app
@@ -168,32 +168,32 @@ npx create-next-app
 
 客戶端和伺服器都將使用 Next.js 建置。在伺服器部分，創建一個 API 端點，您將在其中發送表單資料。
 
-Next.js 提供了一個基於檔案的路由系統，該系統以 [頁面概念](/docs/basic-features/pages) 為基礎建立而成。`pages/api` 資料夾中的所有檔案都會映射到 `/api/*`，並將被視為 API 端點而不是頁面。這個 [API 端點](/docs/api-routes/introduction) 將僅在伺服器端。
+Next.js 提供了一個基於檔案的路由系統，該系統以 [頁面概念](../basic-features/pages.mdx) 為基礎建立而成。`pages/api` 資料夾中的所有檔案都會映射到 `/api/*`，並將被視為 API 端點而不是頁面。這個 [API 端點](../api-routes/introduction.mdx) 將僅在伺服器端。
 
-在 `pages/api` 路由下，創建一個名為 `form.js` 的檔案，打開後貼上這段用 Node.js 編寫的代碼：
+在 `pages/api` 路由下，創建一個名為 `form.js` 的檔案，打開後貼上這段用 Node.js 編寫的程式碼：
 
 ```js
 export default function handler(req, res) {
-  // 獲取在 request 的 body 中被用戶提交的資料
-  const body = req.body;
+  // 獲取在 request 的 body 中被使用者提交的資料
+  const body = req.body
 
   // 可選日誌記錄用於查看正在執行 next.js 應用程式的終端機顯現的 response
-  console.log("body: ", body);
+  console.log('body: ', body)
 
   // 檢查名字和姓氏，如果有缺漏則提前回傳
   if (!body.first || !body.last) {
     // 發送 HTTP 客戶端錯誤狀態碼
-    return res.status(400).json({ data: "First or last name not found" });
+    return res.status(400).json({ data: 'First or last name not found' })
   }
 
   // 發送 HTTP 成功狀態碼
-  res.status(200).json({ data: `${body.first} ${body.last}` });
+  res.status(200).json({ data: `${body.first} ${body.last}` })
 }
 ```
 
 這個表單 `handler` 函式將接收來自客戶端的請求`req`（即提交的表單資料）。作為回報，它將以 JSON 格式回傳一個響應 `res`，其中包含名字和姓氏。您可以在 `http://localhost:3000/api/form` 存取此 API 端點，或者在部署時將 localhost URL 替換為實際的 Vercel 部署 URL。
 
-> 此外，您還可以將此 API 附加 MongoDB 或 Google Sheets 等資料庫。這樣，您提交的表單資料將被安全儲存以便之後使用。在本指南，並未使用資料庫，而是將相同的資料回傳給用戶以演示它是如何完成的。
+> 此外，您還可以將此 API 附加 MongoDB 或 Google Sheets 等資料庫。這樣，您提交的表單資料將被安全儲存以便之後使用。在本指南，並未使用資料庫，而是將相同的資料回傳給使用者以演示它是如何完成的。
 
 ### 不使用 JavaScript 的表單提交
 
@@ -231,7 +231,7 @@ export default function Form() {
 
       <button type="submit">Submit</button>
     </form>
-  );
+  )
 }
 ```
 
@@ -242,7 +242,7 @@ export default function Form() {
 
 這樣就完成了基於 Next.js 的表單基本結構。
 
-> 您可以查看我們在此處作為範例建立的 [next-forms](https://github.com/vercel/next.js/tree/canary/examples/next-forms) 範例儲存庫完整源代碼。歡迎複製它並即刻開始嘗試。本例子使用 create-next-app 建立，您可以在 `/styles/global.css` 檔案中預覽基本的表單 CSS 樣式。
+> 您可以查看我們在此處作為範例建立的 [next-forms](https://github.com/vercel/next.js/tree/canary/examples/next-forms) 範例儲存庫完整源碼。歡迎複製它並即刻開始嘗試。本例子使用 create-next-app 建立，您可以在 `/styles/global.css` 檔案中預覽基本的表單 CSS 樣式。
 
 ![forms with nextjs](https://assets.vercel.com/image/upload/dpr_auto,q_auto,f_auto/nextjs/guides/building-forms/forms-with-nextjs.png)
 
@@ -250,7 +250,7 @@ export default function Form() {
 
 JavaScript 為我們的網頁應用程式帶來了交互性，但有時您需要控制 JavaScript 包變得過大，或者訪問您網站的訪客可能禁用了 JavaScript。
 
-用戶為何要禁用 JavaScript 的幾個原因：
+使用者為何要禁用 JavaScript 的幾個原因：
 
 - 降低頻寬大小
 - 延長設備（手機或筆記型電腦）電池壽命
@@ -264,7 +264,7 @@ JavaScript 為我們的網頁應用程式帶來了交互性，但有時您需要
 >
 > 範例：如果您建立 `pages/no-js-form.js`，它將可以在 `your-domain.tld/no-js-form` 被存取。
 
-讓我們延續使用上面範例的代碼：
+讓我們延續使用上面範例的程式碼：
 
 ```jsx
 export default function PageWithoutJSbasedForm() {
@@ -278,7 +278,7 @@ export default function PageWithoutJSbasedForm() {
 
       <button type="submit">Submit</button>
     </form>
-  );
+  )
 }
 ```
 
@@ -286,13 +286,13 @@ export default function PageWithoutJSbasedForm() {
 
 表單資料將作為請求 `req` 提交給上面編寫的伺服器表單處理函式例子。它將處理資料並回傳一個 JSON 字串作為響應 `res`，其中包含您提交的姓名。
 
-> 為了改善體驗，您可以回傳一個響應，將用戶重定向到一個表示感謝他們提交表單的頁面。
+> 為了改善體驗，您可以回傳一個響應，將使用者重定向到一個表示感謝他們提交表單的頁面。
 
 ## Part 6: 啟用 JavaScript 的表單提交
 
 在 `/pages` 中，您將建立另一個名為 `js-form.js` 的檔案。這將在您的 Next.js 應用程式上創建一個 `/js-form` 頁面。
 
-現在，一旦表單被提交，我們會阻止表單預設的重新加載頁面行為。當我們獲取表單資料，會將其轉換為 JSON 字符串，然後發送到我們的伺服器，即 API 端點。最後，我們的伺服器將響應用戶提交的姓名。所有這一切都透過一個基本的 JavaScript `handleSubmit()` 函式實現。
+現在，一旦表單被提交，我們會阻止表單預設的重新加載頁面行為。當我們獲取表單資料，會將其轉換為 JSON 字符串，然後發送到我們的伺服器，即 API 端點。最後，我們的伺服器將響應使用者提交的姓名。所有這一切都透過一個基本的 JavaScript `handleSubmit()` 函式實現。
 
 這是這個函式的樣子。具有充分的註解，讓您了解每個步驟：
 
@@ -301,7 +301,7 @@ export default function PageWithJSbasedForm() {
   // 處理表單提交事件
   const handleSubmit = async (event) => {
     // 停止表單提交和更新頁面。（取消事件預設行為）
-    event.preventDefault();
+    event.preventDefault()
 
     // 從表單獲取資料
     const data = {
@@ -310,10 +310,10 @@ export default function PageWithJSbasedForm() {
     };
 
     // 將要發送到伺服器的資料轉為 JSON 格式
-    const JSONdata = JSON.stringify(data);
+    const JSONdata = JSON.stringify(data)
 
     // 我們要發送表單資料的 API 端點
-    const endpoint = "/api/form";
+    const endpoint = "/api/form"
 
     // 產生要發送到伺服器的請求
     const options = {
@@ -325,18 +325,18 @@ export default function PageWithJSbasedForm() {
       },
       // HTTP 請求的 Body 是我們上面建立好的 JSON data
       body: JSONdata,
-    };
+    }
 
     // 將表單資料發送到我們部屬在 Vercel 上的表單 API 並獲取回傳的響應。
-    const response = await fetch(endpoint, options);
+    const response = await fetch(endpoint, options)
 
     // 將從伺服器得到的響應資料轉為 JSON
     // 如果伺服器回傳被提交的姓名，則代表表單功能正常運作。
-    const result = await response.json();
-    alert(`Is this your full name: ${result.data}`);
-  };
+    const result = await response.json()
+    alert(`Is this your full name: ${result.data}`)
+  }
   return (
-    // 在用戶提交時，我們將事件傳遞給 handleSubmit()。
+    // 在使用者提交時，我們將事件傳遞給 handleSubmit()。
     <form onSubmit={handleSubmit}>
       <label htmlFor="first">First Name</label>
       <input type="text" id="first" name="first" required />
@@ -346,7 +346,7 @@ export default function PageWithJSbasedForm() {
 
       <button type="submit">Submit</button>
     </form>
-  );
+  )
 }
 ```
 
@@ -358,7 +358,7 @@ export default function PageWithJSbasedForm() {
 - 我們建立了一個名為 `data` 的 JavaScript 物件，其中包含表單中的 `first` 和 `last` 值。
 - JSON 是一種與語言無關的資料傳輸格式。所以我們使用 `JSON.stringify(data)` 將資料轉換為 JSON。
 - 然後我們透過 JSON 和 HTTP `POST` 方法，使用 `fetch()` 將資料發送到我們的 `/api/form` 端點。
-- 伺服器回傳一個響應，其中包含用戶提交的姓名。嗚呼! 🥳
+- 伺服器回傳一個響應，其中包含使用者提交的姓名。嗚呼! 🥳
 
 ## 總結
 
