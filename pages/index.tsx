@@ -6,7 +6,7 @@ import type { NextPage } from 'next';
 const Home: NextPage = () => {
   return (<>
     <Head>
-      <title>Next.js - React 開發框架</title>
+      <title>Next.js - React 開發框架 | Next.js 繁體中文官方文件</title>
       <meta
         content="生產級且能夠規模化開發的 React 應用程式開發框架。
         世界的領先企業使用由 Vercel 開發的 Next.js 來開發靜態渲染與動態渲染的網站和網頁應用程式。"

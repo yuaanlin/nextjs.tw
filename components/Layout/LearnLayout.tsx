@@ -11,7 +11,12 @@ function LearnLayout(props: PropsWithChildren<{}>) {
   return (
     <div className="mx-auto container mt-8 pb-32 z-20 flex">
       <Head>
-        <title>{title} | 學習 Next.js</title>
+        <title>{title} | Next.js 繁體中文官方教學</title>
+        <meta
+          name="og:description"
+          content="透過互動問答的方式帶你從零開始學習 JavaScrip 、 React 及 Next.js 框架來開發一個完整的網頁前端應用程式。"
+        />
+        <meta name="keyword" content="Next.js, React, 開發框架, 靜態渲染, 動態渲染, 網站, 網頁應用程式, 中文, 教學" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png"/>
         <meta name="twitter:card" content="summary_large_image"/>
         <meta property="og:image" content="/og.jpg"/>
