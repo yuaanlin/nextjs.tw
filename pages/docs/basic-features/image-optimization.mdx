@@ -1,24 +1,26 @@
----
-description: Next.js supports built-in image optimization, as well as third party loaders for Imgix, Cloudinary, and more! Learn more here.
----
-
-# Image Component and Image Optimization
+# 圖片元件與優化
 
 <details open>
-  <summary><b>Examples</b></summary>
+  <summary>
+    <b>範例</b>
+  </summary>
   <ul>
-    <li><a href="https://github.com/vercel/next.js/tree/canary/examples/image-component">Image Component</a></li>
+    <li>
+      <a href="https://github.com/vercel/next.js/tree/canary/examples/image-component">
+        <span>Image 元件</span>
+      </a>
+    </li>
   </ul>
 </details>
 
-The Next.js Image component, [`next/image`](/docs/api-reference/next/image.md), is an extension of the HTML `<img>` element, evolved for the modern web. It includes a variety of built-in performance optimizations to help you achieve good [Core Web Vitals](https://nextjs.org/learn/seo/web-performance). These scores are an important measurement of user experience on your website, and are [factored into Google's search rankings](https://nextjs.org/learn/seo/web-performance/seo-impact).
+Next.js 中的 Image 元件 [`next/image`](/docs/api-reference/next/image.md)，是為了因應現代網頁發展，自 HTML `<img>`元素延伸而成。它含有許多已內建好的效能優化機制，可協助開發者更易達到較高的 [網站體驗核心指標(Core Web Vitals)](https://nextjs.org/learn/seo/web-performance)，此指標分數為衡量網頁使用者體驗很重要的標準，並且也是影響 [Google 搜尋結果排行的關鍵因素](https://nextjs.org/learn/seo/web-performance/seo-impact)。
 
-Some of the optimizations built into the Image component include:
+Image 元件內建的優化機制包含:
 
-- **Improved Performance:** Always serve correctly sized image for each device, using modern image formats
-- **Visual Stability:** Prevent [Cumulative Layout Shift](https://nextjs.org/learn/seo/web-performance/cls) automatically
-- **Faster Page Loads:** Images are only loaded when they enter the viewport, with optional blur-up placeholders
-- **Asset Flexibility:** On-demand image resizing, even for images stored on remote servers
+- **優化載入效能:** 依據不同載具，正確載入對應的圖片尺寸和現代圖片格式
+- **增強視覺穩定:** 自動防止 [累計版面配置位移(Cumulative Layout Shift)](https://nextjs.org/learn/seo/web-performance/cls)
+- **加快載入速度:** 圖片僅在進入可視範圍時才會載入，未載入完成時，可選擇使圖片先模糊顯示
+- **提升取用彈性:** 即便是儲存於遠端伺服器的圖片，取用時也都會重新調整尺寸
 
 ## Using the Image Component
 
