@@ -1,70 +1,142 @@
 import CorrectIcon from './icons/Correct';
 import IncorrectIcon from './icons/Incorrect';
-import { useState, PropsWithChildren } from 'react';
+import { useState, useContext, createContext, PropsWithChildren, useEffect } from 'react';
 
-export enum QuizType {
-  trueOrFalse = '是非題',
-  quickReview = '快速回顧'
-}
+/**
+ * @example
+ * <Quiz>
+ *  <QuizHeading type={QuizType.trueOrFalse}>
+ *    標題文字
+ *  </QuizHeading>
+ *  <QuizOptionGroup>
+ *    <QuizOption text="選項內文" />
+ *    <QuizOption text="選項內文" isCorrect />
+ *  </QuizOptionGroup>
+ * </Quiz>
+ */
 
-interface QuizProps {
-  type: QuizType,
-  options: QuizOption[]
+enum QuizType {
+    trueOrFalse = '是非題',
+    quickReview = '小試身手'
 }
 
 interface QuizHeadingProps {
-  type: QuizType,
+    type: QuizType
 }
 
 interface QuizOptionProps {
-  option: QuizOption,
-  answer: QuizOption,
-  isSubmit: boolean,
-  isCorrect: boolean,
-  onClick: (newAnswer: QuizOption) => void
-}
-
-interface QuizOption {
-  text: string,
-  isCorrect: boolean
+    text: string
+    isCorrect: boolean
 }
 
 interface QuizSubmitButtonProps {
-  onClick: () => void
+    onClick: () => void
 }
 
-interface QuizAnswerReult {
-  isCorrect: boolean,
-  answer: QuizOption,
-  options: QuizOption[]
+interface AnswerType {
+    text: string
+    isCorrect: boolean
 }
 
-const IconWrapper = ({ children }: PropsWithChildren) => {
-  return (
-    <span className="leading-none	mx-2 align-text-bottom">
-      {children}
-    </span>
-  );
+interface UserAnswerContent {
+    userAnswer: AnswerType
+    setUserAnswer: (answer: AnswerType) => void
+}
+
+interface CorrectAnswerContent {
+    correctAnswer: AnswerType
+    setCorrectAnswer: (answer: AnswerType) => void
+}
+
+const defaultAnswer: AnswerType = {
+  text: '',
+  isCorrect: false
 };
 
-const QuizHeading = (
-  { type, children }: PropsWithChildren<QuizHeadingProps>
-) => {
+const UserAnswerContext = createContext<UserAnswerContent>({
+  userAnswer: defaultAnswer,
+  setUserAnswer: () => { }
+});
+
+const CorrectAnswerContext = createContext<CorrectAnswerContent>({
+  correctAnswer: defaultAnswer,
+  setCorrectAnswer: () => { }
+});
+
+const IsSubmitContext = createContext<boolean>(false);
+
+function Quiz({ children }: PropsWithChildren) {
+  const [userAnswer, setUserAnswer] = useState<AnswerType>(defaultAnswer);
+  const [correctAnswer, setCorrectAnswer] = useState<AnswerType>(defaultAnswer);
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
+
+  const handleSubmitButtonClick = () => {
+    setIsSubmit(true);
+  };
+
   return (
-    <div className="flex items-center">
-      <strong>{`${type}：`}</strong>
+    <CorrectAnswerContext.Provider value={{ correctAnswer, setCorrectAnswer }}>
+      <UserAnswerContext.Provider value={{ userAnswer, setUserAnswer }}>
+        <IsSubmitContext.Provider value={isSubmit}>
+          <div
+            className="mdx-component answer-list bg-[#fafafa]
+            border border-[#eaeaea] rounded-lg p-4 pt-0 mt-8 mb-16">
+            {children}
+            <div className="mt-8">
+              {isSubmit
+                ? <QuizAnswerReult />
+                : <QuizSubmitButton onClick={handleSubmitButtonClick} />}
+            </div>
+          </div>
+        </IsSubmitContext.Provider>
+      </UserAnswerContext.Provider>
+    </CorrectAnswerContext.Provider>
+  );
+}
+
+function QuizHeading(
+  { type, children }: PropsWithChildren<QuizHeadingProps>
+) {
+  return (
+    <div className="[&_p]:inline my-4">
+      <strong>{type}：</strong>
       {children}
     </div>
   );
 };
 
-const QuizOption = (props: QuizOptionProps) => {
-  const { option, answer, isSubmit, isCorrect, onClick } = props;
-  const isSelected = answer.text === option.text;
+function IconWrapper({ children }: PropsWithChildren) {
+  return (
+    <span className="leading-none mx-2 align-text-bottom">
+      {children}
+    </span>
+  );
+};
+
+function QuizOptionGroup({ children }: PropsWithChildren) {
+  return (
+    <>
+      { children }
+    </>
+  );
+}
+
+function QuizOption({ text, isCorrect }: QuizOptionProps) {
+  const isSubmit = useContext(IsSubmitContext);
+  const { userAnswer, setUserAnswer } = useContext(UserAnswerContext);
+  const { setCorrectAnswer } = useContext(CorrectAnswerContext);
+  const isSelected = text === userAnswer.text;
+
   const handleLabelClick = () => {
-    if (isSubmit) return;
-    onClick(option);
+    if(isSubmit) return;
+    setUserAnswer({ text, isCorrect });
   };
+
+  useEffect(()=>{
+    if(isCorrect){
+      setCorrectAnswer({ text, isCorrect });
+    }
+  }, []);
 
   return (
     <label
@@ -75,22 +147,22 @@ const QuizOption = (props: QuizOptionProps) => {
         className="hidden"
         name="answer"
         type="radio"
-        value={option.text}
+        value={text}
         defaultChecked={isSelected}
         disabled={isSubmit}
       />
       <span
         // eslint-disable-next-line max-len
         className={`answer-list__item block py-2 px-4 rounded-lg border bg-white transition-shadow text-sm ${isSelected ?
-          // eslint-disable-next-line max-len
+        // eslint-disable-next-line max-len
           'text-[#111111] border-[#111111] font-semibold shadow-[0_0_0_3px_#c1c1c1]' :
           isSubmit ?
             'text-[#666666] border-[#eaeaea]' :
             'text-[#666666] border-[#666666]'}`}
       >
-        {option.text}
+        {text}
         {
-          (isSubmit && option.isCorrect) &&
+          (isSubmit && isCorrect) &&
           <IconWrapper >
             <CorrectIcon className="inline" />
           </IconWrapper>
@@ -104,13 +176,14 @@ const QuizOption = (props: QuizOptionProps) => {
       </span>
     </label>
   );
-};
+}
 
-const QuizSubmitButton = ({ onClick }: QuizSubmitButtonProps) => {
+function QuizSubmitButton({ onClick }: QuizSubmitButtonProps) {
   return (
     <a
-      className="inline-block rounded-lg text-white bg-[#252525]
-      shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-8 h-10 leading-10"
+      className="inline-block rounded-lg !text-white bg-[#252525]
+        shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-8 h-10 leading-10
+        hover:bg-[#252525e6] hover:shadow-[0_6px_20px_rgba(0,0,0,0.2)]"
       role="button"
       tabIndex={0}
       onClick={onClick}
@@ -120,11 +193,11 @@ const QuizSubmitButton = ({ onClick }: QuizSubmitButtonProps) => {
   );
 };
 
-const QuizAnswerReult = ({ isCorrect, answer, options }: QuizAnswerReult) => {
-  const isUnAnswered = answer.text === '';
-  const correctAnswer =
-    options.find((option) => option.isCorrect) as QuizOption;
-
+function QuizAnswerReult() {
+  const { userAnswer } = useContext(UserAnswerContext);
+  const { correctAnswer } = useContext(CorrectAnswerContext);
+  const isUnAnswered = userAnswer.text === '';
+  const isCorrect = userAnswer.isCorrect;
   const correctBlock = (
     <div className="flex items-center">
       <IconWrapper>
@@ -149,7 +222,7 @@ const QuizAnswerReult = ({ isCorrect, answer, options }: QuizAnswerReult) => {
   );
   const unAnsweredBlock = (
     <>
-      答案是：<strong>{correctAnswer.text}</strong>
+      正確答案：<strong>{correctAnswer.text}</strong>
     </>
   );
 
@@ -161,46 +234,5 @@ const QuizAnswerReult = ({ isCorrect, answer, options }: QuizAnswerReult) => {
 
 };
 
-const Quiz = ({ type, options, children }: PropsWithChildren<QuizProps>) => {
-  const [answer, setAnswer] = useState(
-    {
-      text: '',
-      isCorrect: false
-    }
-  );
-  const [isSubmit, setIsSubmit] = useState<boolean>(false);
-  const isCorrect = answer.isCorrect;
-
-  const handleOptionButtonClick = (newAnswer: QuizOption) => {
-    setAnswer(newAnswer);
-  };
-  const handleSubmitButtonClick = () => {
-    setIsSubmit(true);
-  };
-  return (
-    <div
-      className="answer-list bg-[#fafafa] border
-    border-[#eaeaea] rounded-lg p-4 pt-0 mt-8 mb-16">
-      <QuizHeading type={type}>{children}</QuizHeading>
-      {options.map((option, index) => (
-        <QuizOption
-          key={index}
-          option={option as unknown as QuizOption}
-          answer={answer}
-          isSubmit={isSubmit}
-          isCorrect={isCorrect}
-          onClick={handleOptionButtonClick}
-        />
-      ))}
-      <div className="mt-8">
-        {isSubmit
-          // eslint-disable-next-line max-len
-          ? <QuizAnswerReult isCorrect={isCorrect} answer={answer} options={options} />
-          : <QuizSubmitButton onClick={handleSubmitButtonClick} />}
-      </div>
-    </div>
-  );
-};
-
-export default Quiz;
+export { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption };
 

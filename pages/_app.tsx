@@ -3,9 +3,16 @@ import Layout from '../components/Layout';
 import { MDXProvider } from '@mdx-js/react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import CodeStyle from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
+import TranslatedBy from '@components/TranslatedBy';
+import Pagination from '@components/Pagination';
+import Card from '@components/Card';
+import * as MDXComponents from '@components/MDXComponents';
 import type { AppProps } from 'next/app';
 
 const mdxComponents = {
+  Card,
+  Pagination,
+  TranslatedBy,
   code: ({ className, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '');
     return match ? <SyntaxHighlighter
@@ -23,6 +30,7 @@ const mdxComponents = {
   >
     {props.children}
   </blockquote>,
+  ...MDXComponents,
 };
 
 function MyApp({

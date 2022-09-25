@@ -1,18 +1,18 @@
 ---
-description: 'Learn about client-side data fetching, and how to use SWR, a data fetching React hook library that handles caching, revalidation, focus tracking, refetching on interval and more.'
+description: 了解如何在客戶端取得資料，以及如何使用 SWR - 一個處理了資料快取、資料更新、追蹤使用者動態、定時取得資料...等功能的 React hook library 。
 ---
+# 在客戶端取得資料
 
-# Client-side data fetching
+當您的頁面不需要做搜尋引擎優化、資料不需要提前做渲染，或是資料需要頻繁的更新時，在客戶端取得資料是非常方便的。與伺服器端渲染的 API 不同之處在於，您可以在元件 (component) 層級從客戶端取得資料。
 
-Client-side data fetching is useful when your page doesn't require SEO indexing, when you don't need to pre-render your data, or when the content of your pages needs to update frequently. Unlike the server-side rendering APIs, you can use client-side data fetching at the component level.
+在頁面 (pages) 層級取得資料的話，資料會在程式運行時就被抓取，頁面上的內容會隨著資料改變一起更新。
+在元件層級取得資料的話，資料會在元件 mount 的時候被抓取，元件裡的內容也會隨著資料的改變而一起被更新。
 
-If done at the page level, the data is fetched at runtime, and the content of the page is updated as the data changes. When used at the component level, the data is fetched at the time of the component mount, and the content of the component is updated as the data changes.
+在客戶端取得資料時必須記得，這有可能會影響您應用程式的效能。因為資料是在元件或是頁面 mount 時抓取，還有這些資料是不會進行快取的。
 
-It's important to note that using client-side data fetching can affect the performance of your application and the load speed of your pages. This is because the data fetching is done at the time of the component or pages mount, and the data is not cached.
+## 搭配 useEffect 在客戶端取得資料
 
-## Client-side data fetching with useEffect
-
-The following example shows how you can fetch data on the client side using the useEffect hook.
+下面的範例展示了如何搭配 useEffect hook 在客戶端取得資料。
 
 ```jsx
 function Profile() {
@@ -41,13 +41,14 @@ function Profile() {
 }
 ```
 
-## Client-side data fetching with SWR
+## 搭配 SWR 在客戶端取得資料
 
-The team behind Next.js has created a React hook library for data fetching called [**SWR**](https://swr.vercel.app/). It is **highly recommended** if you are fetching data on the client-side. It handles caching, revalidation, focus tracking, refetching on intervals, and more.
+維護 Next.js 的團隊同時也開發了另一個用來取得資料的 React hook library：[**SWR**](https://swr.vercel.app/)，如果您會在客戶端取得資料的話，我們 **強烈推薦** 您搭配著 SWR 一起使用。
 
-Using the same example as above, we can now use SWR to fetch the profile data. SWR will automatically cache the data for us and will revalidate the data if it becomes stale.
+他自動處理了資料快取、資料更新、追蹤使用者動態、定時取得資料...等功能。
 
-For more information on using SWR, check out the [SWR docs](https://swr.vercel.app/docs/getting-started).
+與上一個範例類似，但在這裡我們使用 SWR 來獲取個人資料。SWR 會自動的幫我們快取資料，資料過期時也會自動的幫我們更新快取。
+如果您想取得更多關於使用 SWR 的資訊，推薦您前往 [SWR 的文件](https://swr.vercel.app/docs/getting-started).
 
 ```jsx
 import useSWR from 'swr'
@@ -69,9 +70,9 @@ function Profile() {
 }
 ```
 
-## Related
+## 相關文件
 
-For more information on what to do next, we recommend the following sections:
+想知道更多下一步的資訊， 我們推薦以下的文章：
 
 <div className="card">
   <a href="/docs/routing/introduction.md">
@@ -79,4 +80,6 @@ For more information on what to do next, we recommend the following sections:
     <small>Learn more about routing in Next.js.</small>
   </a>
 </div>
+
+<TranslatedBy githubUserNames={["f312213213"]} />
 

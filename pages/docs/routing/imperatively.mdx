@@ -1,19 +1,19 @@
 ---
-description: Client-side navigations are also possible using the Next.js Router instead of the Link component. Learn more here.
+description: 客戶端頁面跳轉除了使用 Link 元件之外也可以藉著 Next.js Router 來達到一樣的效果，您可以在這邊得到更多關於 Next.js Router 的資訊。
 ---
 
-# Imperatively
+# 透過程式切換頁面
 
 <details>
-  <summary><b>Examples</b></summary>
+  <summary><b>範例</b></summary>
   <ul>
     <li><a href="https://github.com/vercel/next.js/tree/canary/examples/using-router">Using Router</a></li>
   </ul>
 </details>
 
-[`next/link`](/docs/api-reference/next/link.md) should be able to cover most of your routing needs, but you can also do client-side navigations without it, take a look at the [documentation for `next/router`](/docs/api-reference/next/router.md).
+[`next/link`](/docs/api-reference/next/link.md) 在大部分情況下能夠滿足您的需求，不過他不是唯一的解決方案。[`next/router` 的文件](/docs/api-reference/next/router.md) 值得您一看。
 
-The following example shows how to do basic page navigations with [`useRouter`](/docs/api-reference/next/router.md#useRouter):
+下方的範例展示了如何使用 [`useRouter`](/docs/api-reference/next/router.md#useRouter) 來達到基本的頁面跳轉：
 
 ```jsx
 import { useRouter } from 'next/router'
@@ -28,3 +28,4 @@ export default function ReadMore() {
   )
 }
 ```
+<TranslatedBy githubUserNames={["f312213213"]} />

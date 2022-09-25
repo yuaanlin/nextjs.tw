@@ -4,14 +4,14 @@ description: Fetch data and generate static pages with `getStaticProps`. Learn m
 
 # getStaticPaths
 
-If a page has [Dynamic Routes](/docs/routing/dynamic-routes.md) and uses `getStaticProps`, it needs to define a list of paths to be statically generated.
+如果你的頁面需要做[動態路由](/docs/routing/dynamic-routes)時使用 `getStaticProps` ，同時你需要去列舉需要做靜態生成的路徑。
 
-When you export a function called `getStaticPaths` (Static Site Generation) from a page that uses dynamic routes, Next.js will statically pre-render all the paths specified by `getStaticPaths`.
+當你的函數在你的頁面導出 `getStaticPaths`（靜態生成）同時使用動態路由，Next.js將會靜態的提前渲染所有從`getStaticPaths`導出的所有路徑。
 
 ```jsx
 // pages/posts/[id].js
 
-// Generates `/posts/1` and `/posts/2`
+// 生成 `/posts/1` 和 `/posts/2`
 export async function getStaticPaths() {
   return {
     paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
@@ -19,66 +19,67 @@ export async function getStaticPaths() {
   }
 }
 
-// `getStaticPaths` requires using `getStaticProps`
+// 使用`getStaticPaths`時需要搭配`getStaticProps`
 export async function getStaticProps(context) {
   return {
-    // Passed to the page component as props
+    // 這裡的回傳值會導入到頁面的props中
     props: { post: {} },
   }
 }
 
 export default function Post({ post }) {
-  // Render post...
+  // 渲染 post...
 }
 ```
 
-The [`getStaticPaths` API reference](/docs/api-reference/data-fetching/get-static-paths.md) covers all parameters and props that can be used with `getStaticPaths`.
+[`getStaticPaths` API 文件](/docs/api-reference/data-fetching/get-static-paths) 涵蓋了可以與 `getStaticPaths` 一起使用的所有參數和props。
 
-## When should I use getStaticPaths?
+## 何時可以使用 getStaticPaths ？
 
-You should use `getStaticPaths` if you’re statically pre-rendering pages that use dynamic routes and:
+如果你是夠過動態路由去渲染靜態頁面你應該使用 `getStaticPaths` 而且：
 
-- The data comes from a headless CMS
-- The data comes from a database
-- The data comes from the filesystem
-- The data can be publicly cached (not user-specific)
-- The page must be pre-rendered (for SEO) and be very fast — `getStaticProps` generates `HTML` and `JSON` files, both of which can be cached by a CDN for performance
+- 資料來自headless CMS
+- 資料來自資料庫
+- 資料來自文件系統
+- 資料是可以公開快取 (不是用戶特定)
+- 頁面必須做提前渲染 (給 SEO) 而且運行速度非常快 — `getStaticProps` 生成 `HTML` 和 `JSON` 檔案, 兩者都可以由 CDN 快取以提高性能 。
 
-## When does getStaticPaths run
+## getStaticPaths 什麼時候運行？
 
-`getStaticPaths` will only run during build in production, it will not be called during runtime. You can validate code written inside `getStaticPaths` is removed from the client-side bundle [with this tool](https://next-code-elimination.vercel.app/).
+`getStaticPaths` 只會在生產環境中運行，不會在運行時調用。您可以驗證在 `getStaticPaths` 中編寫的代碼已從客戶端包中刪除 [使用這個工具](https://next-code-elimination.vercel.app/)。
 
-### How does getStaticProps run with regards to getStaticPaths
+### getStaticProps運行時是如何訪問getStaticPaths的？
 
-- `getStaticProps` runs during `next build` for any `paths` returned during build
-- `getStaticProps` runs in the background when using `fallback: true`
-- `getStaticProps` is called before initial render when using `fallback: blocking`
+- `getStaticProps` 在 `next build` 期間運行，用於構建期間返回的任何 `paths` 。
+- `getStaticProps` 當使用 `fallback: true` 將會在背景執行。
+- 使用 `fallback：blocking` 時，在初始渲染之前調用 `getStaticProps` 。
 
-## Where can I use getStaticPaths
+## 哪裡可以使用 getStaticPaths ？
 
-- `getStaticPaths` **must** be used with `getStaticProps`
-- You **cannot** use `getStaticPaths` with [`getServerSideProps`](/docs/basic-features/data-fetching/get-server-side-props.md)
-- You can export `getStaticPaths` from a [Dynamic Route](/docs/routing/dynamic-routes.md) that also uses `getStaticProps`
-- You **cannot** export `getStaticPaths` from non-page file (e.g. your `components` folder)
-- You must export `getStaticPaths` as a standalone function, and not a property of the page component
+- `getStaticPaths` **必須** 和 `getStaticProps` 一起使用。
+- 你 **不能** 把 `getStaticPaths` 和 [`getServerSideProps`](/docs/basic-features/data-fetching/get-server-side-props.md) 一起使用。
+- 您可以從同樣使用 `getStaticProps` [動態路由](/docs/routing/dynamic-routes.md) 導出`getStaticPaths`。
+- 你 **不能** 在非page file導出`getStaticPaths`(例如 你的 `components` 檔案夾)。
+- You must export `getStaticPaths` as a standalone function, and not a property of the page component 。
 
-## Runs on every request in development
+## 在開發中的每個請求上運行
 
-In development (`next dev`), `getStaticPaths` will be called on every request.
+在開發中（`next dev`），`getStaticPaths` 將在每個請求上被調用。
 
-## Generating paths on-demand
+## 按造需求生成路徑
 
-`getStaticPaths` allows you to control which pages are generated during the build instead of on-demand with [`fallback`](/docs/api-reference/data-fetching/get-static-paths.md#fallback-blocking). Generating more pages during a build will cause slower builds.
+`getStaticPaths` 許您控制在構建期間生成哪些頁面，而不是按需生成 [`fallback`](/docs/api-reference/data-fetching/get-static-paths.md#fallback-blocking)。 在構建期間生成更多頁面將導致構建速度變慢。
 
-You can defer generating all pages on-demand by returning an empty array for `paths`. This can be especially helpful when deploying your Next.js application to multiple environments. For example, you can have faster builds by generating all pages on-demand for previews (but not production builds). This is helpful for sites with hundreds/thousands of static pages.
+
+您可以通過為 `paths` 返回一個空數組來延遲按需生成所有頁面。這在將 Next.js 應用程序部署到多個環境時特別有用。例如，您可以通過按需生成所有頁面以供預覽（但不是生產構建）來加快構建速度。這對於擁有成百上千個靜態頁面的網站很有幫助。
 
 ```jsx
 // pages/posts/[id].js
 
 export async function getStaticPaths() {
-  // When this is true (in preview environments) don't
-  // prerender any static pages
-  // (faster builds, but slower initial page load)
+  //  當以下是true時 (在預覽環境) 不會去
+  //  預渲染任何靜態頁面
+  // （構建速度較快，但初始頁面加載速度較慢）
   if (process.env.SKIP_BUILD_STATIC_GENERATION) {
     return {
       paths: [],
@@ -86,30 +87,31 @@ export async function getStaticPaths() {
     }
   }
 
-  // Call an external API endpoint to get posts
+  // 呼叫額外的API端點去獲取posts
   const res = await fetch('https://.../posts')
   const posts = await res.json()
 
-  // Get the paths we want to prerender based on posts
-  // In production environments, prerender all pages
-  // (slower builds, but faster initial page load)
+  // 根據posts獲取我們想要預渲染的路徑
+  // 在生產環境中，預渲染所有頁面
+  //（構建速度較慢，但初始頁面加載速度較快）
   const paths = posts.map((post) => ({
     params: { id: post.id },
   }))
 
-  // { fallback: false } means other routes should 404
+  // { fallback: false } 意思是如果其他路徑沒有匹配到將回傳404
   return { paths, fallback: false }
 }
 ```
 
-## Related
+## 相關
 
-For more information on what to do next, we recommend the following sections:
+有關下一步的更多訊息，我們推薦以下的內容：
 
 <div className="card">
   <a href="/docs/api-reference/data-fetching/get-static-paths.md">
-    <b>getStaticPaths API Reference</b>
-    <small>Read the API Reference for getStaticPaths</small>
+    <b>getStaticPaths API 文件</b>
+    <small>在 API 文件中查看 getStaticPaths</small>
   </a>
 </div>
 
+<TranslatedBy githubUserNames={['Danny101201']} />

@@ -16,6 +16,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-syntax-highlighter": "^15.5.0",
+    "remark-frontmatter": "^4.0.1",
+    "remark-gfm": "^3.0.1",
     "scroll-lock": "^2.1.5"
   },
   "devDependencies": {

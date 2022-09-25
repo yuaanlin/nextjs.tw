@@ -1,4 +1,216 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Blockquote from "@components/Blockquote";
+import Button from "@components/Button";
 
-<NotTranslateYet/>
+# 從 React 到 Next.js
 
+<Pagination
+  hrefs={[
+    '/learn/foundations/from-react-to-nextjs',
+    '/learn/foundations/from-react-to-nextjs/getting-started-with-nextjs',
+    '/learn/foundations/from-react-to-nextjs/next-steps'
+  ]}
+/>
+
+## 開始你的 Next.js
+
+在安裝 Next.js 到你的專案前，你不再需要透過手動加入 `react` 與 `react-dom` 的 script 標籤的方式引入 React 。
+取而代之的是，你可以在本地端使用套件管理工具 `npm` 來安裝這些套件。
+
+<Blockquote>
+  小提醒：你需要在電腦中安裝 Node.js
+  [最低版本需求](/docs/upgrading#minimum-nodejs-version)，[可以在此進行下載](https://nodejs.org/en/)
+</Blockquote>
+
+在準備開發前，請先新增一個內容為空物件 `{}` 的 `package.json` 檔案。
+
+```html
+//package.json
+{
+
+}
+```
+
+接著，請在你的終端機中運行 `npm install react react-dom next`。
+當安裝程序完成後，你可以在 `package.json` 檔案中，查看專案所有的相依套件資訊：
+
+```html
+// package.json
+{
+  "dependencies": {
+    "next": "^12.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
+```
+
+你也會注意到有個 `node_modules` 的資料夾，主要存放專案相依項中的套件內容。
+回到 `index.html`，你可以移除以下提及的程式碼：
+
+1. 若你已使用 `npm` 安裝 `react` 與 `react-dom` 等套件，則可以移除手動引入的 `React` 與 `react-dom script` 標籤
+2. `<html>` 與 `<body>`。Next.js 預設會提供這兩個標籤
+3. 會與 React 中的 `app` 元素與 `ReactDom.render()` 連動的相關程式碼
+4. `Babel` 語法。Next.js 的編譯器會自行將 JSX 語法轉換為可供瀏覽器讀取的 JavaScript 語法
+5. `<script type="text/jsx">` 標籤
+6. React 部分的 `React.useState(0)` 函式
+7. 在你移除以上提及的內容後，請在 `index.html` 頂部添加一行 `import { useState } from "react"`。你的程式碼應該會如下所示：
+
+```html
+// index.html
+import { useState } from 'react';
+function Header({ title }) {
+  return <h1>{title ? title : 'Default title'}</h1>;
+}
+
+function HomePage() {
+  const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+  const [likes, setLikes] = useState(0);
+
+  function handleClick() {
+    setLikes(likes + 1);
+  }
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship. 🚀" />
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+
+      <button onClick={handleClick}>Like ({likes})</button>
+    </div>
+  );
+}
+```
+
+此時在 `index.html` 中的程式碼均為 JSX 語法，為此你可將 `index.html` 的檔案類型由 .html 替換為 `.js` 或 `.jsx`。
+現在，在完全過渡至 Next.js 前，你還需要執行下列三項工序：
+
+1. 移動 `index.js` 至 `pages` 資料夾內(稍後會詳細介紹)
+2. 針對主要的 React 元件加入 export default，幫助 Next.js 辨別頁面需要渲染的主要元件
+
+```html
+   // ...
+   export default function HomePage() {
+   //  ...
+```
+
+3. 在 `package.json` 中增加一組 script，以便在你進行開發同時運行 Next.js 環境伺服器。
+
+```html
+   // package.json
+   {
+    "scripts": {
+        "dev": "next dev"
+    },
+     // "dependencies": {
+     //   "next": "^11.1.0",
+     //   "react": "^17.0.2",
+     //   "react-dom": "^17.0.2"
+     // }
+   }
+```
+
+## 運行開發環境
+
+你可透過終端機運行 `npm run dev` 並開啟瀏覽器前往 [localhost:3000](localhost:3000) 以查看應用程式是否正常運作。接下來，你可以針對程式碼試著做些調整並儲存。
+當你儲存調整後的程式碼，你應該會發現瀏覽器已自動重新渲染頁面，以反映你在程式碼上的更動，這樣的特色稱為 **[快速重新整理( Fast Fresh )](/docs/basic-features/fast-refresh)** 。它會對你在編輯程式碼後提供即時性的回饋，並讓 Next.js 預先針對這些回饋進行配置。
+簡單回顧一下，你的程式碼從先前的結構...
+
+```html
+<html>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/jsx">
+      const app = document.getElementById("app")
+
+      function Header({ title }) {
+        return <h1>{title ? title : "Default title"}</h1>
+      }
+
+      function HomePage() {
+        const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"]
+        const [likes, setLikes] = React.useState(0)
+
+        function handleClick() {
+          setLikes(likes + 1)
+        }
+
+        return (
+          <div>
+            <Header title="Develop. Preview. Ship. 🚀" />
+            <ul>
+              {names.map((name) => (
+                <li key={name}>{name}</li>
+              ))}
+            </ul>
+
+            <button onClick={handleClick}>Like ({likes})</button>
+          </div>
+        )
+      }
+
+      ReactDOM.render(<HomePage />, app)
+    </script>
+  </body>
+</html>
+```
+
+變為以下的結構...
+
+```html
+import { useState } from 'react';
+
+function Header({ title }) {
+  return <h1>{title ? title : 'Default title'}</h1>;
+}
+
+export default function HomePage() {
+  const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+  const [likes, setLikes] = useState(0);
+
+  function handleClick() {
+    setLikes(likes + 1);
+  }
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship. 🚀" />
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+
+      <button onClick={handleClick}>Like ({likes})</button>
+    </div>
+  );
+}
+```
+
+從表面上來看，這些過程只是減少了幾行程式碼，但它確實幫助凸顯了一些事情：React 是一種 **函式庫**，它提供了構築現代互動式 UI 的 **一切基本** 事物，但仍需要透過一些工序將你製作的 UI 整合至應用程式中。
+看完前面對於程式碼上的變更，你或許已經理解使用 Next.js 的好處。你移除了 Babel Script， 體驗了不再需要多餘思考而配置的複雜工具。你也觀察到了 **[快速重新整理( Fast Fresh )](/docs/basic-features/fast-refresh)** 的實際效果，而這些只是 Next.js 在眾多開發者體驗特色中的其中一項。
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/foundations/about-nextjs/index"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/foundations/from-react-to-nextjs/next-steps"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["Nicolas19921107"]} />
