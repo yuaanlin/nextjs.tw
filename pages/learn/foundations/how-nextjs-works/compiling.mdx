@@ -1,4 +1,5 @@
 import Button from "@components/Button";
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
 
 # Next.js 是如何運行的
 
@@ -30,30 +31,16 @@ import Button from "@components/Button";
 
 在 Next.js 中，編譯會發生您對程式碼進行編輯時，即開發階段；以及準備打包你的應用程式至正式環境前的部分程序。
 
-{/\*
-TODO: 加入問答元件
-quiz:{
-heading:{
-type: quickReview,
-text: 為什麼網頁應用程式的程式碼需要進行編譯?
-},
-options:[
-{
-text: 因為程式碼需要轉換成瀏覽器可理解的版本,
-isCorrect: true
-},
-{
-text: 因為程式碼需要翻譯成英文,
-isCorrect: false
-},
-{
-text: 因為 CSS、HTML 與 JavaScript 的程式碼需要被合併為單一檔案,
-isCorrect: false
-}
-]
-}
-
-\*/}
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        為什麼網頁應用程式的程式碼需要進行編譯?
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="因為程式碼需要轉換成瀏覽器可理解的版本" isCorrect/>
+        <QuizOption text="因為程式碼需要翻譯成英文"/>
+        <QuizOption text="因為 CSS、HTML 與 JavaScript 的程式碼需要被合併為單一檔案"/>
+    </QuizOptionGroup>
+</Quiz>
 
 <Button
   content="返回 ←"
