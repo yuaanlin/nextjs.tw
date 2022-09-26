@@ -1,19 +1,15 @@
----
-description: Dynamic Routes are pages that allow you to add custom params to your URLs. Start creating Dynamic Routes and learn more here.
----
-
-# Dynamic Routes
+# 動態路由
 
 <details>
-  <summary><b>Examples</b></summary>
+  <summary><b>例子</b></summary>
   <ul>
     <li><a href="https://github.com/vercel/next.js/tree/canary/examples/dynamic-routing">Dynamic Routing</a></li>
   </ul>
 </details>
 
-Defining routes by using predefined paths is not always enough for complex applications. In Next.js you can add brackets to a page (`[param]`) to create a dynamic route (a.k.a. url slugs, pretty urls, and others).
+對於複雜的應用程式，使用預先定義好的路徑來定義路由往往是不夠的。在 Next.js 中，你可以將中括號添加到頁面 （`[param]`）來創建一個動態路由（又稱為網址別名（ url slugs )、漂亮的路由（ pretty urls ）等）。
 
-Consider the following page `pages/post/[pid].js`:
+思考一下接下來的頁面 `pages/post/[pid].js` :
 
 ```jsx
 import { useRouter } from 'next/router'
@@ -28,33 +24,33 @@ const Post = () => {
 export default Post
 ```
 
-Any route like `/post/1`, `/post/abc`, etc. will be matched by `pages/post/[pid].js`. The matched path parameter will be sent as a query parameter to the page, and it will be merged with the other query parameters.
+`/post/1` ， `/post/abc` 等的路由都會被  `pages/post/[pid].js` 匹配。匹配的路徑參數將會被當成一個查詢參數發送至頁面，並且與其他查詢參數合併。
 
-For example, the route `/post/abc` will have the following `query` object:
+舉例來說，路由 `/post/abc` 將具有以下的 `query` 物件。
 
 ```json
 { "pid": "abc" }
 ```
 
-Similarly, the route `/post/abc?foo=bar` will have the following `query` object:
+同樣地，路由 `/post/abc?foo=bar` 將具有以下的 `query` 物件。
 
 ```json
 { "foo": "bar", "pid": "abc" }
 ```
 
-However, route parameters will override query parameters with the same name. For example, the route `/post/abc?pid=123` will have the following `query` object:
+然而，路由參數將會覆蓋同樣名稱的查詢參數。舉例來說， `/post/abc?pid=123` 將具有以下的 `query` 物件。
 
 ```json
 { "pid": "abc" }
 ```
 
-Multiple dynamic route segments work the same way. The page `pages/post/[pid]/[comment].js` will match the route `/post/abc/a-comment` and its `query` object will be:
+多重動態路由片段也是依照相同方法來運作。頁面 `pages/post/[pid]/[comment].js` 將會匹配路由 `/post/abc/a-comment` ， 並且它的 `query` 物件將會是：
 
 ```json
 { "pid": "abc", "comment": "a-comment" }
 ```
 
-Client-side navigations to dynamic routes are handled with [`next/link`](/docs/api-reference/next/link.md). If we wanted to have links to the routes used above it will look like this:
+客戶端導航到動態路由用 [`next/link`](/docs/api-reference/next/link.md) 處理。如果我們想要連結到上面使用的路由，它看起來像是：
 
 ```jsx
 import Link from 'next/link'
@@ -84,44 +80,44 @@ function Home() {
 export default Home
 ```
 
-Read our docs for [Linking between pages](/docs/routing/introduction.md#linking-between-pages) to learn more.
+閱讀我們的文件 [Linking between pages](/docs/routing/introduction.md#linking-between-pages) 來學習更多。
 
-### Catch all routes
+### 捕獲所有的路由
 
 <details>
-  <summary><b>Examples</b></summary>
+  <summary><b>例子</b></summary>
   <ul>
     <li><a href="https://github.com/vercel/next.js/tree/canary/examples/catch-all-routes">Catch All Routes</a></li>
   </ul>
 </details>
 
-Dynamic routes can be extended to catch all paths by adding three dots (`...`) inside the brackets. For example:
+可以通過在括號內加入三個點 (`...`) 來擴展動態路由以捕獲所有路徑。例如：
 
-- `pages/post/[...slug].js` matches `/post/a`, but also `/post/a/b`, `/post/a/b/c` and so on.
+- `pages/post/[...slug].js` 能匹配 `/post/a` ，也能匹配 `/post/a/b` ， `/post/a/b/c` 等。
 
-> **Note**: You can use names other than `slug`, such as: `[...param]`
+> **注意**： 你可以使用 `slug` 以外的名稱, 例如: `[...param]`
 
-Matched parameters will be sent as a query parameter (`slug` in the example) to the page, and it will always be an array, so, the path `/post/a` will have the following `query` object:
+匹配的參數將作為查詢參數（ 範例中是 `slug` ）發送到頁面，並且它始終都會是一個陣列，因此，路徑 `/post/a` 將具有以下的 `query` 物件。
 
 ```json
 { "slug": ["a"] }
 ```
 
-And in the case of `/post/a/b`, and any other matching path, new parameters will be added to the array, like so:
+`/post/a/b` 和任何其他路徑匹配的情況下，新的參數將會被添加到陣列中，如下所示：
 
 ```json
 { "slug": ["a", "b"] }
 ```
 
-### Optional catch all routes
+### 可選的捕獲所有路由
 
-Catch all routes can be made optional by including the parameter in double brackets (`[[...slug]]`).
+通過將參數包在雙括號（`[[...slug]]`）中，可以使捕獲所有路由變成是可選的。
 
-For example, `pages/post/[[...slug]].js` will match `/post`, `/post/a`, `/post/a/b`, and so on.
+舉例來說， `pages/post/[[...slug]].js` 將匹配 `/post` ， `/post/a` ， `/post/a/b` 等。
 
-The main difference between catch all and optional catch all routes is that with optional, the route without the parameter is also matched (`/post` in the example above).
+捕獲所有路由和可選捕獲所有路由最大的差別在於，當使用可選捕獲時，沒有帶參數的路由也被匹配到 （ 上面例子中的 `/post`）。
 
-The `query` objects are as follows:
+其 `query` 物件如下：
 
 ```json
 { } // GET `/post` (empty object)
@@ -129,31 +125,32 @@ The `query` objects are as follows:
 { "slug": ["a", "b"] } // `GET /post/a/b` (multi-element array)
 ```
 
-## Caveats
+## 注意事項
 
-- Predefined routes take precedence over dynamic routes, and dynamic routes over catch all routes. Take a look at the following examples:
-  - `pages/post/create.js` - Will match `/post/create`
-  - `pages/post/[pid].js` - Will match `/post/1`, `/post/abc`, etc. But not `/post/create`
-  - `pages/post/[...slug].js` - Will match `/post/1/2`, `/post/a/b/c`, etc. But not `/post/create`, `/post/abc`
-- Pages that are statically optimized by [Automatic Static Optimization](/docs/advanced-features/automatic-static-optimization.md) will be hydrated without their route parameters provided, i.e `query` will be an empty object (`{}`).
+-  預先定義路由的優先順序高於動態路由，動態路由的優先度高於捕獲所有路由，請看以下的範例：
+  - `pages/post/create.js` - 將會匹配 `/post/create` 。
+  - `pages/post/[pid].js` - 將會匹配 `/post/1` ， `/post/abc` 等。但不會匹配 `/post/create` 。
+  - `pages/post/[...slug].js` - 將會匹配 `/post/1/2` ， `/post/a/b/c` 等。但不會匹配 `/post/create`, `/post/abc` 。
+-  通過 [自動靜態最佳化](/docs/advanced-features/automatic-static-optimization.md) 進行靜態最佳化的頁面將會在沒有提供路由參數的情況下水合（ hydrated ），換句話說 `query` 將會是一個空物件 (`{}`)。
 
-  After hydration, Next.js will trigger an update to your application to provide the route parameters in the `query` object.
+  經過水和 （ hydration ）後，Next.js 將會觸發你的應用程式更新，來提供 `query` 物件裡的路由參數。
 
-## Related
+## 相關文件
 
-For more information on what to do next, we recommend the following sections:
+想知道更多下一步的資訊， 我們推薦以下的文章：
 
 <div className="card">
   <a href="/docs/api-reference/next/link.md">
-    <b>next/link:</b>
-    <small>Enable client-side transitions with next/link.</small>
+    <b>next/link：</b>
+    <small>使用 next/link 實現客戶端頁面跳轉。</small>
   </a>
 </div>
 
 <div className="card">
   <a href="/docs/routing/introduction.md">
-    <b>Routing:</b>
-    <small>Learn more about routing in Next.js.</small>
+    <b>路由：</b>
+    <small>瞭解更多關於 Next.js 的路由功能。</small>
   </a>
 </div>
 
+<TranslatedBy githubUserNames={["DoubleLazyZ"]} />
