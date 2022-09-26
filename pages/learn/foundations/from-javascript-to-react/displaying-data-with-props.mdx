@@ -1,3 +1,5 @@
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
 ## 從 JavaScript 到 React
 
 <Pagination
@@ -280,30 +282,16 @@ function HomePage() {
 
 下一章節中，你將了解更多關於 **狀態** 以及如何在 React 中監聽用戶事件。
 
-{/*
-    TODO: 加入問答元件
-    quiz:{
-        heading:{
-            type: quickReview,
-            text: React 中的屬性用途為何？
-        },
-        options:[
-            {
-                text: 向元件傳遞訊息,
-                isCorrect: true
-            },
-            {
-                text: 編寫 CSS 規則,
-                isCorrect: false
-            },
-            {
-                text: 向 HTML 元素添加屬性,
-                isCorrect: false
-            }
-        ]
-    }
-
-*/}
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        React 中的屬性用途為何？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="編寫 CSS 規則"/>
+        <QuizOption text="向元件傳遞訊息" isCorrect/>
+        <QuizOption text="向 HTML 元素添加屬性"/>
+    </QuizOptionGroup>
+</Quiz>
 
 **其他資源：**
 

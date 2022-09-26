@@ -1,3 +1,5 @@
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
 ## 從 JavaScript 到 React
 
 <Pagination
@@ -123,30 +125,16 @@ JSX 是 JavaScript 的語法擴展，它允許你以類似 HTML 的語法來描�
 
 > **注意：** 開始使用 React 前，你不需要確切知道它如何更新 UI，但如果你想了解更多，請查看 React 文檔中的 [UI 樹](https://beta.reactjs.org/learn/preserving-and-resetting-state#the-ui-tree") 和 [渲染方法](https://beta.reactjs.org/apis/react-dom/render) 章節。
 
-{/*
-    TODO: 加入問答元件
-    quiz:{
-        heading:{
-            type: quickReview,
-            text: 為什麼需要編譯 React 程式碼？
-        },
-        options:[
-            {
-                text: React 使用了需要編譯成 JavaScript 的 JSX,
-                isCorrect: true
-            },
-            {
-                text: React 使用了一個對於當前的瀏覽器太新版本的 HTML,
-                isCorrect: false
-            },
-            {
-                text: React 不知道如何更新 DOM，所以它需要一個編譯器來完成,
-                isCorrect: false
-            }
-        ]
-    }
-
-*/}
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        為什麼需要編譯 React 程式碼？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="React 使用了一個對於當前的瀏覽器太新版本的 HTML"/>
+        <QuizOption text="React 使用了需要編譯成 JavaScript 的 JSX" isCorrect/>
+        <QuizOption text="React 不知道如何更新 DOM，所以它需要一個編譯器來完成"/>
+    </QuizOptionGroup>
+</Quiz>
 
 **其他資源：**
 
