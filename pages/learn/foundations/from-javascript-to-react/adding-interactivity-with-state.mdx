@@ -1,3 +1,5 @@
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
 ## 從 JavaScript 到 React
 
 <Pagination
@@ -190,30 +192,16 @@ function HomePage() {
 
 本篇只是對狀態的入門介紹，你可以了解更多關於在 React 應用程式中管理狀態和資料流的內容。要了解更多訊息，我們建議你閱讀 React 文檔中的 [添加互動性](https://beta.reactjs.org/learn/adding-interactivity) 和 [管理狀態](https://beta.reactjs.org/learn/managing-state) 部分。
 
-{/*
-    TODO: 加入問答元件
-    quiz:{
-        heading:{
-            type: quickReview,
-            text: 屬性和狀態有什麼區別？？
-        },
-        options:[
-            {
-                text: 屬性是傳遞給元件的唯讀訊息；狀態是可以隨時間變化的訊息，通常由用戶互動觸發,
-                isCorrect: true
-            },
-            {
-                text: 屬性用於定義元件的行為；狀態用於設置元件的樣式,
-                isCorrect: false
-            },
-            {
-                text: 屬性包含有關元件的暫時訊息；狀態包含唯讀訊息,
-                isCorrect: false
-            }
-        ]
-    }
-
-*/}
+<Quiz>
+    <QuizHeading type={QuizType.trueOrFalse}>
+        屬性和狀態有什麼區別？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="屬性是傳遞給元件的唯讀訊息；狀態是可以隨時間變化的訊息，通常由用戶互動觸發" isCorrect/>
+        <QuizOption text="屬性用於定義元件的行為；狀態用於設置元件的樣式"/>
+        <QuizOption text="屬性包含有關元件的暫時訊息；狀態包含唯讀訊息"/>
+    </QuizOptionGroup>
+</Quiz>
 
 **其他資源：**
 

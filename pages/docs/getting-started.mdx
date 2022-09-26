@@ -2,20 +2,20 @@
 
 歡迎來到 Next.js 文件!
 
-If you're new to Next.js, we recommend starting with the [learn course](https://nextjs.org/learn/basics/create-nextjs-app).
+如果你是 Next.js 的新手 ，我們建議你從 [學習課程](/learn/foundations/about-nextjs) 開始。
 
-The interactive course with quizzes will guide you through everything you need to know to use Next.js.
+這個帶有小測驗的互動式課程將會全面地帶領你去認識如何使用 Next.js。
 
-If you have questions about anything related to Next.js, you're always welcome to ask our community on [GitHub Discussions](https://github.com/vercel/next.js/discussions).
+如果你有任何關於 Next.js 的問題，歡迎隨時在我們的社群 [GitHub Discussions](https://github.com/vercel/next.js/discussions) 上提問。
 
-#### System Requirements
+#### 系統環境需求
 
-- [Node.js 12.22.0](https://nodejs.org/) or later
-- MacOS, Windows (including WSL), and Linux are supported
+- [Node.js 12.22.0](https://nodejs.org/) 或更高版本
+- MacOS, Windows (包括 WSL) 和 Linux 都可以支援
 
 ## 自動設置
 
-We recommend creating a new Next.js app using `create-next-app`, which sets up everything automatically for you. To create a project, run:
+我們建議使用 `create-next-app` 來創建一個新的 Next.js 應用程式，它會自動幫你設定好一切。要創建一個專案，請執行：
 
 ```bash
 npx create-next-app@latest
@@ -25,7 +25,7 @@ yarn create next-app
 pnpm create next-app
 ```
 
-If you want to start with a TypeScript project you can use the `--typescript` flag:
+如果你想要使用 TypeScript 來開發，你可以在指令後方加上 `--typescript` 。
 
 ```bash
 npx create-next-app@latest --typescript
@@ -35,17 +35,17 @@ yarn create next-app --typescript
 pnpm create next-app --typescript
 ```
 
-After the installation is complete:
+安裝完成後：
 
-- Run `npm run dev` or `yarn dev` or `pnpm dev` to start the development server on `http://localhost:3000`
-- Visit `http://localhost:3000` to view your application
-- Edit `pages/index.js` and see the updated result in your browser
+- 執行 `npm run dev` 或 `yarn dev` 或 `pnpm dev` 來開啟開發伺服器，位址為 `http://localhost:3000`。
+- 到 `http://localhost:3000` 去查看你的應用程式。
+- 編輯 `pages/index.js` 檔案，你可以在瀏覽器上看到更新的結果。
 
-For more information on how to use `create-next-app`, you can review the [`create-next-app` documentation](/docs/api-reference/create-next-app.md).
+關於使用 `create-next-app` 的更多資訊，你可以查看 [`create-next-app` 文件](/docs/api-reference/create-next-app.md)。
 
 ## 手動設置
 
-Install `next`, `react` and `react-dom` in your project:
+在你的專案中安裝 `next` 、 `react` 和 `react-dom`：
 
 ```bash
 npm install next react react-dom
@@ -55,7 +55,7 @@ yarn add next react react-dom
 pnpm add next react react-dom
 ```
 
-Open `package.json` and add the following `scripts`:
+打開 `package.json` 並且新增下列 `scripts` 指令碼：
 
 ```json
 "scripts": {
@@ -66,23 +66,23 @@ Open `package.json` and add the following `scripts`:
 }
 ```
 
-These scripts refer to the different stages of developing an application:
+這些指令碼對應著應用程式中不同的開發階段：
 
-- `dev` - Runs [`next dev`](/docs/api-reference/cli.md#development) to start Next.js in development mode
-- `build` - Runs [`next build`](/docs/api-reference/cli.md#build) to build the application for production usage
-- `start` - Runs [`next start`](/docs/api-reference/cli.md#production) to start a Next.js production server
-- `lint` - Runs [`next lint`](/docs/api-reference/cli.md#lint) to set up Next.js' built-in ESLint configuration
+- `dev` - 執行 [`next dev`](/docs/api-reference/cli.md#development) 來啟動開發模式
+- `build` - 執行 [`next build`](/docs/api-reference/cli.md#build) 來建立用於正式環境的應用程式
+- `start` - 執行 [`next start`](/docs/api-reference/cli.md#production) 來啟動正式環境伺服器
+- `lint` - 執行 [`next lint`](/docs/api-reference/cli.md#lint) 來設定 Next.js 內建的 ESLint 配置
 
-Create two directories `pages` and `public` at the root of your application:
+在你的應用程式根目錄中新增兩個資料夾 `pages` 和 `public`：
 
-- `pages` - Associated with a route based on their file name. For example `pages/about.js` is mapped to `/about`
-- `public` - Stores static assets such as images, fonts, etc. Files inside `public` directory can then be referenced by your code starting from the base URL (`/`).
+- `pages` - 路由的路徑對應著他們的檔案名稱。 例如： `pages/about.js` 對應到 `/about`
+- `public` - 存放靜態的檔案。例如： 圖片、字型等。 在 public 目錄底下的檔案可對應到專案的 base URL (`/`) 下。
 
-Next.js is built around the concept of [pages](/docs/basic-features/pages.md). A page is a [React Component](https://reactjs.org/docs/components-and-props.html) exported from a `.js`, `.jsx`, `.ts`, or `.tsx` file in the `pages` directory. You can even add [dynamic route](/docs/routing/dynamic-routes) parameters with the filename.
+Next.js 是圍繞著 [頁面(pages)](/docs/basic-features/pages.md) 這個概念而建構出來的。 一個頁面（ Page ）就是從 `pages` 目錄資料夾底下的 `.js` 、 `.jsx` 、 `.ts` 或 `.tsx` 檔案導出的 [React 元件](https://reactjs.org/docs/components-and-props.html)。 甚至你可以在檔案名稱增加 [動態路由](/docs/routing/dynamic-routes) 的參數。
 
-Inside the `pages` directory add the `index.js` file to get started. This is the page that is rendered when the user visits the root of your application.
+在你的專案 `pages` 資料夾下新增 `index.js` 檔案來開始。這是一個使用者訪問你的應用程式的首頁。
 
-Populate `pages/index.js` with the following contents:
+在 `pages/index.js` 中新增以下內容：
 
 ```jsx
 function HomePage() {
@@ -92,42 +92,45 @@ function HomePage() {
 export default HomePage
 ```
 
-After the set up is complete:
+完成設定後：
 
-- Run `npm run dev` or `yarn dev` or `pnpm dev` to start the development server on `http://localhost:3000`
-- Visit `http://localhost:3000` to view your application
-- Edit `pages/index.js` and see the updated result in your browser
+- 執行 `npm run dev` 或 `yarn dev` 或 `pnpm dev` 來開啟開發伺服器，位址為 `http://localhost:3000`。
+- 到 `http://localhost:3000` 去查看你的應用程式。
+- 編輯 `pages/index.js` 文件，你可以在瀏覽器上看到更新的結果。
 
-So far, we get:
+到目前為止，我們學到了：
 
-- Automatic compilation and [bundling](/docs/advanced-features/compiler.md)
-- [React Fast Refresh](https://nextjs.org/blog/next-9-4#fast-refresh)
-- [Static generation and server-side rendering](/docs/basic-features/data-fetching/overview.md) of [`pages/`](/docs/basic-features/pages.md)
-- [Static file serving](/docs/basic-features/static-file-serving.md) through `public/` which is mapped to the base URL (`/`)
+- 自動編譯 和 [打包 （ bundling ）](/docs/advanced-features/compiler.md)
+- [React 快速重新整理](https://nextjs.org/blog/next-9-4#fast-refresh)
+- 頁面[`pages/`](/docs/basic-features/pages.md)的 [靜態生成和伺服器渲染](/docs/basic-features/data-fetching/overview.md)
+- [靜態檔案](/docs/basic-features/static-file-serving.md) `public/` 對應到專案的base URL(`/`)下
 
-In addition, any Next.js application is ready for production from the start. Read more in our [Deployment documentation](/docs/deployment.md).
+此外，任何 Next.js 應用程式從一開始就可以投入到正式環境使用。詳情請閱讀更多我們的[部署文件](/docs/deployment.md)。
+
 
 ## 相關
 
-For more information on what to do next, we recommend the following sections:
+為獲取更多資訊，下一步我們建議學習以下章節：
 
 <div className="card">
   <a href="/docs/basic-features/pages.md">
     <b>Pages:</b>
-    <small>Learn more about what pages are in Next.js.</small>
+    <small>進一步學習什麼是 Next.js 的頁面（ Pages)。</small>
   </a>
 </div>
 
 <div className="card">
   <a href="/docs/basic-features/built-in-css-support.md">
-    <b>CSS Support:</b>
-    <small>Built-in CSS support to add custom styles to your app.</small>
+    <b>支援 CSS ：</b>
+    <small>內建 CSS 支援新增自訂樣式到你的應用程式。</small>
   </a>
 </div>
 
 <div className="card">
   <a href="/docs/api-reference/cli.md">
     <b>CLI:</b>
-    <small>Learn more about the Next.js CLI.</small>
+    <small>學習更多關於 Next.js CLI</small>
   </a>
 </div>
+
+<TranslatedBy githubUserNames={['kaiyuncheng']} />
