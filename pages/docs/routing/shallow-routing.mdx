@@ -1,5 +1,4 @@
 ---
-description: You can use shallow routing to change the URL without triggering a new page change. Learn more here.
 description: 您可以使用淺路由再步來改變網址，
 ---
 
@@ -65,8 +64,5 @@ router.push('/?counter=10', '/about?counter=10', { shallow: true })
 
 當您將淺路由和中介軟體（middleware）一起使用時，不能保證新的頁面會符合沒有使用中介軟體的舊的頁面。
 這是因為中介軟體可以動態的改寫資料，並且使用淺路由時資料驗證的步驟會在客戶端被跳過。所以，一個淺路由必須永遠被視為 shallow 的。
-When shallow routing is used with middleware it will not ensure the new page matches the current page like previously done without middleware.
-This is due to middleware being able to rewrite dynamically and can't be verified client-side without a data fetch which is skipped with shallow,
-so a shallow route change must always be treated as shallow.
 
 <TranslatedBy githubUserNames={["f312213213"]} />
