@@ -1,4 +1,5 @@
 import NotTranslateYet from '@components/NotTranslateYet';
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz';
 
 <Pagination
   hrefs={[
@@ -16,5 +17,25 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet/>
+### 什麼是最小化？
+
+開發者在撰寫程式碼時，為了提升可讀性，程式碼可能會包含一些不影響程式運作的資訊，像是註解、空隔、縮排和換行。
+
+![最小化](https://nextjs.org/static/images/learn/foundations/minifying.png "最小化")
+
+最小化是一個在不影響程式功能下，移除程式碼的格式排版以及註解的過程。其目的是藉由減少檔案大小以改善程式的效能。
+
+在 Next.js，JavaScript 和 CSS 的檔案在正式環境中會自動是最小化的。
+
+<Quiz>
+    <QuizHeading type={QuizType.trueOrFalse}>
+       在最小化的過程中會移除程式碼的語法突顯
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="是 - 語法突顯只會在開發的時候需要"/>
+        <QuizOption text="否 - 語法突顯是編輯器提供的功能" isCorrect/>
+    </QuizOptionGroup>
+</Quiz>
+
+<TranslatedBy githubUserNames={["justYu2001"]} />
 
