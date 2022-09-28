@@ -1,11 +1,11 @@
 ---
-description: Next.js helps you optimize loading third-party scripts with the built-in next/script component.
+描述: Next.js 使用內建的 next/script 組件來協助你最佳化載入第三方程式碼。
 ---
 
-# Script Component
+# 指令檔組件
 
 <details>
-  <summary><b>Examples</b></summary>
+  <summary><b>範例</b></summary>
   <ul>
     <li><a href="https://github.com/vercel/next.js/tree/canary/examples/script-component">Script Component</a></li>
     <li><a href="https://github.com/vercel/next.js/tree/canary/examples/with-google-tag-manager">Google Tag Manager</a></li>
@@ -17,16 +17,16 @@ description: Next.js helps you optimize loading third-party scripts with the bui
 </details>
 
 <details>
-  <summary><b>Version History</b></summary>
+  <summary><b>版本歷史</b></summary>
 
-| Version   | Changes                   |
+| 版本       | 更動                   |
 | --------- | ------------------------- |
-| `v12.2.4` | `onReady` prop added.     |
-| `v11.0.0` | `next/script` introduced. |
+| `v12.2.4` | 增加 `onReady` prop        |
+| `v11.0.0` | 釋出 `next/script`         |
 
 </details>
 
-The Next.js Script component, [`next/script`](/docs/api-reference/next/script.md), is an extension of the HTML `<script>` element. It enables developers to set the loading priority of third-party scripts anywhere in their application, outside `next/head`, saving developer time while improving loading performance.
+Next.js 指令檔組件，[`next/script`](/docs/api-reference/next/script.md) 是 HTML `<script>` 元素的一個擴充功能。它允許開發者在他們的應用程式的任何位置，在 `next/head` 以外的地方設置第三方指令檔載入的優先權，節省開發者的時間外同時也提高載入效能。
 
 ```jsx
 import Script from 'next/script'
@@ -40,16 +40,16 @@ export default function Home() {
 }
 ```
 
-## Overview
+## 概述
 
-Websites often use third-party scripts to include different types of functionality into their site, such as analytics, ads, customer support widgets, and consent management. However, this can introduce problems that impact both user and developer experience:
+網頁通常會使用第三方指令檔，包含不一樣形式的功能，例如：分析、廣告、客戶支援的小工具和同意聲明管理，這些可能會造成一些影響使用者和開發者體驗的問題：
 
-- Some third-party scripts are heavy on loading performance and can drag down the user experience, especially if they are render-blocking and delay any page content from loading
-- Developers often struggle to decide where to place third-party scripts in an application to ensure optimal loading
+- 有些第三方指令檔對於載入的效能來說是相當沈重的，並且會降低使用者體驗，特別是如果禁止運轉和延遲任何頁面內容的載入。
+- 開發人員通常會難以決定在應用程式中放置第三方指令檔的位置來確保最理想的載入。
 
-The Script component makes it easier for developers to place a third-party script anywhere in their application while taking care of optimizing its loading strategy.
+指令檔組件讓開發人員能輕鬆地在應用程式的任何位置中放置第三方指令檔的同時，也負責最佳化其載入策略。
 
-## Usage
+## 應用
 
 To add a third-party script to your application, import the `next/script` component:
 
@@ -145,7 +145,7 @@ Examples of scripts that do not need to load immediately and can be lazy-loaded 
 - Chat support plugins
 - Social media widgets
 
-### Off-loading Scripts To A Web Worker (experimental)
+### Off-loading Scripts To A Web Worker (試驗性)
 
 > **Note: The `worker` strategy is not yet stable and can cause unexpected issues in your application. Use with caution.**
 
@@ -183,7 +183,7 @@ Once setup is complete, defining `strategy="worker"` will automatically instanti
 
 There are a number of trade-offs that need to be considered when loading a third-party script in a web worker. Please see Partytown's [Trade-Offs](https://partytown.builder.io/trade-offs) documentation for more information.
 
-#### Configuration
+#### 配置
 
 Although the `worker` strategy does not require any additional configuration to work, Partytown supports the use of a config object to modify some of its settings, including enabling `debug` mode and forwarding events and triggers.
 
@@ -226,7 +226,7 @@ In order to modify Partytown's configuration, the following conditions must be m
 
 Take a look at Partytown's [configuration options](https://partytown.builder.io/configuration) to see the full list of other properties that can be added.
 
-### Inline Scripts
+### 行內指令檔
 
 Inline scripts, or scripts not loaded from an external file, are also supported by the Script component. They can be written by placing the JavaScript within curly braces:
 
@@ -250,7 +250,7 @@ Or by using the `dangerouslySetInnerHTML` property:
 
 The `id` property is required for **inline scripts** in order for Next.js to track and optimize the script.
 
-### Executing Code After Loading (`onLoad`)
+### 載入後執行程式碼 (`onLoad`)
 
 > **Note: `onLoad` cannot be used with the `beforeInteractive` loading strategy. Consider using `onReady` instead.**
 
@@ -277,7 +277,7 @@ export default function Home() {
 }
 ```
 
-### Executing Code After Mounting (`onReady`)
+### 掛載後執行程式碼 (`onReady`)
 
 Some third-party scripts require users to run JavaScript code after the script has finished loading and every time the component is mounted (after a route navigation for example). You can execute code after the script's `load` event when it first loads and then after every subsequent component re-mount using the `onReady` property:
 
@@ -305,7 +305,7 @@ export default function Home() {
 }
 ```
 
-### Handling errors (`onError`)
+### 處理錯誤 (`onError`)
 
 > **Note: `onError` cannot be used with the `beforeInteractive` loading strategy.**
 
