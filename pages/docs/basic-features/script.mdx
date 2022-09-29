@@ -52,6 +52,7 @@ export default function Home() {
 ## 應用
 
 To add a third-party script to your application, import the `next/script` component:
+若要在你的應用程式增加一個第三方指令檔，請引入 `next/script` 組件：
 
 ```jsx
 import Script from 'next/script'
@@ -59,24 +60,27 @@ import Script from 'next/script'
 
 ### Strategy
 
-With `next/script`, you decide when to load your third-party script by using the `strategy` property:
+透過 `next/script`，你可以使用 `strategy` 屬性來決定何時載入第三方指令檔。
 
 ```jsx
 <Script src="https://connect.facebook.net/en_US/sdk.js" strategy="lazyOnload" />
 ```
 
 There are four different loading strategies that can be used:
+總共有 4 種不同的載入策略可以使用：
 
-- `beforeInteractive`: Load before the page is interactive
-- `afterInteractive`: (**default**) Load immediately after the page becomes interactive
-- `lazyOnload`: Load during idle time
-- `worker`: (experimental) Load in a web worker
+- `beforeInteractive`: 在頁面互動前載入。
+- `afterInteractive`: (**默認**) 在頁面即將為互動之後立即載入。
+- `lazyOnload`: 在閒置期間載入。
+- `worker`: (實驗性) 載入一個 web worker。
 
 #### beforeInteractive
 
-Scripts that load with the `beforeInteractive` strategy are injected into the initial HTML from the server and run before self-bundled JavaScript is executed. This strategy should be used for any critical scripts that need to be fetched and executed before any page becomes interactive. This strategy only works inside **\_document.js** and is designed to load scripts that are needed by the entire site (i.e. the script will load when any page in the application has been loaded server-side).
+使用 `beforeInteractive` strategy 指令檔來進行載入的將會從伺服器中初始 HTML 被嵌入，並且在自行打包 JavaScript 開始前執行。此 strategy 應用在任何需要在頁面互動之前獲取和執行的關鍵指令檔。只會在 **\_document.js** 內執行並且是被設計來載入整個頁面所需的指令檔(例如：指令檔將會在應用程式中的任何頁面在伺服器端載入時被載入。)
 
-The reason `beforeInteractive` was designed to work only inside `\_document.js` is to support streaming and Suspense functionality. Outside of the `_document`, it's not possible to guarantee the timing or ordering of `beforeInteractive` scripts.
+
+`beforeInteractive` 被設計為只能在 `\_document.js` 中運作的原因是為了支持串流和 `Suspense` 功能，在 `_document` 之外的，則無法保證其時間或 `beforeInteractive` 指令檔順序。
+
 
 ```jsx
 // In _document.js
@@ -100,12 +104,12 @@ export default function Document() {
 }
 ```
 
-> **Note**: Scripts with `beforeInteractive` will always be injected inside the `head` of the HTML document regardless of where it's placed in `_document.js`.
+> **注意**: `beforeInteractive` 指令檔將只會被嵌入在 HTML 文件的 `head` 無論該文件被放置在 `_document.js` 內的哪一處。
 
-Examples of scripts that should be loaded as soon as possible with this strategy include:
+使用這個 strategy 的指令檔，應該被盡快載入的範例有：
 
-- Bot detectors
-- Cookie consent managers
+- 機器人檢測
+- Cookie 同意聲明管理工具
 
 #### afterInteractive
 
