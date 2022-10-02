@@ -1,0 +1,80 @@
+import Blockquote from '@components/Blockquote';
+import Button from '@components/Button'
+
+### **建立 Next.js 應用程式**
+
+<Pagination
+  hrefs={[
+    '/learn/basics/create-nextjs-app',
+    '/learn/basics/create-nextjs-app/setup',
+    '/learn/basics/create-nextjs-app/welcome-to-nextjs',
+    '/learn/basics/create-nextjs-app/editing-the-page',
+  ]}
+/>
+
+要從頭開始使用 React 建置完整的 Web 應用程式，您需要考慮許多重要的細節：
+
+- 程式碼必須使用 webpack 之類的打包器打包，並使用 Babel 之類的編譯器進行轉換。
+- 您需要進行生產優化，例如程式碼拆分。
+- 您可能希望靜態預渲染某些頁面以提高性能和 SEO。您可能還想使用伺服器端渲染或客戶端渲染。
+- 您可能需要編寫一些伺服器端程式碼來將您的 React 應用程式連接到您的資料庫。
+
+一個*框架*可以解決這些問題。但是這樣的框架必須具有正確的抽象級別——否則它不會很有用。它還需要具有出色的“開發人員體驗”，確保您和您的團隊在編寫程式碼時擁有令人驚嘆的體驗。
+
+#### Next.js：React框架
+進入**Next.js**，即 React 框架。 Next.js 為上述所有問題提供了解決方案。但更重要的是，它會讓你和你的團隊在建置 React 應用程式時[落入成功的陷阱。][1]
+
+Next.js 目標是擁有良好的開發人員體驗和許多內置功能，例如：
+
+- 直觀的[基於頁面][2]的路由系統（支援支援[動態路由][3]）
+- 每個頁面都可支援[預渲染][4]，[靜態生成][5](SSG) 和[伺服器端渲染][6](SSR)
+- 自動程式碼拆分以加快頁面載入速度
+- 具有優化預取的[客戶端路由][7]
+- [內置 CSS][8]和[Sass 支援][9]，支援任何[CSS-in-JS][10]庫
+- 支援[快速重新整理][11]的開發環境
+- 使用無伺服器函數建置 API 端點的[API 路由][12]
+- 完全可擴充
+
+Next.js 用於數以萬計產品方面的網站和網路應用程式，其中包括許多世界上知名的品牌。
+
+#### 關於本教學
+這個免費的互動課程將指導您了解如何開始使用 Next.js。
+
+在本教學中，您將通過創建一個非常簡單的**部落格應用程式**來學習 Next.js 基礎知識。這是最終結果的範例：
+
+[**https://next-learn-starter.vercel.app**][13]（[原始碼][14]）
+<Blockquote>
+本教學假定您具備 Ja​​vaScript 和 React 的基本知識。如果你從未編寫過 React 程式碼，你應該先閱讀官方的 React 教學。
+
+如果您正在尋找文件，[請訪問 Next.js 文件][15]。
+</Blockquote>
+#### 加入討論
+[如果您對與 Next.js 或本課程相關的任何問題有任何疑問，歡迎您在Discord][16]上向我們的社群提問。
+
+讓我們開始吧！
+
+<Button
+content="現在開始 →"
+url="/learn/basics/create-nextjs-app/setup"
+basicStyle="text-white bg-[#0070f3]"
+hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["yenbigbear"]} />
+
+[1]: https://blog.codinghorror.com/falling-into-the-pit-of-success/ "落入成功的陷阱"
+[2]: /docs/basic-features/pages "基於頁面"
+[3]: /docs/routing/dynamic-routes "動態路由"
+[4]: /docs/basic-features/pages#提前渲染 "預渲染"
+[5]: /docs/basic-features/pages#靜態生成（建議） "靜態生成"
+[6]: /docs/basic-features/pages#伺服器端渲染 "伺服器端渲染"
+[7]: /docs/routing/introduction#客戶端路由 "客戶端路由"
+[8]: /docs/basic-features/built-in-css-support "內置 CSS"
+[9]: /docs/basic-features/built-in-css-support#sass-support "Sass 支援"
+[10]: /docs/basic-features/built-in-css-support#css-in-js "CSS-in-JS"
+[11]: /docs/basic-features/fast-refresh "快速重新整理"
+[12]: /docs/api-routes/introduction "API 路由"
+[13]: https://next-learn-starter.vercel.app/ "部落格範例"
+[14]: https://github.com/vercel/next-learn/tree/master/basics/demo "原始碼"
+[15]: /docs/getting-started "Next.js 文件"
+[16]: https://discord.gg/tjsxK9Uc "中文版Discord社群"

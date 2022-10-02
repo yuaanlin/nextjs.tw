@@ -114,23 +114,23 @@
     ]
   },
   {
-    "title": "CREATE YOUR FIRST APP",
+    "title": "建立你的第一個應用程式",
     "index": true,
     "children": [
       {
-        "title": "Create a Next.js App",
+        "title": "建立 Next.js 應用程式",
         "path": "/learn/basics/create-nextjs-app",
         "children": [
           {
-            "title": "Setup",
+            "title": "設置",
             "path": "/learn/basics/create-nextjs-app/setup"
           },
           {
-            "title": "Welcome to Next.js",
+            "title": "歡迎來到 Next.js",
             "path": "/learn/basics/create-nextjs-app/welcome-to-nextjs"
           },
           {
-            "title": "Editing the Page",
+            "title": "編輯頁面",
             "path": "/learn/basics/create-nextjs-app/editing-the-page"
           }
         ]
