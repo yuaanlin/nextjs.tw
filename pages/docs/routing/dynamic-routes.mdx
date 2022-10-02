@@ -24,7 +24,7 @@ const Post = () => {
 export default Post
 ```
 
-`/post/1` ， `/post/abc` 等的路由都會被  `pages/post/[pid].js` 匹配。匹配的路徑參數將會被當成一個查詢參數發送至頁面，並且與其他查詢參數合併。
+`/post/1` ， `/post/abc` 等的路由都會被  `pages/post/[pid].js` 匹配。匹配的路徑參數將會被當成一個查詢參數（ query params ）發送至頁面，並且與其他查詢參數合併。
 
 舉例來說，路由 `/post/abc` 將具有以下的 `query` 物件。
 
