@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import MiniMenu from '@components/Layout/MiniMenu';
-import type { NestedsetProps, MiniMenuProps } from './type';
+import type { NestedsetProps } from './type';
 
 function DocsLayout(props: PropsWithChildren<{}>) {
   const router = useRouter();
@@ -43,7 +43,7 @@ function DocsLayout(props: PropsWithChildren<{}>) {
          md:flex md:flex-col md:w-[300px] md:min-w-[300px] md:mr-4 md:pr-5"
       >
         <SearchInput className="my-6"/>
-        <DocsMenu />
+        <DocsMenu pathname={router.pathname}/>
       </aside>
       <div className="w-full overflow-hidden docs mt-14 md:mt-0">
         {props.children}
@@ -52,7 +52,7 @@ function DocsLayout(props: PropsWithChildren<{}>) {
   </>);
 }
 
-const Nestedset = ({ item, level, pathname }: NestedsetProps) => {
+const Nestedset: FC<NestedsetProps> = ({ item, level, pathname }) => {
   if(item.children) {
     return (<>
       <h4
@@ -69,7 +69,7 @@ const Nestedset = ({ item, level, pathname }: NestedsetProps) => {
   return (<></>);
 };
 
-const NestedsetUL = ({ item, level=0, pathname }: NestedsetProps) => {
+const NestedsetUL: FC<NestedsetProps> = ({ item, level=0, pathname }) => {
   return (
     <ul className={`${level > 0 ? `level-${level}` : ''} pl-4`}>
       { item.children.map((item: any, key: Key | null | undefined) => (
@@ -79,7 +79,7 @@ const NestedsetUL = ({ item, level=0, pathname }: NestedsetProps) => {
   );
 };
 
-const NestedsetLI = ({ item, level=0, pathname }: NestedsetProps) => {
+const NestedsetLI: FC<NestedsetProps> = ({ item, level=0, pathname }) => {
   return (
     <li
       className={`${level > 0 ? `level-${level}` : ''}
@@ -94,8 +94,10 @@ const NestedsetLI = ({ item, level=0, pathname }: NestedsetProps) => {
   );
 };
 
-const DocsMenu = () => {
-  const { pathname } = useRouter();
+const DocsMenu: FC<{
+  pathname: string;
+}> = (props) => {
+  const { pathname } = props;
 
   return (
     <div className="overflow-y-auto pb-6">
@@ -110,7 +112,11 @@ const DocsMenu = () => {
   );
 };
 
-const MiniDocsMenu: FC<MiniMenuProps> = (props) => {
+const MiniDocsMenu: FC<{
+  className?: string;
+  title: string;
+  pathname: string;
+}> = (props) => {
   const { className, title, pathname } = props;
   return (
     <MiniMenu title={title} className={className}>

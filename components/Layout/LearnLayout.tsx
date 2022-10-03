@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import type { PropsWithChildren, FC, Key } from 'react';
-import type { NestedsetProps, MiniMenuProps } from './type';
+import type { NestedsetProps } from './type';
 
 function LearnLayout(props: PropsWithChildren<{}>) {
   const router = useRouter();
@@ -32,7 +32,7 @@ function LearnLayout(props: PropsWithChildren<{}>) {
         className="z-10 h-screen sticky hidden
          md:flex md:flex-col md:w-[300px] md:min-w-[300px] md:mr-4 md:pr-5"
       >
-        <LearnMenu />
+        <LearnMenu pathname={router.pathname} />
       </aside>
       <div className="w-full overflow-hidden docs mt-14 md:mt-0">
         {props.children}
@@ -42,7 +42,7 @@ function LearnLayout(props: PropsWithChildren<{}>) {
 }
 
 // 用現在的pathname內容有沒有includes該項目的path來做樣式判斷
-const Nestedset = ({ item, level, pathname }: NestedsetProps) => {
+const Nestedset: FC<NestedsetProps> = ({ item, level, pathname }) => {
   if(item.children) {
     return (
       <>
@@ -70,7 +70,7 @@ const Nestedset = ({ item, level, pathname }: NestedsetProps) => {
   return (<></>);
 };
 
-const NestedsetUL = ({ item, level=0, pathname }: NestedsetProps) => {
+const NestedsetUL: FC<NestedsetProps> = ({ item, level=0, pathname }) => {
   return (
     <ul
       className={`
@@ -86,7 +86,7 @@ const NestedsetUL = ({ item, level=0, pathname }: NestedsetProps) => {
   );
 };
 
-const NestedsetLI = ({ item, level=0, pathname }: NestedsetProps) => {
+const NestedsetLI: FC<NestedsetProps> = ({ item, level=0, pathname }) => {
   return (
     <li
       className={`${level > 0 ? `level-${level}` : ''}
@@ -104,8 +104,10 @@ const NestedsetLI = ({ item, level=0, pathname }: NestedsetProps) => {
   );
 };
 
-const LearnMenu = () => {
-  const { pathname } = useRouter();
+const LearnMenu: FC<{
+    pathname: string;
+}> = (props) => {
+  const { pathname } = props;
   return (
     <div className="pb-6">
       {
@@ -119,7 +121,11 @@ const LearnMenu = () => {
   );
 };
 
-const MiniLearnMenu: FC<MiniMenuProps> = (props) => {
+const MiniLearnMenu: FC<{
+    className?: string;
+    title: string;
+    pathname?: string;
+}> = (props) => {
   const { className, title, pathname } = props;
   return (
     <MiniMenu title={title} className={className}>

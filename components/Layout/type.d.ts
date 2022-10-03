@@ -3,9 +3,3 @@ export type NestedsetProps = {
   level: number;
   pathname: string;
 }
-
-export type MiniMenuProps = {
-  className?: string;
-  title: string;
-  pathname?: string;
-}

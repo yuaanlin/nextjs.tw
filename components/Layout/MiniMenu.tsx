@@ -31,7 +31,7 @@ const MiniMenu: FC<{
         className={`w-full overflow-y-scroll flex flex-col 
         bg-white shadow-lg rounded-b-lg
         ${isOpen ? 'block' : 'hidden'}`}>
-        <div className="`w-full h-[500px] mx-auto container">
+        <div className="`w-full h-[500px] mx-auto container" onClick={() => setIsOpen(false)}>
           {children}
         </div>
       </div>
