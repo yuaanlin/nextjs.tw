@@ -1,10 +1,11 @@
-import Nestedset from './Nestedset';
+import MiniMenu from './MiniMenu';
 import routes from '../LearnRoutes.json';
 import findTitleInNestedManifest from '../../utils/findTitleInNestedManifest';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { type PropsWithChildren, type FC, useState } from 'react';
-import type { NestedsetProps } from './type';
+import Link from 'next/link';
+import type { PropsWithChildren, FC, Key } from 'react';
+import type { NestedsetProps, MiniMenuProps } from './type';
 
 function LearnLayout(props: PropsWithChildren<{}>) {
   const router = useRouter();
@@ -23,7 +24,10 @@ function LearnLayout(props: PropsWithChildren<{}>) {
         <meta property="og:image" content="/og.jpg"/>
         <meta content="@vercel" name="twitter:site"/>
       </Head>
-      <MiniLearnMenu className="block md:hidden fixed z-10 left-0 top-[80px]" title={title} />
+      <MiniLearnMenu
+        className="block md:hidden fixed z-10 left-0 top-[80px]"
+        title={title}
+        pathname={router.pathname} />
       <aside
         className="z-10 h-screen sticky hidden
          md:flex md:flex-col md:w-[300px] md:min-w-[300px] md:mr-4 md:pr-5"
@@ -36,6 +40,69 @@ function LearnLayout(props: PropsWithChildren<{}>) {
     </div>
   );
 }
+
+// 用現在的pathname內容有沒有includes該項目的path來做樣式判斷
+const Nestedset = ({ item, level, pathname }: NestedsetProps) => {
+  if(item.children) {
+    return (
+      <>
+        {
+          item.index ? <h4
+            className={
+              `${item.index ? 'my-1 mt-5 text-[0.79em] font-semibold' : ''}`
+            }>
+            { item.title }
+          </h4> : <Link href={item.path} passHref>
+            <a
+              className={`${level === 1 && pathname.includes(item.path)
+                ? 'font-bold' : ''
+              } inline-block my-2 text-sm`}
+            >{item.title}</a>
+          </Link>
+        }
+        { item.children && <NestedsetUL item={item} level={level} pathname={pathname} />}
+      </>
+    );
+  }
+  if(item.path) {
+    return (<NestedsetLI item={item} level={level} pathname={pathname} />);
+  }
+  return (<></>);
+};
+
+const NestedsetUL = ({ item, level=0, pathname }: NestedsetProps) => {
+  return (
+    <ul
+      className={`
+      ${level > 0 ? `level-${level}` : ''} 
+      ${level === 1 && !pathname.includes(item.path)
+      ? 'max-h-0 overflow-hidden' : 'max-h-fit'}
+      pl-4
+      `}>
+      { item.children.map((item: any, key: Key | null | undefined) => (
+        <Nestedset key={key} item={item} level={level + 1} pathname={pathname} />
+      )) }
+    </ul>
+  );
+};
+
+const NestedsetLI = ({ item, level=0, pathname }: NestedsetProps) => {
+  return (
+    <li
+      className={`${level > 0 ? `level-${level}` : ''}
+          my-4 text-sm text-[#444]
+          ${pathname === item.path ? 'font-semibold' : ''}
+        `}
+    >
+      <Link href={item.path} passHref>
+        <a className="flex items-center">
+          <div className="w-2 h-2 rounded-full bg-[#0070f3] mr-2" />
+          {item.title}
+        </a>
+      </Link>
+    </li>
+  );
+};
 
 const LearnMenu = () => {
   const { pathname } = useRouter();
@@ -52,57 +119,20 @@ const LearnMenu = () => {
   );
 };
 
-interface MiniLearnProps {
-  className?: string
-  title: string
-}
-
-const MiniLearnMenu: FC<MiniLearnProps> = (props) => {
-  const { className, title } = props;
-  const { pathname } = useRouter();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
+const MiniLearnMenu: FC<MiniMenuProps> = (props) => {
+  const { className, title, pathname } = props;
   return (
-    <div className={`w-full flex flex-col bg-white ${className}`}>
-      <button
-        className="w-full border-b"
-        onClick={() => setIsOpen(!isOpen)}>
-        <span className="w-full h-[56px] flex gap-5 items-center mx-auto container">
-          {
-            isOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
-            )
-          }
-          <p>
-            {title}
-          </p>
-        </span>
-      </button>
-      <div
-        className={`w-full overflow-y-scroll flex flex-col 
-        bg-white shadow-lg rounded-b-lg
-        ${isOpen ? 'block' : 'hidden'}`}>
-        <div className="`w-full h-[500px] mx-auto container">
-          {
-            routes.map((item, key) => (
-              <Nestedset key={key} item={item} level={0} pathname={pathname} />
-            ))
-          }
-        </div>
-      </div>
-    </div>
+    <MiniMenu title={title} className={className}>
+      {
+        routes.map((item, key) => (
+          <Nestedset
+            key={key}
+            item={item}
+            level={0}
+            pathname={pathname as string} />
+        ))
+      }
+    </MiniMenu>
   );
 };
 
