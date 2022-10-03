@@ -1,4 +1,7 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Button from "@components/Button";
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
+# Next.js 是如何運行的
 
 <Pagination
   hrefs={[
@@ -16,5 +19,55 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet/>
+## 開發環境與正式環境
 
+你可以將環境視為你的程式碼運行時的前後行關係
+
+在開發的過程中，你是在本地端的設備上構建並運行你的應用程式。
+
+將產品[投入到正式環境](/docs/going-to-production)運行，是讓你的應用程式部署並讓客戶使用的一項過程
+
+
+## 如何將這些應用在 Next.js
+
+Next.js 在開發階段與正式階段的應用程式提供了一些功能。例如：
+
+  - 在開發階段，Next.js 針對開發者與他們在構建應用程式時的體驗做了優化。這使 Next.js 帶來一些特點，主要目的在改善 **開發者的體驗** ，例如 [TypeScript](/docs/basic-features/typescript) 和 [ESLint](/docs/basic-features/eslint) 整合、[快速重新整理](/docs/basic-features/fast-refresh)等。
+
+  - 在正式階段，Next.js 針對最終用戶及其在應用程式的操作體驗上做了優化。主要目的在轉換程式碼以具備高效能和可訪問性。由於每個環境都有不同考量和目標，在將應用程式從開發階段移轉到正式階段時需要執行多道工序。例如，應用程式的程式碼需要執行[編譯](/learn/foundations/how-nextjs-works/compiling)、[打包](/learn/foundations/how-nextjs-works/bundling)、[最小化](/learn/foundations/how-nextjs-works/minifying)與[程式碼拆分](/learn/foundations/how-nextjs-works/code-splitting)等過程。
+
+
+## Next.js 編譯器
+
+Next.js 負責處理大部分的 **程式碼轉換** 和底層基礎，以讓你的應用程式更容易進入正式環境。這之所以成為可能，是因為 Next.js 有個使用 Rust（一種低程度語言）與 SWC（一個可用於編譯、最小化與打包的平台）執行編譯的[編譯器](/docs/advanced-features/compiler)。
+
+在下一章節中，我們將探討這些轉換中的每一個項目。
+
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        以下哪一項不是優化正式環境的過程？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="編譯" />
+        <QuizOption text="打包"/>
+        <QuizOption text="路由" isCorrect/>
+        <QuizOption text="最小化"/>
+    </QuizOptionGroup>
+</Quiz>
+
+
+<Button
+  content="返回 ←"
+  url="/learn/foundations/how-nextjs-works/index"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="下一個 →"
+  url="/learn/foundations/how-nextjs-works/compiling"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["Nicolas19921107"]} />

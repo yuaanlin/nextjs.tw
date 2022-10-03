@@ -1,4 +1,6 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
+## Next.js 是如何運作的
 
 <Pagination
   hrefs={[
@@ -16,4 +18,60 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet/>
+## 網路是什麼？
+
+了解你的應用程式部屬到網路上時，程式碼存放在何處及從哪裡運行是非常有幫助的。
+你可以把網路想像成一群彼此連結的電腦（或是伺服器），而它們之間能夠共享資源。
+就 Next.js 應用程式而言，你的程式碼能夠被分送到 **原始伺服器**，**內容分發網路（CDNs）** 以及 **邊緣運算** 位置。
+讓我們看看這些名詞各自代表什麼：
+
+### 原始伺服器（Origin Servers）
+
+如我們剛剛討論的，這個伺服器指的是一台用來儲存及運行原始版本的應用程式程式碼的電腦。
+
+我們使用 **原始（origin）** 來和其他被分配資源的伺服器（像是 **CDN 伺服器** 及 **邊緣運算伺服器**）進行概念上的區分。
+
+當原始伺服器接收請求後，在進行回應之前會做一些運算工作。運算過後的結果可以被轉移到 CDN（內容分發網路） 存放。
+
+
+### 內容分發網路（Content Delivery Networks）
+
+CDNs（Content Delivery Networks 縮寫）將靜態資源（像是 HTML 及圖片檔）儲存在世界多個地方，且位置存在於客戶端與原始伺服器之間。當客戶端發起新的請求，離使用者最近的 CDN 伺服器會回應已事先進行快取的靜態資源。
+
+![CDN 運作](https://nextjs.org/static/images/learn/foundations/cdn.png "CDN 運作")
+
+這樣做可以減少對於原始伺服器的工作負擔，因為沒有必要在每個請求發生時都進行運算。對於使用者來說也會有更快的體驗，因為回應來自於地理位置離他們相對較近的地方。
+
+在Next.js中，由於可以提早進行預渲染，CDNs 非常適合用來存放靜態資源－讓資源傳遞更快速。
+
+### 邊緣運算
+
+邊緣是網路邊緣的一種概括概念，意即在離使用者最近的地方（使用者的邊緣）。
+
+內容分發網路（CDNs），可以被認為是「邊緣」的一部分，因為他們在網路中的邊緣位置存儲網頁靜態資源。
+
+邊緣類似內容分發網路（CDNs），它的伺服器被分發到世界各地多個地方，但不同的是，它存儲靜態資源，有些還能夠運行程式碼。
+
+這意謂著快取及執行程式碼這兩件事是有辦法在離使用者最近的地方辦到的。
+
+藉由在邊緣執行程式碼的特性，你可以把一些工作像是習慣在客戶端或伺服器端做的事情，移動到邊緣位置來完成（[點此查看 Next.js 範例](https://vercel.com/features/edge-functions#:~:text=or%20steps%20required.-,CODE%20EXAMPLES,-Unlock%20the%20potential)）。這麼做可以使你的應用程式更有效率，因為它大大減少了需要傳遞到客戶端的程式碼況且部分使用者的請求沒有必要大老遠的跑到原始伺服器索取網站資源－這樣能減少延遲。
+
+在 Next.js 中，你可以使用 [中介（Middleware）](/docs/middleware) 在邊緣位置執行程式碼，很快地 [React Server Components](/docs/advanced-features/react-18/overview#react-server-components-alpha) 也即將支援同樣功能。
+
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        以下哪一個選項不是邊緣運算的好處？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="減少對單一伺服器的負擔"/>
+        <QuizOption text="更快地傳遞資源"/>
+        <QuizOption text="增加索取網站資源而造成的網路延遲時間" isCorrect/>
+        <QuizOption text="能夠改善效能表現"/>
+    </QuizOptionGroup>
+</Quiz>
+
+**其他資源**
+
+- [Vercel 邊緣運算網路](https://vercel.com/docs/concepts/edge-network/overview)
+
+<TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />
