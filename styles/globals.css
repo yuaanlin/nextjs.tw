@@ -20,6 +20,10 @@
     content: '`';
 }
 
+.docs :not(pre > div) .link-code > code {
+    @apply text-[#0074de] hover:text-[#68b5fb];
+}
+
 .docs h1 {
     @apply text-4xl font-bold mb-14;
 }
