@@ -69,7 +69,7 @@ export const MDXTd: FC<
     DetailedHTMLProps<
         TdHTMLAttributes<HTMLTableDataCellElement>, HTMLTableDataCellElement
       >
-  > = ({ children, ...rest }: JSX.IntrinsicElements['td']) => {
+  > = ({ children, ...rest }) => {
     return (
       <td {...rest} className="p-2">
         {children}
