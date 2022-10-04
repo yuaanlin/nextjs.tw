@@ -1,0 +1,92 @@
+import Button from '@components/Button';
+import Blockquote from '@components/Blockquote';
+
+## 靜態資源、詮釋資料 和 CSS
+
+<Pagination
+  hrefs={[
+    '/learn/basics/assets-metadata-css',
+    '/learn/basics/assets-metadata-css/setup',
+    '/learn/basics/assets-metadata-css/assets',
+    '/learn/basics/assets-metadata-css/metadata',
+    '/learn/basics/assets-metadata-css/third-party-javascript',
+    '/learn/basics/assets-metadata-css/css-styling',
+    '/learn/basics/assets-metadata-css/layout-component',
+    '/learn/basics/assets-metadata-css/global-styles',
+    '/learn/basics/assets-metadata-css/polishing-layout',
+    '/learn/basics/assets-metadata-css/styling-tips',
+  ]}
+/>
+
+### 詮釋資料（Metadata）
+
+如果我們想要修改頁面的詮釋資料，例如 `<title>` HTML 標籤，該怎麼辦呢？
+
+`<title>` 為 `<head>` HTML 標籤的一部分，所以讓我們先來看看如何在 Next.js 頁面中修改 `<head>` 標籤。
+
+在編輯器中開啟 `pages/index.js`，並找到以下程式碼：
+
+```html
+<Head>
+  <title>Create Next App</title>
+  <link rel="icon" href="/favicon.ico" />
+</Head>
+```
+
+請注意，應使用 `<Head>` 而非小寫的 `<head>`，`<Head>` 是一個內建於 Next.js 的 React 元件，它允許你修改頁面的 `<head>`。
+
+你可以從 <a href="/docs/api-reference/next/head" className="link-code" target="_blank">`next/head`</a> 模組中匯入 `Head` 元件。
+
+#### 在 `first-post.js` 中加入 `Head`
+
+我們尚未在 `/posts/first-post` 路由中加入 `<title>`，讓我們在其中添加一個。
+
+開啟 `pages/posts/first-post.js`，並將 <a href="/docs/api-reference/next/head" className="link-code" target="_blank">`next/head`</a> 的 `Head` 匯入於檔案開頭：
+
+```js
+import Head from 'next/head';
+```
+
+接著，更新匯出的 `FirstPost` 元件，使其包含 `Head` 元件，目前我們只在其中加入 `title` 標籤：
+
+```jsx
+export default function FirstPost() {
+  return (
+    <>
+      <Head>
+        <title>First Post</title>
+      </Head>
+      <h1>First Post</h1>
+      <h2>
+        <Link href="/">
+          <a>Back to home</a>
+        </Link>
+      </h2>
+    </>
+  );
+}
+```
+
+嘗試訪問 http://localhost:3000/posts/first-post ，瀏覽器分頁名稱應該會顯示 “First Post”，若使用瀏覽器的開發者工具，你應該會看到 `title` 標籤已被加入到 `<head>` 內。
+
+<Blockquote>
+  若想了解更多有關 `Head` 元件的資訊，請參閱 <a href="/docs/api-reference/next/head" className="link-code" target="_blank">`next/head` 的 API 參考</a>。
+
+  若想自訂 `<html>` 標籤，像是加入 `lang` 屬性，你可以透過建立 `pages/_document.js` 檔案來達成，詳細資訊請參閱 <a href="/docs/advanced-features/custom-document" className="link-code" target="_blank">自訂 `Document` 文件</a>。
+</Blockquote>
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/assets-metadata-css/assets"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/assets-metadata-css/third-party-javascript"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["lucy70381"]} />
