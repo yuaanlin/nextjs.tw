@@ -1,0 +1,124 @@
+import Button from '@components/Button';
+import Blockquote from '@components/Blockquote';
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz';
+
+## 靜態資源、詮釋資料 和 CSS
+
+<Pagination
+  hrefs={[
+    '/learn/basics/assets-metadata-css',
+    '/learn/basics/assets-metadata-css/setup',
+    '/learn/basics/assets-metadata-css/assets',
+    '/learn/basics/assets-metadata-css/metadata',
+    '/learn/basics/assets-metadata-css/third-party-javascript',
+    '/learn/basics/assets-metadata-css/css-styling',
+    '/learn/basics/assets-metadata-css/layout-component',
+    '/learn/basics/assets-metadata-css/global-styles',
+    '/learn/basics/assets-metadata-css/polishing-layout',
+    '/learn/basics/assets-metadata-css/styling-tips',
+  ]}
+/>
+
+### 第三方 JavaScript
+
+**第三方 JavaScript** 是指從第三方來源添加的任何腳本，通常用於將新功能引入網站，而不需要從頭開始編寫，例如分析、廣告和客戶支援的小工具。
+
+#### 添加第三方 JavaScript
+
+讓我們深入了解如何將第三方腳本添加到 Next.js 頁面中。
+
+在編輯器中開啟 `pages/posts/first-post.js`，並找到以下程式碼：
+
+```jsx
+<Head>
+  <title>First Post</title>
+</Head>
+```
+
+除了詮釋資料之外，通常也會在頁面的 `<head>` 中添加需要立即載入和執行的腳本。使用常規的 HTML `<script>` 元素，外來的腳本以如下所示添加：
+
+```jsx
+<Head>
+  <title>First Post</title>
+  <script src="https://connect.facebook.net/en_US/sdk.js" />
+</Head>
+```
+
+此腳本包含 <a href="https://developers.facebook.com/docs/javascript/quickstart" target="_blank">Facebook SDK</a>，普遍用於引入 Facebook 社交外掛和其他功能。雖然這方法是可行的，但我們並不清楚它與同一頁面上提取的其他 JavaScript 程式碼的載入時間，如果其中某個腳本是禁止轉譯的，並且可能延遲頁面內容的加載，這將會大大地影響效能。
+
+#### 使用 Script 元件
+
+<a href="/docs/api-reference/next/script" className="link-code" target="_blank">`next/script`</a> 是基於 HTML `<script>` 元素的擴充功能，可優化提取和執行其他腳本的時機。
+
+在同一個檔案開頭匯入 `next/script` 的 `Script`：
+
+```jsx
+import Script from 'next/script';
+```
+
+現在，更新 `FirstPost` 元件以包含 `Script` 元件：
+
+```jsx
+export default function FirstPost() {
+  return (
+    <>
+      <Head>
+        <title>First Post</title>
+      </Head>
+      <Script
+        src="https://connect.facebook.net/en_US/sdk.js"
+        strategy="lazyOnload"
+        onLoad={() =>
+          console.log(`腳本正確地載入，window.FB 已被定義`)
+        }
+      />
+      <h1>First Post</h1>
+      <h2>
+        <Link href="/">
+          <a>Back to home</a>
+        </Link>
+      </h2>
+    </>
+  );
+}
+```
+
+這邊可以注意到 Script 元件中定義了一些附加屬性：
+
+- `strategy` 控制第三方腳本何時載入，`lazyOnload` 告訴 Next.js 在瀏覽器閒置期間慵懶地載入此特定腳本
+- `onLoad` 用於當腳本載入完成後要立即執行的任何 JavaScript 程式碼。在此範例中，我們將一則訊息記錄於控制台，其提及腳本已正確地載入
+
+嘗試訪問 http://localhost:3000/posts/first-post ，使用瀏覽器的開發人員工具，你應該可以在 `Console` 面板裡看到上方記錄的訊息。此外，你可以執行 `window.FB` 來查看腳本是否已定義於此全域變數。
+
+**注意：** Facebook SDK 只是用來顯示如何以高效的方式將第三方腳本加入於應用程式的例子。現在你已瞭解如何在 Next.js 中引入第三方功能的基礎知識，你可以在學習下一頁內容之前將 Script 元件從 `FirstPost` 中移除。
+
+<Blockquote>
+  若想了解有關 `Script` 元件的更多資訊，請參閱<a href="/docs/basic-features/script" target="_blank">文件</a>。
+</Blockquote>
+
+<Quiz>
+  <QuizHeading type={QuizType.quickReview}>
+    `next/script` 簡化了什麼？
+  </QuizHeading>
+  <QuizOptionGroup>
+    <QuizOption text="載入第三方腳本" isCorrect />
+    <QuizOption text="壓縮腳本" />
+    <QuizOption text="優化打包腳本區塊" />
+  </QuizOptionGroup>
+</Quiz>
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/assets-metadata-css/metadata"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/assets-metadata-css/css-styling"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["lucy70381"]} />
