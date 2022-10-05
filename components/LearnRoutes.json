@@ -140,19 +140,19 @@
         "path": "/learn/basics/navigate-between-pages",
         "children": [
           {
-            "title": "Setup",
+            "title": "設置",
             "path": "/learn/basics/navigate-between-pages/setup"
           },
           {
-            "title": "Pages in Next.js",
+            "title": "Next.js 中的頁面",
             "path": "/learn/basics/navigate-between-pages/pages-in-nextjs"
           },
           {
-            "title": "Link Component",
+            "title": "Link 組件",
             "path": "/learn/basics/navigate-between-pages/link-component"
           },
           {
-            "title": "Client-Side Navigation",
+            "title": "用戶端的跳轉",
             "path": "/learn/basics/navigate-between-pages/client-side"
           }
         ]
