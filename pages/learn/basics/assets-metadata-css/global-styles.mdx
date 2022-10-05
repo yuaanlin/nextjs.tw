@@ -1,0 +1,131 @@
+import Button from '@components/Button';
+import Keyboard from '@components/Keyboard';
+import Blockquote from '@components/Blockquote';
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz';
+
+## 靜態資源、詮釋資料 和 CSS
+
+<Pagination
+  hrefs={[
+    '/learn/basics/assets-metadata-css',
+    '/learn/basics/assets-metadata-css/setup',
+    '/learn/basics/assets-metadata-css/assets',
+    '/learn/basics/assets-metadata-css/metadata',
+    '/learn/basics/assets-metadata-css/third-party-javascript',
+    '/learn/basics/assets-metadata-css/css-styling',
+    '/learn/basics/assets-metadata-css/layout-component',
+    '/learn/basics/assets-metadata-css/global-styles',
+    '/learn/basics/assets-metadata-css/polishing-layout',
+    '/learn/basics/assets-metadata-css/styling-tips',
+  ]}
+/>
+
+### 全域性樣式
+
+<a href="/docs/basic-features/built-in-css-support#adding-component-level-css" target="_blank">CSS 模組</a> 適合用於元件階層的樣式，但如果你想在每個頁面都載入一些 CSS，Next.js 也對此支援。
+
+要載入 <a href="/docs/basic-features/built-in-css-support#adding-a-global-stylesheet" target="_blank">全域性 CSS</a> 檔案，**請建立一個名為 <a href="/docs/advanced-features/custom-app" className="link-code" target="_blank">`pages/_app.js`</a> 的檔案**，並加入以下內容：
+
+```jsx
+export default function App({ Component, pageProps }) {
+  return <Component {...pageProps} />;
+}
+```
+
+`App` 元件是所有頁面共用的最上層元件，你可以使用它來保留頁面間的狀態。
+
+#### 重新啟動開發伺服器
+
+**重要：** 當你新增 <a href="/docs/advanced-features/custom-app" className="link-code" target="_blank">`pages/_app.js`</a> 時，你需要重新啟動開發伺服器。按下 <Keyboard>Ctrl + c</Keyboard> 來停止伺服器，然後執行：
+
+```bash
+npm run dev
+```
+
+#### 新增全域性 CSS
+
+在 Next.js 中，你可以透過 <a href="/docs/advanced-features/custom-app" className="link-code" target="_blank">`pages/_app.js`</a> 匯入 <a href="/docs/basic-features/built-in-css-support#adding-a-global-stylesheet" target="_blank">全域性 CSS</a> 檔案，但在其他檔案中匯入是**不適當**的。
+
+不能在 `pages/_app.js` 以外的檔案中匯入 <a href="/docs/basic-features/built-in-css-support#adding-a-global-stylesheet" target="_blank">全域性 CSS</a> 的原因是全域性 CSS 會影響頁面上的所有元素。
+
+如果你從首頁導覽到 `/posts/first-post` 頁面，首頁的全域性樣式會不如預期地影響到 `/posts/first-post`。
+
+你可以將全域性 CSS 檔案放置於任何路徑，並使用任何名稱。接下來我們將：
+
+- 建立一個最上層的 `styles` 目錄，並在其內建立一個 `global.css` 檔案。
+- 在 `styles/global.css` 中加入以下 CSS，這段程式碼會重設一些樣式，並變更 `a` 標籤的顏色：
+
+```css
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+```
+
+最後，在稍早前建立的 `pages/_app.js` 裡匯入 CSS 檔案：
+
+```jsx
+// `pages/_app.js`
+import '../styles/global.css';
+
+export default function App({ Component, pageProps }) {
+  return <Component {...pageProps} />;
+}
+```
+
+如果現在訪問 http://localhost:3000/posts/first-post ，你會看到樣式已經套用。任何在 `_app.js` 中匯入的樣式都會套用到整個應用程式的所有頁面。
+
+![](https://nextjs.org/static/images/learn/assets-metadata-css/global-styles.png)
+
+<Blockquote>
+  **如果沒有套用到樣式：** 請確認當你更新 `pages/_app.js` 時，是否已重新啟動開發伺服器。
+</Blockquote>
+
+<Quiz>
+  <QuizHeading type={QuizType.quickReview}>
+    你可以在哪裡匯入全域性 CSS 檔案？
+  </QuizHeading>
+  <QuizOptionGroup>
+    <QuizOption text="在任何檔案中" />
+    <QuizOption text="只能在 pages/_app.js 中" isCorrect />
+  </QuizOptionGroup>
+</Quiz>
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/assets-metadata-css/layout-component"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/assets-metadata-css/polishing-layout"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["lucy70381"]} />
