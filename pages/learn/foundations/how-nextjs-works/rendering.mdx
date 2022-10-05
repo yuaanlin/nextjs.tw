@@ -1,19 +1,87 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import {
+	Quiz,
+	QuizType,
+	QuizHeading,
+	QuizOptionGroup,
+	QuizOption,
+} from '@components/Quiz';
+
+# Next.js 是如何運作的
 
 <Pagination
-  hrefs={[
-    '/learn/foundations/how-nextjs-works',
-    '/learn/foundations/how-nextjs-works/development-and-production',
-    '/learn/foundations/how-nextjs-works/compiling',
-    '/learn/foundations/how-nextjs-works/minifying',
-    '/learn/foundations/how-nextjs-works/bundling',
-    '/learn/foundations/how-nextjs-works/code-splitting',
-    '/learn/foundations/how-nextjs-works/buildtime-and-runtime',
-    '/learn/foundations/how-nextjs-works/client-and-server',
-    '/learn/foundations/how-nextjs-works/rendering',
-    '/learn/foundations/how-nextjs-works/cdns-and-edge',
-    '/learn/foundations/how-nextjs-works/next-steps',
-  ]}
+	hrefs={[
+		'/learn/foundations/how-nextjs-works',
+		'/learn/foundations/how-nextjs-works/development-and-production',
+		'/learn/foundations/how-nextjs-works/compiling',
+		'/learn/foundations/how-nextjs-works/minifying',
+		'/learn/foundations/how-nextjs-works/bundling',
+		'/learn/foundations/how-nextjs-works/code-splitting',
+		'/learn/foundations/how-nextjs-works/buildtime-and-runtime',
+		'/learn/foundations/how-nextjs-works/client-and-server',
+		'/learn/foundations/how-nextjs-works/rendering',
+		'/learn/foundations/how-nextjs-works/cdns-and-edge',
+		'/learn/foundations/how-nextjs-works/next-steps',
+	]}
 />
 
-<NotTranslateYet/>
+#### 什麼是渲染？
+
+將你在 React 中撰寫的程式碼轉換為你的使用者介面的 HTML 表示是一個不可避免的工作。 這個過程稱為**渲染**。
+
+渲染可以在伺服器或客戶端上進行。它可以在構建時提前發生，也可以在運行時的每個請求上發生。
+
+Next.js 提供了三種渲染方法：**伺服器端渲染**、**靜態站點生成**和**客戶端渲染**。
+
+#### 提前渲染
+
+伺服器端渲染和靜態站點生成也稱為**提前渲染**，因為外部數據的獲取和 React 元件到 HTML 的轉換發生在結果發送到客戶端之前。
+
+#### 客戶端渲染與提前渲染
+
+在標準的 React 應用程序中，瀏覽器從伺服器接收一個空的 HTML shell 以及用於構建 UI 的 JavaScript 指令。這稱為**客戶端渲染**，因為初始渲染工作發生在使用者設備上。
+
+![客戶端渲染](https://nextjs.org/static/images/learn/foundations/client-side-rendering.png '客戶端渲染')
+
+> **注意**：您可以選擇使用 React 的 `useEffect()` 或資料獲取 Hooks（例如 [useSWR](https://swr.vercel.app/)）資料數據，從而為 Next.js 應用程序中的特定元件使用客戶端渲染。
+
+相比之下，Next.js 預設**提前渲染**每個頁面。提前渲染意味著 HTML 是在伺服器上預先生成的，而不是全部由使用者設備上的 JavaScript 完成。
+
+實際上，這意味著對於完全客戶端渲染的應用程序，使用者在渲染工作完成時會看到一個空白頁面。與提前渲染應用相比，使用者將看到構建的 HTML：
+
+![提前渲染](https://nextjs.org/static/images/learn/foundations/pre-rendering.png '提前渲染')
+
+讓我們討論兩種類型的提前渲染：
+
+#### 伺服器端渲染
+
+使用伺服器端呈現，頁面的 HTML 是在伺服器上為**每個**請求生成的。生成的 HTML、JSON 數據和 JavaScript 指令以使頁面具有互動性，然後發送到客戶端。
+
+在客戶端，HTML 用於顯示快速的非互動式頁面，而 React 使用 JSON 資料和 JavaScript 指令使元件具有互動性（例如，將事件處理程序附加到按鈕）。這個過程稱為 **Hydration** 。
+
+在 Next.js 中，您可以使用 [getServerSideProps](/docs/basic-features/data-fetching/get-server-side-props) 選擇伺服器端呈現頁面。
+
+> **注意**：React 18 和 Next 12 引入了 **React 伺服器元件**的 alpha 版本。伺服器元件完全在伺服器上呈現，不需要客戶端 JavaScript 來呈現。此外，伺服器元件允許開發人員在伺服器上保留一些邏輯，並且只將該邏輯的結果發送給客戶端。這減少了發送到客戶端的包大小並提高了客戶端渲染性能。[在此處了解有關 React 伺服器元件的更多訊息](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html)。
+
+#### 靜態站點生成
+
+使用靜態站點生成，HTML 是在伺服器上生成的，但與伺服器端渲染不同的是，運行時沒有伺服器。取而代之的是，在構建時，部署應用程序時生成一次內容，並將 HTML 存儲在 [CDN](./cdns-and-edge) 中並重新用於每個請求。
+
+在 Next.js 中，您可以選擇使用 [getStaticProps](/docs/basic-features/data-fetching/get-static-props) 靜態生成頁面。
+
+> **注意**：您可以在構建網站後使用[增量靜態重新生成](/docs/basic-features/data-fetching/incremental-static-regeneration)來創建或更新靜態頁面。這意味著如果您的數據發生變化，您不必重建整個網站。
+
+Next.js 的美妙之處在於，您可以逐頁選擇最適合您的用例的渲染方法，無論是靜態站點生成、伺服器端渲染還是客戶端渲染。要詳細了解哪種渲染方法適合您的特定用例，請參閱[數據獲取文檔](/docs/basic-features/data-fetching/overview)。
+
+在下一節中，我們將討論您的代碼在部署後可以存儲或運行的位置。
+
+<Quiz>
+	<QuizHeading type={QuizType.quickReview}>
+		您可以在單個 Next.js 應用程序中擁有多種渲染方法嗎？
+	</QuizHeading>
+	<QuizOptionGroup>
+		<QuizOption text="是 - 您可以在頁面級別選擇渲染方法" isCorrect />
+		<QuizOption text="否 - 您需要在開始時選擇應用程序的渲染方法" />
+	</QuizOptionGroup>
+</Quiz>
+
+<TranslatedBy githubUserNames={['rudy0628']} />

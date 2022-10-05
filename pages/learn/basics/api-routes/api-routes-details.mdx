@@ -1,0 +1,74 @@
+import Button from '@components/Button'
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
+## API 路由
+
+<Pagination
+  hrefs={[
+    '/learn/basics/api-routes',
+    '/learn/basics/api-routes/setup',
+    '/learn/basics/api-routes/creating-api-routes',
+    '/learn/basics/api-routes/api-routes-details',
+  ]}
+/>
+
+### API 路由細節
+
+這頁有一些你應該了解的 <a href="/docs/api-routes/introduction" target="_blank">API 路由</a>重要資訊。
+
+### 不要從 `getStaticProps` 或 `getStaticPaths` 中提取 API 路由
+你**不**應該從 <a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a> 或 <a href="/docs/basic-features/data-fetching/overview#getstaticpaths-static-generation" className="link-code" target="_blank">`getStaticPaths`</a> 中提取 API 路由。相反地，你應該直接在 <a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a> 或 <a href="/docs/basic-features/data-fetching/overview#getstaticpaths-static-generation" className="link-code" target="_blank">`getStaticPaths`</a> 中撰寫你的伺服器端程式碼（或呼叫輔助函式）。
+
+原因：<a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a> 和 <a href="/docs/basic-features/data-fetching/overview#getstaticpaths-static-generation" className="link-code" target="_blank">`getStaticPaths`</a> 只會在伺服器端執行，並且永遠不會在客戶端執行。此外，這些函式不會包含在瀏覽器的 JS bundle 中。這意味著你可以撰寫直接查詢資料庫的程式碼，而不會將其傳送給客戶端。參閲<a href="/docs/basic-features/data-fetching/get-static-props#write-server-side-code-directly" target="_blank">撰寫伺服器端程式碼</a>文件以瞭解更多資訊。
+
+#### 一個好的使用案例：處理表單輸入
+
+處理表單輸入是 API 路由的一個良好使用案例。舉例來說，你可以在頁面上建立一個表單，並讓它向你的 API 路由發送一個 `POST` 請求，隨後你可以撰寫程式碼直接將其儲存到你的資料庫。你的客戶端 bundle 中並不會夾帶 API 路由程式碼，因此你可以很放心地撰寫伺服器端的程式碼。
+
+```js
+export default function handler(req, res) {
+  const email = req.body.email;
+  // 然後將 email 儲存到資料庫，等等...
+}
+```
+
+#### 預覽模式
+
+當你的頁面從無頭內容管理系統（Headless CMS）取得資料時，<a href="/docs/basic-features/pages#static-generation-recommended" target="_blank">靜態生成</a>是很實用的。然而，當你在無頭 CMS 上編輯草稿並期望立即**預覽**草稿時，結果不盡如人意。你希望 Next.js 僅在**請求期間**（而非建置期間）來渲染這些頁面，並取得草稿內容（而非已發佈的內容）。你希望 Next.js 只在這個特定情況下繞過靜態生成。
+
+Next.js 有一個名為**預覽模式**的功能，可以解決上述問題，並且它使用 <a href="/docs/api-routes/introduction" target="_blank">API 路由</a>。若要瞭解更多資訊，請參閱<a href="/docs/advanced-features/preview-mode" target="_blank">預覽模式</a>文件。
+
+#### 動態 API 路由
+API 路由可以是動態的，就像一般頁面一樣。請參閱<a href="/docs/api-routes/dynamic-api-routes" target="_blank">動態 API 路由</a>文件以瞭解更多資訊。
+
+#### 就是這樣！
+在下一課即最後的基礎課程中，我們將討論如何將你的 Next.js 應用程式部署到生產環境。
+
+<Quiz>
+  <QuizHeading type={QuizType.quickReview}>
+    下列哪一個是 API 路由的良好用例？
+  </QuizHeading>
+  <QuizOptionGroup>
+    <QuizOption text="將傳入的資料儲存到資料庫" />
+    <QuizOption text="與第三方 API 安全地通信" /> 
+    <QuizOption text="預覽 CMS 草稿內容" />
+    <QuizOption text="以上皆是" isCorrect />
+  </QuizOptionGroup>
+</Quiz>
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/api-routes/creating-api-routes"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一個課程 →"
+  url="/learn/basics/deploying-nextjs-app"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["lucy70381"]} />
+

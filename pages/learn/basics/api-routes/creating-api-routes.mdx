@@ -1,0 +1,65 @@
+import Button from '@components/Button'
+import Blockquote from '@components/Blockquote';
+
+## API 路由
+
+<Pagination
+  hrefs={[
+    '/learn/basics/api-routes',
+    '/learn/basics/api-routes/setup',
+    '/learn/basics/api-routes/creating-api-routes',
+    '/learn/basics/api-routes/api-routes-details',
+  ]}
+/>
+
+### 創建 API 路由
+
+<a href="/docs/api-routes/introduction" target="_blank">API 路由</a>讓你可以在 Next.js 應用程式中建立一個 API 端點，透過在 `pages/api` 目錄中建立一個具有以下格式的**函式**即可達成：
+
+```js
+// req = HTTP 傳入之訊息，res = HTTP 伺服器回應
+export default function handler(req, res) {
+  // ...
+}
+```
+
+<Blockquote>
+  在 <a href="/docs/api-routes/introduction" target="_blank">API 路由文件</a>中，你可以學到更多關於上述請求處理器（request handler）的知識。
+</Blockquote>
+
+他們可以被部署為 Serverless Functions（也被稱為 Lambdas）。
+
+
+#### 創建一個簡單的 API 端點
+
+讓我們來試試看。在 `pages/api` 目錄中建立一個名為 `hello.js` 的檔案，並加入以下程式碼：
+
+```js
+export default function handler(req, res) {
+  res.status(200).json({ text: 'Hello' });
+}
+```
+
+嘗試訪問 http://localhost:3000/api/hello ，你應該會看到 `{"text":"Hello"}`。請注意：
+
+- `req` 是 <a href="https://nodejs.org/api/http.html#http_class_http_incomingmessage" target="_blank">http.IncomingMessage</a> 的一個實例，並且有一些預先建立的<a href="/docs/api-routes/request-helpers" target="_blank">中間軟體</a>。
+- `res` 是 <a href="https://nodejs.org/api/http.html#http_class_http_serverresponse" target="_blank">http.ServerResponse</a> 的一個實例，並且有一些<a href="/docs/api-routes/response-helpers" target="_blank">輔助函式</a>。
+
+就是這樣！在結束這個課程之前，讓我們在下一頁談談使用 <a href="/docs/api-routes/introduction" target="_blank">API 路由</a>的一些技巧。
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/api-routes/setup"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/api-routes/api-routes-details"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["lucy70381"]} />
+

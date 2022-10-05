@@ -136,7 +136,7 @@
         ]
       },
       {
-        "title": "Navigate Between Page",
+        "title": "頁面之間的導航",
         "path": "/learn/basics/navigate-between-pages",
         "children": [
           {
@@ -276,19 +276,19 @@
         ]
       },
       {
-        "title": "API Routes",
+        "title": "API 路由",
         "path": "/learn/basics/api-routes",
         "children": [
           {
-            "title": "Setup",
+            "title": "設置",
             "path": "/learn/basics/api-routes/setup"
           },
           {
-            "title": "Creating API Routes",
+            "title": "創建 API 路由",
             "path": "/learn/basics/api-routes/creating-api-routes"
           },
           {
-            "title": "API Routes Details",
+            "title": "API 路由細節",
             "path": "/learn/basics/api-routes/api-routes-details"
           }
         ]
