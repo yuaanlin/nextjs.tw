@@ -1,0 +1,134 @@
+import Button from '@components/Button';
+import Blockquote from '@components/Blockquote';
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz';
+
+## 靜態資源、詮釋資料 和 CSS
+
+<Pagination
+  hrefs={[
+    '/learn/basics/assets-metadata-css',
+    '/learn/basics/assets-metadata-css/setup',
+    '/learn/basics/assets-metadata-css/assets',
+    '/learn/basics/assets-metadata-css/metadata',
+    '/learn/basics/assets-metadata-css/third-party-javascript',
+    '/learn/basics/assets-metadata-css/css-styling',
+    '/learn/basics/assets-metadata-css/layout-component',
+    '/learn/basics/assets-metadata-css/global-styles',
+    '/learn/basics/assets-metadata-css/polishing-layout',
+    '/learn/basics/assets-metadata-css/styling-tips',
+  ]}
+/>
+
+### 佈局元件
+
+首先，我們要建立一個**佈局**元件，並且讓所有頁面都可以使用。
+
+- 建立一個名為 `components` 的最上層目錄。
+- 在 `components` 目錄內，建立一個名為 `layout.js` 的檔案，並且加入以下內容：
+
+```jsx
+export default function Layout({ children }) {
+  return <div>{children}</div>;
+}
+```
+
+接著，開啟 `pages/posts/first-post.js` 匯入 `Layout` 元件，並將它設定為最外層的元件：
+
+```jsx
+import Head from 'next/head';
+import Link from 'next/link';
+import Layout from '../../components/layout';
+
+export default function FirstPost() {
+  return (
+    <Layout>
+      <Head>
+        <title>First Post</title>
+      </Head>
+      <h1>First Post</h1>
+      <h2>
+        <Link href="/">
+          <a>Back to home</a>
+        </Link>
+      </h2>
+    </Layout>
+  );
+}
+```
+
+#### 加入 CSS
+
+現在，我們要在 `Layout` 元件加入一些樣式。為此，我們使用 <a href="/docs/basic-features/built-in-css-support#adding-component-level-css" target="_blank">CSS 模組</a>，它可以讓你在 React 元件中匯入 CSS 檔案。
+
+創建一個名為 `components/layout.module.css` 的檔案，並且加入以下內容：
+
+```css
+.container {
+  max-width: 36rem;
+  padding: 0 1rem;
+  margin: 3rem auto 6rem;
+}
+```
+
+<Blockquote>
+  **重要：** 要使用 <a href="/docs/basic-features/built-in-css-support#adding-component-level-css" target="_blank">CSS 模組</a>，CSS 檔案名稱必須以 `.module.css` 結尾。
+</Blockquote>
+
+若要在 `components/layout.js` 內使用 `container` 這個 class，你需要：
+
+- 匯入 CSS 檔案並且指定一個名稱，例如 `styles`
+- 使用 `styles.container` 作為 `className`
+
+開啟 `components/layout.js`，並將內容替換為以下內容：
+
+```jsx
+import styles from './layout.module.css';
+
+export default function Layout({ children }) {
+  return <div className={styles.container}>{children}</div>;
+}
+```
+
+如果你現在前往 http://localhost:3000/posts/first-post ，你應該會看到文字已經顯示於一個置中的容器內了。
+
+![](https://nextjs.org/static/images/learn/assets-metadata-css/layout.png)
+
+#### 自動產生唯一的 Class 名稱
+
+現在，如果你在瀏覽器的開發者工具中觀察 HTML，你會發現 `Layout` 元件所渲染的 `div` 標籤裡有個 `layout_container__...` 的 class 名稱：
+
+![](https://nextjs.org/static/images/learn/assets-metadata-css/devtools.png)
+
+這就是 <a href="/docs/basic-features/built-in-css-support#adding-component-level-css" target="_blank">CSS 模組</a>的功能：**它會自動產生唯一的 class 名稱。** 只要你使用 CSS 模組，你就不必擔心 class 名稱衝突的問題。
+
+另外，Next.js 的程式碼分割功能也適用於 <a href="/docs/basic-features/built-in-css-support#adding-component-level-css" target="_blank">CSS 模組</a>，可確保每個頁面載入最少量的 CSS 及產生較小的打包檔案。
+
+<a href="/docs/basic-features/built-in-css-support#adding-component-level-css" target="_blank">CSS Modules</a> 會在建置時從 JavaScript 打包檔案中被提取出來，並且產生 `.css` 檔案，這些檔案會被 Next.js 自動載入。
+
+<Quiz>
+  <QuizHeading type={QuizType.quickReview}>
+    下列哪一種樣式方法 Next.js 不支援？
+  </QuizHeading>
+  <QuizOptionGroup>
+    <QuizOption text="CSS 模組" />
+    <QuizOption text="Sass" />
+    <QuizOption text="styled-jsx" />
+    <QuizOption text="styled-components" isCorrect />
+  </QuizOptionGroup>
+</Quiz>
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/assets-metadata-css/css-styling"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/assets-metadata-css/global-styles"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["lucy70381"]} />
