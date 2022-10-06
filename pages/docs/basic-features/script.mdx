@@ -113,7 +113,7 @@ export default function Document() {
 
 #### afterInteractive
 
-Scripts that use the `afterInteractive` strategy are injected client-side and will run after Next.js hydrates the page. This strategy should be used for scripts that do not need to load as soon as possible and can be fetched and executed immediately after the page is interactive.
+使用 `afterInteractive` strategy 指令檔是被嵌入在客戶端且將會在 Next.js 補充頁面後開始執行。這個 strategy 適用於不需要被立即載入的且可以在頁面具備互動性後立即被擷取和執行的指令檔。
 
 ```jsx
 <Script
@@ -131,27 +131,28 @@ Scripts that use the `afterInteractive` strategy are injected client-side and wi
 />
 ```
 
-Examples of scripts that are good candidates to load immediately after the page becomes interactive include:
+在頁面具備互動性後立即載入的指令檔範例包括有：
 
 - Tag managers
 - Analytics
 
 #### lazyOnload
 
-Scripts that use the `lazyOnload` strategy are loaded late after all resources have been fetched and during idle time. This strategy should be used for background or low priority scripts that do not need to load before or immediately after a page becomes interactive.
+使用 `lazyOnload` strategy 的指令檔在擷取所有資源後和處於閒置時間時的載入較為晚。此 strategy 適用於那些不需要在頁面之前或立即具備互動性之後的背景或低優先級的指令檔
 
 ```jsx
 <Script src="https://connect.facebook.net/en_US/sdk.js" strategy="lazyOnload" />
 ```
 
 Examples of scripts that do not need to load immediately and can be lazy-loaded include:
+在頁面具備互動性後不必立即載入且可以被延遲載入的指令檔範例包括有：
 
-- Chat support plugins
-- Social media widgets
+- 聊天支援外掛
+- 社群平台擴充
 
-### Off-loading Scripts To A Web Worker (試驗性)
+### 卸載指令檔到成為一個 Web Worker (試驗性)
 
-> **Note: The `worker` strategy is not yet stable and can cause unexpected issues in your application. Use with caution.**
+> **注意: `worker` strategy 尚未穩定且可能會導致應用程式產生不可預期的問題。使用上請多加注意**
 
 Scripts that use the `worker` strategy are relocated and executed in a web worker with [Partytown](https://partytown.builder.io/). This can improve the performance of your site by dedicating the main thread to the rest of your application code.
 
