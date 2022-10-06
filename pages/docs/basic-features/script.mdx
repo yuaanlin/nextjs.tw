@@ -154,9 +154,9 @@ Examples of scripts that do not need to load immediately and can be lazy-loaded 
 
 > **注意: `worker` strategy 尚未穩定且可能會導致應用程式產生不可預期的問題。使用上請多加注意**
 
-Scripts that use the `worker` strategy are relocated and executed in a web worker with [Partytown](https://partytown.builder.io/). This can improve the performance of your site by dedicating the main thread to the rest of your application code.
+使用 `worker` strategy 的指令檔在 web worker 內和 [Partytown](https://partytown.builder.io/) 被重置和執行。
 
-This strategy is still experimental and can only be used if the `nextScriptWorkers` flag is enabled in `next.config.js`:
+此 strategy 目前是處於試驗街端，只能被用於比如 `nextScriptWorkers` flag 在 `next.config.js` 被啟用的情況下：
 
 ```js
 module.exports = {
@@ -166,14 +166,14 @@ module.exports = {
 }
 ```
 
-Then, run `next` (normally `npm run dev` or `yarn dev`) and Next.js will guide you through the installation of the required packages to finish the setup:
+接著，執行 `next`(通常是 `npm run dev` 或 `yarn dev`)，Next.js 將會指引你安裝所需的套件直至完成設定：
 
 ```bash
 npm run dev
 
-# You'll see instructions like these:
+# 你將會看到相關的指導:
 #
-# Please install Partytown by running:
+# 請輸入以下指令安裝 Partytown :
 #
 #         npm install @builder.io/partytown
 #
