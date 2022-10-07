@@ -150,7 +150,7 @@ Examples of scripts that do not need to load immediately and can be lazy-loaded 
 - 聊天支援外掛
 - 社群平台擴充
 
-### 卸載指令檔到成為一個 Web Worker (試驗性)
+### 卸載指令檔到作為一個 Web Worker (試驗性)
 
 > **注意: `worker` strategy 尚未穩定且可能會導致應用程式產生不可預期的問題。使用上請多加注意**
 
@@ -180,19 +180,19 @@ npm run dev
 # ...
 ```
 
-Once setup is complete, defining `strategy="worker"` will automatically instantiate Partytown in your application and off-load the script to a web worker.
+一但設定都完成了，定義 `strategy="worker"` 將會自動實例化 Partytown 到你的應用程式內且會卸載指令檔到作為一個 web worker。
 
 ```jsx
 <Script src="https://example.com/analytics.js" strategy="worker" />
 ```
 
-There are a number of trade-offs that need to be considered when loading a third-party script in a web worker. Please see Partytown's [Trade-Offs](https://partytown.builder.io/trade-offs) documentation for more information.
+在 web worker 中載入第三方指令檔時，有許多要權衡的。更多資訊請參考 Partytown 的 [Trade-Offs](https://partytown.builder.io/trade-offs) 官方文件。
 
 #### 配置
 
-Although the `worker` strategy does not require any additional configuration to work, Partytown supports the use of a config object to modify some of its settings, including enabling `debug` mode and forwarding events and triggers.
+雖然 `worker` startegy 不需要額外的配置才能執行，Partytown 支援使用配置物件來修改它的設定，包括啟用 `debug` 模式、事件轉寄和觸發。
 
-If you would like to add additional configuration options, you can include it within the `<Head />` component used in a [custom `_document.js`](/docs/advanced-features/custom-document.md):
+如果你想要增加額外的配置選擇，你可以將它包含在 [custom `_document.js`](/docs/advanced-features/custom-document.md) 的 `<Head />` 組件內：
 
 ```jsx
 import { Html, Head, Main, NextScript } from 'next/document'
@@ -222,18 +222,18 @@ export default function Document() {
 }
 ```
 
-In order to modify Partytown's configuration, the following conditions must be met:
+為了修改 Partytown 的配置，以下條件必須被滿足：
 
-1. The `data-partytown-config` attribute must be used in order to overwrite the default configuration used by Next.js
-2. Unless you decide to save Partytown's library files in a separate directory, the `lib: "/_next/static/~partytown/"` property and value must be included in the configuration object in order to let Partytown know where Next.js stores the necessary static files.
+1. `data-partytown-config` 必須被使用來改寫 Next.js 的默認配置設定。
+2. 除非你決定要在另外的目錄中儲存 Partytown 的函式庫檔案，`lib: "/_next/static/~partytown/"` 屬性和值必須包含在配置內以利 Partytown 知道 Next.js 在哪裡儲存必要的靜態檔案。
 
-> **Note**: If you are using an [asset prefix](/docs/api-reference/next.config.js/cdn-support-with-asset-prefix.md) and would like to modify Partytown's default configuration, you must include it as part of the `lib` path.
+> **注意**: 如果你使用 [asset prefix](/docs/api-reference/next.config.js/cdn-support-with-asset-prefix.md) 且希望改寫 Partytown 的默認配置設定，你必須將它包含在 `lib` 路徑的一部分。
 
-Take a look at Partytown's [configuration options](https://partytown.builder.io/configuration) to see the full list of other properties that can be added.
+您可以到 Partytown 的 [configuration options](https://partytown.builder.io/configuration) 來檢閱所有可以被增加的屬性。
 
 ### 行內指令檔
 
-Inline scripts, or scripts not loaded from an external file, are also supported by the Script component. They can be written by placing the JavaScript within curly braces:
+行內指令檔，或者未從被外部檔案載入的指令檔，也被 `Script` 組件支援。可以透過把 JavaScript 放置在大括號內來編寫它們：
 
 ```jsx
 <Script id="show-banner" strategy="lazyOnload">
@@ -241,7 +241,7 @@ Inline scripts, or scripts not loaded from an external file, are also supported 
 </Script>
 ```
 
-Or by using the `dangerouslySetInnerHTML` property:
+或者使用 `dangerouslySetInnerHTML` 屬性：
 
 ```jsx
 <Script
@@ -254,12 +254,13 @@ Or by using the `dangerouslySetInnerHTML` property:
 ```
 
 The `id` property is required for **inline scripts** in order for Next.js to track and optimize the script.
+為了讓 Next.js 追蹤和最佳化指令檔，`id` 屬性對於**行內指令檔**是必要的，
 
 ### 載入後執行程式碼 (`onLoad`)
 
-> **Note: `onLoad` cannot be used with the `beforeInteractive` loading strategy. Consider using `onReady` instead.**
+> **注意: `onLoad` 在 `beforeInteractive` 載入 strategy 上使用. 請考慮使用 `onReady` 作為代替**
 
-Some third-party scripts require users to run JavaScript code once after the script has finished loading in order to instantiate content or call a function. If you are loading a script with either `afterInteractive` or `lazyOnload` as a loading strategy, you can execute code after it has loaded using the `onLoad` property:
+有一些第三方指令檔要求使用者在指令檔完成載入後執行一次 JavaScript 程式碼，以利實例化內容或呼叫一個函式。如果你使用 `afterInteractive` 或 `lazyOnload` 來作為載入的 strategy, 你可以在使用 `onLoad` 屬性載入程式碼後執行：
 
 ```jsx
 import { useState } from 'react'
@@ -284,7 +285,7 @@ export default function Home() {
 
 ### 掛載後執行程式碼 (`onReady`)
 
-Some third-party scripts require users to run JavaScript code after the script has finished loading and every time the component is mounted (after a route navigation for example). You can execute code after the script's `load` event when it first loads and then after every subsequent component re-mount using the `onReady` property:
+一些第三方指令檔要求使用者在指令檔完成載入後及每次掛載組件時(例如路徑導航後)執行 JavaScript 程式碼。你可以在指令檔首次載入 `load` 事件之後執行程式碼，然後再使用 `onReady` 屬性重新安裝每個後續組件後執行程式碼：
 
 ```jsx
 import { useRef } from 'react'
@@ -312,9 +313,9 @@ export default function Home() {
 
 ### 處理錯誤 (`onError`)
 
-> **Note: `onError` cannot be used with the `beforeInteractive` loading strategy.**
+> **注意: `onError` 無法與 `beforeInteractive` 載入 strategy 一起使用。**
 
-Sometimes it is helpful to catch when a script fails to load. These errors can be handled with the `onError` property:
+有時在指令檔載入失敗時捕捉錯誤會很有幫助。這些錯誤可以使用 `onError` 屬性處理：
 
 ```jsx
 import Script from 'next/script'
@@ -334,9 +335,9 @@ export default function Home() {
 }
 ```
 
-### Additional Attributes
+### 額外的屬性
 
-There are many DOM attributes that can be assigned to a `<script>` element that are not used by the Script component, like [`nonce`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) or [custom data attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*). Including any additional attributes will automatically forward it to the final, optimized `<script>` element that is outputted to the page.
+有許多 DOM 屬性可以被分配給不被 Script 組件使用的 `<script>` 元素，例如 [`nonce`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) 或 [自訂 data 屬性](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*)。包含任何附加屬性將自動地轉發並輸出到最終且最佳化過的 `<script>` 元素。
 
 ```jsx
 import Script from 'next/script'
@@ -354,3 +355,5 @@ export default function Home() {
   )
 }
 ```
+
+<TranslatedBy githubUserNames={["AndreaFan123"]} />
