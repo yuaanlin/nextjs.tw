@@ -1,4 +1,6 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
+## Next.js 是如何運作的
 
 <Pagination
   hrefs={[
@@ -16,5 +18,24 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet/>
+## 什麼是模組打包？
+
+開發者利用將他們的應用程式拆分成多個模組、組件及函式，來建立更大規模的應用程式。
+導出或導入這些內部模組及第三方套件來建立一個複雜度高的檔案相依的網站。
+
+![模組打包過程](https://nextjs.org/static/images/learn/foundations/bundling.png "模組打包過程")
+
+模組打包意旨用來解析有多個依賴的網站及合併（或打包）檔案（模組），成為瀏覽器優化產物的一個完整過程，且能在使用者訪問網頁時，以最低限度的請求來索取網頁資源。
+
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        網站開發中的編譯及打包之間的區別是什麼？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="編譯的作用是集合來自外部資源的依賴。模組打包的作用是將依賴們合併成一支優化過的檔案。"/>
+        <QuizOption text="編譯的作用是將程式碼轉譯成瀏覽器有辦法讀懂（解析）的語言。模組打包的作用是解析應用程式的依賴關係圖，且能減少檔案的數量。" isCorrect/>
+    </QuizOptionGroup>
+</Quiz>
+
+<TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />
 

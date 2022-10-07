@@ -7,11 +7,13 @@ import TranslatedBy from '@components/TranslatedBy';
 import Pagination from '@components/Pagination';
 import Card from '@components/Card';
 import * as MDXComponents from '@components/MDXComponents';
+import PageMeta from '@components/MDXComponents/PageMeta';
 import type { AppProps } from 'next/app';
 
 const mdxComponents = {
   Card,
   Pagination,
+  PageMeta,
   TranslatedBy,
   code: ({ className, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '');
