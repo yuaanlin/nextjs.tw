@@ -32,6 +32,7 @@ function TopNav() {
             <div
               className="flex flex-row items-center justify-center space-x-8">
               <div
+                onClick={() => setIsMenuToggle(false)}
                 className="fixed z-[-1] top-[80px] bottom-0 left-0 right-0 px-4
                  bg-white invisible data-active:visible md:relative
                   md:z-[0] md:top-[0] md:data-active:top-[0] md:px-0 md:visible
