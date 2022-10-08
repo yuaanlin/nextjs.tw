@@ -1,4 +1,6 @@
 import Blockquote from '@components/Blockquote';
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+import Button from "@components/Button";
 
 ### **建立 Next.js 應用程式**
 
@@ -19,37 +21,64 @@ import Blockquote from '@components/Blockquote';
 - 您將在本教學中使用自己的文字編輯器和終端應用程式。
 
 <Blockquote>
-如果您作業系統使用的是 Windows，我們建議您[下載 Git for Windows][2]並使用它附帶的 Git Bash，它支援本教學中特定於 UNIX 的命令。[適用於 Linux 的 Windows 子系統 (WSL)][3]是另一種選擇。
+如果您作業系統使用的是 Windows，我們建議您[下載 Git for Windows][2]並使用它附帶的 Git Bash，它支援本教學中特定於 UNIX 的指令。[適用於 Linux 的 Windows 子系統 (WSL)][3]是另一種選擇。
 </Blockquote>
 
-#### 創建 Next.js 應用
-要創建 Next.js 應用程式，請打開終端，`cd`進入要在其中創建應用式的目錄，然後執行以下指令：
+#### 創建 Next.js 應用程式
+要創建 Next.js 應用程式，請打開終端機，輸入`cd`指令來進入要在其中創建應用程式的目錄，然後執行以下指令：
 
 ```shell
 npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
 ```
 <Blockquote>
-在後台，它使用[`create-next-app`][4]工具，引導您創建 Next.js 應用程式。它通過`--example`參數使用[這個模板][5]。
+在這指令的背後，它使用[`create-next-app`][4] 工具，引導您創建 Next.js 應用程式。它通過`--example` 參數使用[這個模板][5]。
 
 如果它不起作用，請查看[此頁面][6]。
 </Blockquote>
 
-運行開發服務器
-您現在有一個名為nextjs-blog. 讓我們cd進入它：
-```properties
+運行開發伺服器
+您現在有一個名為`nextjs-blog` 的資料夾，讓我們使用`cd`指令進入它：
+```shell
 cd nextjs-blog
 ```
 
-然後，運行以下命令：
-
+然後，運行以下指令：
+```shell
 npm run dev
-這會在端口3000上啟動 Next.js 應用程序的“開發服務器”（稍後會詳細介紹） 。
+```
+這會在 3000 端口上啟動 Next.js 應用程式的“開發伺服器”（稍後會詳細介紹） 。
 
-讓我們檢查一下它是否有效。從瀏覽器打開http://localhost:3000 。
+讓我們檢查一下它是否有效。從瀏覽器打開[`http://localhost:3000`][7] 。
 
-[1]: https://nodejs.org/en/ "Node.js安裝"
-[2]: https://gitforwindows.org/ "Git for Windows下載"
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        在頁面上你看到了甚麼文字？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="Welcome to Next.js!" isCorrect/>
+        <QuizOption text="Hello Next.js!"/>
+    </QuizOptionGroup>
+</Quiz>
+
+
+<Button
+  content="返回 ←"
+  url="/learn/basics/create-nextjs-app"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="下一個 →"
+  url="/learn/basics/create-nextjs-app/welcome-to-nextjs"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+[1]: https://nodejs.org/en/ "Node.js 安裝"
+[2]: https://gitforwindows.org/ "Git for Windows 下載"
 [3]: https://learn.microsoft.com/en-us/windows/wsl/install "適用於 Linux 的 Windows 子系統 (WSL)"
 [4]: /docs/api-reference/create-next-app "create-next-app"
 [5]: https://github.com/vercel/next-learn/tree/master/basics/learn-starter "模板"
 [6]: https://github.com/vercel/next-learn/blob/master/basics/errors/install.md "安裝錯誤"
+[7]: http://localhost:3000 "執行"
