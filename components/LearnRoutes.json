@@ -238,39 +238,39 @@
         ]
       },
       {
-        "title": "Dynamic Route",
+        "title": "動態路由",
         "path": "/learn/basics/dynamic-routes",
         "children": [
           {
-            "title": "Setup",
+            "title": "設置",
             "path": "/learn/basics/dynamic-routes/setup"
           },
           {
-            "title": "Page Path Depends on External Data",
+            "title": "由外部資料來改變路由",
             "path": "/learn/basics/dynamic-routes/page-path-external-data"
           },
           {
-            "title": "Implement getStaticPaths",
+            "title": "執行 getStaticPaths",
             "path": "/learn/basics/dynamic-routes/implement-getstaticpaths"
           },
           {
-            "title": "Implement getStaticProps",
+            "title": "執行 getStaticProps",
             "path": "/learn/basics/dynamic-routes/implement-getstaticprops"
           },
           {
-            "title": "Render Markdown",
+            "title": "渲染 Markdown",
             "path": "/learn/basics/dynamic-routes/render-markdown"
           },
           {
-            "title": "Polishing the Post Page",
+            "title": "優化文章頁",
             "path": "/learn/basics/dynamic-routes/polishing-post-page"
           },
           {
-            "title": "Polishing the Index Page",
+            "title": "優化 index 頁",
             "path": "/learn/basics/dynamic-routes/polishing-index-page"
           },
           {
-            "title": "Dynamic Routes Details",
+            "title": "動態路由的細節",
             "path": "/learn/basics/dynamic-routes/dynamic-routes-details"
           }
         ]

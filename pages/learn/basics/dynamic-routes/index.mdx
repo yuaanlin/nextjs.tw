@@ -1,0 +1,37 @@
+import Button from '@components/Button'
+
+## 動態路由
+
+<Pagination
+  hrefs={[
+    '/learn/basics/dynamic-routes',
+    '/learn/basics/dynamic-routes/setup',
+    '/learn/basics/dynamic-routes/page-path-external-data',
+    '/learn/basics/dynamic-routes/implement-getstaticpaths',
+    '/learn/basics/dynamic-routes/implement-getstaticprops',
+    '/learn/basics/dynamic-routes/render-markdown',
+    '/learn/basics/dynamic-routes/polishing-post-page',
+    '/learn/basics/dynamic-routes/polishing-index-page',
+    '/learn/basics/dynamic-routes/dynamic-routes-details',
+  ]}
+/>
+
+我們已經完成將部落格資料放置於 index 頁面，但還沒建立部落格頁面（[期望的結果](https://next-learn-starter.vercel.app/)）。我們想要這些頁面的網址根據部落格的資料來產生或變動，意思是我們需要使用到[動態路由](/docs/routing/dynamic-routes)的特性。
+
+### 在這一堂課你會學到什麼？
+
+在這一堂課，你會學到:
+
+- 如何藉由[動態路由](/docs/routing/dynamic-routes)使用 [`getStaticPaths`](/docs/basic-features/data-fetching#getstaticpaths-static-generation)來靜態產生頁面。
+- 如何在每一個部落格文章中撰寫 [`getStaticPaths`](/docs/basic-features/data-fetching#getstaticprops-static-generation) 來抓取文章資料。
+- 如何使用 [`remark`](https://github.com/remarkjs/remark) 渲染 markdown 語法。
+- 如何美化日期字串。
+- 如何使用[動態路由](/docs/routing/dynamic-routes)導航網頁。
+- 一些有用的[動態路由](/docs/routing/dynamic-routes)資訊。
+
+<Button
+content="開始課程 →"
+url="/learn/basics/dynamic-routes/setup"
+basicStyle="text-white bg-[#0070f3]"
+hoverStyle="hover:opacity-90"
+/>
