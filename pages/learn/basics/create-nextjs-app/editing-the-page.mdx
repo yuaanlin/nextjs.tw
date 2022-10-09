@@ -1,0 +1,53 @@
+import Blockquote from '@components/Blockquote';
+import Button from "@components/Button";
+
+### **建立 Next.js 應用程式**
+
+<Pagination
+  hrefs={[
+    '/learn/basics/create-nextjs-app',
+    '/learn/basics/create-nextjs-app/setup',
+    '/learn/basics/create-nextjs-app/welcome-to-nextjs',
+    '/learn/basics/create-nextjs-app/editing-the-page',
+  ]}
+/>
+
+### 編輯頁面
+讓我們嘗試編輯起始頁面。
+
++ 確保 Next.js 開發伺服器仍在執行。
++ 使用編輯器(如：記事本、Visual Studio Code...)打開`pages/index.js`檔案。
++ 在 `<h1>` 標籤下找到寫著 **“Welcome to”**的文字並將其更改為 **“Learn”**。
++ 儲存檔案。
+
+儲存檔案後，瀏覽器會自動馬上更新頁面：
+![編輯頁面](https://nextjs.org/static/images/learn/create-nextjs-app/learn-nextjs.png "編輯頁面")
+
+Next.js 開發伺服器啟用了[快速刷新][1]。當您對檔案進行更改並存檔時，Next.js 幾乎會自動在瀏覽器中馬上更改。無需重新載入網頁！這將幫助您快速迭代您的應用程式。
+
+下一步：創建頁面
+很好！第一課就到這裡結束。
+
+在下一課中，我們將告訴你該如何建立頁面和在頁面之間鏈結。
+
+<Blockquote>
+你應該保持開發伺服器的執行，但如果你想重新啟動它，請點擊Ctrl + c停止伺服器。
+</Blockquote>
+
+<Button
+  content="返回 ←"
+  url="/learn/basics/create-nextjs-app/welcome-to-nextjs"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="下一課 →"
+  url="/learn/basics/navigate-between-pages"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["yenbigbear"]} />
+
+[1]: /docs/basic-features/fast-refresh "快速刷新"
