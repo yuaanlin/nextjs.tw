@@ -1,0 +1,142 @@
+import Button from '@components/Button';
+import Blockquote from '@components/Blockquote';
+
+## 靜態資源、詮釋資料 和 CSS
+
+<Pagination
+  hrefs={[
+    '/learn/basics/assets-metadata-css',
+    '/learn/basics/assets-metadata-css/setup',
+    '/learn/basics/assets-metadata-css/assets',
+    '/learn/basics/assets-metadata-css/metadata',
+    '/learn/basics/assets-metadata-css/third-party-javascript',
+    '/learn/basics/assets-metadata-css/css-styling',
+    '/learn/basics/assets-metadata-css/layout-component',
+    '/learn/basics/assets-metadata-css/global-styles',
+    '/learn/basics/assets-metadata-css/polishing-layout',
+    '/learn/basics/assets-metadata-css/styling-tips',
+  ]}
+/>
+
+### 套用樣式的技巧
+
+以下是一些對你有幫助的套用樣式技巧。
+
+<Blockquote>
+  你可以**閱讀**以下的章節，而不需要對我們的應用程式做任何修改！
+</Blockquote>
+
+#### 使用 `classnames` 函式庫來切換類別
+
+<a href="https://github.com/JedWatson/classnames" className="link-code" target="_blank">`classnames`</a> 是一個簡單的函式庫，讓你可以輕鬆地切換類別名稱，使用 `npm install classnames` 或 `yarn add classnames` 便可安裝它。
+
+若想瞭解更多細節請參閱 <a href="https://github.com/JedWatson/classnames" target="_blank">文件</a>，以下為基本的使用方式：
+
+- 假設你想要建立一個 `Alert` 元件，它接收 `type` 屬性，其值可以是 `'success'` 或 `'error'`。
+- 如果你希望 `'success'` 的文字顏色為綠色，而 `'error'` 則為紅色。
+
+你可以寫一個 CSS 模組（例如 `alert.module.css`）來達成，內容如下：
+
+```css
+.success {
+  color: green;
+}
+.error {
+  color: red;
+}
+```
+
+並使用 `classnames`，內容如下：
+
+```jsx
+import styles from './alert.module.css';
+import cn from 'classnames';
+
+export default function Alert({ children, type }) {
+  return (
+    <div
+      className={cn({
+        [styles.success]: type === 'success',
+        [styles.error]: type === 'error',
+      })}
+    >
+      {children}
+    </div>
+  );
+}
+```
+
+#### 自訂 PostCSS 設定
+
+在預設情況下，無需做任何設定，Next.js 便會使用 <a href="https://postcss.org/" target="_blank">PostCSS</a> 編譯 CSS。
+
+要自訂 PostCSS 設定，你可以在最上層目錄建立一個名為 <a href="/docs/advanced-features/customizing-postcss-config#customizing-plugins" className="link-code" target="_blank">`postcss.config.js`</a> 的檔案。如果你使用的是像 <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a> 這樣的函式庫，這將會很有幫助。
+
+以下是新增 <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a> 的步驟，首先安裝套件：
+
+```bash
+npm install -D tailwindcss autoprefixer postcss
+```
+
+接著建立一個 <a href="/docs/advanced-features/customizing-postcss-config#customizing-plugins" className="link-code" target="_blank">`postcss.config.js`</a>：
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+```
+
+我們也建議你在 `tailwind.config.js` 中指定 `content` 選項來 <a href="https://tailwindcss.com/docs/content-configuration" target="_blank">設定內容來源</a>：
+
+```js
+// tailwind.config.js
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    // 為了達到最佳效能並避免誤判，
+    // 請盡可能地設定精確的內容來源。
+  ],
+};
+```
+
+<Blockquote>
+  想瞭解更多關於自訂 PostCSS 設定的資訊，請參閱 <a href="/docs/advanced-features/customizing-postcss-config" target="_blank">PostCSS 的文件</a>。
+  
+  若要輕鬆地開始使用 Tailwind CSS，請參考我們的  <a href="https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss" target="_blank">範例</a>。
+</Blockquote>
+
+
+#### 使用 Sass
+
+在預設情況下，Next.js 允許你使用 `.scss` 和 `.sass` 副檔名來匯入 <a href="/docs/basic-features/built-in-css-support#sass-support" target="_blank">Sass</a>。你可以透過 <a href="/docs/basic-features/built-in-css-support#adding-component-level-css" target="_blank">CSS 模組</a> 和 `.module.scss` 或 `.module.sass` 副檔名來使用元件階層的 Sass。
+
+在你使用 Next.js 內建的 Sass 支援之前，請確認是否已安裝 <a href="https://github.com/sass/sass" className="link-code" target="_blank">`sass`</a>:
+
+```bash
+npm install -D sass
+```
+
+#### 本課程就到這了！
+
+若想瞭解更多關於 Next.js 內建的 CSS 支援和 CSS 模組資訊，請參閱 <a href="/docs/basic-features/built-in-css-support" target="_blank">CSS 文件</a>。
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/assets-metadata-css/polishing-layout"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一個課程 →"
+  url="/learn/basics/data-fetching"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["lucy70381"]} />
