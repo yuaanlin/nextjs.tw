@@ -1,0 +1,50 @@
+import Button from '@components/Button';
+
+## 靜態資源、詮釋資料 和 CSS
+
+<Pagination
+  hrefs={[
+    '/learn/basics/assets-metadata-css',
+    '/learn/basics/assets-metadata-css/setup',
+    '/learn/basics/assets-metadata-css/assets',
+    '/learn/basics/assets-metadata-css/metadata',
+    '/learn/basics/assets-metadata-css/third-party-javascript',
+    '/learn/basics/assets-metadata-css/css-styling',
+    '/learn/basics/assets-metadata-css/layout-component',
+    '/learn/basics/assets-metadata-css/global-styles',
+    '/learn/basics/assets-metadata-css/polishing-layout',
+    '/learn/basics/assets-metadata-css/styling-tips',
+  ]}
+/>
+
+### CSS 樣式
+
+讓我們來談談 **CSS 樣式**。
+
+如你所見，我們的首頁 (http://localhost:3000) 已經有一些樣式了。若查看檔案結構，你會看到一個名為 `styles` 的資料夾，其中包含兩個 CSS 檔案：一個為全域樣式表 (`globals.css`)，另一個則為 CSS 模組 (`Home.module.css`)。
+
+<a href="/docs/basic-features/built-in-css-support" target="_blank">CSS modules</a> 允許你在元件階層中以本地範疇（scope）的方式使用 CSS，並自動建立唯一的 class 名稱。這使你可以在不同的檔案中使用相同的 CSS class 名稱，而不用擔心 class 名稱衝突。
+
+除了 CSS 模組，你還能以多種方式來設計你的 Next.js 應用程式樣式，包括：
+
+- Sass 允許你匯入 `.css` 和 `.scss` 檔案。
+- PostCSS 函式庫，像是 <a href="https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss" target="_blank">Tailwind CSS</a>。
+- CSS-in-JS 函式庫，例如：<a href="https://github.com/vercel/styled-jsx" target="_blank">styled-jsx</a>、<a href="https://github.com/vercel/next.js/tree/canary/examples/with-styled-components" target="_blank">styled-components</a> 和 <a href="https://github.com/vercel/next.js/tree/canary/examples/with-emotion" target="_blank">emotion</a>
+
+在下一頁課程中，我們將談談如何在 Next.js 中使用 <a href="/docs/basic-features/built-in-css-support#adding-component-level-css" target="_blank">CSS 模組</a> 和 <a href="/docs/basic-features/built-in-css-support#sass-support" target="_blank">Sass</a>，讓我們開始吧！
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/assets-metadata-css/third-party-javascript"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/assets-metadata-css/layout-component"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["lucy70381"]} />
