@@ -200,7 +200,7 @@
         ]
       },
       {
-        "title": "預先渲染與資料獲取",
+        "title": "提前渲染與資料獲取",
         "path": "/learn/basics/data-fetching",
         "children": [
           {
