@@ -1,10 +1,10 @@
 <PageMeta>
-   Next.js supports built-in web font optimization to inline font CSS. Learn more here.
+   Next.js 內建支援行內 CSS 字體的載入最佳化，您可以在此學習更多。
 </PageMeta>
 
-# Font Optimization
+# 字體最佳化
 
-Next.js helps you optimize loading web fonts by inlining font CSS during `next build`. This optimization eliminates an extra network round trip to fetch font declaration files. This results in improvements to [First Contentful Paint (FCP)](https://web.dev/fcp/) and [Largest Contentful Paint (LCP)](https://vercel.com/blog/core-web-vitals#largest-contentful-paint?utm_source=next-site&utm_medium=docs&utm_campaign=next-website). For example, this is the transformation Next.js makes:
+Next.js 協助您於 `next build` 的時候，藉由設定行內字體 CSS 來最佳化網頁字體載入。這樣的優化免除抓取額外字體聲明檔案的網路作業，也有助於提升 [首次內容繪製 (FCP)](https://web.dev/fcp/) 和 [最大內容繪製 (LCP) ](https://vercel.com/blog/core-web-vitals#largest-contentful-paint?utm_source=next-site&utm_medium=docs&utm_campaign=next-website)。如下範例，可以看到 Next.js 所做的變更：
 
 ```js
 // Before
@@ -20,9 +20,9 @@ Next.js helps you optimize loading web fonts by inlining font CSS during `next b
 </style>
 ```
 
-## Usage
+## 用法
 
-To add a web font to your Next.js application, add the font to a [Custom `Document`](/docs/advanced-features/custom-document.md).
+若要新增網頁字體至您的 Next.js 應用程式，則可以增加字體於 [自訂文件 (Custom Document)](/docs/advanced-features/custom-document)。
 
 ```js
 // pages/_document.js
@@ -47,15 +47,16 @@ export default function Document() {
 }
 ```
 
-Adding fonts to `_document` is preferred over individual pages. When adding fonts to a single page with [`next/head`](/docs/api-reference/next/head.md), font optimizations included by Next.js will not work on navigations between pages client-side or when using [streaming](/docs/advanced-features/react-18/streaming.md).
+新增字體於 `_document` 中，比在單一頁面新增好。當您僅是於單一頁面的 [`next/head`](/docs/api-reference/next/head) 新增字體，在瀏覽客戶端網頁或是 [streaming 伺服器渲染](/docs/advanced-features/react-18/streaming) 的頁面時，Next.js 所提供的字體優化功能將無法發揮作用。
 
-Next.js currently supports optimizing Google Fonts and Typekit, with support for other font providers coming soon. We're also planning to add control over [loading strategies](https://github.com/vercel/next.js/issues/21555) and `font-display` values. See [Google Font Display](https://nextjs.org/docs/messages/google-font-display) for more information.
 
-> **Note**: Font Optimization does not currently support self-hosted fonts.
+目前 Next.js 支援優化 Google Fonts 和 Typekit 字體，也預計很快就能支援其他字體供應商，我們目前也在規劃，未來能控制 [載入策略](https://github.com/vercel/next.js/issues/21555) 和 `font-display` 的設定。您可參考更多資訊於 [Google Font Display](/docs/messages/google-font-display)。
 
-## Disabling Optimization
+> **注意**： 字體載入最佳化目前並不支援未開源的字體。
 
-If you do not want Next.js to optimize your fonts, you can opt-out.
+## 停止最佳化
+
+若您不希望 Next.js 執行載入字體最佳化，您可以參考如下設定。
 
 ```js
 // next.config.js
@@ -65,14 +66,14 @@ module.exports = {
 }
 ```
 
-## Related
+## 相關參考
 
-For more information on what to do next, we recommend the following sections:
+我們推薦您下列章節，以獲取更多相關資訊：
 
 <div className="card">
-  <a href="/docs/advanced-features/custom-document.md">
-    <b>Custom Document</b>
-    <small>Learn how to augment your application's html and body tags.</small>
+  <a href="/docs/advanced-features/custom-document">
+    <b>自訂文件 (Custom Document) </b>
+    <small>學習如何添加您的 html 和 body 標籤(tags)。</small>
   </a>
 </div>
 
