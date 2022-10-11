@@ -1,4 +1,6 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
+## Next.js 是如何運作的
 
 <Pagination
   hrefs={[
@@ -16,4 +18,31 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet/>
+## 什麼是程式碼拆分？
+
+開發者通常會把應用程式拆分成數個頁面，可以透過網址來取得這些頁面資訊。每個頁面成了該應用程式唯一的**進入點（entry point）**。
+
+程式碼拆分意即將應用程式的模組拆分成進入點需要的更小的組塊（chunks）的完整過程。目的是藉由載入某個頁面時才載入該頁面的程式碼來改善應用程式初次載入頁面的所花費的時間。
+
+![模組拆分示意圖](	https://nextjs.org/static/images/learn/foundations/code-splitting.png "模組拆分示意圖")
+
+Next.js 有內建支援程式碼拆分功能。每個存放於 `pages/` 資料夾內的檔案，在打包（build）階段時會自動地將程式碼拆分成數個 JavaScript 模組。
+
+更深入探討：
+
+- 任何在頁面之間共享的程式碼也會被拆分成另一個模組來避免當使用路由導航時的重複載入同樣程式碼的問題。
+- 在頁面初次載入之後，Next.js 就會開始[預載入使用者可能會前往的其他頁面的程式碼](/docs/api-reference/next/link)。
+- [動態引入（Dynamic imports）](/docs/advanced-features/dynamic-import)是另一個手動針對載入的程式碼進行拆分的方法。
+
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        以下哪一個不是程式碼拆分想要達到的目的？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="改善應用程式初次載入效率"/>
+        <QuizOption text="只載入進入點（entry point）需要的程式碼"/>
+        <QuizOption text="移除多餘的程式碼" isCorrect/>
+    </QuizOptionGroup>
+</Quiz>
+
+<TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />

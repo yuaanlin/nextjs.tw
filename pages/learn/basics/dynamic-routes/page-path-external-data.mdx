@@ -1,0 +1,86 @@
+## 動態路由
+
+<Pagination
+  hrefs={[
+    '/learn/basics/dynamic-routes',
+    '/learn/basics/dynamic-routes/setup',
+    '/learn/basics/dynamic-routes/page-path-external-data',
+    '/learn/basics/dynamic-routes/implement-getstaticpaths',
+    '/learn/basics/dynamic-routes/implement-getstaticprops',
+    '/learn/basics/dynamic-routes/render-markdown',
+    '/learn/basics/dynamic-routes/polishing-post-page',
+    '/learn/basics/dynamic-routes/polishing-index-page',
+    '/learn/basics/dynamic-routes/dynamic-routes-details',
+  ]}
+/>
+
+## 由外部資料來改變路由
+
+在前一堂課程中，我們講述了根據外部資料來改變**頁面內容**的案例。我們使用 [`getStaticProps`](/docs/basic-features/data-fetching#getstaticprops-static-generation) 來抓取 index 頁面需要的資料。
+
+在這一堂課，我們將會探討每個**頁面路徑**根據外部資料來變動的案例。Next.js 可以讓你用路徑產生頁面，而這個路徑就是外部資料提供。這就是 Next.js 中**動態路由**的運作方式。
+
+![頁面路徑根據外部資料變動示意圖](https://nextjs.org/static/images/learn/dynamic-routes/page-path-external-data.png "頁面路徑根據外部資料變動示意圖示意圖")
+
+### 如何使用動態路由靜態產生頁面
+
+在此次的範例，我們要幫部落格文章頁生成[動態路由](/docs/routing/dynamic-routes):
+
+- 我們要每一個文章路徑長這樣 `/posts/<id>`，`<id>` 代表的是在父層 `posts` 資料夾路徑底下的 markdown 檔案名稱。
+- 由於我們有 `ssg-ssr.md` 及 `pre-rendering.md`，我們想要讓這兩個路徑長這個樣子 `/posts/ssg-ssr`、`/posts/pre-rendering`。
+
+### 來看看有哪些步驟
+
+我們可以藉由以下幾個步驟來達到目的。 **你可以先不做任何動作** — 因為我們在下一頁才會實作全部過程。
+
+首先，我們將會在 `pages/posts` 路徑底下建立一支叫做 `[id].js` 的檔案。 檔名命名必須由 `[` 為起頭，`]` 做結尾，這就是 Next.js 中[動態路由](/docs/routing/dynamic-routes)命名方式。
+
+在 `pages/posts/[id].js` 中，我們將會寫程式碼來渲染文章頁面 -- 跟我們前面做過的其他頁面一樣。
+
+```html
+  import Layout from '../../components/layout';
+
+  export default function Post() {
+    return <Layout>...</Layout>;
+  }
+```
+
+現在這裡是前面沒看過的: 我們將會在此動態產生的頁面中導出一個叫做 [`getStaticPaths`](/docs/basic-features/data-fetching#getstaticpaths-static-generation) 的非同步函式。在這個函式當中，我們需要為 `id` 回傳一個**可能的值**的清單。
+
+```html
+  import Layout from '../../components/layout';
+
+  export default function Post() {
+    return <Layout>...</Layout>;
+  }
+
+  export async function getStaticPaths() {
+    // Return a list of possible value for id
+  }
+```
+
+最後，我們需要再次執行 [`getStaticProps`](/docs/basic-features/data-fetching#getstaticprops-static-generation) 一次 - 這次，要使用 `id` 去抓取部落格文章需要的資料。在 [`getStaticProps`](/docs/basic-features/data-fetching#getstaticprops-static-generation) 你可以使用 params 來去取的當前動態路由的 `id`（因為檔案名稱為 `[id].js`）。
+
+```html
+  import Layout from '../../components/layout';
+
+  export default function Post() {
+    return <Layout>...</Layout>;
+  }
+
+  export async function getStaticPaths() {
+    // Return a list of possible value for id
+  }
+
+  export async function getStaticProps({ params }) {
+    // Fetch necessary data for the blog post using params.id
+  }
+```
+
+這個圖片展示了我們剛剛談到的內容:
+
+![動態路由產生頁面示意圖](https://nextjs.org/static/images/learn/dynamic-routes/how-to-dynamic-routes.png "動態路由產生頁面示意圖")
+
+下個頁面，我們開始來實作看看！
+
+<TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />

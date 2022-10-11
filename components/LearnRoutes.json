@@ -114,23 +114,23 @@
     ]
   },
   {
-    "title": "CREATE YOUR FIRST APP",
+    "title": "建立你的第一個應用程式",
     "index": true,
     "children": [
       {
-        "title": "Create a Next.js App",
+        "title": "建立 Next.js 應用程式",
         "path": "/learn/basics/create-nextjs-app",
         "children": [
           {
-            "title": "Setup",
+            "title": "設置",
             "path": "/learn/basics/create-nextjs-app/setup"
           },
           {
-            "title": "Welcome to Next.js",
+            "title": "歡迎來到 Next.js",
             "path": "/learn/basics/create-nextjs-app/welcome-to-nextjs"
           },
           {
-            "title": "Editing the Page",
+            "title": "編輯頁面",
             "path": "/learn/basics/create-nextjs-app/editing-the-page"
           }
         ]
@@ -158,49 +158,49 @@
         ]
       },
       {
-        "title": "Assets, Metadata, and CSS",
+        "title": "靜態資源、詮釋資料 和 CSS",
         "path": "/learn/basics/assets-metadata-css",
         "children": [
           {
-            "title": "Setup",
+            "title": "設置",
             "path": "/learn/basics/assets-metadata-css/setup"
           },
           {
-            "title": "Assets",
+            "title": "靜態資源",
             "path": "/learn/basics/assets-metadata-css/assets"
           },
           {
-            "title": "Metadata",
+            "title": "詮釋資料",
             "path": "/learn/basics/assets-metadata-css/metadata"
           },
           {
-            "title": "Third-Party JavaScript",
+            "title": "第三方 JavaScript",
             "path": "/learn/basics/assets-metadata-css/third-party-javascript"
           },
           {
-            "title": "CSS Styling",
+            "title": "CSS 樣式",
             "path": "/learn/basics/assets-metadata-css/css-styling"
           },
           {
-            "title": "Layout Component",
+            "title": "佈局元件",
             "path": "/learn/basics/assets-metadata-css/layout-component"
           },
           {
-            "title": "Global Styles",
+            "title": "全域性樣式",
             "path": "/learn/basics/assets-metadata-css/global-styles"
           },
           {
-            "title": "Polishing Layout",
+            "title": "拋光佈局",
             "path": "/learn/basics/assets-metadata-css/polishing-layout"
           },
           {
-            "title": "Styling Tips",
+            "title": "套用樣式的技巧",
             "path": "/learn/basics/assets-metadata-css/styling-tips"
           }
         ]
       },
       {
-        "title": "Pre-rendering and Data Fetching",
+        "title": "提前渲染與資料獲取",
         "path": "/learn/basics/data-fetching",
         "children": [
           {
@@ -238,39 +238,39 @@
         ]
       },
       {
-        "title": "Dynamic Route",
+        "title": "動態路由",
         "path": "/learn/basics/dynamic-routes",
         "children": [
           {
-            "title": "Setup",
+            "title": "設置",
             "path": "/learn/basics/dynamic-routes/setup"
           },
           {
-            "title": "Page Path Depends on External Data",
+            "title": "由外部資料來改變路由",
             "path": "/learn/basics/dynamic-routes/page-path-external-data"
           },
           {
-            "title": "Implement getStaticPaths",
+            "title": "執行 getStaticPaths",
             "path": "/learn/basics/dynamic-routes/implement-getstaticpaths"
           },
           {
-            "title": "Implement getStaticProps",
+            "title": "執行 getStaticProps",
             "path": "/learn/basics/dynamic-routes/implement-getstaticprops"
           },
           {
-            "title": "Render Markdown",
+            "title": "渲染 Markdown",
             "path": "/learn/basics/dynamic-routes/render-markdown"
           },
           {
-            "title": "Polishing the Post Page",
+            "title": "優化文章頁",
             "path": "/learn/basics/dynamic-routes/polishing-post-page"
           },
           {
-            "title": "Polishing the Index Page",
+            "title": "優化 index 頁",
             "path": "/learn/basics/dynamic-routes/polishing-index-page"
           },
           {
-            "title": "Dynamic Routes Details",
+            "title": "動態路由的細節",
             "path": "/learn/basics/dynamic-routes/dynamic-routes-details"
           }
         ]

@@ -1,0 +1,46 @@
+import Button from '@components/Button'
+
+## 動態路由
+
+<Pagination
+  hrefs={[
+    '/learn/basics/dynamic-routes',
+    '/learn/basics/dynamic-routes/setup',
+    '/learn/basics/dynamic-routes/page-path-external-data',
+    '/learn/basics/dynamic-routes/implement-getstaticpaths',
+    '/learn/basics/dynamic-routes/implement-getstaticprops',
+    '/learn/basics/dynamic-routes/render-markdown',
+    '/learn/basics/dynamic-routes/polishing-post-page',
+    '/learn/basics/dynamic-routes/polishing-index-page',
+    '/learn/basics/dynamic-routes/dynamic-routes-details',
+  ]}
+/>
+
+**如果你是觀看完前面課程過來的**，可以跳過此頁面。點擊以下按鈕前往下一頁。
+
+<Button
+content="下一頁 ＞"
+url="/learn/basics/dynamic-routes/setup"
+basicStyle="text-white bg-[#0070f3]"
+hoverStyle="hover:opacity-90"
+/>
+
+### 建立起始專案（可選擇的）
+
+如果你是從這裡開始課程的，你可以以下方方式安裝起始專案並執行此專案來開始接下來的課程。這會幫你建立一個 `nextjs-blog` 的目錄的專案，此專案包含前面課程的所有內容。
+
+再次提醒，如果你是從前方課程過來的同學，不需要執行此步驟。
+
+```html
+npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/dynamic-routes-starter"
+```
+
+然後跟著命令列視窗告訴你的繼續做（使用 `cd` 指令進入到目錄並運行開發模式的伺服器來運行專案）。
+
+並且你必須更新以下檔案：
+
+- `public/images/profile.jpg` 換成你的照片（建議寬高皆為400px）
+- `components/layout.js` 中的 `const name = '[Your Name]'` 改成你的名子
+- `pages/index.js` 中的 `<p>[Your Self Introduction]</p>` 改成你的自我介紹內容
+
+<TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />
