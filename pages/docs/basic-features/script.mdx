@@ -72,7 +72,7 @@ There are four different loading strategies that can be used:
 總共有 4 種不同的載入策略可以使用：
 
 - `beforeInteractive`: 在頁面互動前載入。
-- `afterInteractive`: (**默認**) 在頁面即將為互動之後立即載入。
+- `afterInteractive`: (**預設**) 在頁面即將為互動之後立即載入。
 - `lazyOnload`: 在閒置期間載入。
 - `worker`: (實驗性) 載入一個 web worker。
 
@@ -226,10 +226,10 @@ export default function Document() {
 
 為了修改 Partytown 的配置，以下條件必須被滿足：
 
-1. `data-partytown-config` 必須被使用來改寫 Next.js 的默認配置設定。
+1. `data-partytown-config` 必須被使用來改寫 Next.js 的預設配置設定。
 2. 除非你決定要在另外的目錄中儲存 Partytown 的函式庫檔案，`lib: "/_next/static/~partytown/"` 屬性和值必須包含在配置內以利 Partytown 知道 Next.js 在哪裡儲存必要的靜態檔案。
 
-> **注意**: 如果你使用 [asset prefix](/docs/api-reference/next.config.js/cdn-support-with-asset-prefix.md) 且希望改寫 Partytown 的默認配置設定，你必須將它包含在 `lib` 路徑的一部分。
+> **注意**: 如果你使用 [asset prefix](/docs/api-reference/next.config.js/cdn-support-with-asset-prefix.md) 且希望改寫 Partytown 的預設配置設定，你必須將它包含在 `lib` 路徑的一部分。
 
 您可以到 Partytown 的 [configuration options](https://partytown.builder.io/configuration) 來檢閱所有可以被增加的屬性。
 
