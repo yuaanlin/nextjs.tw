@@ -1,6 +1,4 @@
-import Button from '@components/Button'
-
-## 頁面跳轉
+import NotTranslateYet from '@components/NotTranslateYet';
 
 <Pagination
   hrefs={[
@@ -12,71 +10,4 @@ import Button from '@components/Button'
   ]}
 />
 
-## Link 組件
-在網站上的頁面之間鏈接時，您可以使用 `<a>` HTML 標記。
-
-在 Next.js 中，您可以使用 `Link` 組件 `next/link` 來鏈接應用程序中的頁面。
-
-`Link` 允許您進行客戶端跳轉頁面並可使用[props](docs/api-reference/next/link)來更好地控制頁面跳轉行為 
-### 使用 `<Link>`
-首先, 打開`pages/index.js`, 並在最上面加入以下程式來從`next/link`引用`Link`組件
-
-```js
-import Link from 'next/link';
-```
-
-然後找到帶有`h1`標籤的程式碼如下: 
-
-```jsx
-<h1 className="title">
-  Learn <a href="https://nextjs.org">Next.js!</a>
-</h1>
-```
-
-然後將他改成:
-```jsx
-<h1 className="title">
-  Read <Link href="/posts/first-post">this page!</Link>
-</h1>
-```
-
-接著, 打開`pages/posts/first-post.js` 並用以下程式碼取代原本的程式碼:
-```jsx
-import Link from 'next/link';
-
-export default function FirstPost() {
-  return (
-    <>
-      <h1>First Post</h1>
-      <h2>
-        <Link href="/">Back to home</Link>
-      </h2>
-    </>
-  );
-}
-```
-如你所見, `Link` 組件類似於使用`<a>`標籤, 但是您使用 `<Link href="…">` 而不是`<a href="…">`
-
-> Note:注意：在 Next.js 12.2 之前，要求 Link 組件包裹 `<a>` 標籤，但在 [12.2 及以上版本中不需要](https://nextjs.org/blog/next-12-2#:~:text=next/link%20no%20longer%20requires%20manually%20adding%20%3Ca%3E%20as%20a%20child.%20You%20can%20now%20opt%20into%20this%20behavior%20in%20a%20backward%2Dcompatible%20way. "‌")。
-
-讓我們看看它是否有效。您現在應該在每個頁面上都有一個鏈接，允許您來回切換：
-
-
-![](https://nextjs.org/static/images/learn/navigate-between-pages/links.gif)
-
-
-<Button
-  content="返回上一頁 ←"
-  url="/learn/basics/navigate-between-pages/pages-in-nextjs"
-  basicStyle="text-white bg-[#0070f3]"
-  hoverStyle="hover:opacity-90"
-/>
-
-<Button
-  content="前往下一頁 →"
-  url="/learn/basics/navigate-between-pages/client-side"
-  basicStyle="text-white bg-[#0070f3]"
-  hoverStyle="hover:opacity-90"
-/>
-
-<TranslatedBy githubUserNames={["iga00257"]} />
+<NotTranslateYet />
