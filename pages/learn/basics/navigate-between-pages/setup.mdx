@@ -1,4 +1,6 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Button from '@components/Button'
+
+## 頁面跳轉
 
 <Pagination
   hrefs={[
@@ -10,4 +12,37 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet />
+### 如果您是照著上一課實做來的，您可以跳過此頁面。點擊下方按鈕進入下一頁
+<Button
+content="下一頁 →"
+url="/learn/basics/navigate-between-pages/pages-in-nextjs"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+### 下載入門專案程式碼 (可選擇)
+
+如果您沒有從上一課繼續，您可以下載、安裝和運行下面本課的入門專案 這將設置一個 `nextjs-blog` 目錄，使其與上一課的成果相同。
+
+同樣，如果您剛剛完成上一課，則這是非必要的。
+
+```html
+npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/navigate-between-pages-starter"
+```
+然後按照命令視窗輸出中的說明進行操作（`cd` 進入目錄並啟動開發服務器）。
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/navigate-between-pages"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/navigate-between-pages/pages-in-nextjs"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+
+<TranslatedBy githubUserNames={["iga00257"]} />
