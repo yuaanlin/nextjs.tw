@@ -1,4 +1,4 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Button from "@components/Button";
 
 <Pagination
   hrefs={[
@@ -14,4 +14,44 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet />
+<strong>如果你是觀看完前面的課程過來的</strong>，可以跳過此頁面。點擊下方按鈕進入下一頁。
+
+<Button
+  content="下一頁 →"
+  url="/learn/basics/data-fetching/pre-rendering"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+### 下載入門專案程式碼 (可選擇)
+
+如果你沒有看過前面的課程，你可以透過下面的指令下載、安裝和執行本課的起始專案。這將設置一個有 `nextjs-blog` 目錄的專案，使其與上一課的成果相同。
+
+同樣，如果您剛剛有完成前面的課程，則這是非必要的。
+
+```bash
+npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/data-fetching-starter"
+```
+然後按照命令視窗輸出中的說明進行操作（`cd` 進入目錄並啟動開發服務器）。
+
+你也應該要更新以下檔案：
+- 將 `public/images/profile.jpg` 換成你的照片 （建議尺寸：400px X 400px）
+- 將 `components/layout.js` 中的 `const name = '[Your Name]` 換成你的名子
+- 將 `pages/index.js` 中的 `<p>[Your Self Introduction]</p>` 換成你的自我介紹
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/navigate-between-pages"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/navigate-between-pages/pages-in-nextjs"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+
+<TranslatedBy githubUserNames={["justYu2001"]} />
