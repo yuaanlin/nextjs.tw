@@ -13,38 +13,39 @@ import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@compo
   ]}
 />
 
-## 用戶端的頁面跳轉
-`Link` 組件可以允許在同一個Next.js應用程式中的兩個頁面之間進行**用戶端的頁面跳轉**
+## 客戶端的頁面跳轉
+`Link` 元件可以允許在同一個 Next.js 應用程式中的兩個頁面之間進行**客戶端的頁面跳轉**
 客戶端導航意味著頁面轉換時使用 _JavaScript_，這比瀏覽器內建的預設跳轉方法更快。
 
 
 這裡有一個簡單的方法可以驗證它：
-- 打開瀏覽器的開發者工具並把`<html>`中`background`的 CSS屬性改成`yellow`.
+- 打開瀏覽器的開發者工具並把 `<html>` 中 `background` 的 CSS 屬性改成 `yellow`。
 - 點擊連結以在兩個頁面中來回切換
 - 您會看到黃色背景在頁面轉換之間持續存在
 
-這表明瀏覽器沒有加載整個頁面並且用戶端跳轉正常運作
+這表明瀏覽器沒有載入整個頁面並且用戶端跳轉正常運作。
 This shows that the browser does _not_ load the full page and client-side navigation is working.
 
 ![](https://nextjs.org/static/images/learn/navigate-between-pages/client-side.gif)
 
-如果您使用了 `<a href="...">` 而不是 `<Link href="...">`，則在點擊鏈接時背景顏色將被清除，因為瀏覽器會進行完全刷新
+如果您使用了 `<a href="...">` 而不是 `<Link href="...">`，則在點擊連結時背景顏色將被清除，因為瀏覽器會進行完全重新整理。
 
-### 代碼拆分和預先取回連結
+### 程式碼拆分和提前載入連結
 
-Next.js 會自動進行代碼拆分, 所以每個頁面只加載該頁面所需的內容。 這意味著在渲染主頁時，初始化的過程不會載入其他頁面的代碼。
+Next.js 會自動進行程式碼拆分，所以每個頁面只載入該頁面所需的內容。 這意味著在渲染首頁時，初始化的過程不會載入其他頁面的程式碼。
 
-即使您有數百個頁面，這也可以確保主頁快速加載。
+即使您有數百個頁面，這也可以確保首頁快速加載。
 
-僅載入您請求的頁面也意味著頁面是獨立的代碼。 如果某個頁面拋出錯誤，應用程式的其餘部分仍然可以正常運作
-此外，在 Next.js 的生產版本中，每當`Link`組件出現在瀏覽器的顯示裝置中時，Next.js 都會在後台自動**預先加載**鏈接頁面的代碼。當您單擊鏈接時，目標頁面的代碼已經在背景執行加載，頁面轉換幾乎是即時的！
+僅載入您請求的頁面也意味著頁面是獨立的程式碼。 如果某個頁面拋出錯誤，應用程式的其餘部分仍然可以正常運作
+
+此外，在 Next.js 的生產版本中，每當 `Link` 元件出現在瀏覽器的顯示裝置中時，Next.js 都會在後台自動**提前載入**連結頁面的程式碼。當您單擊連結時，目標頁面的代碼已經在背景執行加載，所以頁面轉換幾乎是即時的！
 
 ### 概要
 
-Next.js會 通過代碼拆分,用戶端頁面跳轉,和預先加載的機制來自動優化您的應用程序以取得最佳效能.
+Next.js 會通過程式碼拆分、客戶端頁面跳轉和提前載入的機制來自動優化您的應用程式以取得最佳效能。
 
 
-您可以在 `pages` 下將路由創建為文件，並使用內置的 `Link` 組件, 這個模式是不需要路由相關函式庫的.
+您可以在 `pages` 下將路由創建為檔案，並使用內建的 `Link` 組件，這個模式是不需要路由相關函式庫的。
 
 
 您可以從[API參考文件](/docs/api-reference/next/link)了解更多關於 `Link` 組件的相關知識
@@ -56,11 +57,11 @@ Next.js會 通過代碼拆分,用戶端頁面跳轉,和預先加載的機制來�
 
 <Quiz>
     <QuizHeading type={QuizType.quickReview}>        
-如果有個用戶打開他的瀏覽器並跳轉到`your-blog.com/posts/first-post`頁面. JavaScript在初始化時會載入什麼進這個頁面?
+如果有個使用者打開他的瀏覽器並跳轉到 `your-blog.com/posts/first-post` 頁面，JavaScript 在初始化時會載入什麼進這個頁面？
     </QuizHeading>
     <QuizOptionGroup>
         <QuizOption text="僅加載 `/posts/first-post` 的 JavaScript" isCorrect/>
-        <QuizOption text="加載整個應用程序的 JavaScript"/>
+        <QuizOption text="加載整個應用程式的 JavaScript"/>
     </QuizOptionGroup>
 </Quiz>
 
