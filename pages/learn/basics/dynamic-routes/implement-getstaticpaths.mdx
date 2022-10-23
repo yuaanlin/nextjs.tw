@@ -1,0 +1,83 @@
+## 動態路由
+
+<Pagination
+  hrefs={[
+    '/learn/basics/dynamic-routes',
+    '/learn/basics/dynamic-routes/setup',
+    '/learn/basics/dynamic-routes/page-path-external-data',
+    '/learn/basics/dynamic-routes/implement-getstaticpaths',
+    '/learn/basics/dynamic-routes/implement-getstaticprops',
+    '/learn/basics/dynamic-routes/render-markdown',
+    '/learn/basics/dynamic-routes/polishing-post-page',
+    '/learn/basics/dynamic-routes/polishing-index-page',
+    '/learn/basics/dynamic-routes/dynamic-routes-details',
+  ]}
+/>
+
+## 執行 getStaticPaths
+
+首先，我們先建立檔案
+
+- 在 `pages/posts` 路徑底下建立一支名稱為 `[id].js` 檔案。
+- 再來，在 `pages/posts` 路徑底下移除 `first-post.js` 檔案 — 我們不需要它了。
+
+然後，在編輯器中打開`pages/posts/[id].js` 檔案，再貼上以下的程式碼，後面我們會再針對`...`填入我們要的內容。
+
+```html
+  import Layout from '../../components/layout';
+
+  export default function Post() {
+    return <Layout>...</Layout>;
+  }
+```
+
+再來，打開 `lib/posts.js` 並在底下新增 `getAllPostIds` 函式。
+這個函式會回傳一個在 `posts` 路徑底下檔案名稱（不包含 `.md`）的清單：
+
+```html
+  export function getAllPostIds() {
+    const fileNames = fs.readdirSync(postsDirectory);
+
+    // Returns an array that looks like this:
+    // [
+    //   {
+    //     params: {
+    //       id: 'ssg-ssr'
+    //     }
+    //   },
+    //   {
+    //     params: {
+    //       id: 'pre-rendering'
+    //     }
+    //   }
+    // ]
+    return fileNames.map((fileName) => {
+      return {
+        params: {
+          id: fileName.replace(/\.md$/, ''),
+        },
+      };
+    });
+  }
+```
+
+重點: 回傳的清單內容不僅僅是字串的陣列 — 它還必須是一個物件的陣列，可以參考上方程式碼區塊註解的部分。 每個物件必須包含 `params` 的鍵，並且值為包含 `id` 鍵（因為我們在檔案名稱使用 `[id]`） 的物件。 不這麼做的話，`getStaticPaths` 會無法起到它的作用。
+
+最後，我們會引入 `getAllPostIds` 函式並在 `getStaticPaths` 之中使用。 打開 `pages/posts/[id].js` 並將下方的程式碼貼到導出的 `Post` 組件上方：
+
+```html
+  import { getAllPostIds } from '../../lib/posts';
+
+  export async function getStaticPaths() {
+    const paths = getAllPostIds();
+    return {
+      paths,
+      fallback: false,
+    };
+  }
+```
+
+- `paths` 包含由 `getAllPostIds()` 回傳的已知的路徑陣列，陣列中包含了由 `pages/posts/[id].js` 定義的 params。 前往 [`paths` 鍵文件](/docs/basic-features/data-fetching/overview#the-paths-key-required)了解更多。
+- 先不管 `fallback: false`— 後續我們會再提到。
+
+我們就快完成了 — 但我們還需要實作 `getStaticProps` 部分。在下一頁我們會談到！
