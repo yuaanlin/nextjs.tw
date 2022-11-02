@@ -1,0 +1,103 @@
+## 動態路由
+
+<Pagination
+  hrefs={[
+    '/learn/basics/dynamic-routes',
+    '/learn/basics/dynamic-routes/setup',
+    '/learn/basics/dynamic-routes/page-path-external-data',
+    '/learn/basics/dynamic-routes/implement-getstaticpaths',
+    '/learn/basics/dynamic-routes/implement-getstaticprops',
+    '/learn/basics/dynamic-routes/render-markdown',
+    '/learn/basics/dynamic-routes/polishing-post-page',
+    '/learn/basics/dynamic-routes/polishing-index-page',
+    '/learn/basics/dynamic-routes/dynamic-routes-details',
+  ]}
+/>
+
+## 渲染 Markdown
+
+為了渲染 Markdown 內容，我們會使用 `remark` 函式庫。 首先，來安裝它：
+
+```html
+  npm install remark remark-html
+```
+
+然後，打開 `lib/posts.js` 並將以下內容放進內容最上方：
+
+```html
+  import { remark } from 'remark';
+  import html from 'remark-html';
+```
+
+再來在同一支檔案中如以下 `remark` 使用方式來 更新 `getPostData()` 函式：
+
+```html
+  export async function getPostData(id) {
+    const fullPath = path.join(postsDirectory, `${id}.md`);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+    // Use gray-matter to parse the post metadata section
+    const matterResult = matter(fileContents);
+
+    // Use remark to convert markdown into HTML string
+    const processedContent = await remark()
+      .use(html)
+      .process(matterResult.content);
+    const contentHtml = processedContent.toString();
+
+    // Combine the data with the id and contentHtml
+    return {
+      id,
+      contentHtml,
+      ...matterResult.data,
+    };
+  }
+```
+
+> 重要： 因為我們需要在 `remark` 部分使用 `await`，所以我們新增了關鍵字 `async` 到 `getPostData`。 `async`/`await`的作用是可以讓你已[非同步的方式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)來請求資料。
+
+那意謂著我們需要先更新 `pages/posts/[id].js` 檔案裡的 [`getStaticProps`](/docs/basic-features/data-fetching/overview#getstaticprops-static-generation) 函式以便在 `getPostData` 使用 `await`。
+
+```html
+  export async function getStaticProps({ params }) {
+    // Add the "await" keyword like this:
+    const postData = await getPostData(params.id);
+
+    return {
+      props: {
+        postData,
+      },
+    };
+  }
+```
+
+最後，更新 `pages/posts/[id].js` 裡的 Post 組件使用 [`dangerouslySetInnerHTML`](/docs/dom-elements.html#dangerouslysetinnerhtml) 來渲染 `contentHtml`：
+
+```html
+  export default function Post({ postData }) {
+    return (
+      <Layout>
+        {postData.title}
+        <br />
+        {postData.id}
+        <br />
+        {postData.date}
+        <br />
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      </Layout>
+    );
+  }
+```
+
+一樣可以試試到以下網站看看結果：
+
+- [http://localhost:3000/posts/ssg-ssr](http://localhost:3000/posts/ssg-ssr)
+- [http://localhost:3000/posts/pre-rendering](http://localhost:3000/posts/pre-rendering)
+
+你現在應該能看到部落格內容：
+
+![部落格內容示意圖](https://nextjs.org/static/images/learn/dynamic-routes/markdown.png "部落格內容示意圖")
+
+我們就快完成了！在下一階段，我們來優化每個頁面。
+
+<TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />
