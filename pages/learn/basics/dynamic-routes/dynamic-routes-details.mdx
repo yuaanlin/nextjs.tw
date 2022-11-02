@@ -1,0 +1,134 @@
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
+## 動態路由
+
+<Pagination
+  hrefs={[
+    '/learn/basics/dynamic-routes',
+    '/learn/basics/dynamic-routes/setup',
+    '/learn/basics/dynamic-routes/page-path-external-data',
+    '/learn/basics/dynamic-routes/implement-getstaticpaths',
+    '/learn/basics/dynamic-routes/implement-getstaticprops',
+    '/learn/basics/dynamic-routes/render-markdown',
+    '/learn/basics/dynamic-routes/polishing-post-page',
+    '/learn/basics/dynamic-routes/polishing-index-page',
+    '/learn/basics/dynamic-routes/dynamic-routes-details',
+  ]}
+/>
+
+## 動態路由的細節
+
+這裡是有關動態路由的[重要細節](/docs/routing/dynamic-routes)。
+
+### 對外部 API 發起請求或對資料庫進行查詢
+
+如同 `getStaticProps`，`getStaticPaths` 能夠對資料來源請求資料。在我們的例子中，`getAllPostIds`（在 `getStaticPaths` 中使用）可以對外部 API 進行資料請求：
+
+```html
+  export async function getAllPostIds() {
+    // Instead of the file system,
+    // fetch post data from an external API endpoint
+    const res = await fetch('..');
+    const posts = await res.json();
+    return posts.map((post) => {
+      return {
+        params: {
+          id: post.id,
+        },
+      };
+    });
+  }
+```
+
+### 開發階段 vs. 生產階段
+
+- 在 **開發階段**（`npm run dev` 或 `yarn dev`）, [`getStaticPaths`](/docs/basic-features/data-fetching#getstaticpaths-static-generation) 在每次請求發生時執行。
+- 在 **生產階段**，[`getStaticPaths`](/docs/basic-features/data-fetching#getstaticpaths-static-generation) 在打包階段執行。
+
+### 回呼函式
+
+試著回憶一下我們在 [`getStaticPaths`](/docs/basic-features/data-fetching#getstaticpaths-static-generation) 返回的 `fallback: false` 部分。這個用意是什麼？
+
+如果 [`fallback` 為 `false`](/docs/basic-features/data-fetching/overview#fallback-false)，那麼任何路徑都不會被 [`getStaticPaths`](/docs/basic-features/data-fetching#getstaticpaths-static-generation) 返回，這將會導致 **404 頁面** 的結果。
+
+如果 [`fallback` 為 `true`](/docs/basic-features/data-fetching#fallback-true)，那麼 [`getStaticPaths`](/docs/basic-features/data-fetching#getstaticpaths-static-generation) 的行為會變成：
+
+- 被 [`getStaticPaths`](/docs/basic-features/data-fetching#getstaticpaths-static-generation) 返回的路徑會在打包階段渲染成 HTML。
+- 在打包階段未被產生的路徑將不會導致404錯誤頁面。而是 Next.js 在第一次對於這些路徑請求時提供一個回呼函式版本的頁面。
+- 在背景，Next.js 會靜態產生請求的路徑。後面如果又請求相同的路徑的話就會提供之前已經產生好的頁面，就像其他頁面在打包階段就會進行預渲染一樣。
+
+如果 [`fallback` 為 `blocking`](/docs/basic-features/data-fetching#fallback-blocking)，新的路徑將會利用 `getStaticProps` 進行伺服器端的渲染，且為了之後的請求進行快取，所以每個路徑知會發生一次這樣的過程。
+
+這已經超出這堂課要談的內容了，但是如果想了解更多有關 `fallback: true` 和 `fallback: 'blocking` 細節的話請參考 [`fallback` 文件](/docs/api-reference/data-fetching/get-static-paths#fallback-false)。
+
+### 取得所有的路徑
+
+動態路由可以藉由在 `[]` 新增（`...`）的方式來取得所有的路徑。比方說：
+
+- `pages/posts/[...id].js` 可以匹配 `/posts/a`， 及 `/posts/a/b`，`/posts/a/b/c` 以此類推。
+
+不過如果你這麼做的話，在 [`getStaticPaths`](/docs/basic-features/data-fetching#getstaticpaths-static-generation) 中，你必須回傳一個陣列作為 `id` 鍵的值，像是這樣：
+
+```html
+  return [
+    {
+      params: {
+        // Statically Generates /posts/a/b/c
+        id: ['a', 'b', 'c'],
+      },
+    },
+    //...
+  ];
+```
+
+且 `params.id` 在 [`getStaticProps`](/docs/basic-features/data-fetching#getstaticprops-static-generation) 中將會是陣列的形式：
+ 
+```html
+  export async function getStaticProps({ params }) {
+    // params.id will be like ['a', 'b', 'c']
+  }
+```
+
+查看[取得所有路徑的文件說明](/docs/routing/dynamic-routes#catch-all-routes)來了解更多。
+
+### 路由
+
+如果你想操作 Next.js 路由的話，可以藉由引入 [`next/router`](/docs/api-reference/next/router) 中的 [`useRouter`](/docs/api-reference/next/router#userouter) 來使用。
+
+### 404 頁面
+
+為了建立一個[客製化的 404 頁面](/docs/advanced-features/custom-error-page#404-page)，請建立一支 `pages/404.js` 的檔案。這隻檔案在打包階段會被靜態產生出來。
+
+```html
+  // pages/404.js
+  export default function Custom404() {
+    return <h1>404 - Page Not Found</h1>;
+  }
+```
+
+前往[錯誤頁面](/docs/advanced-features/custom-error-page)文件了解更多。
+
+### 其他範例
+
+我們目前為止建立了許多範例來闡述 [`getStaticProps`](/docs/basic-features/data-fetching#getstaticprops-static-generation) 及 [`getStaticPaths`](/docs/basic-features/data-fetching#getstaticpaths-static-generation)— 查看原始碼來了解更多：
+- [Blog Starter using markdown files](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)（[Demo](https://next-blog-starter.vercel.app/)）
+- [WordPress Example](https://github.com/vercel/next.js/tree/canary/examples/cms-wordpress)（[Demo](https://next-blog-wordpress.vercel.app/)）
+- [DatoCMS Example](https://github.com/vercel/next.js/tree/canary/examples/cms-datocms)（[Demo](https://next-blog-datocms.vercel.app/)）
+- [TakeShape Example](https://github.com/vercel/next.js/tree/canary/examples/cms-takeshape)（[Demo](https://next-blog-takeshape.vercel.app/)）
+- [Sanity Example](https://github.com/vercel/next.js/tree/canary/examples/cms-sanity)（[Demo](https://next-blog-sanity.vercel.app/)）
+
+### 結束了！
+
+在下一堂課，我們將會探討 Next.js 的 [API 路由](/docs/api-routes/introduction)。
+
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        你想要利用 `pages/products/[id].js`（`[id]`指的是產品的具體 ID） 的路徑來動態產生各個產品的頁面，以下哪個是正確的做法？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="使用 `getStaticPaths` 來取得產品 ID 的陣列，並且使用 `getStaticProps` 來取得每項產品的的資料。" isCorrect/>
+        <QuizOption text="使用 `getStaticPaths` 來取得每項產品的的資料，並且使用 `getStaticProps` 來取得產品 ID 的陣列。"/>
+    </QuizOptionGroup>
+</Quiz>
+
+<TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />
