@@ -1,0 +1,116 @@
+## 動態路由
+
+<Pagination
+  hrefs={[
+    '/learn/basics/dynamic-routes',
+    '/learn/basics/dynamic-routes/setup',
+    '/learn/basics/dynamic-routes/page-path-external-data',
+    '/learn/basics/dynamic-routes/implement-getstaticpaths',
+    '/learn/basics/dynamic-routes/implement-getstaticprops',
+    '/learn/basics/dynamic-routes/render-markdown',
+    '/learn/basics/dynamic-routes/polishing-post-page',
+    '/learn/basics/dynamic-routes/polishing-index-page',
+    '/learn/basics/dynamic-routes/dynamic-routes-details',
+  ]}
+/>
+
+## 優化文章頁
+
+### 為文章頁新增 `Title`
+
+在 `pages/posts/[id].js` 中，新增 `title` 標籤來使用文章資料。 你會需要在此檔案的最上方引入 [`next/head`](/docs/api-reference/next/head)，且在 `Post` 組件內新增 `title` 標籤：
+
+```html
+  // Add this import
+  import Head from 'next/head';
+
+  export default function Post({ postData }) {
+    return (
+      <Layout>
+        {/* Add this <Head> tag */}
+        <Head>
+          <title>{postData.title}</title>
+        </Head>
+
+        {/* Keep the existing code here */}
+      </Layout>
+    );
+  }
+```
+
+### 日期格式化
+
+為了格式化日期，我們會使用 `date-fns` 函式庫。首先，來安裝它：
+
+```html
+  npm install date-fns
+```
+
+下一步，建立一個叫做 `components/date.js` 的檔案，然後新增以下 `Date` 組件：
+
+```html
+  import { parseISO, format } from 'date-fns';
+
+  export default function Date({ dateString }) {
+    const date = parseISO(dateString);
+    return <time dateTime={dateString}>{format(date, 'LLLL d, yyyy')}</time>;
+  }
+```
+
+> 注意： 你可以在 [date-fns](https://date-fns.org/v2.16.1/docs/format) 網站查看不同的 `format` 字串選項。
+
+現在，打開 `pages/posts/[id].js` 檔案，在最上方引入 `Date` 組件，然後透過 `{postData.date}` 使用它：
+
+```html
+  // Add this import
+  import Date from '../../components/date';
+
+  export default function Post({ postData }) {
+    return (
+      <Layout>
+        {/* Keep the existing code here */}
+
+        {/* Replace {postData.date} with this */}
+        <Date dateString={postData.date} />
+
+        {/* Keep the existing code here */}
+      </Layout>
+    );
+  }
+```
+
+如果你前往 [http://localhost:3000/posts/pre-rendering](http://localhost:3000/posts/pre-rendering)，你應該能看到日期為 **“January 1, 2020”**：
+
+### 新增 CSS
+
+最後，我們使用之前用過的 `styles/utils.module.css` 來新增 CSS 樣式。打開 `pages/posts/[id].js` 檔案，然後新增 CSS 檔案的引入，並用以下的程式碼把 `Post` 組件內容替換：
+
+```html
+  // Add this import at the top of the file
+  import utilStyles from '../../styles/utils.module.css';
+
+  export default function Post({ postData }) {
+    return (
+      <Layout>
+        <Head>
+          <title>{postData.title}</title>
+        </Head>
+        <article>
+          <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+          <div className={utilStyles.lightText}>
+            <Date dateString={postData.date} />
+          </div>
+          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        </article>
+      </Layout>
+    );
+  }
+```
+
+如果你前往 [http://localhost:3000/posts/pre-rendering](http://localhost:3000/posts/pre-rendering) 查看，現在看起來更好了：
+
+![頁面示意圖](https://nextjs.org/static/images/learn/dynamic-routes/post-page-css.png "頁面示意圖")
+
+做得好！在下一階段，我們會優化我們的 index 頁面並且完成這一部分！
+
+<TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />
