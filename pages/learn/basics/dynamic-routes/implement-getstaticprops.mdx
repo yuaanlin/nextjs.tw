@@ -1,0 +1,120 @@
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
+
+## 動態路由
+
+<Pagination
+  hrefs={[
+    '/learn/basics/dynamic-routes',
+    '/learn/basics/dynamic-routes/setup',
+    '/learn/basics/dynamic-routes/page-path-external-data',
+    '/learn/basics/dynamic-routes/implement-getstaticpaths',
+    '/learn/basics/dynamic-routes/implement-getstaticprops',
+    '/learn/basics/dynamic-routes/render-markdown',
+    '/learn/basics/dynamic-routes/polishing-post-page',
+    '/learn/basics/dynamic-routes/polishing-index-page',
+    '/learn/basics/dynamic-routes/dynamic-routes-details',
+  ]}
+/>
+
+## 實作 getStaticProps
+
+我們需要使用 `id` 來抓取資料，並渲染文章內容。
+
+為了達到此目的，我們打開 `lib/posts.js` 此檔案，並把 `getPostData` 函式放到最底下。 它會根據 `id` 回傳文章資料：
+
+```html
+  export function getPostData(id) {
+    const fullPath = path.join(postsDirectory, `${id}.md`);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+    // Use gray-matter to parse the post metadata section
+    const matterResult = matter(fileContents);
+
+    // Combine the data with the id
+    return {
+      id,
+      ...matterResult.data,
+    };
+  }
+```
+
+再來打開 `pages/posts/[id].js` 用下面的程式碼：
+
+```html
+  import { getAllPostIds, getPostData } from '../../lib/posts';
+
+  export async function getStaticProps({ params }) {
+    const postData = getPostData(params.id);
+    return {
+      props: {
+        postData,
+      },
+    };
+  }
+```
+
+
+來替換掉這一行：
+
+```html
+  import { getAllPostIds } from '../../lib/posts';
+```
+
+此文章頁目前在 `getStaticProps` 當中使用 `getPostData` 取得文章資料並以 props 形式回傳。
+
+現在，讓我們更新 `Post` 組件來使用 `postData`。 在 `pages/posts/[id].js` 中用以下的程式碼來取代導出的 `Post` 組件上方：
+
+```html
+  export default function Post({ postData }) {
+    return (
+      <Layout>
+        {postData.title}
+        <br />
+        {postData.id}
+        <br />
+        {postData.date}
+      </Layout>
+    );
+  }
+```
+
+大致就是這樣！可以試試到以下網站看看結果：
+
+- [http://localhost:3000/posts/ssg-ssr](http://localhost:3000/posts/ssg-ssr)
+- [http://localhost:3000/posts/pre-rendering](http://localhost:3000/posts/pre-rendering)
+
+你應該要能夠看到每個頁面的文章資料：
+
+![每頁部落格資料示意圖](https://nextjs.org/static/images/learn/dynamic-routes/blog-data-post-page.png "每頁部落格資料示意圖")
+
+做得好！我們成功產生了動態路由。
+
+### 好像哪裡出錯了？
+
+如果你遇到了錯誤，確保你的檔案有以下正確的程式碼：
+
+- `pages/posts/[id].js` [看起來應該要長這樣](https://github.com/vercel/next-learn/blob/master/basics/dynamic-routes-step-1/pages/posts/%5Bid%5D.js)
+- `lib/posts.js` [看起來應該要長這樣](https://github.com/vercel/next-learn/blob/master/basics/dynamic-routes-step-1/lib/posts.js)
+- （還是有錯誤的話）剩下的程式碼[應該要長這樣](https://github.com/vercel/next-learn/tree/master/basics/dynamic-routes-step-1)。
+
+如果你還是哪裡有問題的話，可以到 GitHub Discussions 社群進行詢問。如果你可以將你的程式碼推送到 GitHub 並在社群中放上你的連結讓其他人可以協助你，對於解決問題會非常有幫助。
+
+### 總結
+
+沒錯，這是我們目前完成的部分的圖像化總結:
+
+![如何使用動態路由產生頁面示意圖](	https://nextjs.org/static/images/learn/dynamic-routes/how-to-dynamic-routes.png "如何使用動態路由產生頁面示意圖")
+
+我們還沒談到部落格 markdown 內容。 我們會在下一個階段來做。
+
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        `getStaticProps({ params })` 的 `params.id` 要如何知道鍵（key）的名稱是根據 `id` 來變動？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="根據 Markdown 檔案的標題"/>
+        <QuizOption text="根據檔案名稱內容" isCorrect/>
+    </QuizOptionGroup>
+</Quiz>
+
+<TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />
