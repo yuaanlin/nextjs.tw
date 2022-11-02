@@ -148,11 +148,11 @@
             "path": "/learn/basics/navigate-between-pages/pages-in-nextjs"
           },
           {
-            "title": "Link 組件",
+            "title": "Link 元件",
             "path": "/learn/basics/navigate-between-pages/link-component"
           },
           {
-            "title": "用戶端的跳轉",
+            "title": "客戶端的跳轉",
             "path": "/learn/basics/navigate-between-pages/client-side"
           }
         ]
