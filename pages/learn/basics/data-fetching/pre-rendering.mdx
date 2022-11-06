@@ -1,4 +1,5 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Button from "@components/Button";
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
 
 <Pagination
   hrefs={[
@@ -14,4 +15,63 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet />
+## 提前渲染
+
+在我們學習<a href="/docs/basic-features/data-fetching/overview" target="_blank">資料獲取</a>之前，先來看看 Next.js 中最重要的概念之一：<a href="/docs/basic-features/pages#pre-rendering" target="_blank"><strong>提前渲染</strong></a>
+
+在預設情況下，Next.js 在每個頁面都會提前渲染。這代表 Next.js 會預先產生每一頁的 HTML，而不是由前端的 JavaScript 渲染，這樣可以讓我們的網頁有更好的效能以及 <a href="https://en.wikipedia.org/wiki/Search_engine_optimization" target="_blank">SEO</a>。
+
+每個產生的 HTML 都會與該頁面所需要的最小化 JavaScript 程式碼相關聯。當瀏覽器載入一個頁面時，它的 JavaScript 程式碼會執行並使頁面可以讓使用者進行互動（這個過程稱為 hydration ）。
+
+### 檢查提前渲染是否有運作
+
+你可以透過以下步驟檢查預先渲染是否有運作：
+  - 在瀏覽器中禁用 JavaScript（<a href="https://developer.chrome.com/docs/devtools/javascript/disable/" target="_blank">如何在 Chorme 禁用 JavaScript</a>）
+  - <a href="https://next-learn-starter.vercel.app/" target="_blank">嘗試存取這個網頁</a>（這是這個教學的最終成果）
+
+你可以看到你的應用程式不需要 JavaScript 就會重新渲染。那是因為 Next.js 會將應用程式提前渲染成 HTML，讓你可以不需要執行 JavaScript 就可以看到應用程式的介面。
+
+> **注意**：你可以在 `localhost` 嘗試上述的步驟，但是如果你將 JavaScript 禁用的話 CSS 會無法載入。
+
+如果你的應用程式是一個純 React.js 應用程式（沒有 Next.js），那就不會有提前渲染功能，所以你禁用 JavaScript 的話，就不會看到應用程式的畫面。舉例來說：
+- 在你的瀏覽器中啟用 JavaScript 並且<a href="https://create-react-template.vercel.app/" target="_blank">查看這個網頁</a>。這是一個由 <a href="https://create-react-app.dev/" target="_blank">Create React App</a> 建立的純 React.js 應用程式
+- 現在禁用 JavaScript 並且再次存取<a href="https://create-react-template.vercel.app/" target="_blank">同一個網頁</a>
+- 你將不會看到這個應用程式的畫面，取而代之的是 "You need to enable JavaScript to run this app."。這是因為這個應用程式不會提前渲染成靜態的 HTML。
+
+### 總結：提前渲染 vs 無提前渲染
+
+這是一個簡短的圖片摘要：
+
+![提前渲染](https://nextjs.org/static/images/learn/data-fetching/pre-rendering.png "提前渲染")
+
+![無提前渲染](https://nextjs.org/static/images/learn/data-fetching/no-pre-rendering.png "無提前渲染")
+
+在下一章節中，我們一起學習在 Next.js 中的兩種提前渲染形式
+
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        下列何者不是提前渲染的好處
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="SEO 優化"/>
+        <QuizOption text="讓你的應用程式可以不需要 JavaScript 也能運作"/>
+        <QuizOption text="讓你的應用程式只能在伺服器端運作" isCorrect/>
+    </QuizOptionGroup>
+</Quiz>
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/data-fetching/setup"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/data-fetching/two-forms"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+
+<TranslatedBy githubUserNames={["justYu2001"]} />
