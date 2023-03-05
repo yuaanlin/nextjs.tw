@@ -25,21 +25,21 @@ import {
   ]}
 />
 
-## Assets
+## 靜態資源
 
-Next.js 可以在<strong>頂層<a href="docs/basic-features/static-file-serving" className="link-code" target="_blank"> `public` 目錄</a> </strong>下提供靜態資源，例如圖片。`public` 目錄中的檔案可以從應用程式的根目錄引用，就像 <a href="/docs/basic-features/pages" className="link-code" target="_blank">`pages`</a> 目錄一樣。
+Next.js 可以在<strong>頂層<a href="docs/basic-features/static-file-serving" className="link-code" target="_blank"> `public` 目錄</a> </strong>下運行靜態資源，例如圖片。就像 <a href="/docs/basic-features/pages" className="link-code" target="_blank">`pages`</a> 一樣，`public` 目錄中的檔案可以在根目錄下被引用。
 
-`public` 目錄對於 `robots.txt`、Google Site Verification 和其他任何靜態資源也很有用。請查看 <a href="/docs/basic-features/built-in-css-support" className="link-code" target="_blank" >Static File Serving</a>文件以瞭解更多。
+`public` 目錄對於 `robots.txt`、Google Site Verification 或任何靜態資源都很有用。請查看 <a href="/docs/basic-features/built-in-css-support" className="link-code" target="_blank" >Static File Serving</a>文件以瞭解更多。
 
-### Download Your Profile Picture
+### 下載你的個人圖片
 
-首先，讓我們取得您的個人頭像。
+首先，讓我們取得您的個人圖片。
 
-- 下載您的個人頭像，格式為 .jpg（或使用此檔案）。
-- 在 public 目錄下創建一個名為 images 的目錄。
-- 將圖片保存為 public/images 目錄中的 profile.jpg。
+- 下載您的個人圖片，格式為 .jpg（或<a href="https://github.com/vercel/next-learn/blob/master/basics/basics-final/public/images/profile.jpg" className="link-code" target="_blank" >使用此檔案</a>）。
+- 在 <a href="docs/basic-features/static-file-serving"  className="link-code" target="_blank">`public` 目錄</a>下創建一個名為 `images` 的目錄。
+- 將圖片保存在 `public/image` 目錄，命名為 `profile.jpg`。
 - 圖片尺寸可以大約為 400px x 400px。
-- 您可以直接刪除 public 目錄下未使用的 SVG 標誌檔案。
+- 您可以直接刪除 <a href="docs/basic-features/static-file-serving"  className="link-code" target="_blank">`public` 目錄</a>下未使用的 SVG logo 檔案。
 
 ### 尚未優化的圖片
 
@@ -51,31 +51,31 @@ Next.js 可以在<strong>頂層<a href="docs/basic-features/static-file-serving"
 
 然而，這也代表了你必須手動處理以下問題：
 
-- 確保圖片在不同螢幕大小下響應式
-- 使用第三方工具或庫優化你的圖片
-- 只在圖片進入視口時加載
+- 確保圖片可以響應不同螢幕
+- 使用第三方工具或函式庫優化你的圖片
+- 只在圖片進入可見區域時加載
 
-在 Next.js 裡，作為代替提供了 `Image` 元件，去幫你處理上述這些問題。
+但更好的是，Next.js 提供了一個 `Image` 組件，可以直接處理這個問題。
 
-### Image 元件和 Image 優化
+### 圖片元件和圖片優化
 
-<a href="/docs/api-reference/next/image" className="link-code" target="_blank">`next/image`</a> is an extension of the HTML `<img>` element, evolved for the modern web.
+<a href="/docs/api-reference/next/image" className="link-code" target="_blank">`next/image`</a> 是為了現代網頁的需求，而在 HTML `<img>` 基礎之上建立的擴展元件。
 
-Next.js 預設也支援圖片優化。這使得圖片能夠在瀏覽器支援的現代格式（例如 WebP）下進行調整大小、優化和提供。這樣可以避免將大型圖片發送到視口較小的設備上。此外，它還允許 Next.js 自動採用未來的圖片格式並將它們提供給支援這些格式的瀏覽器。
+在預設情況下 Next.js 支援圖片優化。包括了支援現代 web 格式，且進行大小調整、優化和運行圖片 (就像 <a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#webp" className="link-code" target="_blank"> WebP</a> 一樣)，這避免了在較小的可見區域加載大型圖片。同時，Next.js 還可以自動適應未來的圖片格式，並將其提供給支援這些格式的瀏覽器。
 
-自動圖像優化可與任何圖像源一起使用。即使圖像由外部數據源（例如 CMS）托管，它仍然可以進行優化。
+自動圖片優化可與任何圖片一起使用。即使圖片由外部數據源（例如 CMS）托管，它仍然可以進行優化。
 
-### 使用 Image 元件
+### 使用圖片元件
 
-Next.js 在使用者發出請求時，會動態優化圖片，而非在建置時進行優化。這與靜態網站產生器以及僅支援靜態內容的解決方案不同，不論是上傳 10 張還是 10 百萬張圖片，都不會增加建置時間。
+Next.js 在使用者發出請求時，會動態優化圖片，而非在建置時進行優化。這與靜態網站產生器以及僅支援靜態內容的解決方案不同，不論是上傳 10 張還是 1 千萬張圖片，都不會增加建置時間。
 
-圖片默認採用「懶加載」方式，這意味著圖片不在可視區域時不會影響頁面速度。當圖片被滾動到可視區域時才會加載。
+圖片默認採用「懶加載」方式，這意味著圖片不在可見區域時不會影響頁面速度。當圖片被滾動到可見區域時才會加載。
 
-圖片總是以避免累積版面位移的方式呈現，這是 Google 將會在搜尋排名中使用的核心網頁要素。
+圖片總是以避免<a href="https://web.dev/cls/" className="link-code" target="_blank">累積版面位移</a>的方式呈現，這是 Google 會在<a href="https://webmasters.googleblog.com/2020/05/evaluating-page-experience.html" className="link-code" target="_blank">搜尋排名</a>中使用的<a href="https://web.dev/vitals/#core-web-vitals" className="link-code" target="_blank">核心網頁指標</a>。
 
-這裡有一個使用 next/image 來顯示我們個人頭像的範例。height 和 width 屬性應該是期望的渲染大小，並具有與源圖像相同的長寬比。
+這裡有一個使用 `next/image` 來顯示我們個人圖片的範例。`height` 和 `width` 屬性應該是期望的渲染大小，並具有與原始圖片相同的長寬比。
 
-**注意：** 稍後在"拋光佈局（Polishing Layout）"中我們會使用這個組件，現在不需要複製它。
+**注意：** 稍後在 "拋光佈局" 中我們會使用這個組件，現在不需要複製它。
 
 ```js
 import Image from 'next/image';
@@ -91,9 +91,9 @@ const YourComponent = () => (
 ```
 
 <Blockquote>
-  <p>為了深入了解 Automatic Image Optimization，請查閱文件。</p>
+  <p>為了深入了解自動圖片優化，請參考<a href="docs/basic-features/image-optimization" className="link-code" target="_blank">文件。</a> </p>
 
-  <p>若想更瞭解 `Image`元件，請參閱 `next/image` 的 API 參考文件。</p>
+  <p>若想更瞭解 `Image`元件，請參閱 `next/image` 的 API <a href="docs/api-reference/next/image" className="link-code" target="_blank">文件</a>。</p>
 </Blockquote>
 
 <Quiz>
