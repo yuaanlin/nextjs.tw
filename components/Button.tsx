@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import Link from 'next/link';
 
 interface Button {
   content: string;
@@ -15,14 +16,16 @@ export default (
     hoverStyle
   }: PropsWithChildren<Button>
 ) => (
-  <button className="mdx-component mt-8">
+  <Link
+    href={url}
+    className="mdx-component mt-8"
+  >
     <a
-      href={url}
       className={`inline-block px-8 py-2 text-center
       rounded-lg cursor-pointer shadow-[rgba(0,118,255,.39)]
       shadow-lg ${basicStyle} ${hoverStyle}`}
     >
       {content}
     </a>
-  </button>
+  </Link>
 );
