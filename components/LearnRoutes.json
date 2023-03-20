@@ -298,7 +298,7 @@
         "path": "/learn/basics/deploying-nextjs-app",
         "children": [
           {
-            "title": "Setup",
+            "title": "前置作業",
             "path": "/learn/basics/deploying-nextjs-app/setup"
           },
           {

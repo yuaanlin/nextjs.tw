@@ -1,4 +1,6 @@
-import NotTranslateYet from '@components/NotTranslateYet'
+import Button from '@components/Button'
+
+## 部屬你的 Next.js 程式
 
 <Pagination
     hrefs={[
@@ -12,4 +14,46 @@ import NotTranslateYet from '@components/NotTranslateYet'
     ]}
 />
 
-<NotTranslateYet />
+**如果你是接著上一個教學的話**，您可以跳過這個頁面。您可以直接點擊下方的按鈕跳轉到下個頁面。
+<Button
+    content="下一個 →"
+    url="/learn/basics/deploying-nextjs-app/github"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+### 下載程式碼 (選用)
+
+如果您不是接著上一個教學的話，您可以下載、安裝、並執行下方的程式碼。
+
+這些程式碼設定了一個 `nextjs-blog` 資料夾，就跟上一個教學一樣。
+
+再次提醒，如果你剛完成上一個教學的話，您可以跳過這個步驟。
+
+```shell
+npx create-next-app@latest nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/basics-final"
+```
+
+接著依照輸出的指令操作（`cd` 進資料夾、啟動開發伺服器）。
+
+你也應該要一起更新以下的檔案：
+
++ 將 `public/images/profile.jpg` 更新成你的照片 (建議: 400px 寬度/高度)。
++ 將 `components/layout.js` 檔案裡的 `const name = '[Your Name]'` 替換成你的名字。
++ 將 `pages/index.js` 檔案裡的 `<p>[Your Self Introduction]</p>` 替換成你的自我介紹。
+
+<Button
+    content="返回 ←"
+    url="/learn/basics/deploying-nextjs-app"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+<Button
+    content="下一個 →"
+    url="/learn/basics/deploying-nextjs-app/github"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["f312213213"]} />
