@@ -19,7 +19,7 @@ function Layout(props: PropsWithChildren<{}>) {
     }
   };
 
-  return (<div className="w-screen">
+  return (<div className="w-full">
     <TopNav/>
     { getLayout() }
   </div>);
