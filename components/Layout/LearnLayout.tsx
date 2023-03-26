@@ -18,11 +18,11 @@ function LearnLayout(props: PropsWithChildren<{}>) {
           name="og:description"
           content="透過互動問答的方式帶你從零開始學習 JavaScrip 、 React 及 Next.js 框架來開發一個完整的網頁前端應用程式。"
         />
-        <meta name="keyword" content="Next.js, React, 開發框架, 靜態渲染, 動態渲染, 網站, 網頁應用程式, 中文, 教學" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png"/>
-        <meta name="twitter:card" content="summary_large_image"/>
-        <meta property="og:image" content="/og.jpg"/>
-        <meta content="@vercel" name="twitter:site"/>
+        <meta name="keyword" content="Next.js, React, 開發框架, 靜態生成, 動態渲染, 網站, 網頁應用程式, 中文, 教學" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:image" content="/og.jpg" />
+        <meta content="@vercel" name="twitter:site" />
       </Head>
       <MiniLearnMenu
         className="block md:hidden fixed z-10 left-0 top-[80px]"
@@ -43,7 +43,7 @@ function LearnLayout(props: PropsWithChildren<{}>) {
 
 // 用現在的pathname內容有沒有includes該項目的path來做樣式判斷
 const Nestedset: FC<NestedsetProps> = ({ item, level, pathname }) => {
-  if(item.children) {
+  if (item.children) {
     return (
       <>
         {
@@ -51,42 +51,42 @@ const Nestedset: FC<NestedsetProps> = ({ item, level, pathname }) => {
             className={
               `${item.index ? 'my-1 mt-5 text-[0.79em] font-semibold' : ''}`
             }>
-            { item.title }
+            {item.title}
           </h4> : <Link href={item.path} passHref>
             <a
               className={`${level === 1 && pathname.includes(item.path)
                 ? 'font-bold' : ''
-              } inline-block my-2 text-sm`}
+                } inline-block my-2 text-sm`}
             >{item.title}</a>
           </Link>
         }
-        { item.children && <NestedsetUL item={item} level={level} pathname={pathname} />}
+        {item.children && <NestedsetUL item={item} level={level} pathname={pathname} />}
       </>
     );
   }
-  if(item.path) {
+  if (item.path) {
     return (<NestedsetLI item={item} level={level} pathname={pathname} />);
   }
   return (<></>);
 };
 
-const NestedsetUL: FC<NestedsetProps> = ({ item, level=0, pathname }) => {
+const NestedsetUL: FC<NestedsetProps> = ({ item, level = 0, pathname }) => {
   return (
     <ul
       className={`
       ${level > 0 ? `level-${level}` : ''} 
       ${level === 1 && !pathname.includes(item.path)
-      ? 'max-h-0 overflow-hidden' : 'max-h-fit'}
+          ? 'max-h-0 overflow-hidden' : 'max-h-fit'}
       pl-4
       `}>
-      { item.children.map((item: any, key: Key | null | undefined) => (
+      {item.children.map((item: any, key: Key | null | undefined) => (
         <Nestedset key={key} item={item} level={level + 1} pathname={pathname} />
-      )) }
+      ))}
     </ul>
   );
 };
 
-const NestedsetLI: FC<NestedsetProps> = ({ item, level=0, pathname }) => {
+const NestedsetLI: FC<NestedsetProps> = ({ item, level = 0, pathname }) => {
   return (
     <li
       className={`${level > 0 ? `level-${level}` : ''}
@@ -105,7 +105,7 @@ const NestedsetLI: FC<NestedsetProps> = ({ item, level=0, pathname }) => {
 };
 
 const LearnMenu: FC<{
-    pathname: string;
+  pathname: string;
 }> = (props) => {
   const { pathname } = props;
   return (
@@ -122,9 +122,9 @@ const LearnMenu: FC<{
 };
 
 const MiniLearnMenu: FC<{
-    className?: string;
-    title: string;
-    pathname?: string;
+  className?: string;
+  title: string;
+  pathname?: string;
 }> = (props) => {
   const { className, title, pathname } = props;
   return (
