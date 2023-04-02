@@ -212,27 +212,27 @@
             "path": "/learn/basics/data-fetching/pre-rendering"
           },
           {
-            "title": "Two Forms of Pre-rendering",
+            "title": "提前渲染的兩種形式",
             "path": "/learn/basics/data-fetching/two-forms"
           },
           {
-            "title": "Static Generation with and without Data",
+            "title": "靜態生成 - 在有或沒有資料的情況下",
             "path": "/learn/basics/data-fetching/with-data"
           },
           {
-            "title": "Blog Data",
+            "title": "部落格資料",
             "path": "/learn/basics/data-fetching/blog-data"
           },
           {
-            "title": "Implement getStaticProps",
+            "title": "實現 getStaticProps",
             "path": "/learn/basics/data-fetching/implement-getstaticprops"
           },
           {
-            "title": "getStaticProps Details",
+            "title": "getStaticProps 的細節",
             "path": "/learn/basics/data-fetching/getstaticprops-details"
           },
           {
-            "title": "Fetching Data at Request Time",
+            "title": "在請求時拿取資料",
             "path": "/learn/basics/data-fetching/request-time"
           }
         ]

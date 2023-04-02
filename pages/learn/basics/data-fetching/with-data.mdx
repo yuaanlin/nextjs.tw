@@ -1,4 +1,4 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Button from '@components/Button';
 
 <Pagination
   hrefs={[
@@ -14,4 +14,61 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet />
+### 靜態生成 - 在有或沒有資料的情況下
+
+不管在有沒有資料的情況下都可以使用<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank">靜態生成</a>生成頁面。
+
+目前為止，我們建立的所有頁面都不需要取得外部資料。正式環境下的應用程式將會自動的生成靜態頁面。
+
+![沒資料的靜態生成](https://nextjs.org/static/images/learn/data-fetching/static-generation-without-data.png '有資料的靜態生成')
+
+但是，對於某些頁面，如果不先拿取外部資料，可能就無法渲染 HTML。例如：你需要在建造時就能夠存取檔案系統、取得外部 API 或查詢資料庫。Next.js 可以跳脫出框架，透過 — <a href="https://nextjs.org/docs/basic-features/pages#static-generation-with-data" className="link-code" target="_blank"  >**有資料的**靜態生成</a> — 達成這類的使用情境。
+
+![有資料的靜態生成](https://nextjs.org/static/images/learn/data-fetching/static-generation-with-data.png '有資料的靜態生成')
+
+### 透過 `getStaticProps` 使用有資料的靜態生成
+
+How does it work? Well, in Next.js, when you export a page component, you can also export an `async` function called `getStaticProps`. If you do this, then:
+這是如何運作的呢？好吧，在 Next.js 中，當你匯出一個頁面元件時，你也可以匯出一個 `async` 函式，稱為 `getStaticProps`。如果你這樣做了，那麼：
+
+- `getStaticProps` runs at build time in production, and…
+- Inside the function, you can fetch external data and send it as props to the page.
+
+```javascript
+export default function Home(props) { ... }
+
+export async function getStaticProps() {
+  // Get external data from the file system, API, DB, etc.
+  const data = ...
+
+  // The value of the `props` key will be
+  //  passed to the `Home` component
+  return {
+    props: ...
+  }
+}
+```
+
+Essentially, `getStaticProps` allows you to tell Next.js: “Hey, this page has some data dependencies — so when you pre-render this page at build time, make sure to resolve them first!”
+
+> **Note**: In development mode, `getStaticProps` runs on each request instead.
+
+### Let’s Use `getStaticProps`
+
+It’s easier to learn by doing, so starting from the next page, we’ll use `getStaticProps` to implement our blog.
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/data-fetching/pre-rendering"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/data-fetching/with-data"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={['oaoxd0314']} />
