@@ -28,45 +28,43 @@ import Button from '@components/Button';
 
 ### 透過 `getStaticProps` 使用有資料的靜態生成
 
-How does it work? Well, in Next.js, when you export a page component, you can also export an `async` function called `getStaticProps`. If you do this, then:
-這是如何運作的呢？好吧，在 Next.js 中，當你匯出一個頁面元件時，你也可以匯出一個 `async` 函式，稱為 `getStaticProps`。如果你這樣做了，那麼：
+這是如何作用的呢？在 Next.js 中，當你匯出一個頁面元件時，你也可以匯出一個`非同步`函式，並命名為 <a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a>。如果你這樣做了，那麼：
 
-- `getStaticProps` runs at build time in production, and…
-- Inside the function, you can fetch external data and send it as props to the page.
+- 在正式環境中 <a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a> 會在建造時執行，並且…
+- 將可以在函式中獲取外部資料，同時，也可以將資料傳遞給頁面。
 
 ```javascript
 export default function Home(props) { ... }
 
 export async function getStaticProps() {
-  // Get external data from the file system, API, DB, etc.
+  // 透過檔案系統、API、資料庫等方式 拿取外部資料
   const data = ...
 
-  // The value of the `props` key will be
-  //  passed to the `Home` component
+  // props 下的資料將會被 `Home` 元件接受
   return {
     props: ...
   }
 }
 ```
 
-Essentially, `getStaticProps` allows you to tell Next.js: “Hey, this page has some data dependencies — so when you pre-render this page at build time, make sure to resolve them first!”
+最終，<a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a> 可以像這樣告訴 Next.js：_「嘿，這個頁面會依賴一些資料 — 所以當你在預先生成頁面時，請先確拿取資料這件事情有被完成！」_。
 
-> **Note**: In development mode, `getStaticProps` runs on each request instead.
+> **注意**：在開發模式下，<a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a> 會在每個請求時執行。
 
-### Let’s Use `getStaticProps`
+### 開始使用 `getStaticProps` 吧！
 
-It’s easier to learn by doing, so starting from the next page, we’ll use `getStaticProps` to implement our blog.
+學習的最好方式就是實作，所以從下一頁開始，我們將使用 `getStaticProps` 來實作我們的部落格。
 
 <Button
   content="返回上一頁 ←"
-  url="/learn/basics/data-fetching/pre-rendering"
+  url="/learn/basics/data-fetching/two-forms"
   basicStyle="text-white bg-[#0070f3]"
   hoverStyle="hover:opacity-90"
 />
 
 <Button
   content="前往下一頁 →"
-  url="/learn/basics/data-fetching/with-data"
+  url="/learn/basics/data-fetching/blog-data"
   basicStyle="text-white bg-[#0070f3]"
   hoverStyle="hover:opacity-90"
 />
