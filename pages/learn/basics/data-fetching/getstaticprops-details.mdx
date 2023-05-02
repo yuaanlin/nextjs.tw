@@ -1,4 +1,5 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Button from '@components/Button'
+import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
 
 <Pagination
   hrefs={[
@@ -14,4 +15,78 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet />
+### getStaticProps 的細節
+
+以下是一些關於 getStaticProps 你應該知道的重要資訊。
+
+#### 拿取外部 API 或查詢資料庫
+
+在 `lib/posts.js` 我們已經實作了 `getSortedPostsData` 來從檔案系統中拿取資料。但你也可以從其他來源拿取資料，像是外部 API ： 
+
+```jsx
+export async function getSortedPostsData() {
+  // Instead of the file system,
+  // fetch post data from an external API endpoint
+  const res = await fetch('..');
+  return res.json();
+}
+```
+> **注意：** Next.js 在客戶端與伺服器端都含涵蓋（ polyfills ）了 <a href="/learn/basics/data-fetching/getstaticprops-details" className="link-code" target="_blank">`fetch()`</a> function。你不需要額外 import 它。
+
+你甚至可以直接查詢資料庫：
+
+```jsx
+import someDatabaseSDK from 'someDatabaseSDK'
+
+const databaseClient = someDatabaseSDK.createClient(...)
+
+export async function getSortedPostsData() {
+  // Instead of the file system,
+  // fetch post data from a database
+  return databaseClient.query('SELECT posts...')
+}
+```
+
+之所以可以達成這點，是因為 `getStaticProps` 只會在 **伺服器端執行** 。它永遠不會在客戶端執行。它甚至不會被包含在瀏覽器的 JS 檔案中。這代表你可以寫像是直接查詢資料庫的程式碼，而不會被送到瀏覽器。
+
+#### 開發模式 vs. 產品模式
+- 在開發模式（ `npm run dev` 或 `yarn dev` ），`getStaticProps` 會在每次請求時執行。
+- 在產品模式，`getStaticProps` 只會在建置時執行。在產品模式下，你需要使用 `next build` 來建置你的應用程式，並使用 `next start` 來啟動你的 Node.js 伺服器。
+
+因為這意味著它只會在建置時執行，你將無法使用只有在請求時才能取得的資料，像是參數或 HTTP headers。
+
+#### 只允許在頁面中使用
+`getStaticProps` 只能從頁面中匯出。你無法從非頁面檔案中匯出它。
+
+其中一個原因是是因為 React 需要在頁面被渲染前就取得所有必要的資料。
+
+#### 如果我需要在請求時取得資料怎麼辦？
+因為進行靜態產生只會在建置時執行，它並不適合需要頻繁更新或每次請求都會改變的資料。
+
+在這種需要更動資料的情況下，你可以使用伺服器端渲染。讓我們在下一節學習更多關於伺服器端渲染的知識。
+<Quiz>
+  <QuizHeading type={QuizType.quickReview}>
+    快速複習：Where does getStaticProps run?
+  </QuizHeading>
+  <QuizOptionGroup>
+    <QuizOption text="客戶端" />
+    <QuizOption text="伺服器端" isCorrect />
+    <QuizOption text="兩者皆是" />
+  </QuizOptionGroup>
+</Quiz>
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/data-fetching/implement-getstaticprops"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/data-fetching/request-time"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["oaoxd0314"]} />
