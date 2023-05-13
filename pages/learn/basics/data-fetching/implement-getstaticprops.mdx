@@ -19,16 +19,16 @@ import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@compo
 
 #### Next.js 中的提前渲染 
 
-Next.js 有兩種提前渲染的形式：靜態生成和伺服器渲染。差別在於它生成 HTML 頁面的時間。
+Next.js 有兩種提前渲染的形式：**靜態生成**和**伺服器渲染**。差別在於它生成 HTML 頁面的時間。
 
-- 靜態生成是其中一種提前渲染的方法，它在建構時生成 HTML 頁面。然後在每個請求中重複使用預先渲染的 HTML。
-- 伺服器渲染是提前渲染的另一種方法，它在每次請求中生成 HTML。
+- **靜態生成**是其中一種提前渲染的方法，它在**建構時**生成 HTML 頁面。然後在每個請求中重複使用預先渲染的 HTML。
+- **伺服器渲染**是提前渲染的另一種方法，它在**每次請求**中生成 HTML。
 
-重要的事，Next.js 可以讓你**決定**每個頁面的生成方法。你也可以創建一個「混合」的 Next.js 應用，通過對大多數頁面使用靜態生成，並對其他頁面使用伺服器渲染。
+重要的事，Next.js 可以讓你**選擇**每個頁面的生成方法。你也可以創建一個「混合」的 Next.js 應用，通過對大多數頁面使用靜態生成，並對其他頁面使用伺服器渲染。
 
 #### 使用靜態生成 (`getStaticProps()`)
 
-首先，我們需要去引入 `getSortedPostsData` 並在 `pages/index.js` 中的 `getStaticProps` 中使用它。
+首先，我們需要去引入 `getSortedPostsData` 並在 `pages/index.js` 中的 <a className="link-code" target="_blank" href="/docs/basic-features/data-fetching/get-static-props">`getStaticProps`</a> 中使用它。
 
 在編輯器中開起 `pages/index.js`，然後在 `export` 的 `Home` component 之前加入以下程式碼：
 
@@ -86,7 +86,7 @@ export default function Home({ allPostsData }) {
 
 ![首頁](https://nextjs.org/static/images/learn/data-fetching/index-page.png '首頁')
 
-讓我們在下一頁談談更多使用 `getStaticProps` 的技巧。
+讓我們在下一頁談談更多使用 <a className="link-code" target="_blank" href="/docs/basic-features/data-fetching/get-static-props">`getStaticProps`</a> 的技巧。
 
 <Button
   content="返回上一頁 ←"

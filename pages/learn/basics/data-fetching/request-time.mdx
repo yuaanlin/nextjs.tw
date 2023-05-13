@@ -17,12 +17,14 @@ import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@compo
 
 ### 在請求時拿取資料
 
-如果需要在請求時取得資料，你可以試試看伺服器端渲染：
+如果需要在**請求時**取得資料，你可以試試看<a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts#server-side-rendering">伺服器端渲染</a>：
 
-要使用伺服器端渲染，你需要從你的頁面中匯出 `getServerSideProps` 而不是 `getStaticProps`。
+![有資料的伺服器端渲染](https://nextjs.org/static/images/learn/data-fetching/server-side-rendering-with-data.png '有資料的伺服器端渲染')
 
-#### 使用 `getServerSideProps`
-這是一個 `getServerSideProps` 的範例，但是在我們的部落格範例中並不需要，所以我們不會實作它。
+要使用<a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts#server-side-rendering">伺服器端渲染</a>，你需要從你的頁面中匯出 <a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching#getserversideprops-server-side-rendering">`getServerSideProps`</a> 而不是 <a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching#getstaticprops-static-generation">`getStaticProps`</a>。
+
+#### 使用 <a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching#getserversideprops-server-side-rendering">`getServerSideProps`</a>
+這是一個 <a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching#getserversideprops-server-side-rendering">`getServerSideProps`</a> 的範例，但是在我們的部落格範例中並不需要，所以我們不會實作它。
 
 ```jsx
 export async function getServerSideProps(context) {
@@ -33,20 +35,22 @@ export async function getServerSideProps(context) {
   };
 }
 ```
-因為 `getServerSideProps` 會再請求時被呼叫，所以它的參數（`context`）包含了請求特定的參數。
+因為 <a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching#getserversideprops-server-side-rendering">`getServerSideProps`</a> 會再請求時被呼叫，所以它的參數（`context`）包含了請求特定的參數。
 
-你應該只有在需要在請求時取得資料並預先渲染頁面時，才使用 `getServerSideProps`。因為伺服器必須在每次請求時計算結果，所以第一個位元組的時間（TTFB）會比 `getStaticProps` 慢，而且結果無法被 CDN 快取，除非你額外設定。
+你應該只有在需要在請求時取得資料並預先渲染頁面時，才使用 <a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching#getserversideprops-server-side-rendering">`getServerSideProps`</a>。因為伺服器必須在每次請求時計算結果，所以第一個位元組的時間 (<a className="link-code" target="_blank" href="https://developer.chrome.com/docs/lighthouse/performance/time-to-first-byte/">TTFB</a>) 會比 <a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching#getstaticprops-static-generation">`getStaticProps`</a> 慢，而且結果無法被 <a className="link-code" target="_blank" href="https://vercel.com/docs/concepts/edge-network/overview" >CDN</a> 快取，除非你額外設定。
 
 #### 客戶端渲染
-如果你不需要預先渲染的資料，你也可以使用以下的策略（稱為客戶端渲染）：
+如果你不需要預先渲染的資料，你也可以使用以下的策略（稱為<a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching#fetching-data-on-the-client-side">客戶端渲染</a>）：
 
-靜態生成（預先渲染）部分不需要額外資料的頁面。
-當頁面載入時，使用 JavaScript 從客戶端取得外部資料，並填入剩下的部分。
+- 靜態生成（預先渲染）部分不需要額外資料的頁面。
+- 當頁面載入時，使用 JavaScript 從客戶端取得外部資料，並填入剩下的部分。
 
-這個策略對於個人數據報表頁面來說很適合。因為數據報表是私人的、只有特定使用者需要頁面，所以 SEO 不重要，而且頁面不需要預先渲染。資料會經常更新，所以需要在請求時取得資料。
+![客戶端渲染](https://nextjs.org/static/images/learn/data-fetching/client-side-rendering.png '客戶端渲染')
+
+這個策略對於個人數據報表頁面來說很適合。因為數據報表是私人的、只有特定使用者需要頁面，所以 SEO 不重要，而且頁面不需要<a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts#pre-rendering">預先渲染</a>。資料會經常更新，所以需要在請求時取得資料。
 
 #### SWR
-Next.js 的背後團隊也創造了一個 React hook 專門用來拿取資料，叫做 SWR。如果你在客戶端拿取資料，我們強烈推薦你使用它。它處理了快取、重新驗證、焦點追蹤、間隔重新拿取等等。我們不會在這裡詳細介紹，但是這裡有一個使用範例：
+Next.js 的背後團隊也創造了一個 React hook 專門用來拿取資料，叫做 <a className="link-code" target="_blank"  href="https://swr.vercel.app/"> SWR </a>。如果你在客戶端拿取資料，我們強烈推薦你使用它。它處理了快取、重新驗證、焦點追蹤、間隔重新拿取等等。我們不會在這裡詳細介紹，但是這裡有一個使用範例：
 
 ```jsx
 import useSWR from 'swr';
@@ -62,6 +66,17 @@ function Profile() {
 查看 SWR 文件以獲取更多資訊。
 
 #### 就是這樣！
-在下一個課程，我們會使用動態路由為每個部落格文章建立頁面。
+在下一個課程，我們會使用<a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes">動態路由</a>為每個部落格文章建立頁面。
 
-你可以從<a>資料獲取</a>文件得到關於 <a>`getStaticProps`</a> 和 <a>`getServerSideProps`</a> 更深入的資訊
+> 你可以從<a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching">資料獲取</a>文件得到關於 <a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching#getstaticprops-static-generation">`getStaticProps`</a> 和 <a className="link-code" target="_blank" href="https://nextjs.org/docs/pages/building-your-application/data-fetching#getserversideprops-server-side-rendering">`getServerSideProps`</a> 更深入的資訊
+
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+        你該在什麼時候使用客戶端渲染？
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="當你可以在使用者請求前就生成好資料"/>
+        <QuizOption text="當你需要在請求頁面時就取得資料，而非生成時"/>
+        <QuizOption text="隱私、只限特定使用者，且跟 SEO 無關的頁面" isCorrect/>
+    </QuizOptionGroup>
+</Quiz>
