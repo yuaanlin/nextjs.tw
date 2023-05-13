@@ -1,4 +1,11 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Button from '@components/Button';
+import {
+  Quiz,
+  QuizType,
+  QuizHeading,
+  QuizOptionGroup,
+  QuizOption,
+} from '@components/Quiz';
 
 <Pagination
   hrefs={[
@@ -14,4 +21,70 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet />
+### 提前渲染的兩種形式
+
+Next.js 擁有兩種形式的提前渲染：<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank" >靜態生成</a>和<a href="/docs/basic-features/pages#server-side-rendering" className="link-code" target="_blank">伺服器渲染</a>。兩者之間的差別在於生成 HTML 頁面的**時間點**。
+
+- <a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank" >靜態生成</a>是提前渲染的其中一種方式，會在**最一開始**生成 HTML，然後在每個請求中重複使用它。
+- <a href="/docs/basic-features/pages#server-side-rendering" className="link-code" target="_blank">伺服器渲染</a>是提前渲染的另一種方式，會在**每一個請求**中生成 HTML。
+
+![靜態生成](https://nextjs.org/static/images/learn/data-fetching/static-generation.png '靜態生成')
+
+![伺服器渲染](https://nextjs.org/static/images/learn/data-fetching/server-side-rendering.png '伺服器渲染')
+
+> 在開發環境下（當你運行 `npm run dev` 或 `yarn dev` 時），為了方便開發，頁面在每個請求上都會進行[**提前渲染**](https://nextjs.tw/docs/basic-features/pages#pre-rendering")，這也套用在[**靜態生成**](https://nextjs.tw/docs/basic-features/pages#static-generation-recommended)上。但在正式環境中，靜態生成將只在構建時生成一次，而**不是**在每個請求上發生。
+
+### 自訂每一個頁面的渲染形式
+
+重要的是，Next.js 可以讓你選擇每個頁面使用哪種形式的提前渲染。像是你可以創建一個「混合」的 Next.js 應用，在大多數頁面套用<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank" >靜態生成</a>，並在剩餘頁面中使用<a href="/docs/basic-features/pages#server-side-rendering" className="link-code" target="_blank">伺服器渲染</a>。
+
+![自定義渲染方式](https://nextjs.org/static/images/learn/data-fetching/per-page-basis.png '自定義渲染方式')
+
+### 使用時機<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank" >靜態生成</a> v.s. <a href="/docs/basic-features/pages#server-side-rendering" className="link-code" target="_blank">伺服器渲染</a>
+
+只要可能使用<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank" >**靜態生成**</a>（不管有或沒有資料）情況下，我們就會推薦使用它，因為你的頁面只需要被建立一次，就可以交給 CDN 提供服務，這會比每個需求都透過伺服器渲染生成頁面快很多。
+
+你可以在許多情況下使用<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank" >靜態生成</a>，包括：
+
+- 行銷頁面
+- 部落格文章
+- 商務產品列表
+- 文件和幫助頁面
+
+你應該問自己："我可以在使用者請求之前就提前渲染這個頁面嗎？"，如果答案是可以，你就應該選擇<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank" >靜態生成</a>。
+
+反過來說，如果你無法在使用者請求之前就提前渲染這個頁面、你的頁面需要頻繁更新的資料，且每次請求得到的內容都不同，那麼<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank" >靜態生成</a>就**不是**一個好主意。
+
+在這些情況下，你可以使用<a href="/docs/basic-features/pages#server-side-rendering" className="link-code" target="_blank">伺服器渲染</a>。它會比較慢，但是提前渲染的頁面將永遠是最新的。或者你可以跳過提前渲染，並使用客戶端 JavaScript 來填充頻繁更新的資料。
+
+### 我們會專注在靜態生成
+
+綜合以上，在這節課程中，我們將會專注在<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank" >靜態生成</a>。下一頁，讓我們來談談**有或沒有資料**的情況下，<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank" >靜態生成</a>是如何運作的。
+
+<Quiz>
+    <QuizHeading type={QuizType.quickReview}>
+       什麼情況該使用**伺服器渲染**?
+    </QuizHeading>
+    <QuizOptionGroup>
+        <QuizOption text="當你有一千個頁面"/>
+        <QuizOption text="當你的資料需要在每次請求時更新" isCorrect/>
+        <QuizOption text="當你需要為使用者特別建造頁面"/>
+    </QuizOptionGroup>
+
+</Quiz>
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/data-fetching/pre-rendering"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/data-fetching/with-data"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={['oaoxd0314']} />

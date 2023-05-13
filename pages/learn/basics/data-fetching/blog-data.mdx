@@ -1,4 +1,4 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Button from '@components/Button';
 
 <Pagination
   hrefs={[
@@ -14,4 +14,143 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet />
+### 建造一個簡單的部落格架構
+
+在接下來即將實作的範例裡面，會將文章以 markdown 的格式儲存在應用程式的目錄裡面(不是從外部取得)，所以我們需要透過檔案系統中讀取資料。
+
+這個章節我們將會透過一步步實作，建立可以從檔案系統中讀取 markdown 檔案的部落格。
+
+#### 建立 markdown 檔案
+
+首先，在根目錄創建一個名為 <strong>`posts`</strong> 的資料夾 ( 這和 `pages/posts` 不一樣 )。在 `posts` 資料夾中，創建兩個檔案：<strong>`pre-rendering.md`</strong> 和 <strong>`ssg-ssr.md`</strong>。
+
+現在，將以下程式碼複製到 `posts/pre-rendering.md` 中：
+
+```text
+---
+title: 'Two Forms of Pre-rendering'
+date: '2020-01-01'
+---
+
+Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.
+
+- **Static Generation** is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then _reused_ on each request.
+- **Server-side Rendering** is the pre-rendering method that generates the HTML on **each request**.
+
+Importantly, Next.js lets you **choose** which pre-rendering form to use for each page. You can create a "hybrid" Next.js app by using Static Generation for most pages and using Server-side Rendering for others.
+```
+
+之後，再將以下程式碼複製到 `posts/ssg-ssr.md` 中：
+
+```text
+---
+title: 'When to Use Static Generation v.s. Server-side Rendering'
+date: '2020-01-02'
+---
+
+We recommend using **Static Generation** (with and without data) whenever possible because your page can be built once and served by CDN, which makes it much faster than having a server render the page on every request.
+
+You can use Static Generation for many types of pages, including:
+
+- Marketing pages
+- Blog posts
+- E-commerce product listings
+- Help and documentation
+
+You should ask yourself: "Can I pre-render this page **ahead** of a user's request?" If the answer is yes, then you should choose Static Generation.
+
+On the other hand, Static Generation is **not** a good idea if you cannot pre-render a page ahead of a user's request. Maybe your page shows frequently updated data, and the page content changes on every request.
+
+In that case, you can use **Server-Side Rendering**. It will be slower, but the pre-rendered page will always be up-to-date. Or you can skip pre-rendering and use client-side JavaScript to populate data.
+```
+
+> 你可能會注意到，每個 markdown 檔案在最上方都有一個 metadata 區塊，包含 `title` 和 `date`。這些 metadata 稱之為 YAML Front Matter，我們可以透過 <a href="https://github.com/jonschlinkert/gray-matter"  className="link-code" target="_blank">gray-matter</a> 這個函式庫來解析這些資料。
+
+#### 下載 gray-matter
+
+首先，下載 <a href="https://github.com/jonschlinkert/gray-matter" className="link-code" target="_blank">gray-matter</a>，這個函式庫可以讓我們解析 markdown 檔案中的 metadata。
+
+```bash
+npm install gray-matter
+```
+
+#### 建立讀取檔案系統的公用函式
+
+接下來，我們將建立一個公用函式，用來從檔案系統中解析資料。我們希望它可以達成：
+
+- 解析每個 markdown 檔案，並取得`title`、`date`和檔案名稱 ( 這將會被用來當作文章 URL 的 `id` )。
+- 將在這些資料放在首頁，並依照日期排序。
+
+在根目錄創建一個名為 `lib` 的資料夾。然後，在 `lib` 資料夾中，創建一個名為 `posts.js` 的檔案，並將以下程式碼複製到檔案中：
+
+```jsx
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+
+const postsDirectory = path.join(process.cwd(), 'posts');
+
+export function getSortedPostsData() {
+  // 拿取 /posts 資料夾中的所有檔案名稱
+  const fileNames = fs.readdirSync(postsDirectory);
+  const allPostsData = fileNames.map((fileName) => {
+    // 移除名稱中的 ".md"，並將它當作 id
+    const id = fileName.replace(/\.md$/, '');
+
+    // 將 markdown 內容轉換為字串
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+    // 使用 gray-matter 解析 metadata 區塊
+    const matterResult = matter(fileContents);
+
+    // 將資料與 id 結合
+    return {
+      id,
+      ...matterResult.data,
+    };
+  });
+  // 依照日期排序
+  return allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+}
+```
+
+> <strong>注意：</strong>
+>
+>
+> 你不需要理解上面的程式碼是如何運作的，只要知道它是為了讓部落格範例可以正常運作即可。但如果你想要了解更多：
+>
+> - <a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`fs`</a>  是一個 Node.js 模組，可以讓你從檔案系統中讀取檔案。
+> - <a href="https://nodejs.org/api/path.html#pathjoinpaths" className="link-code" target="_blank">`path`</a> 是一個 Node.js 模組，可以讓你操作檔案路徑。
+> - <a href="https://www.npmjs.com/package/gray-matter" className="link-code" target="_blank">`matter`</a> 是一個函式庫，可以讓你解析 markdown 檔案中的 metadata。
+> - 在 Next.js 中，`lib` 資料夾沒有像 `pages` 資料夾一樣有指定的名稱，所以你可以將它命名為任何你想要的名稱。通常會使用 `lib` 或 `utils`。
+
+#### 取得部落格資料
+
+現在部落格資料已經被解析，我們需要將它加入到我們的首頁 (`pages/index.js`)。我們可以使用一個名為 <a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps()`</a> 的 Next.js 資料取得方法來實現。在下一個章節，我們將學習如何實現 `getStaticProps()`。
+
+![放置在首頁解釋圖](https://nextjs.org/static/images/learn/data-fetching/index-page.png '放置在首頁解釋圖')
+
+讓我們在下一頁來實現它吧！
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/data-fetching/with-data"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/data-fetching/implement-getstaticprops"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={['oaoxd0314']} />

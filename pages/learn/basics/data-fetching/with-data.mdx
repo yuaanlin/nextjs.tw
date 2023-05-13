@@ -1,4 +1,4 @@
-import NotTranslateYet from '@components/NotTranslateYet';
+import Button from '@components/Button';
 
 <Pagination
   hrefs={[
@@ -14,4 +14,59 @@ import NotTranslateYet from '@components/NotTranslateYet';
   ]}
 />
 
-<NotTranslateYet />
+### 靜態生成 - 在有或沒有資料的情況下
+
+不管在有沒有資料的情況下都可以使用<a href="/docs/basic-features/pages#static-generation-recommended" className="link-code" target="_blank">靜態生成</a>生成頁面。
+
+目前為止，我們建立的所有頁面都不需要取得外部資料。正式環境下的應用程式將會自動的生成靜態頁面。
+
+![沒資料的靜態生成](https://nextjs.org/static/images/learn/data-fetching/static-generation-without-data.png '有資料的靜態生成')
+
+但是，對於某些頁面，如果不先拿取外部資料，可能就無法渲染 HTML。例如：你需要在建造時就能夠存取檔案系統、取得外部 API 或查詢資料庫。Next.js 可以跳脫出框架，透過 — <a href="https://nextjs.org/docs/basic-features/pages#static-generation-with-data" className="link-code" target="_blank"  >**有資料的**靜態生成</a> — 達成這類的使用情境。
+
+![有資料的靜態生成](https://nextjs.org/static/images/learn/data-fetching/static-generation-with-data.png '有資料的靜態生成')
+
+### 透過 `getStaticProps` 使用有資料的靜態生成
+
+這是如何作用的呢？在 Next.js 中，當你匯出一個頁面元件時，你也可以匯出一個`非同步`函式，並命名為 <a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a>。如果你這樣做了，那麼：
+
+- 在正式環境中 <a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a> 會在建造時執行，並且…
+- 將可以在函式中獲取外部資料，同時，也可以將資料傳遞給頁面。
+
+```javascript
+export default function Home(props) { ... }
+
+export async function getStaticProps() {
+  // 透過檔案系統、API、資料庫等方式 拿取外部資料
+  const data = ...
+
+  // props 下的資料將會被 `Home` 元件接受
+  return {
+    props: ...
+  }
+}
+```
+
+最終，<a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a> 可以像這樣告訴 Next.js：_「嘿，這個頁面會依賴一些資料 — 所以當你在預先生成頁面時，請先確拿取資料這件事情有被完成！」_。
+
+> **注意**：在開發模式下，<a href="/docs/basic-features/data-fetching/overview#getstaticprops-static-generation" className="link-code" target="_blank">`getStaticProps`</a> 會在每個請求時執行。
+
+### 開始使用 `getStaticProps` 吧！
+
+學習的最好方式就是實作，所以從下一頁開始，我們將使用 `getStaticProps` 來實作我們的部落格。
+
+<Button
+  content="返回上一頁 ←"
+  url="/learn/basics/data-fetching/two-forms"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/basics/data-fetching/blog-data"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={['oaoxd0314']} />
