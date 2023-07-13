@@ -1,5 +1,8 @@
-import NotTranslateYet from '@components/NotTranslateYet'
+import Button from '@components/Button'
+import Pagination from '@components/Pagination'
+import TranslatedBy from '@components/TranslatedBy'
 
+## 部屬你的 Next.js 程式
 <Pagination
     hrefs={[
       '/learn/basics/deploying-nextjs-app',
@@ -12,4 +15,40 @@ import NotTranslateYet from '@components/NotTranslateYet'
     ]}
 />
 
-<NotTranslateYet />
+### 上傳至 GitHub
+
+在我們部署程式之前，讓我們將 Next.js 程式上傳至 GitHub，這會讓部署的過程簡單許多。
+
+- 在你的個人 GitHub 帳號裡新增一個叫做`nextjs-blog`的程式碼儲存庫。
+- 這個儲存庫可以是公開或是私人的，您**不需要**用 README 或其他檔案一起初始化這個儲存庫。
+- 如果在設定儲存庫的過程碰到問題，不妨到[這裡](https://help.github.com/en/github/getting-started-with-github/create-a-repo)看一下 GitHub 的指引。
+
+接著：
+
+- 如果您還沒在您的電腦上初始化這個 Next.js 的 git 儲存庫，現在就初始化他。
+- 將您的 Next.js 程式碼上傳至 GitHub 儲存庫。
+
+您可以運行下方的範例將您的程式碼上傳至 GitHub （將 `<username >` 替換成您在 GitHUb 上的使用者名稱）：
+
+```shell
+git remote add origin https://github.com/`<username>`/nextjs-blog.git
+git push -u origin main
+```
+
+一但您設定好你的儲存庫，您就可以繼續前往下一個頁面了。
+
+<Button
+    content="返回 ←"
+    url="/learn/basics/deploying-nextjs-app/setup"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+<Button
+    content="下一個 →"
+    url="/learn/basics/deploying-nextjs-app/deploy"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["f312213213"]} />

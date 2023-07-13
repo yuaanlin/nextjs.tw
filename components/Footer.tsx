@@ -1,5 +1,5 @@
 function Footer() {
-  return <div className="w-screen bg-stone-50 py-24 flex">
+  return <div className="w-full bg-stone-50 py-24 flex">
     <div className="container mx-auto">
       <img src="/vercel.svg" alt="vercel" className="w-24"/>
       <p className="text-stone-400 mt-4 text-sm">

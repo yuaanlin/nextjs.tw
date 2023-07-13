@@ -16,7 +16,7 @@ function TopNav() {
 
   return (
     <header
-      className={`sticky bg-white top-0 w-screen z-50
+      className={`sticky bg-white top-0 w-full z-50
        ${!isHome ? 'border-b border-[#eaeaea]' : ''}`}
     >
       <div
