@@ -43,17 +43,17 @@ function Home() {
   return (
     <ul>
       <li>
-        <Link href="/">
+        <Link href="/" legacyBehavior>
           <a>Home</a>
         </Link>
       </li>
       <li>
-        <Link href="/about">
+        <Link href="/about" legacyBehavior>
           <a>About Us</a>
         </Link>
       </li>
       <li>
-        <Link href="/blog/hello-world">
+        <Link href="/blog/hello-world" legacyBehavior>
           <a>Blog Post</a>
         </Link>
       </li>
@@ -84,7 +84,7 @@ function Posts({ posts }) {
     <ul>
       {posts.map((post) => (
         <li key={post.id}>
-          <Link href={`/blog/${encodeURIComponent(post.slug)}`}>
+          <Link href={`/blog/${encodeURIComponent(post.slug)}`} legacyBehavior>
             <a>{post.title}</a>
           </Link>
         </li>
@@ -113,6 +113,7 @@ function Posts({ posts }) {
               pathname: '/blog/[slug]',
               query: { slug: post.slug },
             }}
+            legacyBehavior
           >
             <a>{post.title}</a>
           </Link>

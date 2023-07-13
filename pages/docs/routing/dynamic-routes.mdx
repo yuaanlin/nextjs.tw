@@ -59,17 +59,17 @@ function Home() {
   return (
     <ul>
       <li>
-        <Link href="/post/abc">
+        <Link href="/post/abc" legacyBehavior>
           <a>Go to pages/post/[pid].js</a>
         </Link>
       </li>
       <li>
-        <Link href="/post/abc?foo=bar">
+        <Link href="/post/abc?foo=bar" legacyBehavior>
           <a>Also goes to pages/post/[pid].js</a>
         </Link>
       </li>
       <li>
-        <Link href="/post/abc/a-comment">
+        <Link href="/post/abc/a-comment" legacyBehavior>
           <a>Go to pages/post/[pid]/[comment].js</a>
         </Link>
       </li>
