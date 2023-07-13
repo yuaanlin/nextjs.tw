@@ -31,18 +31,18 @@ function Home() {
   return (
     <ul>
       <li>
-        <Link href="/" legacyBehavior>
-          <a>Home</a>
+        <Link href="/">
+          Home
         </Link>
       </li>
       <li>
-        <Link href="/about" legacyBehavior>
-          <a>About Us</a>
+        <Link href="/about">
+          About Us
         </Link>
       </li>
       <li>
-        <Link href="/blog/hello-world" legacyBehavior>
-          <a>Blog Post</a>
+        <Link href="/blog/hello-world">
+          Blog Post
         </Link>
       </li>
     </ul>
@@ -77,8 +77,8 @@ function Posts({ posts }) {
     <ul>
       {posts.map((post) => (
         <li key={post.id}>
-          <Link href={`/blog/${encodeURIComponent(post.slug)}`} legacyBehavior>
-            <a>{post.title}</a>
+          <Link href={`/blog/${encodeURIComponent(post.slug)}`}>
+            {post.title}
           </Link>
         </li>
       ))}
@@ -161,9 +161,8 @@ function Home() {
             pathname: '/about',
             query: { name: 'test' },
           }}
-          legacyBehavior
         >
-          <a>About us</a>
+          About us
         </Link>
       </li>
       <li>
@@ -172,9 +171,8 @@ function Home() {
             pathname: '/blog/[slug]',
             query: { slug: 'my-post' },
           }}
-          legacyBehavior
         >
-          <a>Blog Post</a>
+          Blog Post
         </Link>
       </li>
     </ul>
@@ -196,8 +194,8 @@ You can use every property as defined in the [Node.js URL module documentation](
 The default behavior of the `Link` component is to `push` a new URL into the `history` stack. You can use the `replace` prop to prevent adding a new entry, as in the following example:
 
 ```jsx
-<Link href="/about" replace legacyBehavior>
-  <a>About us</a>
+<Link href="/about" replace>
+  About us
 </Link>
 ```
 
@@ -206,8 +204,8 @@ The default behavior of the `Link` component is to `push` a new URL into the `hi
 The default behavior of `Link` is to scroll to the top of the page. When there is a hash defined it will scroll to the specific id, like a normal `<a>` tag. To prevent scrolling to the top / hash `scroll={false}` can be added to `Link`:
 
 ```jsx
-<Link href="/#hashid" scroll={false} legacyBehavior>
-  <a>Disables scrolling to the top</a>
+<Link href="/#hashid" scroll={false}>
+  Disables scrolling to the top
 </Link>
 ```
 

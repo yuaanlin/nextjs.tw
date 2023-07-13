@@ -228,8 +228,8 @@ import Link from 'next/link'
 
 export default function IndexPage(props) {
   return (
-    <Link href="/another" locale="fr" legacyBehavior>
-      <a>To /fr/another</a>
+    <Link href="/another" locale="fr">
+      To /fr/another
     </Link>
   )
 }
@@ -274,8 +274,8 @@ import Link from 'next/link'
 
 export default function IndexPage(props) {
   return (
-    <Link href="/fr/another" locale={false} legacyBehavior>
-      <a>To /fr/another</a>
+    <Link href="/fr/another" locale={false}>
+      To /fr/another
     </Link>
   )
 }

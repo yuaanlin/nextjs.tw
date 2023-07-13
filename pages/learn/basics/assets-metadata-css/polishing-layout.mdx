@@ -152,17 +152,15 @@ export default function Layout({ children, home }) {
           </>
         ) : (
           <>
-            <Link href="/" legacyBehavior>
-              <a>
-                <Image
-                  priority
-                  src="/images/profile.jpg"
-                  className={utilStyles.borderCircle}
-                  height={108}
-                  width={108}
-                  alt=""
-                />
-              </a>
+            <Link href="/">
+              <Image
+                priority
+                src="/images/profile.jpg"
+                className={utilStyles.borderCircle}
+                height={108}
+                width={108}
+                alt=""
+              />
             </Link>
             <h2 className={utilStyles.headingLg}>
               <Link href="/">
@@ -175,8 +173,8 @@ export default function Layout({ children, home }) {
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
-          <Link href="/" legacyBehavior>
-            <a>← 回到首頁</a>
+          <Link href="/">
+            ← 回到首頁
           </Link>
         </div>
       )}
