@@ -44,17 +44,17 @@ function Home() {
     <ul>
       <li>
         <Link href="/">
-          <a>Home</a>
+          Home
         </Link>
       </li>
       <li>
         <Link href="/about">
-          <a>About Us</a>
+          About Us
         </Link>
       </li>
       <li>
         <Link href="/blog/hello-world">
-          <a>Blog Post</a>
+          Blog Post
         </Link>
       </li>
     </ul>
@@ -85,7 +85,7 @@ function Posts({ posts }) {
       {posts.map((post) => (
         <li key={post.id}>
           <Link href={`/blog/${encodeURIComponent(post.slug)}`}>
-            <a>{post.title}</a>
+            {post.title}
           </Link>
         </li>
       ))}
@@ -114,7 +114,7 @@ function Posts({ posts }) {
               query: { slug: post.slug },
             }}
           >
-            <a>{post.title}</a>
+            {post.title}
           </Link>
         </li>
       ))}
