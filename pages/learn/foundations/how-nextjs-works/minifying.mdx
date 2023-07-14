@@ -1,3 +1,4 @@
+import Button from '@components/Button'
 import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz';
 
 <Pagination
@@ -35,6 +36,20 @@ import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@compo
         <QuizOption text="否 - 語法突顯是編輯器提供的功能" isCorrect/>
     </QuizOptionGroup>
 </Quiz>
+
+<Button
+  content="← 返回上一頁"
+  url="/learn/foundations/how-nextjs-works/compiling"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/foundations/how-nextjs-works/bundling"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
 
 <TranslatedBy githubUserNames={["justYu2001"]} />
 

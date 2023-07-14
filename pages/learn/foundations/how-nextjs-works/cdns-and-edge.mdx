@@ -1,3 +1,4 @@
+import Button from '@components/Button'
 import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
 
 ## Next.js 是如何運作的
@@ -69,6 +70,20 @@ CDNs（Content Delivery Networks 縮寫）將靜態資源（像是 HTML 及圖�
         <QuizOption text="能夠改善效能表現"/>
     </QuizOptionGroup>
 </Quiz>
+
+<Button
+  content="← 返回上一頁"
+  url="/learn/foundations/how-nextjs-works/rendering"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/foundations/how-nextjs-works/next-steps"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
 
 **其他資源**
 

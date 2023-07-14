@@ -1,3 +1,4 @@
+import Button from '@components/Button'
 import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
 
 <Pagination
@@ -39,5 +40,19 @@ import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@compo
         <QuizOption text="否" isCorrect/>
     </QuizOptionGroup>
 </Quiz>
+
+<Button
+  content="← 返回上一頁"
+  url="/learn/foundations/how-nextjs-works/code-splitting"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/foundations/how-nextjs-works/client-and-server"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
 
 <TranslatedBy githubUserNames={["yenbigbear"]} />
