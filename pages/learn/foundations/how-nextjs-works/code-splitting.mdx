@@ -1,3 +1,4 @@
+import Button from '@components/Button'
 import { Quiz, QuizType, QuizHeading, QuizOptionGroup, QuizOption } from '@components/Quiz'
 
 ## Next.js 是如何運作的
@@ -44,5 +45,19 @@ Next.js 有內建支援程式碼拆分功能。每個存放於 `pages/` 資料�
         <QuizOption text="移除多餘的程式碼" isCorrect/>
     </QuizOptionGroup>
 </Quiz>
+
+<Button
+  content="← 返回上一頁"
+  url="/learn/foundations/how-nextjs-works/bundling"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
+
+<Button
+  content="前往下一頁 →"
+  url="/learn/foundations/how-nextjs-works/buildtime-and-runtime"
+  basicStyle="text-white bg-[#0070f3]"
+  hoverStyle="hover:opacity-90"
+/>
 
 <TranslatedBy githubUserNames={["YONG-LIN-LIANG"]} />
