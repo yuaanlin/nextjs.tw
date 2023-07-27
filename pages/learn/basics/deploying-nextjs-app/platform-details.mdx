@@ -1,5 +1,8 @@
 import NotTranslateYet from "@components/NotTranslateYet";
 import Blockquote from '@components/Blockquote';
+import Button from '@components/Button'
+import TranslatedBy from '@components/TranslatedBy'
+import Pagination from '@components/Pagination'
 
 ## 部屬你的 Next.js 程式
 
@@ -61,4 +64,18 @@ Vercel 還有許多其他功能，例如：
 
 我們強烈建議在開發 Next.js 應用程式時使用這個工作流 — 它將幫助您更快地迭代您的應用程式。
 
-{/* <a href="" target="_blank"></a> */}
+<Button
+    content="返回 ←"
+    url="/learn/basics/deploying-nextjs-app/deploy"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+<Button
+    content="下一個 →"
+    url="/learn/basics/deploying-nextjs-app/other-hosting-options"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["Dalufishe"]} />
