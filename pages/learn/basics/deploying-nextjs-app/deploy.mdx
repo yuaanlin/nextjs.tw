@@ -1,15 +1,69 @@
-import NotTranslateYet from '@components/NotTranslateYet'
+import Blockquote from '@components/Blockquote';
+import Button from '@components/Button'
+import TranslatedBy from '@components/TranslatedBy'
+import Pagination from '@components/Pagination'
+
+## 部屬你的 Next.js 程式
 
 <Pagination
-    hrefs={[
-      '/learn/basics/deploying-nextjs-app',
-      '/learn/basics/deploying-nextjs-app/setup',
-      '/learn/basics/deploying-nextjs-app/github',
-      '/learn/basics/deploying-nextjs-app/deploy',
-      '/learn/basics/deploying-nextjs-app/platform-details',
-      '/learn/basics/deploying-nextjs-app/other-hosting-options',
-      '/learn/basics/deploying-nextjs-app/finally',
-    ]}
+  hrefs={[
+    "/learn/basics/deploying-nextjs-app",
+    "/learn/basics/deploying-nextjs-app/setup",
+    "/learn/basics/deploying-nextjs-app/github",
+    "/learn/basics/deploying-nextjs-app/deploy",
+    "/learn/basics/deploying-nextjs-app/platform-details",
+    "/learn/basics/deploying-nextjs-app/other-hosting-options",
+    "/learn/basics/deploying-nextjs-app/finally",
+  ]}
 />
 
-<NotTranslateYet />
+### 部署至 Vercel
+
+將 Next.js 應用程式部署到生產環境最簡單的方法是使用由 Next.js 開發者們所構建的 [Vercel]() 平台。
+
+Vercel 是一個無伺服器平台，適用於靜態和混合應用程式，可與您的無頭內容、電子商務或資料庫整合。我們致力於幫助前端團隊部屬、預覽和提供令人愉悅的使用者體驗，並預設提供優秀的性能。您可以免費開始使用且無需信用卡。
+
+### 建立 Vercel 帳戶
+
+首先，前往 <a href="https://vercel.com/signup" target="_blank">vercel.com/signup</a> 創建一個 Vercel 帳戶。選擇**使用 GitHub 繼續**並完成註冊過程。
+
+### 導入 `nextjs-blog` 程式碼儲存庫
+
+一旦完成註冊，將您的 nextjs-blog 程式碼存儲庫**導入**到 Vercel 上。您可以從這裡進行導入：<a href="https://vercel.com/import/git" target="_blank">vercel.com/import/git</a>。
+
+- 您需要為 **GitHub 安裝 Vercel**。您可以給予它對**所有存儲庫**的訪問權限。
+- 一旦完成安裝，導入 `nextjs-blog`。
+
+您可以使用***預設值***來設置以下項目 — 無需進行任何修改。Vercel 會自動檢測您是否有 Next.js 應用程式，並為您選擇最佳的構建配置。
+
+- 專案名稱
+- 根目錄
+- 構建指令
+- 輸出目錄
+- 開發指令
+
+當您進行部署時，您的 Next.js 應用程式將開始進行構建。通常情況下，構建過程應該在一分鐘內完成。
+
+<Blockquote>
+  **可用幫助**：如果您部署失敗，可以隨時在 <a rel="noopener noreferrer" target="_blank" href="https://github.com/vercel/next.js/discussions">GitHub 討論區</a>尋求幫助。要了解更多關於部署的資訊，請參閱<a rel="noopener noreferrer" target="_blank" href="/docs/deployment">我們的文件</a>。
+</Blockquote>
+
+當部署完成後，您將獲得**部署的 URL**。點擊其中一個 URL，您應該可以看到 Next.js 的初始頁面在線上運行。
+
+恭喜！您剛剛成功將 Next.js 應用程式部署到生產環境。在下一頁，我們將詳細介紹 Vercel 平台和建議的工作流程。
+
+<Button
+    content="返回 ←"
+    url="/learn/basics/deploying-nextjs-app/github"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+<Button
+    content="下一個 →"
+    url="/learn/basics/deploying-nextjs-app/platform-details"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["Dalufishe"]} />

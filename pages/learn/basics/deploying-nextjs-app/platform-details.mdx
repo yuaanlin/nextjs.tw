@@ -1,15 +1,80 @@
-import NotTranslateYet from '@components/NotTranslateYet'
+import Blockquote from '@components/Blockquote';
+import Button from '@components/Button'
+import TranslatedBy from '@components/TranslatedBy'
+import Pagination from '@components/Pagination'
+
+## 部屬你的 Next.js 程式
 
 <Pagination
-    hrefs={[
-      '/learn/basics/deploying-nextjs-app',
-      '/learn/basics/deploying-nextjs-app/setup',
-      '/learn/basics/deploying-nextjs-app/github',
-      '/learn/basics/deploying-nextjs-app/deploy',
-      '/learn/basics/deploying-nextjs-app/platform-details',
-      '/learn/basics/deploying-nextjs-app/other-hosting-options',
-      '/learn/basics/deploying-nextjs-app/finally',
-    ]}
+  hrefs={[
+    "/learn/basics/deploying-nextjs-app",
+    "/learn/basics/deploying-nextjs-app/setup",
+    "/learn/basics/deploying-nextjs-app/github",
+    "/learn/basics/deploying-nextjs-app/deploy",
+    "/learn/basics/deploying-nextjs-app/platform-details",
+    "/learn/basics/deploying-nextjs-app/other-hosting-options",
+    "/learn/basics/deploying-nextjs-app/finally",
+  ]}
 />
 
-<NotTranslateYet />
+### Next.js 和 Vercel
+
+<a href="https://vercel.com/?utm_source=next-site&amp;utm_medium=learnpages&amp;utm_campaign=learn_basics_deploying-nextjs-app_platform-details" target="_blank">Vercel</a> 是由 Next.js 的開發者們開發的平台，並且對 Next.js 提供第一線的支援。當您將 Next.js
+應用程式部署到 Vercel 時，默認情況下會自動執行以下步驟：
+
+- 使用<a href="/docs/basic-features/pages#static-generation-recommended" target="_blank">靜態生成</a>的頁面和靜態資源（JS、CSS、圖像、字型等）的頁面將自動從 Vercel 的<a href="https://vercel.com/docs/edge-network/overview" target="_blank">邊緣網路</a>（Edge Network）提供服務，使網路傳遞極為迅速。
+- 使用<a href="/docs/basic-features/pages#server-side-rendering" target="_blank">伺服端渲染</a>和 <a href="/docs/api-routes/introduction" target="_blank">API 路由</a>的頁面將自動成為獨立的<a href="https://vercel.com/docs/serverless-functions/introduction?utm_source=next-site&amp;utm_medium=learnpages&amp;utm_campaign=learn_basics_deploying-nextjs-app_platform-details" target="_blank">無伺服器運算</a>（Serverless Functions）。這允許頁面渲染和 API 請求無限擴展，以應對任何規模的流量。
+
+Vercel 還有許多其他功能，例如：
+
+- **客製化域名：** 一旦在 Vercel 上部署，您可以為您的 Next.js 應用程式指定一個自訂域名。請參閱<a href="https://vercel.com/docs/concepts/projects/custom-domains?utm_source=next-site&amp;utm_medium=learnpages&amp;utm_campaign=learn_basics_deploying-nextjs-app_platform-details" target="_blank">我們的文件</a>，了解詳細的操作步驟。
+- **環境變數：** 您還可以在 Vercel 上設置環境變數。請參閱<a href="https://vercel.com/docs/build-step?utm_campaign=learn_basics_deploying-nextjs-app_platform-details#environment-variables?utm_source=next-site&amp;utm_medium=learnpages&amp;utm_campaign=no-campaign" target="_blank">我們的文件</a>，了解詳細的操作步驟。然後，您可以在 Next.js 應用程式中<a href="/docs/basic-features/environment-variables#loading-environment-variables" target="_blank">使用這些環境變數</a>。
+- **自動化 HTTPS：** 默認情況下啟用了 HTTPS（包括自訂域名），無需進行額外的配置。我們會自動更新 SSL 憑證，讓您的應用程式始終保持安全的加密連接。
+
+您可以在 <a href="https://vercel.com/docs?utm_source=next-site&amp;utm_medium=learnpages&amp;utm_campaign=learn_basics_deploying-nextjs-app_platform-details" target="_blank">Vercel 文件</a>中進一步了解有關這個平台的更多資訊。
+
+### 在每次推送上預覽部署
+
+<Blockquote>
+以下步驟是**可選的** — 您可以嘗試操作，或只是閱讀了解。
+</Blockquote>
+
+- 在您的應用程式上創建一個**新的分支**。
+- 進行一些更改並將其推送到 GitHub。
+- 建立一個新的 **Pull Request**（<a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request" target="_blank">GitHub 幫助頁面</a>）。
+
+您應該會在 Pull Request 頁面上看到 `Vercel bot` 的評論。
+
+![](https://nextjs.org/static/images/learn/deploying-nextjs-app/vercel-bot.png)
+
+嘗試點擊該評論中的**預覽** URL。您應該能夠看到剛剛所做的修改。
+
+當您有個開啟的 Pull Request，Vercel 會自動為該分支創建**預覽部署頁面**，並在每次提交時更新。預覽 URL 將始終指向最新的預覽部署頁面。
+
+您可以將這個預覽 URL 與您的合作者分享，以即時獲得反饋。
+
+如果預覽部署看起來不錯，您可以將其**合併到`主要分支`**。當您這樣做時，Vercel 會自動創建一個生產環境部署。
+
+### 開發、預覽、上線
+
+- **開發階段**：我們在 Next.js 中編寫了程式碼，並使用 Next.js 開發伺服器以利用其熱重載功能。
+- **預覽階段**：我們將更改推送到 GitHub 上的分支，Vercel 創建了一個預覽部署，並且可以透過 URL 存取。我們可以將此預覽 URL 與其他人分享，以獲得意見反饋。除了 code reviews，您還可以進行部署預覽。
+- **上線階段**：我們將 Pull Request 合併到`主要分支`，以便部署至生產環境。
+
+我們強烈建議在開發 Next.js 應用程式時使用這個工作流 — 它將幫助您更快地迭代您的應用程式。
+
+<Button
+    content="返回 ←"
+    url="/learn/basics/deploying-nextjs-app/deploy"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+<Button
+    content="下一個 →"
+    url="/learn/basics/deploying-nextjs-app/other-hosting-options"
+    basicStyle="text-white bg-[#0070f3]"
+    hoverStyle="hover:opacity-90"
+/>
+
+<TranslatedBy githubUserNames={["Dalufishe"]} />

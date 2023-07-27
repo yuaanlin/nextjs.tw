@@ -1,89 +1,87 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-.docs code > span {
+.docs {
+  code > span {
     font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace !important;
     text-rendering: optimizelegibility;
     @apply font-light text-sm;
-}
+  }
 
-.docs :not(pre > div) > code {
+  :not(pre > div) > code {
     @apply text-[#c400ec] mx-1 text-sm;
-}
+    &::before {
+      content: '`';
+    }
+    &::after {
+      content: '`';
+    }
+  }
 
-.docs :not(pre > div) > code::before {
-    content: '`';
-}
-
-.docs :not(pre > div) > code::after {
-    content: '`';
-}
-
-.docs :not(pre > div) .link-code > code {
+  :not(pre > div) .link-code > code {
     @apply text-[#0074de] hover:text-[#68b5fb];
-}
+  }
 
-.docs h1 {
+  h1 {
     @apply text-4xl font-bold mb-14;
-}
+  }
 
-.docs h2 {
+  h2 {
     @apply text-3xl font-bold mt-16 mb-12;
-}
+  }
 
-.docs h3 {
+  h3 {
     @apply text-2xl font-bold mt-16 mb-10;
-}
+  }
 
-.docs h4 {
+  h4 {
     @apply text-xl font-bold mt-14 mb-8;
-}
+  }
 
-.docs h5 {
+  h5 {
     @apply text-lg font-bold mt-12 mb-6;
-}
+  }
 
-.docs > p, .docs > :not(.mdx-component) p {
+  > p, > :not(.mdx-component) p {
     @apply my-5 leading-8 font-light;
-}
+  }
 
-.docs details {
+  details {
     @apply bg-gray-100 rounded p-6 my-4 border;
-}
+  }
 
-.docs > :not(.mdx-component) a {
+  > :not(.mdx-component) a {
     @apply text-[#0074de] hover:text-[#0080f6] transition-all;
-}
+  }
 
-.docs ul {
+  ul {
     @apply ml-4;
-}
+    li::before {
+      content: '-';
+      @apply mr-4 opacity-50;
+    }
+  }
 
-.docs ul li::before {
-    content: '-';
-    @apply mr-4 opacity-50;
-}
-
-.docs ol {
+  ol {
     @apply list-decimal ml-8;
-}
+  }
 
-.docs li {
+  li {
     @apply my-6 font-light leading-8;
+  }
 }
 
 aside {
-    top: calc(2rem + 80px);
+  top: calc(2rem + 80px);
 }
 
 .answer-list {
-    counter-reset: answer-list;
-}
-
-.answer-list .answer-list__item::before{
+  counter-reset: answer-list;
+  .answer-list__item::before {
     counter-increment: answer-list;
-    content: counter(answer-list,upper-alpha)". ";
+    content: counter(answer-list, upper-alpha)". ";
     display: inline-block;
     width: 1.5rem;
+  }
 }
